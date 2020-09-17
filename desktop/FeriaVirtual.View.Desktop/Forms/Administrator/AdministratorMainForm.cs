@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.View.Desktop.Forms.Maintenance.Client.Carriers;
 using System.Windows.Forms;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Maintenance.User;
@@ -32,6 +33,12 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
             Close();
         }
 
+        private void MaintenanceCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.OpenForm( new MaintenanceCarrierForm() );
+        }
+
+
+
         private void MaintenanceUserToolStripMenuItem_Click(object sender,EventArgs e) {
             this.OpenForm( new MaintenanceUserForm() );
         }
@@ -44,9 +51,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
             command.Execute();
             this.Show();
         }
-
-
-
 
 
     }

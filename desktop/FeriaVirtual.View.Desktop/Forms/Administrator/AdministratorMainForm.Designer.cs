@@ -25,14 +25,11 @@
         private void InitializeComponent() {
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceProducerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceExternalCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceInternalCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceCarrierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.MaintenanceUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -51,6 +48,9 @@
             this.FormStatusStrip = new System.Windows.Forms.StatusStrip();
             this.FormStatusActiveUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormStatusCompanyToolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MaintenanceCarrierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MaintenanceUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuStrip.SuspendLayout();
             this.FormStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -77,13 +77,6 @@
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(69, 21);
             this.FileToolStripMenuItem.Text = "&Archivo";
-            // 
-            // CloseToolStripMenuItem
-            // 
-            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
-            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // MaintenanceToolStripMenuItem
             // 
@@ -116,23 +109,10 @@
             this.MaintenanceInternalCustomerToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.MaintenanceInternalCustomerToolStripMenuItem.Text = "Datos cliente &interno";
             // 
-            // MaintenanceCarrierToolStripMenuItem
-            // 
-            this.MaintenanceCarrierToolStripMenuItem.Name = "MaintenanceCarrierToolStripMenuItem";
-            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &transportistas";
-            // 
             // MaintenanceToolStripSeparator
             // 
             this.MaintenanceToolStripSeparator.Name = "MaintenanceToolStripSeparator";
             this.MaintenanceToolStripSeparator.Size = new System.Drawing.Size(221, 6);
-            // 
-            // MaintenanceUserToolStripMenuItem
-            // 
-            this.MaintenanceUserToolStripMenuItem.Name = "MaintenanceUserToolStripMenuItem";
-            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceUserToolStripMenuItem.Text = "Usuarios del sistema";
-            this.MaintenanceUserToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceUserToolStripMenuItem_Click);
             // 
             // BusinessToolStripMenuItem
             // 
@@ -261,6 +241,33 @@
             this.FormStatusCompanyToolStripStatusLabel1.Name = "FormStatusCompanyToolStripStatusLabel1";
             this.FormStatusCompanyToolStripStatusLabel1.Size = new System.Drawing.Size(102, 17);
             this.FormStatusCompanyToolStripStatusLabel1.Text = "Maipo Grande";
+            // 
+            // CloseToolStripMenuItem
+            // 
+            this.CloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
+            this.CloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
+            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            // 
+            // MaintenanceCarrierToolStripMenuItem
+            // 
+            this.MaintenanceCarrierToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_transportist;
+            this.MaintenanceCarrierToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaintenanceCarrierToolStripMenuItem.Name = "MaintenanceCarrierToolStripMenuItem";
+            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &transportistas";
+            this.MaintenanceCarrierToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceCarrierToolStripMenuItem_Click);
+            // 
+            // MaintenanceUserToolStripMenuItem
+            // 
+            this.MaintenanceUserToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.login;
+            this.MaintenanceUserToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaintenanceUserToolStripMenuItem.Name = "MaintenanceUserToolStripMenuItem";
+            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.MaintenanceUserToolStripMenuItem.Text = "Usuarios del sistema";
+            this.MaintenanceUserToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceUserToolStripMenuItem_Click);
             // 
             // AdministratorMainForm
             // 
