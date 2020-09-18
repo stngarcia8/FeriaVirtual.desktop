@@ -23,7 +23,7 @@ namespace FeriaVirtual.Business.Validators {
             StringBuilder errorMessage = new StringBuilder();
             errorMessage.Append( "Se han encontrado los siguientes problemas al " + this.processName + ", solucionelos y vuelva a intentarlo.\n" );
             foreach(string error in ErrorMessages) {
-                errorMessage.Append( "- " + error + "\n" );
+                errorMessage.Append(string.Format("- {0} \n",error) );
             }
             return errorMessage.ToString();
         }

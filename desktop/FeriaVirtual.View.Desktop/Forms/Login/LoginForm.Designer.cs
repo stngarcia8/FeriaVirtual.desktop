@@ -30,9 +30,9 @@
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.LoginButton = new System.Windows.Forms.Button();
+            this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.CancelLoginButton = new System.Windows.Forms.Button();
             this.FormPictureBox = new System.Windows.Forms.PictureBox();
-            this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +87,13 @@
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
+            // FormImageList
+            // 
+            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
+            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
+            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
+            // 
             // CancelLoginButton
             // 
             this.CancelLoginButton.AutoSize = true;
@@ -114,13 +121,6 @@
             this.FormPictureBox.TabIndex = 0;
             this.FormPictureBox.TabStop = false;
             // 
-            // FormImageList
-            // 
-            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
-            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
-            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
-            // 
             // LoginForm
             // 
             this.AcceptButton = this.LoginButton;
@@ -137,6 +137,7 @@
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";

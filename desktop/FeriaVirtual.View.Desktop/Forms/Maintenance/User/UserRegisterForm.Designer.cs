@@ -85,7 +85,7 @@
             // FirstnameLabel
             // 
             this.FirstnameLabel.AutoSize = true;
-            this.FirstnameLabel.Location = new System.Drawing.Point(125, 50);
+            this.FirstnameLabel.Location = new System.Drawing.Point(125, 75);
             this.FirstnameLabel.Name = "FirstnameLabel";
             this.FirstnameLabel.Size = new System.Drawing.Size(69, 17);
             this.FirstnameLabel.TabIndex = 8;
@@ -93,7 +93,7 @@
             // 
             // FirstnameTextBox
             // 
-            this.FirstnameTextBox.Location = new System.Drawing.Point(225, 50);
+            this.FirstnameTextBox.Location = new System.Drawing.Point(225, 75);
             this.FirstnameTextBox.MaxLength = 30;
             this.FirstnameTextBox.Name = "FirstnameTextBox";
             this.FirstnameTextBox.Size = new System.Drawing.Size(275, 23);
@@ -102,7 +102,7 @@
             // LastnameLabel
             // 
             this.LastnameLabel.AutoSize = true;
-            this.LastnameLabel.Location = new System.Drawing.Point(125, 75);
+            this.LastnameLabel.Location = new System.Drawing.Point(125, 100);
             this.LastnameLabel.Name = "LastnameLabel";
             this.LastnameLabel.Size = new System.Drawing.Size(69, 17);
             this.LastnameLabel.TabIndex = 11;
@@ -110,8 +110,8 @@
             // 
             // LastnameTextBox
             // 
-            this.LastnameTextBox.Location = new System.Drawing.Point(225, 75);
-            this.LastnameTextBox.MaxLength = 150;
+            this.LastnameTextBox.Location = new System.Drawing.Point(225, 100);
+            this.LastnameTextBox.MaxLength = 50;
             this.LastnameTextBox.Name = "LastnameTextBox";
             this.LastnameTextBox.Size = new System.Drawing.Size(275, 23);
             this.LastnameTextBox.TabIndex = 12;
@@ -119,7 +119,7 @@
             // EmailLabel
             // 
             this.EmailLabel.AutoSize = true;
-            this.EmailLabel.Location = new System.Drawing.Point(125, 100);
+            this.EmailLabel.Location = new System.Drawing.Point(125, 125);
             this.EmailLabel.Name = "EmailLabel";
             this.EmailLabel.Size = new System.Drawing.Size(51, 17);
             this.EmailLabel.TabIndex = 13;
@@ -127,7 +127,7 @@
             // 
             // EmailTextBox
             // 
-            this.EmailTextBox.Location = new System.Drawing.Point(225, 100);
+            this.EmailTextBox.Location = new System.Drawing.Point(225, 125);
             this.EmailTextBox.MaxLength = 254;
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(275, 23);
@@ -136,7 +136,7 @@
             // UserTypeLabel
             // 
             this.UserTypeLabel.AutoSize = true;
-            this.UserTypeLabel.Location = new System.Drawing.Point(125, 125);
+            this.UserTypeLabel.Location = new System.Drawing.Point(125, 150);
             this.UserTypeLabel.Name = "UserTypeLabel";
             this.UserTypeLabel.Size = new System.Drawing.Size(92, 17);
             this.UserTypeLabel.TabIndex = 15;
@@ -145,7 +145,7 @@
             // AdministratorRadioButton
             // 
             this.AdministratorRadioButton.AutoSize = true;
-            this.AdministratorRadioButton.Location = new System.Drawing.Point(225, 125);
+            this.AdministratorRadioButton.Location = new System.Drawing.Point(225, 150);
             this.AdministratorRadioButton.Name = "AdministratorRadioButton";
             this.AdministratorRadioButton.Size = new System.Drawing.Size(116, 21);
             this.AdministratorRadioButton.TabIndex = 16;
@@ -156,7 +156,7 @@
             // ConsultorRadioButton
             // 
             this.ConsultorRadioButton.AutoSize = true;
-            this.ConsultorRadioButton.Location = new System.Drawing.Point(375, 125);
+            this.ConsultorRadioButton.Location = new System.Drawing.Point(375, 150);
             this.ConsultorRadioButton.Name = "ConsultorRadioButton";
             this.ConsultorRadioButton.Size = new System.Drawing.Size(88, 21);
             this.ConsultorRadioButton.TabIndex = 17;
@@ -180,7 +180,7 @@
             this.SaveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SaveButton.ImageKey = "button-save.png";
             this.SaveButton.ImageList = this.FormImageList;
-            this.SaveButton.Location = new System.Drawing.Point(300, 175);
+            this.SaveButton.Location = new System.Drawing.Point(300, 200);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(84, 27);
             this.SaveButton.TabIndex = 19;
@@ -197,7 +197,7 @@
             this.BackButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BackButton.ImageKey = "button-cancel.png";
             this.BackButton.ImageList = this.FormImageList;
-            this.BackButton.Location = new System.Drawing.Point(400, 175);
+            this.BackButton.Location = new System.Drawing.Point(400, 200);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(98, 27);
             this.BackButton.TabIndex = 20;
@@ -213,7 +213,7 @@
             this.EnableUserButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EnableUserButton.ImageKey = "button-disable.png";
             this.EnableUserButton.ImageList = this.FormImageList;
-            this.EnableUserButton.Location = new System.Drawing.Point(0, 175);
+            this.EnableUserButton.Location = new System.Drawing.Point(0, 200);
             this.EnableUserButton.Name = "EnableUserButton";
             this.EnableUserButton.Size = new System.Drawing.Size(142, 27);
             this.EnableUserButton.TabIndex = 18;
@@ -254,7 +254,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BackButton;
-            this.ClientSize = new System.Drawing.Size(507, 208);
+            this.ClientSize = new System.Drawing.Size(507, 238);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.EnableUserButton);
@@ -275,6 +275,7 @@
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserRegisterForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

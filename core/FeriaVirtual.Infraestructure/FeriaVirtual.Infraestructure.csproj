@@ -51,6 +51,9 @@
     <Compile Include="Database\QueryAction.cs" />
     <Compile Include="Database\QuerySelect.cs" />
     <Compile Include="Exceptions\ConnectionFailedException.cs" />
+    <Compile Include="Mailer\MailConfigurator.cs" />
+    <Compile Include="Mailer\MailMessageConfigurator.cs" />
+    <Compile Include="Mailer\MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

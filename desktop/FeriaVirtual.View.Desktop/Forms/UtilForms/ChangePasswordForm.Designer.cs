@@ -31,8 +31,8 @@
             this.renewPasswordLabel = new System.Windows.Forms.Label();
             this.RenewPasswordTextBox = new System.Windows.Forms.TextBox();
             this.ChangePasswordButton = new System.Windows.Forms.Button();
-            this.CancelChangeButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
+            this.CancelChangeButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +98,13 @@
             this.ChangePasswordButton.UseVisualStyleBackColor = true;
             this.ChangePasswordButton.Click += new System.EventHandler(this.ChangePasswordButton_Click);
             // 
+            // FormImageList
+            // 
+            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
+            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
+            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
+            // 
             // CancelChangeButton
             // 
             this.CancelChangeButton.AutoSize = true;
@@ -113,13 +120,6 @@
             this.CancelChangeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CancelChangeButton.UseVisualStyleBackColor = true;
             this.CancelChangeButton.Click += new System.EventHandler(this.CancelChangeButton_Click);
-            // 
-            // FormImageList
-            // 
-            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
-            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
-            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
             // 
             // ChangePasswordForm
             // 
@@ -137,10 +137,10 @@
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChangePasswordForm";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

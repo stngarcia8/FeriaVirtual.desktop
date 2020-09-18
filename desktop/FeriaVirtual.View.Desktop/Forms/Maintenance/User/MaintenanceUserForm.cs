@@ -25,6 +25,28 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
             this.LoadUsers( 0 );
         }
 
+        private void OptionNewToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.OpenRegisterForm( true );
+        }
+
+        private void OptionEditToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.GetRecordId();
+            this.OpenRegisterForm( false );
+        }
+
+        private void OptionRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.LoadUsers( this.ListFilterComboBox.SelectedIndex );
+        }
+
+        private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.Close();
+        }
+
+
+
+
+
+
         private void OptionNewButton_Click(object sender,EventArgs e) {
             this.OpenRegisterForm( true );
         }
@@ -59,8 +81,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
 
         private void LoadFilters() {
             this.ListFilterComboBox.BeginUpdate();
+            this.ListFilterComboBox.Items.Clear();
             this.ListFilterComboBox.Items.Add( "Todos" );
-            this.ListFilterComboBox.Items.Add( "Nombre de usuario" );
+            this.ListFilterComboBox.Items.Add( "Nombre de usuario");
             this.ListFilterComboBox.Items.Add( "Usuarios habilitados" );
             this.ListFilterComboBox.Items.Add( "Usuarios inhabilitados" );
             this.ListFilterComboBox.EndUpdate();
@@ -69,7 +92,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
 
         private void LoadUsers(int filterType) {
             try {
-                EmployeeUseCase useCase = EmployeeUseCase.Create();
+                EmployeeUseCase useCase = EmployeeUseCase.CreateUseCase();
                 DataTable data = new DataTable();
                 this.ListDataGridView.DataSource = null;
                 if(filterType.Equals( 0 )) data = useCase.FindAll();
@@ -123,8 +146,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
             if(row == null) return;
             this.idSelected=  row.Cells[1].Value.ToString();
         }
-
-
 
 
     }

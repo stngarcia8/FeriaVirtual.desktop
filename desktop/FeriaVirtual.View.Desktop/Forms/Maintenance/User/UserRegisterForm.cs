@@ -86,7 +86,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
             if(result==DialogResult.No) return;
             bool oldStatus = employee.Credentials.IsActive;
             try {
-                EmployeeUseCase usecase = EmployeeUseCase.Create();
+                EmployeeUseCase usecase = EmployeeUseCase.CreateUseCase();
                 usecase.EnableDisableUser( employee.Credentials.UserId,employee.Credentials.IsActive );
                 message.Clear();
                 message.Append( string.Format( "El usuario {0} fue {1} correctamente, los usuarios administradores pueden volver a rebocar esta acción.",employee.ToString(),(employee.Credentials.IsActive?"inhabilitado":"habilitado" ) ));
@@ -124,7 +124,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
             bool result = false;
             PutUserDataIntoObject();
             try {
-                EmployeeUseCase usecase = EmployeeUseCase.Create();
+                EmployeeUseCase usecase = EmployeeUseCase.CreateUseCase();
                 if(IsNewRecord) {
                     usecase.NewEmployee( employee );
                     MessageBox.Show( "El usuario " + employee.ToString() + " ha sido almacenado correctamente.","Atención",MessageBoxButtons.OK,MessageBoxIcon.Information );
@@ -159,7 +159,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
 
         private void LoadUserInfo() {
             try {
-                EmployeeUseCase useCase = EmployeeUseCase.Create();
+                EmployeeUseCase useCase = EmployeeUseCase.CreateUseCase();
                 GetUserData( useCase.FindUserById( idSelected ) );
             } catch(Exception ex) {
                 MessageBox.Show( ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );

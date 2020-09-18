@@ -42,15 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\InvalidChangePasswordException.cs" />
+    <Compile Include="Exceptions\InvalidClientException.cs" />
     <Compile Include="Exceptions\InvalidEmployeeException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="Exceptions\InvalidUserRegisterException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\ClientUseCase.cs" />
     <Compile Include="Users\LoginUseCase.cs" />
     <Compile Include="Users\EmployeeUseCase.cs" />
     <Compile Include="Validators\ChangePasswordValidator.cs" />
+    <Compile Include="Validators\ClientValidator.cs" />
     <Compile Include="Validators\EmployeeValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
     <Compile Include="Validators\Validator.cs" />

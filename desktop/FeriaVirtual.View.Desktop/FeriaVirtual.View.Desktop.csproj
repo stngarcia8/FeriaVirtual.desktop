@@ -81,11 +81,17 @@
     <Compile Include="Forms\Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\Carriers\MaintenanceCarrierForm.cs">
+    <Compile Include="Forms\Maintenance\Client\ClientRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\Carriers\MaintenanceCarrierForm.Designer.cs">
-      <DependentUpon>MaintenanceCarrierForm.cs</DependentUpon>
+    <Compile Include="Forms\Maintenance\Client\ClientRegisterForm.Designer.cs">
+      <DependentUpon>ClientRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.Designer.cs">
+      <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Maintenance\User\MaintenanceUserForm.cs">
       <SubType>Form</SubType>
@@ -117,8 +123,11 @@
     <EmbeddedResource Include="Forms\Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Client\Carriers\MaintenanceCarrierForm.resx">
-      <DependentUpon>MaintenanceCarrierForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Maintenance\Client\ClientRegisterForm.resx">
+      <DependentUpon>ClientRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\Client\MaintenanceClientForm.resx">
+      <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Maintenance\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
@@ -197,6 +206,39 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-exit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer-register.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customers-form.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Feriavirtualform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

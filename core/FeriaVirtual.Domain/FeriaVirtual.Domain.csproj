@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainExeptions\DomainException.cs" />
+    <Compile Include="Elements\Vehicle.cs" />
+    <Compile Include="Enums\MailTypeMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users\Carrier.cs" />
+    <Compile Include="Users\Client.cs" />
+    <Compile Include="Users\ComercialData.cs" />
     <Compile Include="Users\Employee.cs" />
     <Compile Include="Users\Person.cs" />
     <Compile Include="Users\Credential.cs" />
