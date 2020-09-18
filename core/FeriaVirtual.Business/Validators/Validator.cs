@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace FeriaVirtual.Business.Validators {
@@ -21,9 +22,9 @@ namespace FeriaVirtual.Business.Validators {
                 return string.Empty;
             }
             StringBuilder errorMessage = new StringBuilder();
-            errorMessage.Append( "Se han encontrado los siguientes problemas al " + this.processName + ", solucionelos y vuelva a intentarlo.\n" );
+            errorMessage.Append( "Se han encontrado los siguientes problemas al " + this.processName + ", solucionelos y vuelva a intentarlo."+ Environment.NewLine );
             foreach(string error in ErrorMessages) {
-                errorMessage.Append(string.Format("- {0} \n",error) );
+                errorMessage.Append(string.Format("- {0}" + Environment.NewLine,error) );
             }
             return errorMessage.ToString();
         }
