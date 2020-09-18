@@ -80,7 +80,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void EnableDisableClient(string idUser,bool userStatus) {
             try {
-                //repository.EnableOrDisableUser( idUser,(userStatus ? 0 : 1) );
+                repository.EnableOrDisableClient( idUser,(userStatus ? 0 : 1) );
             } catch(Exception ex) {
                 throw ex;
             }

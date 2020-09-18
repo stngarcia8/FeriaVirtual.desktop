@@ -38,11 +38,11 @@
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.DNITextBox = new System.Windows.Forms.TextBox();
             this.DNILabel = new System.Windows.Forms.Label();
+            this.ChangePasswordButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.EnableUserButton = new System.Windows.Forms.Button();
             this.FormPictureBox = new System.Windows.Forms.PictureBox();
-            this.ChangePasswordButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,6 +160,22 @@
             this.DNILabel.TabIndex = 10;
             this.DNILabel.Text = "DNI/Rut:";
             // 
+            // ChangePasswordButton
+            // 
+            this.ChangePasswordButton.AutoSize = true;
+            this.ChangePasswordButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ChangePasswordButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangePasswordButton.ImageKey = "button-changepassword.png";
+            this.ChangePasswordButton.ImageList = this.FormImageList;
+            this.ChangePasswordButton.Location = new System.Drawing.Point(450, 25);
+            this.ChangePasswordButton.Name = "ChangePasswordButton";
+            this.ChangePasswordButton.Size = new System.Drawing.Size(86, 26);
+            this.ChangePasswordButton.TabIndex = 5;
+            this.ChangePasswordButton.Text = "Cambiar";
+            this.ChangePasswordButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ChangePasswordButton.UseVisualStyleBackColor = true;
+            this.ChangePasswordButton.Click += new System.EventHandler(this.ChangePasswordButton_Click);
+            // 
             // BackButton
             // 
             this.BackButton.AutoSize = true;
@@ -219,22 +235,6 @@
             this.FormPictureBox.TabIndex = 21;
             this.FormPictureBox.TabStop = false;
             // 
-            // ChangePasswordButton
-            // 
-            this.ChangePasswordButton.AutoSize = true;
-            this.ChangePasswordButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ChangePasswordButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangePasswordButton.ImageKey = "button-changepassword.png";
-            this.ChangePasswordButton.ImageList = this.FormImageList;
-            this.ChangePasswordButton.Location = new System.Drawing.Point(450, 25);
-            this.ChangePasswordButton.Name = "ChangePasswordButton";
-            this.ChangePasswordButton.Size = new System.Drawing.Size(86, 26);
-            this.ChangePasswordButton.TabIndex = 5;
-            this.ChangePasswordButton.Text = "Cambiar";
-            this.ChangePasswordButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ChangePasswordButton.UseVisualStyleBackColor = true;
-            this.ChangePasswordButton.Click += new System.EventHandler(this.ChangePasswordButton_Click);
-            // 
             // CarrierRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -259,6 +259,7 @@
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CarrierRegisterForm";
             this.Text = "Registros de clientes.";
             this.Load += new System.EventHandler(this.CarrierRegisterForm_Load);

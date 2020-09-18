@@ -31,9 +31,10 @@ public     class ClientRepository:Repository {
 
 
         public new void FindByName(string name) {
-            sql.Append( "select * from fv_user.vwObtenerClientes where Nombre=:pName and id_rol=:pIdRol " );
+            sql.Append( "select * from fv_user.vwObtenerClientes where (nombre_cliente like :pName or apellido_cliente like :pApellido) and id_rol=:pIdRol " );
             IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
             querySelect.AddParameter( "pName",name,DbType.String );
+            querySelect.AddParameter( "pApellido",name,DbType.String );
             querySelect.AddParameter( "pIdRol",profileID,DbType.Int32 );
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
@@ -95,6 +96,16 @@ public     class ClientRepository:Repository {
             query.AddParameter( "pNombre",client.FirstName,DbType.String );
             query.AddParameter( "pApellido",client.LastName,DbType.String );
             query.AddParameter( "pDNI",client.DNI,DbType.String );
+            query.ExecuteQuery();
+            MailSender sender = MailSender.CreateSender( client,MailTypeMessage.EditClient);
+            sender.SendMail();
+        }
+
+
+        public void EnableOrDisableClient(string id,int typeAction) {
+            IQueryAction query = DefineQueryAction( "spHabilitarCliente" );
+            query.AddParameter( "pIdUsuario",id,DbType.String );
+            query.AddParameter( "pTipoAccion",typeAction,DbType.Int32 );
             query.ExecuteQuery();
         }
 

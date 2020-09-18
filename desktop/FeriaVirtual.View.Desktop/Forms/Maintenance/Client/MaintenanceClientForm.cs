@@ -135,7 +135,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Client {
                     data = useCase.FindInactiveClients();
                 }
                 ListDataGridView.DataSource = data;
-                // this.HideColumns();
+                this.HideColumns();
                 DisplayCounts();
             } catch(Exception ex) {
                 MessageBox.Show( ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
@@ -144,8 +144,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Client {
 
 
         private void HideColumns() {
-            ListDataGridView.Columns["id_usuario"].Visible = false;
             ListDataGridView.Columns["id_cliente"].Visible = false;
+            ListDataGridView.Columns["id_usuario"].Visible = false;
+            ListDataGridView.Columns["id_rol"].Visible = false;
+            ListDataGridView.Columns["nombre_cliente"].Visible = false;
+            ListDataGridView.Columns["apellido_cliente"].Visible = false;
             ListDataGridView.Columns["password"].Visible = false;
             ListDataGridView.Columns["is_active"].Visible = false;
         }

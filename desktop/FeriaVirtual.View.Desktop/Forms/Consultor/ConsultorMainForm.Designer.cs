@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultorMainForm));
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,25 +195,30 @@
             // FormStatusActiveUserToolStripStatusLabel
             // 
             this.FormStatusActiveUserToolStripStatusLabel.Name = "FormStatusActiveUserToolStripStatusLabel";
-            this.FormStatusActiveUserToolStripStatusLabel.Size = new System.Drawing.Size(359, 17);
+            this.FormStatusActiveUserToolStripStatusLabel.Size = new System.Drawing.Size(343, 17);
             this.FormStatusActiveUserToolStripStatusLabel.Spring = true;
             this.FormStatusActiveUserToolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
             // FormStatusCompanyToolStripStatusLabel1
             // 
+            this.FormStatusCompanyToolStripStatusLabel1.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.maipogrande_logo1;
+            this.FormStatusCompanyToolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.FormStatusCompanyToolStripStatusLabel1.Name = "FormStatusCompanyToolStripStatusLabel1";
-            this.FormStatusCompanyToolStripStatusLabel1.Size = new System.Drawing.Size(102, 17);
+            this.FormStatusCompanyToolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.FormStatusCompanyToolStripStatusLabel1.Text = "Maipo Grande";
             // 
             // ConsultorMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::FeriaVirtual.View.Desktop.Properties.Resources.Feriavirtualform;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(478, 244);
             this.Controls.Add(this.FormStatusStrip);
             this.Controls.Add(this.FormMenuStrip);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConsultorMainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Feria Virtual - Consultor.";

@@ -111,7 +111,7 @@
             // LastnameTextBox
             // 
             this.LastnameTextBox.Location = new System.Drawing.Point(225, 100);
-            this.LastnameTextBox.MaxLength = 150;
+            this.LastnameTextBox.MaxLength = 50;
             this.LastnameTextBox.Name = "LastnameTextBox";
             this.LastnameTextBox.Size = new System.Drawing.Size(275, 23);
             this.LastnameTextBox.TabIndex = 12;
@@ -275,6 +275,7 @@
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserRegisterForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

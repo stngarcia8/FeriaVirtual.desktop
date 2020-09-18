@@ -228,5 +228,17 @@
   <ItemGroup>
     <None Include="Resources\menu-customer.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Feriavirtualform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maipogrande-logo3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
