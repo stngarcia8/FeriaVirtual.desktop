@@ -57,7 +57,7 @@ namespace FeriaVirtual.Business.Validators {
             if(editMode) {
                 return;
             }
-            EmployeeUseCase useCase = EmployeeUseCase.Create();
+            EmployeeUseCase useCase = EmployeeUseCase.CreateUseCase();
             DataTable dataTable = useCase.FindUserByUsername( employee.Credentials.Username );
             if(dataTable.Rows.Count > 0) {
                 this.ErrorMessages.Add( "El username ingresado no esta disponible." );

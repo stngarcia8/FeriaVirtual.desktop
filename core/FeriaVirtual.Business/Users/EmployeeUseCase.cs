@@ -16,7 +16,7 @@ namespace FeriaVirtual.Business.Users {
         }
 
         // Named constructor.
-        public static EmployeeUseCase Create() {
+        public static EmployeeUseCase CreateUseCase() {
             return new EmployeeUseCase();
         }
 

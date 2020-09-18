@@ -16,19 +16,19 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-        public void FindAll() {
+        public new void FindAll() {
             sql.Append( "select * from fv_user.vwObtenerUsuarios " );
             base.FindAll();
         }
 
 
-        public void FindByName(string username) {
+        public new void FindByName(string username) {
             sql.Append( "select * from fv_user.vwObtenerUsuarios where username=:pName " );
             base.FindByName( username );
         }
 
 
-        public void FindById(string id) {
+        public new void FindById(string id) {
             sql.Append( "select * from fv_user.vwObtenerUsuarios where id_usuario=:pId " );
             base.FindById( id );
         }

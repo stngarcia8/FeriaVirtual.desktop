@@ -26,9 +26,6 @@
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceProducerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceExternalCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceInternalCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.BusinessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,9 +78,6 @@
             // MaintenanceToolStripMenuItem
             // 
             this.MaintenanceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MaintenanceProducerToolStripMenuItem,
-            this.MaintenanceExternalCustomerToolStripMenuItem,
-            this.MaintenanceInternalCustomerToolStripMenuItem,
             this.MaintenanceCarrierToolStripMenuItem,
             this.MaintenanceToolStripSeparator,
             this.MaintenanceUserToolStripMenuItem});
@@ -91,28 +85,10 @@
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(118, 21);
             this.MaintenanceToolStripMenuItem.Text = "&Mantenimiento";
             // 
-            // MaintenanceProducerToolStripMenuItem
-            // 
-            this.MaintenanceProducerToolStripMenuItem.Name = "MaintenanceProducerToolStripMenuItem";
-            this.MaintenanceProducerToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceProducerToolStripMenuItem.Text = "Datos de &productores";
-            // 
-            // MaintenanceExternalCustomerToolStripMenuItem
-            // 
-            this.MaintenanceExternalCustomerToolStripMenuItem.Name = "MaintenanceExternalCustomerToolStripMenuItem";
-            this.MaintenanceExternalCustomerToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceExternalCustomerToolStripMenuItem.Text = "Datos cliente &externo";
-            // 
-            // MaintenanceInternalCustomerToolStripMenuItem
-            // 
-            this.MaintenanceInternalCustomerToolStripMenuItem.Name = "MaintenanceInternalCustomerToolStripMenuItem";
-            this.MaintenanceInternalCustomerToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceInternalCustomerToolStripMenuItem.Text = "Datos cliente &interno";
-            // 
             // MaintenanceToolStripSeparator
             // 
             this.MaintenanceToolStripSeparator.Name = "MaintenanceToolStripSeparator";
-            this.MaintenanceToolStripSeparator.Size = new System.Drawing.Size(221, 6);
+            this.MaintenanceToolStripSeparator.Size = new System.Drawing.Size(200, 6);
             // 
             // BusinessToolStripMenuItem
             // 
@@ -253,11 +229,11 @@
             // 
             // MaintenanceCarrierToolStripMenuItem
             // 
-            this.MaintenanceCarrierToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_transportist;
+            this.MaintenanceCarrierToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_customer;
             this.MaintenanceCarrierToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.MaintenanceCarrierToolStripMenuItem.Name = "MaintenanceCarrierToolStripMenuItem";
-            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &transportistas";
+            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &clientes";
             this.MaintenanceCarrierToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceCarrierToolStripMenuItem_Click);
             // 
             // MaintenanceUserToolStripMenuItem
@@ -265,7 +241,7 @@
             this.MaintenanceUserToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.login;
             this.MaintenanceUserToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.MaintenanceUserToolStripMenuItem.Name = "MaintenanceUserToolStripMenuItem";
-            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.MaintenanceUserToolStripMenuItem.Text = "Usuarios del sistema";
             this.MaintenanceUserToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceUserToolStripMenuItem_Click);
             // 
@@ -298,9 +274,6 @@
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CloseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MaintenanceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MaintenanceProducerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MaintenanceExternalCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MaintenanceInternalCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MaintenanceCarrierToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator MaintenanceToolStripSeparator;
         private System.Windows.Forms.ToolStripMenuItem MaintenanceUserToolStripMenuItem;
