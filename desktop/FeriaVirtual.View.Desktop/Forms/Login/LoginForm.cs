@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using FeriaVirtual.Business.Users;
+using FeriaVirtual.Domain.Users;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Administrator;
 using FeriaVirtual.View.Desktop.Forms.Consultor;
@@ -27,7 +28,12 @@ namespace FeriaVirtual.View.Desktop.Login {
 
         private void StartSession() {
             try {
-                LoginUseCase login = LoginUseCase.CreateLogin( UsernameTextBox.Text,PasswordTextBox.Text );
+                Credential user = Credential.CreateCredential( );
+                user.Username= this.UsernameTextBox.Text;
+                user.Password= this.PasswordTextBox.Text;
+                user.EncriptedPassword=user.EncryptPassword();
+                LoginUseCase login = LoginUseCase.CreateLogin( user.Username,user.EncriptedPassword );
+                
                 login.StartSession();
                 ActualUser.ActualEmployee= login.EmployeeLogged;
                 OpenForm();
