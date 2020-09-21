@@ -1,28 +1,21 @@
 ﻿using System;
-using FeriaVirtual.API.Models.Request;
-using FeriaVirtual.Business.Users;
-using FeriaVirtual.Domain.Users;
-using FeriaVirtual.Domain.DTO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using FeriaVirtual.Business.Users;
+using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Users;
 
-namespace FeriaVirtual.API.Controllers
-{
+namespace FeriaVirtual.API.Controllers {
 
-    public class LoginController : ApiController
-    {
+    public class LoginController:ApiController {
 
 
         [HttpPost]
-        public IHttpActionResult LoginPos(LoginRequest loginRequest) {
+        public IHttpActionResult LoginPos(LoginDTO loginDTO) {
             try {
-                    LoginUseCase login = LoginUseCase.CreateLogin( loginRequest.Username,loginRequest.Password);
-                    login.StartSession();
+                LoginUseCase login = LoginUseCase.CreateLogin( loginDTO.Username,loginDTO.Password );
+                login.StartSession();
                 return Ok( GetSessionLogged( login ) );
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
         }
