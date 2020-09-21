@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {
     public abstract class Person {
@@ -9,7 +10,6 @@ namespace FeriaVirtual.Domain.Users {
         public string LastName { get; set; }
         public string DNI { get; set; }
         public UserProfile Profile { get; set; }
-        public Credential Credentials { get; set; }
         public ComercialData ComercialInfo { get; set; }
 
 
@@ -28,7 +28,6 @@ namespace FeriaVirtual.Domain.Users {
             LastName= lastName;
             this.DNI = dni;
             Profile= UserProfile.CreateProfile();
-            Credentials = Credential.CreateCredential();
             ComercialInfo= ComercialData.CreateComercialData();
         }
 

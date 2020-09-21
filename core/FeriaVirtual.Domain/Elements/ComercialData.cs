@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FeriaVirtual.Domain.Users {
+namespace FeriaVirtual.Domain.Elements {
 
     public class ComercialData {
 
