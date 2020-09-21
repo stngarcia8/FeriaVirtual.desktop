@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainExeptions\DomainException.cs" />
+    <Compile Include="DTO\ComercialDataDTO.cs" />
     <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="DTO\SessionDTO.cs" />
     <Compile Include="Elements\Vehicle.cs" />
