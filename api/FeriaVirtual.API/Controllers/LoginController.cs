@@ -6,7 +6,7 @@ using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.API.Controllers {
 
-    public class LoginController:ApiController {
+        public class LoginController:ApiController {
 
 
         [HttpPost]

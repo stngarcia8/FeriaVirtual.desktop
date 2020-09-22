@@ -5,7 +5,7 @@ namespace FeriaVirtual.Domain.Elements {
     public class ComercialData {
 
         public string ComercialID { get; set; }
-        public int CiudadID { get; set; }
+        public int CityID { get; set; }
         public string CompanyName { get; set; }
         public string FantasyName { get; set; }
         public string ComercialBusiness { get; set; }
@@ -33,7 +33,7 @@ namespace FeriaVirtual.Domain.Elements {
             Email= string.Empty;
             ComercialDNI= string.Empty;
             Address=string.Empty;
-            CiudadID= 0;
+            CityID= 0;
         }
 
 

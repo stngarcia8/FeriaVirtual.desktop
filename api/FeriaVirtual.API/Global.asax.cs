@@ -8,7 +8,9 @@ using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace FeriaVirtual.API {
+
     public class WebApiApplication:System.Web.HttpApplication {
+
         protected void Application_Start() {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure( WebApiConfig.Register );
@@ -16,5 +18,6 @@ namespace FeriaVirtual.API {
             RouteConfig.RegisterRoutes( RouteTable.Routes );
             BundleConfig.RegisterBundles( BundleTable.Bundles );
         }
+
     }
 }
