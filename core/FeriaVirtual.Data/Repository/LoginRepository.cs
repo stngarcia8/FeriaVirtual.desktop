@@ -22,7 +22,7 @@ namespace FeriaVirtual.Data.Repository {
 
         // Sign-in
         public void SignIn() {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where username=:pUsername and password=:pPassword " );
+            sql.Append( "select * from fv_user.vwObtenerUsuarios where trim(username)=trim(:pUsername) and trim(password)=trim(:pPassword) " );
             IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
             querySelect.AddParameter( "pUsername",user.Username,DbType.String );
             querySelect.AddParameter( "pPassword",user.EncriptedPassword,DbType.String );
