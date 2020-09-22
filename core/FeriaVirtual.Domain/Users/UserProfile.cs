@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FeriaVirtual.Domain.Users {
+﻿namespace FeriaVirtual.Domain.Users {
     public class UserProfile {
 
         // properties

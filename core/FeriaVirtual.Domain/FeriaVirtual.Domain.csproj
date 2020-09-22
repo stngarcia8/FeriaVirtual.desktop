@@ -45,14 +45,21 @@
     <Compile Include="DTO\ComercialDataDTO.cs" />
     <Compile Include="DTO\LoginDTO.cs" />
     <Compile Include="DTO\SessionDTO.cs" />
+    <Compile Include="Elements\Order.cs" />
+    <Compile Include="Elements\OrderDetail.cs" />
+    <Compile Include="Elements\Product.cs" />
     <Compile Include="Elements\Vehicle.cs" />
     <Compile Include="Enums\MailTypeMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Users\Carrier.cs" />
     <Compile Include="Users\Client.cs" />
     <Compile Include="Elements\ComercialData.cs" />
     <Compile Include="Users\Employee.cs" />
+    <Compile Include="Users\ExternalClient.cs" />
+    <Compile Include="Users\InternalClient.cs" />
     <Compile Include="Users\Person.cs" />
     <Compile Include="Users\Credential.cs" />
+    <Compile Include="Users\Producer.cs" />
     <Compile Include="Users\UserProfile.cs" />
   </ItemGroup>
   <ItemGroup />
