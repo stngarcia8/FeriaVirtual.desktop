@@ -30,7 +30,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void StartSession() {
             try {
-                 LoginValidator loginValidator = LoginValidator.CreateValidator( user.Username,user.Password );
+                LoginValidator loginValidator = LoginValidator.CreateValidator( user.Username,user.Password );
                 user.EncriptedPassword = user.Password;
                 loginValidator.Validate();
                 LoginRepository repository = LoginRepository.OpenRepository( user );

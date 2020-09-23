@@ -1,39 +1,34 @@
-﻿using System;
+﻿using System.Text.RegularExpressions;
 using FeriaVirtual.Business.Exceptions;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FeriaVirtual.Business.Validators {
 
-public     class ChangePasswordValidator:Validator {
+    public class ChangePasswordValidator:Validator {
 
         private string firstPwd;
         private string secondPwd;
-        private int passwordLength = 8;
+        private readonly int passwordLength = 8;
 
 
         // Constructor
-        private ChangePasswordValidator(string firstPwd, string secondPwd):base() {
+        private ChangePasswordValidator(string firstPwd,string secondPwd) : base() {
             this.firstPwd= firstPwd;
             this.secondPwd= secondPwd;
-            this.processName= "cambiar contraseña";
+            processName= "cambiar contraseña";
         }
 
 
         // Named constructor
-        public static ChangePasswordValidator CreateValidator(string firstPwd, string secondPwd) {
+        public static ChangePasswordValidator CreateValidator(string firstPwd,string secondPwd) {
             return new ChangePasswordValidator( firstPwd,secondPwd );
         }
 
 
         // excecute validation.
         public void Validate() {
-            this.ValidateEquals();
-            this.ValidateFormat( firstPwd );
-            this.ValidateFormat( secondPwd );
+            ValidateEquals();
+            ValidateFormat( firstPwd );
+            ValidateFormat( secondPwd );
             if(ErrorMessages.Count>0) {
                 throw new InvalidChangePasswordException( GenerateErrorMessage() );
             }
@@ -42,18 +37,18 @@ public     class ChangePasswordValidator:Validator {
 
         private void ValidateEquals() {
             if(!firstPwd.Equals( secondPwd )) {
-                this.ErrorMessages.Add( "Las contraseñas ingresadas son diferentes." );
+                ErrorMessages.Add( "Las contraseñas ingresadas son diferentes." );
                 return;
             }
         }
 
         private void ValidateLength() {
             if(firstPwd.Length<passwordLength) {
-                this.ErrorMessages.Add(string.Format("Las contraseñas deben tener al menos {0} caracteres.", passwordLength));
+                ErrorMessages.Add( string.Format( "Las contraseñas deben tener al menos {0} caracteres.",passwordLength ) );
                 return;
             }
             if(secondPwd.Length<passwordLength) {
-                this.ErrorMessages.Add( string.Format( "Las contraseñas deben tener al menos {0} caracteres.",passwordLength ) );
+                ErrorMessages.Add( string.Format( "Las contraseñas deben tener al menos {0} caracteres.",passwordLength ) );
                 return;
             }
         }
@@ -61,8 +56,8 @@ public     class ChangePasswordValidator:Validator {
 
         private void ValidateFormat(string pwd) {
             Regex expresion = new Regex( "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,50}$" );
-            if(!expresion.IsMatch( pwd)) {
-                this.ErrorMessages.Add( "La password debe contener caracteres en mayusculas, simbolos, números y caracteres en minusculas, por ejemplo @PassWord.1234#" );
+            if(!expresion.IsMatch( pwd )) {
+                ErrorMessages.Add( "La password debe contener caracteres en mayusculas, simbolos, números y caracteres en minusculas, por ejemplo @PassWord.1234#" );
             }
         }
 
@@ -72,5 +67,5 @@ public     class ChangePasswordValidator:Validator {
 
 
 
-        }
+    }
 }

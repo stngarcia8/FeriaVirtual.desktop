@@ -1,8 +1,8 @@
 ﻿using System.Data;
-using FeriaVirtual.Business.Users;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using FeriaVirtual.Business.Exceptions;
+using FeriaVirtual.Business.Users;
 using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Validators {
@@ -47,11 +47,11 @@ namespace FeriaVirtual.Business.Validators {
 
         private void ValidateUsername() {
             if(string.IsNullOrEmpty( employee.Credentials.Username )) {
-                this.ErrorMessages.Add( "El campo nombre de usuario no puede quedar vacío." );
+                ErrorMessages.Add( "El campo nombre de usuario no puede quedar vacío." );
                 return;
             }
             if(employee.Credentials.Username.Length < usernameLength) {
-                this.ErrorMessages.Add( string.Format( "El largo del nombre de usuario no puede ser inferior a {0} caracteres",usernameLength ) );
+                ErrorMessages.Add( string.Format( "El largo del nombre de usuario no puede ser inferior a {0} caracteres",usernameLength ) );
                 return;
             }
             if(editMode) {
@@ -60,7 +60,7 @@ namespace FeriaVirtual.Business.Validators {
             EmployeeUseCase useCase = EmployeeUseCase.CreateUseCase();
             DataTable dataTable = useCase.FindUserByUsername( employee.Credentials.Username );
             if(dataTable.Rows.Count > 0) {
-                this.ErrorMessages.Add( "El username ingresado no esta disponible." );
+                ErrorMessages.Add( "El username ingresado no esta disponible." );
             }
         }
 
@@ -69,42 +69,42 @@ namespace FeriaVirtual.Business.Validators {
                 return;
             }
             if(string.IsNullOrEmpty( employee.Credentials.Password )) {
-                this.ErrorMessages.Add( "El campo password no puede quedar vacío." );
+                ErrorMessages.Add( "El campo password no puede quedar vacío." );
                 return;
             }
             if(employee.Credentials.Password.Length < passwordLength) {
-                this.ErrorMessages.Add( string.Format( "El largo del password no puede ser inferior a {0} caracteres",passwordLength ) );
+                ErrorMessages.Add( string.Format( "El largo del password no puede ser inferior a {0} caracteres",passwordLength ) );
             }
             Regex expresion = new Regex( "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,50}$" );
             if(!expresion.IsMatch( employee.Credentials.Password )) {
-                this.ErrorMessages.Add( "La password debe contener caracteres en mayusculas, simbolos, números y caracteres en minusculas, por ejemplo @PassWord.1234#" );
+                ErrorMessages.Add( "La password debe contener caracteres en mayusculas, simbolos, números y caracteres en minusculas, por ejemplo @PassWord.1234#" );
             }
         }
 
 
         private void ValidateEmail() {
             if(string.IsNullOrEmpty( employee.Credentials.Email )) {
-                this.ErrorMessages.Add( "El campo email no puede quedar vacío." );
+                ErrorMessages.Add( "El campo email no puede quedar vacío." );
                 return;
             }
             try {
                 MailAddress mail = new MailAddress( employee.Credentials.Email );
             } catch {
-                this.ErrorMessages.Add( "El email ingresado no es una dirección de correo válida." );
+                ErrorMessages.Add( "El email ingresado no es una dirección de correo válida." );
             }
         }
 
 
         private void ValidateProfile() {
             if(employee.Profile.ProfileID.Equals( 0 )) {
-                this.ErrorMessages.Add( "Debe seleccionar el tipo de rol para el empleado." );
+                ErrorMessages.Add( "Debe seleccionar el tipo de rol para el empleado." );
             }
         }
 
 
         private void ValidateFirstName() {
             if(string.IsNullOrEmpty( employee.FirstName )) {
-                this.ErrorMessages.Add( "Debe ingresar el nombre real del empleado." );
+                ErrorMessages.Add( "Debe ingresar el nombre real del empleado." );
             }
         }
 
@@ -112,7 +112,7 @@ namespace FeriaVirtual.Business.Validators {
 
         private void ValidateLastName() {
             if(string.IsNullOrEmpty( employee.LastName )) {
-                this.ErrorMessages.Add( "Debe ingresar el apellido del empleado." );
+                ErrorMessages.Add( "Debe ingresar el apellido del empleado." );
             }
         }
 

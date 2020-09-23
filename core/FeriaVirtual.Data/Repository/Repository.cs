@@ -1,6 +1,6 @@
 ﻿using System.Data;
-using FeriaVirtual.Infraestructure.Database;
 using System.Text;
+using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Repository {
     public abstract class Repository {
@@ -51,7 +51,7 @@ namespace FeriaVirtual.Data.Repository {
 
         protected void FindById(string id) {
             IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.String);
+            querySelect.AddParameter( "pId",id,DbType.String );
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
         }

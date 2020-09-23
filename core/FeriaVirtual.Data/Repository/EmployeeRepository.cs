@@ -48,7 +48,7 @@ namespace FeriaVirtual.Data.Repository {
 
         public void EnableOrDisableUser(string id,int typeAction) {
             IQueryAction query = DefineQueryAction( "spHabilitarUsuario" );
-            query.AddParameter( "pIdUsuario",id,DbType.String);
+            query.AddParameter( "pIdUsuario",id,DbType.String );
             query.AddParameter( "pTipoAccion",typeAction,DbType.Int32 );
             query.ExecuteQuery();
         }
@@ -58,12 +58,12 @@ namespace FeriaVirtual.Data.Repository {
             IQueryAction query = DefineQueryAction( "spAgregarUsuario" );
             query.AddParameter( "pIdUsuario",employee.Credentials.UserId,DbType.String );
             query.AddParameter( "pUserName",employee.Credentials.Username,DbType.String );
-            query.AddParameter( "pPassword", employee.Credentials.EncriptedPassword, DbType.String);
-            query.AddParameter( "pEmail", employee.Credentials.Email, DbType.String);
-            query.AddParameter( "pIdEmpleado", employee.EmployeeID, DbType.String);
-            query.AddParameter( "pIdRol", employee.Profile.ProfileID, DbType.Int32);
-            query.AddParameter( "pNombre", employee.FirstName, DbType.String );
-            query.AddParameter( "pApellido", employee.LastName, DbType.String );
+            query.AddParameter( "pPassword",employee.Credentials.EncriptedPassword,DbType.String );
+            query.AddParameter( "pEmail",employee.Credentials.Email,DbType.String );
+            query.AddParameter( "pIdEmpleado",employee.EmployeeID,DbType.String );
+            query.AddParameter( "pIdRol",employee.Profile.ProfileID,DbType.Int32 );
+            query.AddParameter( "pNombre",employee.FirstName,DbType.String );
+            query.AddParameter( "pApellido",employee.LastName,DbType.String );
             query.ExecuteQuery();
         }
 

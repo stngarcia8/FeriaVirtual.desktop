@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FeriaVirtual.Domain.DTO;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {
@@ -6,6 +7,7 @@ namespace FeriaVirtual.Domain.Users {
     public class Carrier:Person {
 
         // Properties
+        public new ComercialDataDTO ComercialInfo { get; set; }
         public IList<Vehicle> VehicleList;
 
 

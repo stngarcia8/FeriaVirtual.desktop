@@ -3,7 +3,7 @@ using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Repository {
-    public class LoginRepository: Repository {
+    public class LoginRepository:Repository {
 
         private Credential user;
 

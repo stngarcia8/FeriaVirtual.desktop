@@ -50,18 +50,18 @@ namespace FeriaVirtual.Business.Elements {
 
         private ComercialDataDTO ConvertToComercialData(DataTable table) {
             ComercialDataDTO data = new ComercialDataDTO();
-            if( table.Rows.Count.Equals( 0 )) {
+            if(table.Rows.Count.Equals( 0 )) {
                 return data;
             }
             DataRow row = table.Rows[0];
             data.ComercialID= row["id_comercial"].ToString();
             data.ClientID= row["id_cliente"].ToString();
-            data.CompanyName= row["Razón social"].ToString();
-            data.FantasyName= row["Nombre de fantasía"].ToString();
+            data.CompanyName= row["Razon social"].ToString();
+            data.FantasyName= row["Nombre de fantasia"].ToString();
             data.ComercialBusiness= row["Giro comercial"].ToString();
             data.Email= row["Email"].ToString();
             data.ComercialDNI= row["DNI"].ToString();
-            data.Address= row["Dirección"].ToString();
+            data.Address= row["Direccion"].ToString();
             data.CityID= int.Parse( row["cod_ciudad"].ToString() );
             data.CityName= row["Ciudad"].ToString();
             data.CountryID=int.Parse( row["cod_pais"].ToString() );
