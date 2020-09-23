@@ -1,21 +1,18 @@
 ﻿using System;
+using System.Web.Http;
 using FeriaVirtual.Business.Users;
 using FeriaVirtual.Domain.Users;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
-namespace FeriaVirtual.API.Controllers
-{
+namespace FeriaVirtual.API.Controllers {
 
-    public class InternalClientController : ApiController
-    {
+    public class InternalClientController:ApiController {
 
 
         [HttpGet]
         public IHttpActionResult Get(string clientID) {
+            if(string.IsNullOrEmpty( clientID )) {
+                return BadRequest( "Parámetro inválido, el id del cliente es incorrecto" );
+            }
             try {
                 InternalClientUseCase usecase = InternalClientUseCase.CreateUseCase();
                 InternalClient client = usecase.FindClientById( clientID );

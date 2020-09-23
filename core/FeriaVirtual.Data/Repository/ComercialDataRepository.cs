@@ -17,17 +17,21 @@ namespace FeriaVirtual.Data.Repository {
         }
 
         public void NewComercialData(ComercialData data,string clientID) {
-            IQueryAction query = DefineQueryAction( "spAgregarDatosComerciales " );
-            query.AddParameter( "pIdComercial",data.ComercialID,DbType.String );
-            query.AddParameter( "pIdCliente",clientID,DbType.String );
-            query.AddParameter( "pIdCiudad",data.CityID,DbType.Int32 );
-            query.AddParameter( "pRSocial",data.CompanyName,DbType.String );
-            query.AddParameter( "pFantasia",data.FantasyName,DbType.String );
-            query.AddParameter( "pGiro",data.ComercialBusiness,DbType.String );
-            query.AddParameter( "pEmail",data.Email,DbType.String );
-            query.AddParameter( "pDNI",data.ComercialDNI,DbType.String );
-            query.AddParameter( "pDireccion",data.Address,DbType.String );
-            query.ExecuteQuery();
+            try {
+                IQueryAction query = DefineQueryAction( "spAgregarDatosComerciales " );
+                query.AddParameter( "pIdComercial",data.ComercialID,DbType.String );
+                query.AddParameter( "pIdCliente",clientID,DbType.String );
+                query.AddParameter( "pIdCiudad",data.CityID,DbType.Int32 );
+                query.AddParameter( "pRSocial",data.CompanyName,DbType.String );
+                query.AddParameter( "pFantasia",data.FantasyName,DbType.String );
+                query.AddParameter( "pGiro",data.ComercialBusiness,DbType.String );
+                query.AddParameter( "pEmail",data.Email,DbType.String );
+                query.AddParameter( "pDNI",data.ComercialDNI,DbType.String );
+                query.AddParameter( "pDireccion",data.Address,DbType.String );
+                query.ExecuteQuery();
+            } catch(Exception ex) {
+                throw ex;
+            }
         }
 
 
@@ -53,6 +57,13 @@ namespace FeriaVirtual.Data.Repository {
             sql.Append( "select * from fv_user.vwObtenerDatosComerciales where id_comercial=:pId " );
             base.FindById( id );
         }
+
+        public void DeleteComercialData(string comercialID) {
+            IQueryAction query = DefineQueryAction( "spEliminarDatosComerciales " );
+            query.AddParameter( "pIdComercial",comercialID,DbType.String );
+            query.ExecuteQuery();
+        }
+
 
 
     }

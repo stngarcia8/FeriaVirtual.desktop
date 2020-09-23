@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Web.Http;
+using FeriaVirtual.Business.Elements;
 using FeriaVirtual.Domain.DTO;
 using FeriaVirtual.Domain.Elements;
-using FeriaVirtual.Business.Elements;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
-namespace FeriaVirtual.API.Controllers
-{
+namespace FeriaVirtual.API.Controllers {
 
-        public class ComercialDataController : ApiController
-    {
+    public class ComercialDataController:ApiController {
 
-        public IHttpActionResult Get(string ComercialID) {
+        [HttpGet]
+        public IHttpActionResult Get(string comercialID) {
+            if(string.IsNullOrEmpty( comercialID )) {
+                return BadRequest( "Parámetro inválido, el id del dato comercial es incorrecto" );
+            }
             try {
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
-                return Ok( usecase.FindComercialDataByID( ComercialID ) );
-            } catch (Exception ex) {
+                return Ok( usecase.FindComercialDataByID( comercialID ) );
+            } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
         }
@@ -26,6 +24,9 @@ namespace FeriaVirtual.API.Controllers
 
         [HttpPost]
         public IHttpActionResult Post(ComercialDataDTO data) {
+            if(data==null) {
+                return BadRequest( "Parámetro inválido, los datos comerciales son incorrectos" );
+            }
             try {
                 ComercialData infoData = ComercialData.CreateComercialData();
                 infoData.CityID= data.CityID;
@@ -37,7 +38,7 @@ namespace FeriaVirtual.API.Controllers
                 infoData.Address= data.Address;
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
                 usecase.NewCommercialData( infoData,data.ClientID );
-                return Ok();
+                return Ok( "Datos comerciales almacenados correctamente" );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
@@ -45,6 +46,9 @@ namespace FeriaVirtual.API.Controllers
 
         [HttpPut]
         public IHttpActionResult Put(ComercialDataDTO data) {
+            if(data==null) {
+                return BadRequest( "Parámetro inválido, los datos comerciales son incorrectos" );
+            }
             try {
                 ComercialData infoData = ComercialData.CreateComercialData();
                 infoData.ComercialID= data.ComercialID;
@@ -57,12 +61,26 @@ namespace FeriaVirtual.API.Controllers
                 infoData.Address= data.Address;
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
                 usecase.EditCommercialData( infoData,data.ClientID );
-                return Ok();
+                return Ok( "Datos comerciales actualizados correctamente" );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
         }
 
+
+        [HttpDelete]
+        public IHttpActionResult Delete(string comercialID) {
+            if(string.IsNullOrEmpty( comercialID )) {
+                return BadRequest( "Parámetro inválido, el identificador del dato comercial es incorrecto" );
+            }
+            try {
+                ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
+                usecase.DeleteCommercialData( comercialID );
+                return Ok( "Datos comerciales eliminados correctamente" );
+            } catch(Exception ex) {
+                return BadRequest( ex.Message.ToString() );
+            }
+        }
 
 
 

@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
 
@@ -22,14 +24,15 @@ namespace FeriaVirtual.Data.Repository {
             return new ProducerRepository();
         }
 
-        public new void FindById(string id) {
-            FindProducerUserData( id );
+        public new void FindById(string clientID) {
+            FindProducerUserData( clientID );
             GetProducerUserData();
             if(producer==null) {
                 return;
             }
-            FindProducerComercialData( id );
+            FindProducerComercialData( clientID );
             producer.ComercialInfo= GetProducerComercialData();
+            producer.ProductList =FindAllProducts( clientID );
         }
 
         private void FindProducerUserData(string id) {
@@ -86,8 +89,87 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
+        public void NewProduct(Product product,string clientID) {
+            IQueryAction query = DefineQueryAction( "spAgregarProductos " );
+            query.AddParameter( "pIdProducto",product.ProductID,DbType.String );
+            query.AddParameter( "pIdCliente",clientID,DbType.String );
+            query.AddParameter( "pNombre",product.ProductName,DbType.String );
+            query.AddParameter( "pObservacion",product.Observation,DbType.String );
+            query.AddParameter( "pValor",product.ProductValue,DbType.Decimal );
+            query.AddParameter( "pCantidad",product.ProductQuantity,DbType.Decimal );
+            query.ExecuteQuery();
+        }
 
 
+        public void EditProduct(Product product) {
+            IQueryAction query = DefineQueryAction( "spActualizarProductos " );
+            query.AddParameter( "pIdProducto",product.ProductID,DbType.String );
+            query.AddParameter( "pNombre",product.ProductName,DbType.String );
+            query.AddParameter( "pObservacion",product.Observation,DbType.String );
+            query.AddParameter( "pValor",product.ProductValue,DbType.Decimal );
+            query.AddParameter( "pCantidad",product.ProductQuantity,DbType.Decimal );
+            query.ExecuteQuery();
+        }
+
+
+        public void DeleteProduct(string productID) {
+            IQueryAction query = DefineQueryAction( "spEliminarProductos " );
+            query.AddParameter( "pIdProducto",productID,DbType.String );
+            query.ExecuteQuery();
+        }
+
+
+        public Product FindProductByID(string productID) {
+            sql.Clear();
+            sql.Append( "select * from fv_user.producto where id_producto=:pId " );
+            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
+            querySelect.AddParameter( "pId",productID,DbType.String );
+            dataTable = querySelect.ExecuteQuery();
+            return GetProductData();
+        }
+
+        private Product GetProductData() {
+            DataRow row = dataTable.Rows[0];
+            if(row==null) {
+                return null;
+            }
+            Product product = Product.CreateProduct();
+            product.ProductID = row["id_producto"].ToString();
+            product.ClientID = row["id_cliente"].ToString();
+            product.ProductName= row["nombre_producto"].ToString();
+            product.Observation= row["obs_producto"].ToString();
+            product.ProductValue= float.Parse( row["valor_producto"].ToString() );
+            product.ProductQuantity= float.Parse( row["cantidad_producto"].ToString() );
+            return product;
+        }
+
+
+        public IList<Product> FindAllProducts(string clientID) {
+            sql.Clear();
+            sql.Append( "select * from fv_user.producto where id_cliente=:pId " );
+            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
+            querySelect.AddParameter( "pId",clientID,DbType.String );
+            dataTable = querySelect.ExecuteQuery();
+            return GetProductsData();
+        }
+
+        private IList<Product> GetProductsData() {
+            IList<Product> productList = new List<Product>();
+            if(dataTable.Rows.Count.Equals( 0 )) {
+                return productList;
+            }
+            foreach(DataRow row in dataTable.Rows) {
+                Product product = Product.CreateProduct();
+                product.ProductID=row["id_producto"].ToString();
+                product.ClientID=row["id_cliente"].ToString();
+                product.ProductName=row["nombre_producto"].ToString();
+                product.Observation= row["obs_producto"].ToString();
+                product.ProductValue = float.Parse( row["valor_producto"].ToString() );
+                product.ProductQuantity=float.Parse( row["cantidad_producto"].ToString() );
+                productList.Add( product );
+            }
+            return productList;
+        }
 
 
 

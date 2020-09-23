@@ -1,27 +1,24 @@
 ﻿using System;
+using System.Web.Http;
 using FeriaVirtual.Business.Users;
 using FeriaVirtual.Domain.Users;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
-namespace FeriaVirtual.API.Controllers
-{
+namespace FeriaVirtual.API.Controllers {
 
-    public class ExternalClientController : ApiController
-    {
+    public class ExternalClientController:ApiController {
 
         [HttpGet]
         public IHttpActionResult Get(string clientID) {
+            if(string.IsNullOrEmpty( clientID )) {
+                return BadRequest( "Parámetro inválido, el id del cliente es incorrecto" );
+            }
             try {
                 ExternalClientUseCase usecase = ExternalClientUseCase.CreateUseCase();
                 ExternalClient client = usecase.FindClientById( clientID );
                 if(client==null) {
                     return NotFound();
                 }
-                return Ok( client);
+                return Ok( client );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
