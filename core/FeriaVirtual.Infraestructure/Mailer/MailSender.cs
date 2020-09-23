@@ -1,21 +1,15 @@
-﻿using System;
-using FeriaVirtual.Domain.Enums;
+﻿using FeriaVirtual.Domain.Enums;
 using FeriaVirtual.Domain.Users;
-using System.Net.Mail;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FeriaVirtual.Infraestructure.Mailer {
 
     public class MailSender {
 
-        private MailTypeMessage typeMessage;
-        private Client client;
+        private readonly MailTypeMessage typeMessage;
+        private readonly Client client;
 
         // constructor
-        private MailSender(Client client, MailTypeMessage typeMessage) {
+        private MailSender(Client client,MailTypeMessage typeMessage) {
             this.client=client;
             this.typeMessage= typeMessage;
         }
@@ -26,8 +20,8 @@ namespace FeriaVirtual.Infraestructure.Mailer {
         }
 
         public void SendMail() {
-                MailConfigurator configurator = MailConfigurator.CreateConfigurator();
-            MailMessageConfigurator messageConfigurator = MailMessageConfigurator.CreateMessage( this.client,this.typeMessage);
+            MailConfigurator configurator = MailConfigurator.CreateConfigurator();
+            MailMessageConfigurator messageConfigurator = MailMessageConfigurator.CreateMessage( client,typeMessage );
             configurator.SMTP.SendMailAsync( messageConfigurator.Message );
         }
 

@@ -28,7 +28,7 @@ namespace FeriaVirtual.Domain.Elements {
             ComercialID=comercialId;
             CompanyName=companyName;
             ComercialDNI= comercialDNI;
-            this.FantasyName= string.Empty;
+            FantasyName= string.Empty;
             ComercialBusiness= string.Empty;
             Email= string.Empty;
             ComercialDNI= string.Empty;

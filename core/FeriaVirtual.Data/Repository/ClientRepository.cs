@@ -6,18 +6,18 @@ using FeriaVirtual.Infraestructure.Mailer;
 
 namespace FeriaVirtual.Data.Repository {
 
-public     class ClientRepository:Repository {
+    public class ClientRepository:Repository {
 
-        private int profileID;
+        private readonly int profileID;
 
         // Constructor
         private ClientRepository(int profileId) : base() {
-            this.profileID= profileId;
+            profileID= profileId;
         }
 
         // Named constructor.
         public static ClientRepository OpenRepository(int profileId) {
-            return new ClientRepository(profileId);
+            return new ClientRepository( profileId );
         }
 
 
@@ -76,7 +76,7 @@ public     class ClientRepository:Repository {
             query.AddParameter( "pPassword",client.Credentials.EncriptedPassword,DbType.String );
             query.AddParameter( "pEmail",client.Credentials.Email,DbType.String );
             query.AddParameter( "pIdCliente",client.ID,DbType.String );
-            query.AddParameter( "pIdRol",this.profileID,DbType.Int32 );
+            query.AddParameter( "pIdRol",profileID,DbType.Int32 );
             query.AddParameter( "pNombre",client.FirstName,DbType.String );
             query.AddParameter( "pApellido",client.LastName,DbType.String );
             query.AddParameter( "pDNI",client.DNI,DbType.String );
@@ -92,12 +92,12 @@ public     class ClientRepository:Repository {
             query.AddParameter( "pPassword",client.Credentials.EncriptedPassword,DbType.String );
             query.AddParameter( "pEmail",client.Credentials.Email,DbType.String );
             query.AddParameter( "pIdCliente",client.ID,DbType.String );
-            query.AddParameter( "pIdRol",this.profileID,DbType.Int32 );
+            query.AddParameter( "pIdRol",profileID,DbType.Int32 );
             query.AddParameter( "pNombre",client.FirstName,DbType.String );
             query.AddParameter( "pApellido",client.LastName,DbType.String );
             query.AddParameter( "pDNI",client.DNI,DbType.String );
             query.ExecuteQuery();
-            MailSender sender = MailSender.CreateSender( client,MailTypeMessage.EditClient);
+            MailSender sender = MailSender.CreateSender( client,MailTypeMessage.EditClient );
             sender.SendMail();
         }
 

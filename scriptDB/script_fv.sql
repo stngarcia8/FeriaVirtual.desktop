@@ -395,6 +395,44 @@ END spHabilitarCliente;
 /
 
 
+prompt Creando procedimientos almacenados para los datos comerciales de los clientes.;
+create or replace procedure fv_user.spAgregarDatosComerciales(
+    pIdComercial varchar2, pIdCliente varchar2, pIdCiudad number, 
+    pRSocial varchar2, pFantasia varchar2, pGiro varchar2, 
+    pEmail varchar2, pDNI varchar2, pDireccion varchar2) is
+begin
+    insert into fv_user.dato_comercial 
+        (id_comercial, id_cliente, cod_ciudad, rsocial_comercial, 
+        fantasia_comercial, giro_comercial, email_comercial, 
+        dni_comercial, dir_comercial)
+    values 
+        (pIdComercial, pIdCliente, pIdCiudad, 
+        pRSocial, pFantasia, pGiro, 
+        pEmail, pDNI, pDireccion);
+    commit;
+end spAgregarDatosComerciales;
+/
+create or replace procedure fv_user.spActualizarDatosComerciales(
+    pIdComercial varchar2, pIdCiudad number, 
+    pRSocial varchar2, pFantasia varchar2, pGiro varchar2, 
+    pEmail varchar2, pDNI varchar2, pDireccion varchar2) is
+begin
+    update fv_user.dato_comercial 
+       set cod_ciudad=pIdCiudad, rsocial_comercial=pRSocial, 
+            fantasia_comercial=pFantasia, giro_comercial=pGiro,
+            email_comercial=pEmail, dni_comercial=pDNI, dir_comercial=pDireccion 
+     where id_comercial = pIdComercial; 
+    commit;
+end spActualizarDatosComerciales;
+/
+
+
+
+
+
+
+
+
 prompt Creando vistas predefinidas.;
 prompt Creando vistas de usuarios del sistema.;
 create or replace view fv_user.vwObtenerUsuarios as 
@@ -440,6 +478,28 @@ from fv_user.usuario usr
     inner join rol_usuario rol on cli.id_rol=rol.id_rol 
 WHERE cli.id_rol > 2  
 order by cli.apellido_cliente, cli.nombre_cliente;
+
+
+
+prompt Creando vista para datos comerciales.;
+create or replace view fv_user.vwObtenerDatosComerciales as 
+    select 
+        com.id_comercial, com.id_cliente, 
+        rsocial_comercial AS "Razon social", 
+        fantasia_comercial AS "Nombre de fantasia",
+        giro_comercial as "Giro comercial", 
+        email_comercial as "Email", 
+        dni_comercial as "DNI", 
+        dir_comercial as "Direccion", 
+        ciu.cod_ciudad, ciu.nombre_ciudad as "Ciudad", 
+        pai.cod_pais, pai.nombre_pais as "Pais", 
+        pai.prefijo_pais as "Prefijo" 
+    from dato_comercial com 
+    inner join ciudad ciu on com.cod_ciudad=ciu.cod_ciudad 
+    inner join pais pai on ciu.cod_pais=pai.cod_pais;
+
+
+
 
 
 prompt insertando registros iniciales.;

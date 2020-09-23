@@ -26,7 +26,7 @@ namespace FeriaVirtual.Domain.Users {
             ID= id;
             FirstName= firstName;
             LastName= lastName;
-            this.DNI = dni;
+            DNI = dni;
             Profile= UserProfile.CreateProfile();
             ComercialInfo= ComercialData.CreateComercialData();
         }

@@ -2,10 +2,6 @@
 using System.Data;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Infraestructure.Database;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FeriaVirtual.Data.Repository {
 
@@ -20,7 +16,7 @@ namespace FeriaVirtual.Data.Repository {
             return new ComercialDataRepository();
         }
 
-        public void NewComercialData(ComercialData data, string clientID) {
+        public void NewComercialData(ComercialData data,string clientID) {
             IQueryAction query = DefineQueryAction( "spAgregarDatosComerciales " );
             query.AddParameter( "pIdComercial",data.ComercialID,DbType.String );
             query.AddParameter( "pIdCliente",clientID,DbType.String );
@@ -47,19 +43,16 @@ namespace FeriaVirtual.Data.Repository {
                 query.AddParameter( "pDNI",data.ComercialDNI,DbType.String );
                 query.AddParameter( "pDireccion",data.Address,DbType.String );
                 query.ExecuteQuery();
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 throw ex;
             }
         }
 
 
-    public new void FindById(string id) {
+        public new void FindById(string id) {
             sql.Append( "select * from fv_user.vwObtenerDatosComerciales where id_comercial=:pId " );
             base.FindById( id );
         }
-
-
-
 
 
     }

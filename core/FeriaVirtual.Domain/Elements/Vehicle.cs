@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FeriaVirtual.Domain.Elements {
 
@@ -18,24 +14,24 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Constructor
         private Vehicle() {
-            this.InitializeObjects( Guid.NewGuid().ToString(),0,string.Empty,string.Empty,0 );
+            InitializeObjects( Guid.NewGuid().ToString(),0,string.Empty,string.Empty,0 );
         }
 
-        private Vehicle(string id, int typeId, string type, string model, double capacity) {
-            this.InitializeObjects( id,typeId,type,model,capacity );
+        private Vehicle(string id,int typeId,string type,string model,double capacity) {
+            InitializeObjects( id,typeId,type,model,capacity );
         }
 
         private void InitializeObjects(string id,int typeId,string type,string model,double capacity) {
-            this.VehicleID= id;
-            this.TypeVehicleID=typeId;
-            this.VehicleType = type;
-            this.Model= model;
-            this.Capacity= capacity;
+            VehicleID= id;
+            TypeVehicleID=typeId;
+            VehicleType = type;
+            Model= model;
+            Capacity= capacity;
         }
 
 
-// Named constructors.
-public static Vehicle CreateVehicle() {
+        // Named constructors.
+        public static Vehicle CreateVehicle() {
             return new Vehicle();
         }
 

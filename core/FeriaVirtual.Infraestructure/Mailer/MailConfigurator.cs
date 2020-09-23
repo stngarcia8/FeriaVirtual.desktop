@@ -24,7 +24,7 @@ namespace FeriaVirtual.Infraestructure.Mailer {
         private void ConfigureSMTPClient() {
             smtpClient.Host = "smtp.gmail.com";
             smtpClient.Port = 587;
-                        smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = true;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential( "maipogrande.fv@gmail.com","avaras08" );
