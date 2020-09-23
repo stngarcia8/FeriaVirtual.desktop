@@ -71,7 +71,13 @@ namespace FeriaVirtual.Business.Elements {
         }
 
 
-
+        public void DeleteCommercialData(string comercialID) {
+            try {
+                repository.DeleteComercialData( comercialID );
+            } catch(Exception ex) {
+                throw ex;
+            }
+        }
 
 
 

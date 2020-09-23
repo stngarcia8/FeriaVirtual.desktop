@@ -425,12 +425,61 @@ begin
     commit;
 end spActualizarDatosComerciales;
 /
+create or replace procedure fv_user.spEliminarDatosComerciales(
+    pIdComercial varchar2) is
+begin
+    delete from fv_user.dato_comercial 
+    where id_comercial = pIdComercial;
+    commit;
+end spEliminarDatosComerciales;
+/
 
-
-
-
-
-
+prompt Creando procedimientos almacenados para los productos.;
+create or replace procedure fv_user.spAgregarProductos(
+    pIdProducto varchar2, pIdCliente varchar2, 
+    pNombre varchar2, pObservacion varchar2, 
+    pValor number, pCantidad number) is
+begin
+    insert into fv_user.producto 
+        (id_producto, id_cliente, 
+        nombre_producto, obs_producto, 
+        valor_producto, cantidad_producto)
+    values 
+        (pIdProducto, pIdCliente,
+        pNombre, pObservacion, 
+        pValor, pCantidad);
+    commit;
+end spAgregarProductos;
+/
+create or replace procedure fv_user.spActualizarProductos(
+    pIdProducto varchar2,  
+    pNombre varchar2, pObservacion varchar2, 
+    pValor number, pCantidad number) is
+begin
+    update fv_user.producto 
+       set nombre_producto = pNombre, 
+            obs_producto = pObservacion, 
+            valor_producto = pValor, 
+            cantidad_producto = pCantidad
+     where id_producto = pIdProducto;
+    commit;
+end spActualizarProductos;
+/
+create or replace procedure fv_user.spEliminarProductos(
+    pIdProducto varchar2) is
+    vCantProductos number default 0;
+begin
+    select count(id_producto)
+      into vCantProductos
+    from fv_user.detalle_pedido
+    where id_producto = pIdProducto;
+    if vCantProductos=0 then
+        delete from fv_user.producto
+        where id_producto = pIdProducto;
+        commit;
+    end if; 
+end spEliminarProductos;
+/
 
 
 prompt Creando vistas predefinidas.;
