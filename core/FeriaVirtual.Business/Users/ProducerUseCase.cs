@@ -1,9 +1,9 @@
-﻿using FeriaVirtual.Data.Repository;
+﻿using System;
 using System.Collections.Generic;
-using System;
 using FeriaVirtual.Business.Validators;
-using FeriaVirtual.Domain.Users;
+using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Users {
 
@@ -29,12 +29,12 @@ namespace FeriaVirtual.Business.Users {
             return repository.Producer;
         }
 
-        public void NewProduct(Product product, string clientID) {
+        public void NewProduct(Product product,string clientID) {
             try {
                 ProductValidator validator = ProductValidator.CreateValidator( product,false );
                 validator.Validate();
                 repository.NewProduct( product,clientID );
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 throw ex;
             }
         }
@@ -42,9 +42,9 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditProduct(Product product) {
             try {
-                ProductValidator validator = ProductValidator.CreateValidator( product,true);
+                ProductValidator validator = ProductValidator.CreateValidator( product,true );
                 validator.Validate();
-                repository.EditProduct( product);
+                repository.EditProduct( product );
             } catch(Exception ex) {
                 throw ex;
             }
@@ -52,7 +52,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void DeleteProduct(string productID) {
             try {
-                repository.DeleteProduct(productID);
+                repository.DeleteProduct( productID );
             } catch(Exception ex) {
                 throw ex;
             }
