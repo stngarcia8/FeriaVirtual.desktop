@@ -5,17 +5,19 @@ namespace FeriaVirtual.Domain.Elements {
     public class ComercialData {
 
         public string ComercialID { get; set; }
-        public int CityID { get; set; }
+        public string ClientID { get; set; }
         public string CompanyName { get; set; }
         public string FantasyName { get; set; }
         public string ComercialBusiness { get; set; }
         public string Email { get; set; }
         public string ComercialDNI { get; set; }
         public string Address { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string PhoneNumber { get; set; }
 
 
-
-        // Contructors.
+        // Contructor.
         private ComercialData() {
             InitializeObjects( Guid.NewGuid().ToString(),string.Empty,string.Empty );
         }
@@ -26,6 +28,7 @@ namespace FeriaVirtual.Domain.Elements {
 
         private void InitializeObjects(string comercialId,string companyName,string comercialDNI) {
             ComercialID=comercialId;
+            ClientID= string.Empty;
             CompanyName=companyName;
             ComercialDNI= comercialDNI;
             FantasyName= string.Empty;
@@ -33,7 +36,9 @@ namespace FeriaVirtual.Domain.Elements {
             Email= string.Empty;
             ComercialDNI= string.Empty;
             Address=string.Empty;
-            CityID= 0;
+            City= string.Empty;
+            Country= string.Empty;
+            PhoneNumber= string.Empty;
         }
 
 
@@ -46,12 +51,6 @@ namespace FeriaVirtual.Domain.Elements {
             return new ComercialData( comercialId,companyName,comercialDNI );
         }
 
-
-
-
-
-
-
-
+                                 
     }
 }

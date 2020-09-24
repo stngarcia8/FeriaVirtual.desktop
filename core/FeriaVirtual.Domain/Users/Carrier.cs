@@ -7,7 +7,6 @@ namespace FeriaVirtual.Domain.Users {
     public class Carrier:Person {
 
         // Properties
-        public new ComercialDataDTO ComercialInfo { get; set; }
         public IList<Vehicle> VehicleList;
 
 

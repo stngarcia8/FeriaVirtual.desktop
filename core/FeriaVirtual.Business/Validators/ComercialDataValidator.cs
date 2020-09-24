@@ -29,7 +29,8 @@ namespace FeriaVirtual.Business.Validators {
             ValidatingEmptyField( data.ComercialBusiness,"giro comercial" );
             ValidatingEmptyField( data.ComercialDNI,"DNI" );
             ValidatingEmptyField( data.Address,"dirección comercial" );
-            ValidatingEmptyField( data.CityID,"ciudad" );
+            ValidatingEmptyField( data.City,"ciudad" );
+            ValidatingEmptyField( data.Country,"país" );
             if(ErrorMessages.Count>0) {
                 throw new InvalidClientException( GenerateErrorMessage() );
             }

@@ -26,9 +26,9 @@ namespace FeriaVirtual.Business.Validators {
         public void Validate() {
             ValidatingEmptyField( data.VehicleID,"id vehiculo" );
             ValidatingEmptyField( data.VehiclePatent,"patente del vehiculo" );
-            ValidatingEmptyField( data.Model,"modelo del vehiculo" );
-            ValidatingEmptyField( data.Capacity,"capacidad del behiculo" );
-            ValidatingValueField( data.Capacity,"capacidad del vehiculo" );
+            ValidatingEmptyField( data.VehicleModel,"modelo del vehiculo" );
+            ValidatingEmptyField( data.VehicleCapacity,"capacidad del behiculo" );
+            ValidatingValueField( data.VehicleCapacity,"capacidad del vehiculo" );
             if(ErrorMessages.Count>0) {
                 throw new InvalidVehicleException( GenerateErrorMessage() );
             }

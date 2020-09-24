@@ -23,21 +23,14 @@ namespace FeriaVirtual.API.Controllers {
 
 
         [HttpPost]
-        public IHttpActionResult Post(ComercialDataDTO data) {
+        public IHttpActionResult Post(ComercialData data) {
             if(data==null) {
                 return BadRequest( "Parámetro inválido, los datos comerciales son incorrectos" );
             }
             try {
-                ComercialData infoData = ComercialData.CreateComercialData();
-                infoData.CityID= data.CityID;
-                infoData.CompanyName= data.CompanyName;
-                infoData.FantasyName= data.FantasyName;
-                infoData.ComercialBusiness= data.ComercialBusiness;
-                infoData.Email= data.Email;
-                infoData.ComercialDNI= data.ComercialDNI;
-                infoData.Address= data.Address;
+                data.ComercialID = Guid.NewGuid().ToString();
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
-                usecase.NewCommercialData( infoData,data.ClientID );
+                usecase.NewCommercialData( data,data.ClientID );
                 return Ok( "Datos comerciales almacenados correctamente" );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
@@ -45,22 +38,13 @@ namespace FeriaVirtual.API.Controllers {
         }
 
         [HttpPut]
-        public IHttpActionResult Put(ComercialDataDTO data) {
+        public IHttpActionResult Put(ComercialData data) {
             if(data==null) {
                 return BadRequest( "Parámetro inválido, los datos comerciales son incorrectos" );
             }
             try {
-                ComercialData infoData = ComercialData.CreateComercialData();
-                infoData.ComercialID= data.ComercialID;
-                infoData.CityID= data.CityID;
-                infoData.CompanyName= data.CompanyName;
-                infoData.FantasyName= data.FantasyName;
-                infoData.ComercialBusiness= data.ComercialBusiness;
-                infoData.Email= data.Email;
-                infoData.ComercialDNI= data.ComercialDNI;
-                infoData.Address= data.Address;
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
-                usecase.EditCommercialData( infoData,data.ClientID );
+                usecase.EditCommercialData( data,data.ClientID );
                 return Ok( "Datos comerciales actualizados correctamente" );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );

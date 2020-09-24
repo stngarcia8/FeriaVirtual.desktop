@@ -6,31 +6,29 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Properties.
         public string VehicleID { get; set; }
-        public string VehicleClientID { get; set; }
-        public int TypeVehicleID { get; set; }
+        public string ClientID { get; set; }
         public string VehicleType { get; set; }
         public string VehiclePatent { get; set; }
-        public string Model { get; set; }
-        public float Capacity { get; set; }
+        public string VehicleModel { get; set; }
+        public float VehicleCapacity { get; set; }
 
 
         // Constructor
         private Vehicle() {
-            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,0,string.Empty,string.Empty,string.Empty,0);
+            InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty, 0);
         }
 
-        private Vehicle(string id,string clientID,int typeId,string type,string vehiclePatent,string model,float capacity) {
-            InitializeObjects( id,clientID,typeId,type,vehiclePatent,model,capacity );
+        private Vehicle(string id,string clientID,string patent,float capacity) {
+            InitializeObjects( id,clientID,patent,capacity );
         }
 
-        private void InitializeObjects(string id, string clientID, int typeId,string type, string vehiclePatent, string model,float capacity) {
+        private void InitializeObjects(string id,string clientID,string patent,float capacity) {
             VehicleID= id;
-            VehicleClientID= VehicleClientID;
-            TypeVehicleID=typeId;
-            VehicleType = type;
-            VehiclePatent= VehiclePatent;
-            Model= model;
-            Capacity= capacity;
+            ClientID= clientID;
+            VehicleType= string.Empty;
+            VehiclePatent= patent;
+            VehicleModel= string.Empty;
+            VehicleCapacity= capacity;
         }
 
 
@@ -39,8 +37,8 @@ namespace FeriaVirtual.Domain.Elements {
             return new Vehicle();
         }
 
-        public static Vehicle CreateVehicle(string id,string clientID,int typeId,string type,string vehiclePatent,string model,float capacity) {
-            return new Vehicle( id,clientID,typeId,type,vehiclePatent,model,capacity );
+        public static Vehicle CreateVehicle(string id,string clientID,string patent,float capacity) {
+            return new Vehicle( id,clientID,patent,capacity );
         }
 
     }

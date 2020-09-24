@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
 
@@ -67,23 +67,23 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-        private ComercialDataDTO GetClientComercialData() {
-            ComercialDataDTO data = new ComercialDataDTO();
+        private ComercialData GetClientComercialData() {
+            ComercialData data = ComercialData.CreateComercialData();
             if(dataTable.Rows.Count.Equals( 0 )) {
                 return null;
             }
             DataRow row = dataTable.Rows[0];
             data.ComercialID= row["id_comercial"].ToString();
+            data.ClientID = row["id_cliente"].ToString();
             data.CompanyName= row["Razon social"].ToString();
             data.FantasyName=row["Nombre de fantasia"].ToString();
             data.ComercialBusiness= row["Giro comercial"].ToString();
             data.Email= row["Email"].ToString();
             data.ComercialDNI= row["DNI"].ToString();
             data.Address= row["Direccion"].ToString();
-            data.CityID=int.Parse( row["cod_ciudad"].ToString() );
-            data.CityName=row["Ciudad"].ToString();
-            data.CountryID= int.Parse( row["cod_pais"].ToString() );
-            data.CountryName= row["Pais"].ToString();
+            data.City = row["Ciudad"].ToString();
+            data.Country= row["Pais"].ToString();
+            data.PhoneNumber = row["Telefono"].ToString();
             return data;
         }
 

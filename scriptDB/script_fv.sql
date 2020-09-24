@@ -82,13 +82,15 @@ prompt Creando tabla dato_comercial.;
 CREATE TABLE fv_user.dato_comercial (
     id_comercial        VARCHAR2(40) NOT NULL,
     id_cliente          VARCHAR2(40) NOT NULL,
-    cod_ciudad       NUMBER(5) NOT NULL, 
     rsocial_comercial   VARCHAR2(100) NOT NULL,
     fantasia_comercial  VARCHAR2(100),
     giro_comercial      VARCHAR2(100) NOT NULL,
     email_comercial     VARCHAR2(254),
     dni_comercial       VARCHAR2(20) NOT NULL,
     dir_comercial       VARCHAR2(100) NOT NULL,
+    ciudad_comercial    varchar2(50),
+    pais_comercial      varchar2(50),
+    fono_comercial      varchar(30),
     constraint dato_comercial_pk primary key (id_comercial)
 ) tablespace fv_env;
 
@@ -217,7 +219,7 @@ prompt Creando tabla vehiculo.;
 CREATE TABLE fv_user.vehiculo (
     id_vehiculo         VARCHAR2(40) NOT NULL,
     id_cliente varchar2(40) not null,
-    id_tipo_transporte  NUMBER(2) NOT NULL,
+    tipo_vehiculo   varchar2(50) not null,
     patente_vehiculo varchar2(15) not null,
     modelo_vehiculo     VARCHAR2(50) NOT NULL,
     capacidad_vehiculo  NUMBER(9, 2) NOT NULL,
@@ -248,8 +250,6 @@ ALTER TABLE fv_user.contrato_cliente
 
 prompt Alterando tabla dato_comercial.;
 ALTER TABLE fv_user.dato_comercial
-    ADD CONSTRAINT dato_comercial_ciudad_fk FOREIGN KEY ( cod_ciudad )
-        REFERENCES fv_user.ciudad ( cod_ciudad )
     ADD CONSTRAINT dato_comercial_cliente_fk FOREIGN KEY ( id_cliente )
         REFERENCES fv_user.cliente ( id_cliente );
 
@@ -301,8 +301,6 @@ ALTER TABLE fv_user.telefono
 
 prompt Alterando tabla vehiculo.;
 ALTER TABLE fv_user.vehiculo
-    ADD CONSTRAINT vehiculo_tipo_transporte_fk FOREIGN KEY ( id_tipo_transporte )
-        REFERENCES fv_user.tipo_transporte ( id_tipo_transporte ) 
    ADD  constraint vehiculo_cliente_vehiculo_fk foreign key (id_cliente) 
         references fv_user.cliente (id_cliente);
 
@@ -400,30 +398,35 @@ END spHabilitarCliente;
 
 prompt Creando procedimientos almacenados para los datos comerciales de los clientes.;
 create or replace procedure fv_user.spAgregarDatosComerciales(
-    pIdComercial varchar2, pIdCliente varchar2, pIdCiudad number, 
+    pIdComercial varchar2, pIdCliente varchar2,  
     pRSocial varchar2, pFantasia varchar2, pGiro varchar2, 
-    pEmail varchar2, pDNI varchar2, pDireccion varchar2) is
+    pEmail varchar2, pDNI varchar2, pDireccion varchar2,
+    pCiudad varchar2, pPais varchar2, pTelefono varchar2) is
 begin
     insert into fv_user.dato_comercial 
-        (id_comercial, id_cliente, cod_ciudad, rsocial_comercial, 
+        (id_comercial, id_cliente,   rsocial_comercial, 
         fantasia_comercial, giro_comercial, email_comercial, 
-        dni_comercial, dir_comercial)
+        dni_comercial, dir_comercial, 
+        ciudad_comercial, pais_comercial, fono_comercial)
     values 
-        (pIdComercial, pIdCliente, pIdCiudad, 
+        (pIdComercial, pIdCliente,  
         pRSocial, pFantasia, pGiro, 
-        pEmail, pDNI, pDireccion);
+        pEmail, pDNI, pDireccion, 
+        pCiudad, pPais, pTelefono);
     commit;
 end spAgregarDatosComerciales;
 /
 create or replace procedure fv_user.spActualizarDatosComerciales(
-    pIdComercial varchar2, pIdCiudad number, 
+    pIdComercial varchar2,  
     pRSocial varchar2, pFantasia varchar2, pGiro varchar2, 
-    pEmail varchar2, pDNI varchar2, pDireccion varchar2) is
+    pEmail varchar2, pDNI varchar2, pDireccion varchar2, 
+    pCiudad varchar2, pPais varchar2, pTelefono varchar2) is
 begin
     update fv_user.dato_comercial 
-       set cod_ciudad=pIdCiudad, rsocial_comercial=pRSocial, 
+       set rsocial_comercial=pRSocial, 
             fantasia_comercial=pFantasia, giro_comercial=pGiro,
-            email_comercial=pEmail, dni_comercial=pDNI, dir_comercial=pDireccion 
+            email_comercial=pEmail, dni_comercial=pDNI, dir_comercial=pDireccion, 
+            ciudad_comercial = pCiudad, pais_comercial = pPais, fono_comercial = pTelefono 
      where id_comercial = pIdComercial; 
     commit;
 end spActualizarDatosComerciales;
@@ -487,24 +490,24 @@ end spEliminarProductos;
 
 prompt Creando procedimientos almacenados para los vehiculos.;
 create or replace procedure fv_user.spAgregarVehiculos(
-    pIdVehiculo varchar2, pIdCliente varchar2, pidTipo number,  
+    pIdVehiculo varchar2, pIdCliente varchar2, pTipo varchar2,  
     pPatente varchar2, pModelo varchar2, pCapacidad number) is
 begin
     insert into fv_user.vehiculo 
-        (id_vehiculo, id_cliente, id_tipo_transporte, 
+        (id_vehiculo, id_cliente, tipo_vehiculo, 
         patente_vehiculo, modelo_vehiculo, capacidad_vehiculo)
     values 
-        (pIdVehiculo, pIdCliente, pIdTipo, 
+        (pIdVehiculo, pIdCliente, pTipo, 
         pPatente, pModelo, pCapacidad);
     commit;
 end spAgregarVehiculos;
 /
 create or replace procedure fv_user.spActualizarVehiculos(
-    pIdVehiculo varchar2, pidTipo number,  
+    pIdVehiculo varchar2, pTipo varchar2,  
     pPatente varchar2, pModelo varchar2, pCapacidad number) is
 begin
     update fv_user.vehiculo 
-       set id_tipo_transporte = pIdTipo,
+       set tipo_vehiculo = pTipo,
             patente_vehiculo = pPatente, 
             modelo_vehiculo = pModelo, 
             capacidad_vehiculo = pCapacidad 
@@ -546,6 +549,33 @@ WHERE emp.id_rol = 1 or emp.id_rol= 2
 order by emp.id_rol, emp.apellido_empleado, emp.nombre_empleado;
 
 
+prompt Creando vista para los logins de usuarios.;
+create or replace view fv_user.vwObtenerLogin as 
+select 
+    cli.id_cliente, usr.id_usuario, rol.id_rol,
+    cli.nombre_cliente as "Nombre",
+    cli.apellido_cliente as "Apellido", 
+    usr.username, usr.password, 
+    usr.email as "Email", 
+    rol.nombre_rol AS "Rol",    
+    usr.is_active, 
+    case usr.is_active 
+        when 0 then 'Inhabilitado' 
+        when 1 then 'habilitado'
+    end as "Estado", 
+    to_char(usr.registro, 'dd/MM/yyyy') as "Registrado"
+from fv_user.usuario usr 
+    inner join fv_user.cliente cli on usr.id_usuario=cli.id_usuario
+    inner join fv_user.rol_usuario rol on cli.id_rol=rol.id_rol 
+order by cli.id_rol, cli.apellido_cliente, cli.nombre_cliente;
+
+
+prompt Creando vista para logins.;
+create or replace view fv_user.vwLogin as 
+select * from vwObtenerUsuarios 
+union 
+select * from vwObtenerLogin;
+
 
 prompt Creando vistas de clientes.;
 create or replace view fv_user.vwObtenerClientes as 
@@ -569,32 +599,29 @@ from fv_user.usuario usr
 WHERE cli.id_rol > 2  
 order by cli.apellido_cliente, cli.nombre_cliente;
 
+
 prompt Creando vista para datos comerciales.;
 create or replace view fv_user.vwObtenerDatosComerciales as 
     select 
-        com.id_comercial, com.id_cliente, 
+        id_comercial, id_cliente, 
         rsocial_comercial AS "Razon social", 
         fantasia_comercial AS "Nombre de fantasia",
         giro_comercial as "Giro comercial", 
         email_comercial as "Email", 
         dni_comercial as "DNI", 
         dir_comercial as "Direccion", 
-        ciu.cod_ciudad, ciu.nombre_ciudad as "Ciudad", 
-        pai.cod_pais, pai.nombre_pais as "Pais", 
-        pai.prefijo_pais as "Prefijo" 
-    from dato_comercial com 
-    inner join ciudad ciu on com.cod_ciudad=ciu.cod_ciudad 
-    inner join pais pai on ciu.cod_pais=pai.cod_pais;
+        ciudad_comercial AS "Ciudad", 
+        pais_comercial AS "Pais", 
+        fono_comercial AS "Telefono" 
+    from dato_comercial;
 
 prompt Creando vista para los vehiculos.;
 create or replace view fv_user.vwVehiculos as 
 select 
-    veh.id_vehiculo, veh.id_cliente, 
-    tip.id_tipo_transporte, tip.desc_tipo_transporte AS "Tipo",
-    veh.patente_vehiculo, veh.modelo_vehiculo, veh.capacidad_vehiculo 
-from fv_user.vehiculo veh 
-inner join fv_user.tipo_transporte tip on veh.id_tipo_transporte=tip.id_tipo_transporte; 
-
+    id_vehiculo, id_cliente, 
+    tipo_vehiculo AS "Tipo",
+    patente_vehiculo, modelo_vehiculo, capacidad_vehiculo 
+from fv_user.vehiculo; 
 
 
 prompt insertando registros iniciales.;
@@ -604,6 +631,7 @@ insert into fv_user.tipo_transporte values (2,'Aereo');
 insert into fv_user.tipo_transporte values (3,'Terrestre');
 insert into fv_user.tipo_transporte values (4,'Maritimo');
 
+
 prompt Insertando roles de usuario.;
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (1, 'Administrador');
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (2, 'Consultor');
@@ -612,10 +640,12 @@ insert into fv_user.rol_usuario (id_rol, nombre_rol) values (4, 'Cliente interno
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (5, 'Productor');
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (6, 'Transportista');
 
+
 prompt Creando usuarios de ejemplo.
 insert into fv_user.usuario(id_usuario, username, password, email, is_active, registro) values ('1', 'd.garcial', '9cf9951f2bb3fedc9f709c7314fb9fb672c7a66e', 'd.garcial@alumnos.duoc.cl', 1, to_date('2020/09/07', 'yyyy/mm/dd'));
 insert into fv_user.usuario(id_usuario, username, password, email, is_active, registro) values ('2', 'c.arenas', '9cf9951f2bb3fedc9f709c7314fb9fb672c7a66e', 'c.arenas@alumnos.duoc.cl', 1, to_date('2020/09/07', 'yyyy/mm/dd'));
 insert into fv_user.usuario(id_usuario, username, password, email, is_active, registro) values ('3', 'l.repetto', '9cf9951f2bb3fedc9f709c7314fb9fb672c7a66e', 'l.repetto@alumnos.duoc.cl', 0, to_date('2020/09/07', 'yyyy/mm/dd'));
+
 
 prompt Insertando empleados de prueba.;
 insert into fv_user.empleado (id_empleado, id_usuario, id_rol, nombre_empleado, apellido_empleado) values ('1', '1', 1, 'Daniel', 'Garcia Asathor');

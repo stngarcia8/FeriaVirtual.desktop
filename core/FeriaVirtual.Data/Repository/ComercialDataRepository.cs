@@ -21,13 +21,15 @@ namespace FeriaVirtual.Data.Repository {
                 IQueryAction query = DefineQueryAction( "spAgregarDatosComerciales " );
                 query.AddParameter( "pIdComercial",data.ComercialID,DbType.String );
                 query.AddParameter( "pIdCliente",clientID,DbType.String );
-                query.AddParameter( "pIdCiudad",data.CityID,DbType.Int32 );
                 query.AddParameter( "pRSocial",data.CompanyName,DbType.String );
                 query.AddParameter( "pFantasia",data.FantasyName,DbType.String );
                 query.AddParameter( "pGiro",data.ComercialBusiness,DbType.String );
                 query.AddParameter( "pEmail",data.Email,DbType.String );
                 query.AddParameter( "pDNI",data.ComercialDNI,DbType.String );
                 query.AddParameter( "pDireccion",data.Address,DbType.String );
+                query.AddParameter( "pCiudad",data.City,DbType.String );
+                query.AddParameter( "pPais",data.Country,DbType.String );
+                query.AddParameter( "pTelefono",data.PhoneNumber,DbType.String );
                 query.ExecuteQuery();
             } catch(Exception ex) {
                 throw ex;
@@ -39,13 +41,15 @@ namespace FeriaVirtual.Data.Repository {
             try {
                 IQueryAction query = DefineQueryAction( "spActualizarDatosComerciales " );
                 query.AddParameter( "pIdComercial",data.ComercialID,DbType.String );
-                query.AddParameter( "pIdCiudad",data.CityID,DbType.Int32 );
                 query.AddParameter( "pRSocial",data.CompanyName,DbType.String );
                 query.AddParameter( "pFantasia",data.FantasyName,DbType.String );
                 query.AddParameter( "pGiro",data.ComercialBusiness,DbType.String );
                 query.AddParameter( "pEmail",data.Email,DbType.String );
                 query.AddParameter( "pDNI",data.ComercialDNI,DbType.String );
                 query.AddParameter( "pDireccion",data.Address,DbType.String );
+                query.AddParameter( "pCiudad",data.City,DbType.String );
+                query.AddParameter( "pPais",data.Country,DbType.String );
+                query.AddParameter( "pTelefono",data.PhoneNumber,DbType.String );
                 query.ExecuteQuery();
             } catch(Exception ex) {
                 throw ex;

@@ -23,6 +23,7 @@ namespace FeriaVirtual.API.Controllers {
         private SessionDTO GetSessionLogged(LoginUseCase login) {
             SessionDTO sesion = new SessionDTO();
             Employee employee = login.EmployeeLogged;
+            sesion.ClientID= employee.EmployeeID;
             sesion.UserId=employee.Credentials.UserId;
             sesion.Username=employee.Credentials.Username;
             sesion.FullName= employee.ToString();

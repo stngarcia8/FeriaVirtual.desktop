@@ -7,7 +7,6 @@ namespace FeriaVirtual.Domain.Users {
     public class Producer:Person {
 
         // Properties
-        public new ComercialDataDTO ComercialInfo { get; set; }
         public IList<Product> ProductList;
 
 
