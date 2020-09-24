@@ -216,7 +216,9 @@ CREATE TABLE fv_user.usuario (
 prompt Creando tabla vehiculo.;
 CREATE TABLE fv_user.vehiculo (
     id_vehiculo         VARCHAR2(40) NOT NULL,
+    id_cliente varchar2(40) not null,
     id_tipo_transporte  NUMBER(2) NOT NULL,
+    patente_vehiculo varchar2(15) not null,
     modelo_vehiculo     VARCHAR2(50) NOT NULL,
     capacidad_vehiculo  NUMBER(9, 2) NOT NULL,
     constraint vehiculo_pk primary key (id_vehiculo)
@@ -300,7 +302,9 @@ ALTER TABLE fv_user.telefono
 prompt Alterando tabla vehiculo.;
 ALTER TABLE fv_user.vehiculo
     ADD CONSTRAINT vehiculo_tipo_transporte_fk FOREIGN KEY ( id_tipo_transporte )
-        REFERENCES fv_user.tipo_transporte ( id_tipo_transporte );
+        REFERENCES fv_user.tipo_transporte ( id_tipo_transporte ) 
+   ADD  constraint vehiculo_cliente_vehiculo_fk foreign key (id_cliente) 
+        references fv_user.cliente (id_cliente);
 
 
 
@@ -347,7 +351,6 @@ BEGIN
     COMMIT;
 END spHabilitarUsuario;
 /
-
 
 prompt Procedimientos almacenados para los clientes.;
 CREATE OR REPLACE PROCEDURE fv_user.spAgregarCliente(
@@ -482,6 +485,44 @@ end spEliminarProductos;
 /
 
 
+prompt Creando procedimientos almacenados para los vehiculos.;
+create or replace procedure fv_user.spAgregarVehiculos(
+    pIdVehiculo varchar2, pIdCliente varchar2, pidTipo number,  
+    pPatente varchar2, pModelo varchar2, pCapacidad number) is
+begin
+    insert into fv_user.vehiculo 
+        (id_vehiculo, id_cliente, id_tipo_transporte, 
+        patente_vehiculo, modelo_vehiculo, capacidad_vehiculo)
+    values 
+        (pIdVehiculo, pIdCliente, pIdTipo, 
+        pPatente, pModelo, pCapacidad);
+    commit;
+end spAgregarVehiculos;
+/
+create or replace procedure fv_user.spActualizarVehiculos(
+    pIdVehiculo varchar2, pidTipo number,  
+    pPatente varchar2, pModelo varchar2, pCapacidad number) is
+begin
+    update fv_user.vehiculo 
+       set id_tipo_transporte = pIdTipo,
+            patente_vehiculo = pPatente, 
+            modelo_vehiculo = pModelo, 
+            capacidad_vehiculo = pCapacidad 
+     where id_vehiculo = pIdVehiculo;
+    commit;
+end spActualizarVehiculos;
+/
+create or replace procedure fv_user.spEliminarVehiculos(
+    pIdVehiculo varchar2) is
+begin
+    delete from fv_user.vehiculo 
+    where id_vehiculo = pIdVehiculo;
+    commit;
+end spEliminarVehiculos;
+/
+
+
+
 prompt Creando vistas predefinidas.;
 prompt Creando vistas de usuarios del sistema.;
 create or replace view fv_user.vwObtenerUsuarios as 
@@ -528,8 +569,6 @@ from fv_user.usuario usr
 WHERE cli.id_rol > 2  
 order by cli.apellido_cliente, cli.nombre_cliente;
 
-
-
 prompt Creando vista para datos comerciales.;
 create or replace view fv_user.vwObtenerDatosComerciales as 
     select 
@@ -547,11 +586,24 @@ create or replace view fv_user.vwObtenerDatosComerciales as
     inner join ciudad ciu on com.cod_ciudad=ciu.cod_ciudad 
     inner join pais pai on ciu.cod_pais=pai.cod_pais;
 
-
+prompt Creando vista para los vehiculos.;
+create or replace view fv_user.vwVehiculos as 
+select 
+    veh.id_vehiculo, veh.id_cliente, 
+    tip.id_tipo_transporte, tip.desc_tipo_transporte AS "Tipo",
+    veh.patente_vehiculo, veh.modelo_vehiculo, veh.capacidad_vehiculo 
+from fv_user.vehiculo veh 
+inner join fv_user.tipo_transporte tip on veh.id_tipo_transporte=tip.id_tipo_transporte; 
 
 
 
 prompt insertando registros iniciales.;
+prompt Insertando tipos de transportes.;
+insert into fv_user.tipo_transporte values (1,'No definido');
+insert into fv_user.tipo_transporte values (2,'Aereo');
+insert into fv_user.tipo_transporte values (3,'Terrestre');
+insert into fv_user.tipo_transporte values (4,'Maritimo');
+
 prompt Insertando roles de usuario.;
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (1, 'Administrador');
 insert into fv_user.rol_usuario (id_rol, nombre_rol) values (2, 'Consultor');
