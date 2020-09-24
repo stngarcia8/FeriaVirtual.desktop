@@ -1,7 +1,10 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
+
 
 namespace FeriaVirtual.Data.Repository {
 
@@ -32,6 +35,7 @@ namespace FeriaVirtual.Data.Repository {
             }
             FindCarrierComercialData( id );
             carrier.ComercialInfo= GetCarrierComercialData();
+            carrier.VehicleList=FindAllVehicles( id);
         }
 
 
@@ -87,6 +91,93 @@ namespace FeriaVirtual.Data.Repository {
             data.CountryID= int.Parse( row["cod_pais"].ToString() );
             data.CountryName= row["Pais"].ToString();
             return data;
+        }
+
+
+        public void NewVehicle(Vehicle vehicle,string clientID) {
+            IQueryAction query = DefineQueryAction( "spAgregarVehiculos " );
+            query.AddParameter( "pIdVehiculo",vehicle.VehicleID,DbType.String );
+            query.AddParameter( "pIdCliente",clientID,DbType.String );
+            query.AddParameter( "pPatente",vehicle.VehiclePatent,DbType.String );
+            query.AddParameter( "pModelo",vehicle.Model,DbType.String );
+            query.AddParameter( "pCapacidad",vehicle.Capacity,DbType.Decimal );
+            query.AddParameter( "pidTipo",vehicle.TypeVehicleID,DbType.Int32 );
+            query.ExecuteQuery();
+        }
+
+
+        public void EditVehicle(Vehicle vehicle) {
+            IQueryAction query = DefineQueryAction( "spActualizarVehiculos " );
+            query.AddParameter( "pIdVehiculo",vehicle.VehicleID,DbType.String );
+            query.AddParameter( "pPatente",vehicle.VehiclePatent,DbType.String );
+            query.AddParameter( "pModelo",vehicle.Model,DbType.String );
+            query.AddParameter( "pCapacidad",vehicle.Capacity,DbType.Decimal );
+            query.AddParameter( "pidTipo",vehicle.TypeVehicleID,DbType.Int32 );
+            query.ExecuteQuery();
+        }
+
+
+        public void DeleteVehicle(string vehicleID) {
+            IQueryAction query = DefineQueryAction( "spEliminarVehiculos " );
+            query.AddParameter( "pIdVehiculo",vehicleID,DbType.String );
+            query.ExecuteQuery();
+        }
+
+
+        public Vehicle FindVehicleByID(string vehicleID) {
+            sql.Clear();
+            sql.Append( "select * from vwVehiculos where id_vehiculo=:pId " );
+            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
+            querySelect.AddParameter( "pId",vehicleID,DbType.String );
+            dataTable = querySelect.ExecuteQuery();
+            return GetVehicleData();
+        }
+
+
+        private Vehicle GetVehicleData() {
+            DataRow row = dataTable.Rows[0];
+            if(row==null) {
+                return null;
+            }
+            Vehicle vehicle = Vehicle.CreateVehicle();
+            vehicle.VehicleID=  row["id_vehiculo"].ToString() ;
+            vehicle.VehicleClientID= row["id_cliente"].ToString();
+            vehicle.TypeVehicleID= int.Parse( row["id_tipo_transporte"].ToString() );
+            vehicle.VehicleType= row["Tipo"].ToString();
+            vehicle.VehiclePatent= row["patente_vehiculo"].ToString();
+            vehicle.Model=   row["modelo_vehiculo"].ToString();
+            vehicle.Capacity= float.Parse( row["capacidad_vehiculo"].ToString() );
+            return vehicle;
+        }
+
+
+        public IList<Vehicle> FindAllVehicles(string clientID) {
+            sql.Clear();
+            sql.Append( "select * from fv_user.vwVehiculos where id_cliente=:pId " );
+            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
+            querySelect.AddParameter( "pId",clientID,DbType.String );
+            dataTable = querySelect.ExecuteQuery();
+            return GetVehiclesData();
+        }
+
+
+        private IList<Vehicle> GetVehiclesData() {
+            IList<Vehicle> vehicleList = new List<Vehicle>();
+            if(dataTable.Rows.Count.Equals( 0 )) {
+                return vehicleList;
+            }
+            foreach(DataRow row in dataTable.Rows) {
+                Vehicle vehicle = Vehicle.CreateVehicle();
+                vehicle.VehicleID=  row["id_vehiculo"].ToString() ;
+                vehicle.VehicleClientID= row["id_cliente"].ToString();
+                vehicle.TypeVehicleID= int.Parse( row["id_tipo_transporte"].ToString() );
+                vehicle.VehicleType=  row["Tipo"].ToString();
+                vehicle.VehiclePatent= row["patente_vehiculo"].ToString();
+                vehicle.Model=   row["modelo_vehiculo"].ToString();
+                vehicle.Capacity= float.Parse( row["capacidad_vehiculo"].ToString() );
+                vehicleList.Add( vehicle );
+            }
+            return vehicleList;
         }
 
 

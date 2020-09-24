@@ -3,38 +3,37 @@ using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class ProductValidator:Validator {
+    public class VehicleValidator:Validator {
 
-        private Product data;
+        private Vehicle data;
         private readonly bool editMode;
 
 
         // Constructor
-        private ProductValidator(Product data,bool editMode) : base() {
+        private VehicleValidator(Vehicle data,bool editMode) : base() {
             this.data= data;
             this.editMode= editMode;
-            processName= string.Format( "{0} producto",(editMode ? "actualizar" : "registrar") );
+            processName= string.Format( "{0} vehiculo",(editMode ? "actualizar" : "registrar") );
         }
 
 
         // Named constructor
-        public static ProductValidator CreateValidator(Product data,bool editMode) {
-            return new ProductValidator( data,editMode );
+        public static VehicleValidator CreateValidator(Vehicle data,bool editMode) {
+            return new VehicleValidator( data,editMode );
         }
 
-
-        // Validate product method.
+        // Validate vehicle method.
         public void Validate() {
-            ValidatingEmptyField( data.ProductID,"id producto" );
-            ValidatingEmptyField( data.ProductName,"nombre producto" );
-            ValidatingEmptyField( data.ProductValue,"valor producto" );
-            ValidatingValueField( data.ProductValue,"valor producto" );
-            ValidatingEmptyField( data.ProductQuantity,"cantidad producto" );
-            ValidatingValueField( data.ProductQuantity,"cantidad producto" );
+            ValidatingEmptyField( data.VehicleID,"id vehiculo" );
+            ValidatingEmptyField( data.VehiclePatent,"patente del vehiculo" );
+            ValidatingEmptyField( data.Model,"modelo del vehiculo" );
+            ValidatingEmptyField( data.Capacity,"capacidad del behiculo" );
+            ValidatingValueField( data.Capacity,"capacidad del vehiculo" );
             if(ErrorMessages.Count>0) {
-                throw new InvalidProductException( GenerateErrorMessage() );
+                throw new InvalidVehicleException( GenerateErrorMessage() );
             }
         }
+
 
         private void ValidatingEmptyField(string value,string fieldName) {
             if(string.IsNullOrEmpty( value )) {
