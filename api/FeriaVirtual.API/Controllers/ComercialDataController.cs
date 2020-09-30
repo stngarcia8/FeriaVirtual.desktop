@@ -9,13 +9,13 @@ namespace FeriaVirtual.API.Controllers {
     public class ComercialDataController:ApiController {
 
         [HttpGet]
-        public IHttpActionResult Get(string comercialID) {
-            if(string.IsNullOrEmpty( comercialID )) {
-                return BadRequest( "Parámetro inválido, el id del dato comercial es incorrecto" );
+        public IHttpActionResult Get(string clientID) {
+            if(string.IsNullOrEmpty( clientID )) {
+                return BadRequest( "Parámetro inválido, el id del cliente es incorrecto" );
             }
             try {
                 ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
-                return Ok( usecase.FindComercialDataByID( comercialID ) );
+                return Ok( usecase.FindComercialDataByID( clientID ) );
             } catch(Exception ex) {
                 return BadRequest( ex.Message.ToString() );
             }
