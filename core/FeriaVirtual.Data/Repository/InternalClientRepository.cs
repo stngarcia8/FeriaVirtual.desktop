@@ -29,8 +29,8 @@ namespace FeriaVirtual.Data.Repository {
             if(client==null) {
                 return;
             }
-            FindClientComercialData( id );
-            client.ComercialInfo= GetClientComercialData();
+            ComercialDataRepository dataRepository = ComercialDataRepository.OpenRepository();
+            client.ComercialInfo= dataRepository.FindById( id );
         }
 
         private void FindClientUserData(string id) {
@@ -55,40 +55,6 @@ namespace FeriaVirtual.Data.Repository {
             client.Profile.ProfileID=3;
             client.Profile.ProfileName= row["Rol"].ToString();
         }
-
-
-        private void FindClientComercialData(string id) {
-            sql.Clear();
-            sql.Append( "select * from vwObtenerDatosComerciales where id_cliente=:pId " );
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.String );
-            dataTable = querySelect.ExecuteQuery();
-            // connection.CloseConnection();
-        }
-
-
-        private ComercialData GetClientComercialData() {
-            ComercialData data = ComercialData.CreateComercialData();
-            if(dataTable.Rows.Count.Equals( 0 )) {
-                return null;
-            }
-            DataRow row = dataTable.Rows[0];
-            data.ComercialID= row["id_comercial"].ToString();
-            data.ClientID = row["id_cliente"].ToString();
-            data.CompanyName= row["Razon social"].ToString();
-            data.FantasyName=row["Nombre de fantasia"].ToString();
-            data.ComercialBusiness= row["Giro comercial"].ToString();
-            data.Email= row["Email"].ToString();
-            data.ComercialDNI= row["DNI"].ToString();
-            data.Address= row["Direccion"].ToString();
-            data.City = row["Ciudad"].ToString();
-            data.Country= row["Pais"].ToString();
-            data.PhoneNumber = row["Telefono"].ToString();
-            return data;
-        }
-
-
-
 
 
     }

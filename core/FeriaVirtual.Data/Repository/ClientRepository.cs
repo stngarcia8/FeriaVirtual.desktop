@@ -47,7 +47,6 @@ namespace FeriaVirtual.Data.Repository {
             querySelect.AddParameter( "pId",id,DbType.String );
             querySelect.AddParameter( "pIdRol",profileID,DbType.Int32 );
             dataTable = querySelect.ExecuteQuery();
-            connection.CloseConnection();
         }
 
 
@@ -73,6 +72,13 @@ namespace FeriaVirtual.Data.Repository {
             IQueryAction query = DefineQueryAction( "spAgregarCliente" );
             query.AddParameter( "pIdUsuario",client.Credentials.UserId,DbType.String );
             query.AddParameter( "pUserName",client.Credentials.Username,DbType.String );
+            query = DefineQueryParameters( client,query );
+            query.ExecuteQuery();
+            SendMailMessage( client,MailTypeMessage.NewClient );
+        }
+
+
+        private IQueryAction DefineQueryParameters(Client client,IQueryAction query) {
             query.AddParameter( "pPassword",client.Credentials.EncriptedPassword,DbType.String );
             query.AddParameter( "pEmail",client.Credentials.Email,DbType.String );
             query.AddParameter( "pIdCliente",client.ID,DbType.String );
@@ -80,8 +86,12 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter( "pNombre",client.FirstName,DbType.String );
             query.AddParameter( "pApellido",client.LastName,DbType.String );
             query.AddParameter( "pDNI",client.DNI,DbType.String );
-            query.ExecuteQuery();
-            MailSender sender = MailSender.CreateSender( client,MailTypeMessage.NewClient );
+            return query;
+        }
+
+
+        private void SendMailMessage(Client client,MailTypeMessage mailTypeMessage) {
+            MailSender sender = MailSender.CreateSender( client,mailTypeMessage );
             sender.SendMail();
         }
 
@@ -89,16 +99,9 @@ namespace FeriaVirtual.Data.Repository {
         public void EditClient(Client client) {
             IQueryAction query = DefineQueryAction( "spActualizarCliente" );
             query.AddParameter( "pIdUsuario",client.Credentials.UserId,DbType.String );
-            query.AddParameter( "pPassword",client.Credentials.EncriptedPassword,DbType.String );
-            query.AddParameter( "pEmail",client.Credentials.Email,DbType.String );
-            query.AddParameter( "pIdCliente",client.ID,DbType.String );
-            query.AddParameter( "pIdRol",profileID,DbType.Int32 );
-            query.AddParameter( "pNombre",client.FirstName,DbType.String );
-            query.AddParameter( "pApellido",client.LastName,DbType.String );
-            query.AddParameter( "pDNI",client.DNI,DbType.String );
+            query = DefineQueryParameters( client,query );
             query.ExecuteQuery();
-            MailSender sender = MailSender.CreateSender( client,MailTypeMessage.EditClient );
-            sender.SendMail();
+            SendMailMessage( client,MailTypeMessage.EditClient );
         }
 
 

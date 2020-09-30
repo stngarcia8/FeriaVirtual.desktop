@@ -58,7 +58,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void NewClient(Client client) {
             try {
-                ClientValidator validator = ClientValidator.CreateValidator( client,false,true,profileID,singleProfileName );
+                IValidator validator = ClientValidator.CreateValidator( client,false,true,profileID,singleProfileName );
                 validator.Validate();
                 client.Credentials.EncriptedPassword= client.Credentials.EncryptPassword();
                 repository.NewClient( client );
@@ -69,7 +69,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditEmployee(Client client,bool validateUsername,bool validatePassword) {
             try {
-                ClientValidator validator = ClientValidator.CreateValidator( client,validateUsername,validatePassword,profileID,singleProfileName );
+                IValidator validator = ClientValidator.CreateValidator( client,validateUsername,validatePassword,profileID,singleProfileName );
                 validator.Validate();
                 repository.EditClient( client );
             } catch(Exception ex) {

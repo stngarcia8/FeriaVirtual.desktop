@@ -19,12 +19,11 @@ namespace FeriaVirtual.API {
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+                );
+
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             config.EnableCors( new AccessPolicyCors() );
-
         }
-
 
     }
 }

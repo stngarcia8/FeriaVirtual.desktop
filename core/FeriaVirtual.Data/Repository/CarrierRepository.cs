@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using FeriaVirtual.Domain.DTO;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
@@ -10,16 +9,18 @@ namespace FeriaVirtual.Data.Repository {
 
     public class CarrierRepository:Repository {
 
+        private Carrier carrier;
+
 
         // Properties
         public Carrier Carrier => carrier;
 
-        private Carrier carrier;
 
         // Constructor
         private CarrierRepository() : base() {
             carrier = Carrier.CreateCarrier();
         }
+
 
         // Named constructor.
         public static CarrierRepository OpenRepository() {
@@ -33,9 +34,9 @@ namespace FeriaVirtual.Data.Repository {
             if(carrier==null) {
                 return;
             }
-            FindCarrierComercialData( id );
-            carrier.ComercialInfo= GetCarrierComercialData();
-            carrier.VehicleList=FindAllVehicles( id);
+            ComercialDataRepository dataRepository = ComercialDataRepository.OpenRepository();
+            carrier.ComercialInfo= dataRepository.FindById( id );
+            carrier.VehicleList=FindAllVehicles( id );
         }
 
 
@@ -44,7 +45,6 @@ namespace FeriaVirtual.Data.Repository {
             IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
             querySelect.AddParameter( "pId",id,DbType.String );
             dataTable = querySelect.ExecuteQuery();
-            //connection.CloseConnection();
         }
 
 
@@ -63,44 +63,11 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-        private void FindCarrierComercialData(string id) {
-            sql.Clear();
-            sql.Append( "select * from vwObtenerDatosComerciales where id_cliente=:pId " );
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.String );
-            dataTable = querySelect.ExecuteQuery();
-            // connection.CloseConnection();
-        }
-
-
-        private ComercialData GetCarrierComercialData() {
-            ComercialData data = ComercialData.CreateComercialData();
-            if(dataTable.Rows.Count.Equals( 0 )) {
-                return null;
-            }
-            DataRow row = dataTable.Rows[0];
-            data.ComercialID= row["id_comercial"].ToString();
-            data.CompanyName= row["Razon social"].ToString();
-            data.FantasyName=row["Nombre de fantasia"].ToString();
-            data.ComercialBusiness= row["Giro comercial"].ToString();
-            data.Email= row["Email"].ToString();
-            data.ComercialDNI= row["DNI"].ToString();
-            data.Address= row["Direccion"].ToString();
-            data.City= row["Ciudad"].ToString();
-            data.Country= row["Pais"].ToString();
-            data.PhoneNumber= row["Telefono"].ToString();
-            return data;
-        }
-
-
         public void NewVehicle(Vehicle vehicle,string clientID) {
             IQueryAction query = DefineQueryAction( "spAgregarVehiculos " );
             query.AddParameter( "pIdVehiculo",vehicle.VehicleID,DbType.String );
             query.AddParameter( "pIdCliente",clientID,DbType.String );
-            query.AddParameter( "pTipo",vehicle.VehicleType,DbType.String );
-            query.AddParameter( "pPatente",vehicle.VehiclePatent,DbType.String );
-            query.AddParameter( "pModelo",vehicle.VehicleModel,DbType.String );
-            query.AddParameter( "pCapacidad",vehicle.VehicleCapacity,DbType.Decimal );
+            query = DefineParameters( vehicle,query );
             query.ExecuteQuery();
         }
 
@@ -108,11 +75,17 @@ namespace FeriaVirtual.Data.Repository {
         public void EditVehicle(Vehicle vehicle) {
             IQueryAction query = DefineQueryAction( "spActualizarVehiculos " );
             query.AddParameter( "pIdVehiculo",vehicle.VehicleID,DbType.String );
+            query = DefineParameters( vehicle,query );
+            query.ExecuteQuery();
+        }
+
+
+        private IQueryAction DefineParameters(Vehicle vehicle,IQueryAction query) {
             query.AddParameter( "pTipo",vehicle.VehicleType,DbType.String );
             query.AddParameter( "pPatente",vehicle.VehiclePatent,DbType.String );
             query.AddParameter( "pModelo",vehicle.VehicleModel,DbType.String );
             query.AddParameter( "pCapacidad",vehicle.VehicleCapacity,DbType.Decimal );
-            query.ExecuteQuery();
+            return query;
         }
 
 
@@ -138,13 +111,19 @@ namespace FeriaVirtual.Data.Repository {
             if(row==null) {
                 return null;
             }
+            return ExtractVehicleInfoToDataRow( row );
+        }
+
+
+        private Vehicle ExtractVehicleInfoToDataRow(DataRow row) {
             Vehicle vehicle = Vehicle.CreateVehicle();
-            vehicle.VehicleID=  row["id_vehiculo"].ToString() ;
+            vehicle.VehicleID=  row["id_vehiculo"].ToString();
             vehicle.ClientID= row["id_cliente"].ToString();
             vehicle.VehicleType= row["Tipo"].ToString();
             vehicle.VehiclePatent= row["patente_vehiculo"].ToString();
             vehicle.VehicleModel=   row["modelo_vehiculo"].ToString();
             vehicle.VehicleCapacity= float.Parse( row["capacidad_vehiculo"].ToString() );
+            vehicle.VehicleAvailable = int.Parse( row["disponibilidad_vehiculo"].ToString());
             return vehicle;
         }
 
@@ -165,19 +144,11 @@ namespace FeriaVirtual.Data.Repository {
                 return vehicleList;
             }
             foreach(DataRow row in dataTable.Rows) {
-                Vehicle vehicle = Vehicle.CreateVehicle();
-                vehicle.VehicleID=  row["id_vehiculo"].ToString() ;
-                vehicle.ClientID= row["id_cliente"].ToString();
-                vehicle.VehicleType=  row["Tipo"].ToString();
-                vehicle.VehiclePatent= row["patente_vehiculo"].ToString();
-                vehicle.VehicleModel=   row["modelo_vehiculo"].ToString();
-                vehicle.VehicleCapacity= float.Parse( row["capacidad_vehiculo"].ToString() );
-                vehicleList.Add( vehicle );
+                vehicleList.Add( ExtractVehicleInfoToDataRow( row ) );
             }
             return vehicleList;
         }
-
-
+        
 
     }
 }

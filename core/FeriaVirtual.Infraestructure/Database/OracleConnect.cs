@@ -99,8 +99,8 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Transaction = transaction;
                 return QueryAction.CreateQuery( command );
-            } catch {
-                throw;
+            } catch  (Exception ex){
+                throw ex;
             }
         }
 

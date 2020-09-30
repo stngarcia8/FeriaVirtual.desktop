@@ -1,12 +1,12 @@
 ﻿using FeriaVirtual.Business.Exceptions;
 
 namespace FeriaVirtual.Business.Validators {
-    public class LoginValidator:Validator {
+
+    public class LoginValidator:Validator, IValidator {
 
         private string username;
         private string password;
-        private int usernameLength = 6;
-        private int passwordLength = 8;
+
 
         // Constructor.
         private LoginValidator(string username,string password) : base() {

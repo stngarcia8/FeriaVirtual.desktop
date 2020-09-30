@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainExeptions\DomainException.cs" />
-    <Compile Include="DTO\ComercialDataDTO.cs" />
-    <Compile Include="DTO\LoginDTO.cs" />
-    <Compile Include="DTO\SessionDTO.cs" />
+    <Compile Include="DTO\ComercialDataDto.cs" />
+    <Compile Include="DTO\LoginDto.cs" />
+    <Compile Include="DTO\SessionDto.cs" />
     <Compile Include="Elements\Order.cs" />
     <Compile Include="Elements\OrderDetail.cs" />
     <Compile Include="Elements\Product.cs" />

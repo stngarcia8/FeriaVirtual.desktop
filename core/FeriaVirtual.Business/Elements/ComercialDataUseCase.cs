@@ -22,9 +22,10 @@ namespace FeriaVirtual.Business.Elements {
             return new ComercialDataUseCase();
         }
 
+
         public void NewCommercialData(ComercialData data,string clientID) {
             try {
-                ComercialDataValidator validator = ComercialDataValidator.CreateValidator( data,false );
+                IValidator validator = ComercialDataValidator.CreateValidator( data,false );
                 validator.Validate();
                 repository.NewComercialData( data,clientID );
             } catch(Exception ex) {
@@ -35,7 +36,7 @@ namespace FeriaVirtual.Business.Elements {
 
         public void EditCommercialData(ComercialData data,string clientID) {
             try {
-                ComercialDataValidator validator = ComercialDataValidator.CreateValidator( data,true );
+                IValidator validator = ComercialDataValidator.CreateValidator( data,true );
                 validator.Validate();
                 repository.EditComercialData( data,clientID );
             } catch(Exception ex) {
@@ -43,10 +44,12 @@ namespace FeriaVirtual.Business.Elements {
             }
         }
 
+
         public ComercialData FindComercialDataByID(string id) {
             repository.FindById( id );
             return ConvertToComercialData( repository.DataSource );
         }
+
 
         private ComercialData ConvertToComercialData(DataTable table) {
             ComercialData data = ComercialData.CreateComercialData();
@@ -76,9 +79,6 @@ namespace FeriaVirtual.Business.Elements {
                 throw ex;
             }
         }
-
-
-
 
     }
 }

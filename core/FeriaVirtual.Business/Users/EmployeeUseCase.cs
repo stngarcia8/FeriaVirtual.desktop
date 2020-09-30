@@ -53,7 +53,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void NewEmployee(Employee employee) {
             try {
-                EmployeeValidator validator = EmployeeValidator.CreateValidator( employee,false,true );
+                IValidator validator = EmployeeValidator.CreateValidator( employee,false,true );
                 employee.Credentials.EncriptedPassword= employee.Credentials.EncryptPassword();
                 validator.Validate();
                 employee.Credentials.EncriptedPassword= employee.Credentials.EncryptPassword();
@@ -66,10 +66,9 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditEmployee(Employee employee,bool validateUsername,bool validatePassword) {
             try {
-                EmployeeValidator validator = EmployeeValidator.CreateValidator( employee,validateUsername,validatePassword );
+                IValidator validator = EmployeeValidator.CreateValidator( employee,validateUsername,validatePassword );
                 validator.Validate();
                 repository.EditEmployee( employee );
-
             } catch(Exception ex) {
                 throw ex;
             }
@@ -83,11 +82,6 @@ namespace FeriaVirtual.Business.Users {
                 throw ex;
             }
         }
-
-
-
-
-
 
 
     }

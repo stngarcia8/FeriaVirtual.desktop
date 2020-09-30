@@ -1,6 +1,6 @@
 ﻿namespace FeriaVirtual.Domain.DTO {
 
-    public class SessionDTO {
+    public class SessionDto {
 
         // Properties.
         public string SessionID { get; set; }
@@ -13,7 +13,7 @@
         public string ProfileName { get; set; }
 
 
-        public SessionDTO() { }
+        public SessionDto() { }
 
 
     }

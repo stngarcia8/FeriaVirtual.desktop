@@ -3,10 +3,9 @@ using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class VehicleValidator:Validator {
+    public class VehicleValidator:Validator, IValidator {
 
         private Vehicle data;
-        private readonly bool editMode;
 
 
         // Constructor
@@ -22,6 +21,7 @@ namespace FeriaVirtual.Business.Validators {
             return new VehicleValidator( data,editMode );
         }
 
+
         // Validate vehicle method.
         public void Validate() {
             ValidatingEmptyField( data.VehicleID,"id vehiculo" );
@@ -31,25 +31,6 @@ namespace FeriaVirtual.Business.Validators {
             ValidatingValueField( data.VehicleCapacity,"capacidad del vehiculo" );
             if(ErrorMessages.Count>0) {
                 throw new InvalidVehicleException( GenerateErrorMessage() );
-            }
-        }
-
-
-        private void ValidatingEmptyField(string value,string fieldName) {
-            if(string.IsNullOrEmpty( value )) {
-                ErrorMessages.Add( string.Format( "El campo {0} no puede quedar vacío.",fieldName ) );
-            }
-        }
-
-        private void ValidatingEmptyField(float value,string fieldName) {
-            if(value.Equals( 0 )) {
-                ErrorMessages.Add( string.Format( "El campo {0} no puede tener un valor de cero.",fieldName ) );
-            }
-        }
-
-        private void ValidatingValueField(float value,string fieldName) {
-            if(value<0) {
-                ErrorMessages.Add( string.Format( "El campo {0} no puede tener un valor menor a cero.",fieldName ) );
             }
         }
 

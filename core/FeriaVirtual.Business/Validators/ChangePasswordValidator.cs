@@ -3,11 +3,10 @@ using FeriaVirtual.Business.Exceptions;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class ChangePasswordValidator:Validator {
+    public class ChangePasswordValidator:Validator, IValidator {
 
         private string firstPwd;
         private string secondPwd;
-        private readonly int passwordLength = 8;
 
 
         // Constructor

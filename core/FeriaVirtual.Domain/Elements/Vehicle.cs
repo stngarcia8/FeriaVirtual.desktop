@@ -11,11 +11,12 @@ namespace FeriaVirtual.Domain.Elements {
         public string VehiclePatent { get; set; }
         public string VehicleModel { get; set; }
         public float VehicleCapacity { get; set; }
+        public int VehicleAvailable { get; set; }
 
 
         // Constructor
         private Vehicle() {
-            InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty, 0);
+            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,string.Empty,0 );
         }
 
         private Vehicle(string id,string clientID,string patent,float capacity) {
@@ -29,6 +30,7 @@ namespace FeriaVirtual.Domain.Elements {
             VehiclePatent= patent;
             VehicleModel= string.Empty;
             VehicleCapacity= capacity;
+            VehicleAvailable = 1;
         }
 
 

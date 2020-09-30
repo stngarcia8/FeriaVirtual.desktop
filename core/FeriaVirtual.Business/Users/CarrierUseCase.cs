@@ -31,7 +31,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void NewVehicle(Vehicle vehicle,string clientID) {
             try {
-                VehicleValidator validator = VehicleValidator.CreateValidator( vehicle,false );
+                IValidator validator = VehicleValidator.CreateValidator( vehicle,false );
                 validator.Validate();
                 repository.NewVehicle( vehicle,clientID );
             } catch(Exception ex) {
@@ -41,7 +41,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditVehicle(Vehicle vehicle) {
             try {
-                VehicleValidator validator = VehicleValidator.CreateValidator( vehicle,true );
+                IValidator validator = VehicleValidator.CreateValidator( vehicle,true );
                 validator.Validate();
                 repository.EditVehicle( vehicle );
             } catch(Exception ex) {

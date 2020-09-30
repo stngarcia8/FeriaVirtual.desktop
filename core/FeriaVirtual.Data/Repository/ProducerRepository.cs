@@ -8,10 +8,12 @@ namespace FeriaVirtual.Data.Repository {
 
     public class ProducerRepository:Repository {
 
+        private Producer producer;
+
+
         // Properties
         public Producer Producer => producer;
 
-        private Producer producer;
 
         // Constructor
         private ProducerRepository() : base() {
@@ -23,23 +25,24 @@ namespace FeriaVirtual.Data.Repository {
             return new ProducerRepository();
         }
 
+
         public new void FindById(string clientID) {
             FindProducerUserData( clientID );
             GetProducerUserData();
             if(producer==null) {
                 return;
             }
-            FindProducerComercialData( clientID );
-            producer.ComercialInfo= GetProducerComercialData();
+            ComercialDataRepository dataRepository = ComercialDataRepository.OpenRepository();
+            producer.ComercialInfo= dataRepository.FindById( clientID );
             producer.ProductList =FindAllProducts( clientID );
         }
+
 
         private void FindProducerUserData(string id) {
             sql.Append( "select * from fv_user.vwObtenerClientes where id_cliente=:pId and id_rol=5 " );
             IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
             querySelect.AddParameter( "pId",id,DbType.String );
             dataTable = querySelect.ExecuteQuery();
-            //connection.CloseConnection();
         }
 
         private void GetProducerUserData() {
@@ -57,56 +60,26 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-        private void FindProducerComercialData(string id) {
-            sql.Clear();
-            sql.Append( "select * from vwObtenerDatosComerciales where id_cliente=:pId " );
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.String );
-            dataTable = querySelect.ExecuteQuery();
-            // connection.CloseConnection();
-        }
-
-
-        private ComercialData GetProducerComercialData() {
-            ComercialData data = ComercialData.CreateComercialData();
-            if(dataTable.Rows.Count.Equals( 0 )) {
-                return null;
-            }
-            DataRow row = dataTable.Rows[0];
-            data.ComercialID= row["id_comercial"].ToString();
-            data.ClientID = row["id_cliente"].ToString();
-            data.CompanyName= row["Razon social"].ToString();
-            data.FantasyName=row["Nombre de fantasia"].ToString();
-            data.ComercialBusiness= row["Giro comercial"].ToString();
-            data.Email= row["Email"].ToString();
-            data.ComercialDNI= row["DNI"].ToString();
-            data.Address= row["Direccion"].ToString();
-            data.City= row["Ciudad"].ToString();
-            data.Country= row["Pais"].ToString();
-            data.PhoneNumber = row["Telefono"].ToString();
-            return data;
-        }
-
-
         public void NewProduct(Product product,string clientID) {
             IQueryAction query = DefineQueryAction( "spAgregarProductos " );
             query.AddParameter( "pIdProducto",product.ProductID,DbType.String );
             query.AddParameter( "pIdCliente",clientID,DbType.String );
+            query = DefineProductParameters( product,query );
+            query.ExecuteQuery();
+        }
+
+        private IQueryAction DefineProductParameters(Product product,IQueryAction query) {
             query.AddParameter( "pNombre",product.ProductName,DbType.String );
             query.AddParameter( "pObservacion",product.Observation,DbType.String );
             query.AddParameter( "pValor",product.ProductValue,DbType.Decimal );
             query.AddParameter( "pCantidad",product.ProductQuantity,DbType.Decimal );
-            query.ExecuteQuery();
+            return query;
         }
-
 
         public void EditProduct(Product product) {
             IQueryAction query = DefineQueryAction( "spActualizarProductos " );
             query.AddParameter( "pIdProducto",product.ProductID,DbType.String );
-            query.AddParameter( "pNombre",product.ProductName,DbType.String );
-            query.AddParameter( "pObservacion",product.Observation,DbType.String );
-            query.AddParameter( "pValor",product.ProductValue,DbType.Decimal );
-            query.AddParameter( "pCantidad",product.ProductQuantity,DbType.Decimal );
+            query = DefineProductParameters( product,query );
             query.ExecuteQuery();
         }
 
@@ -132,6 +105,10 @@ namespace FeriaVirtual.Data.Repository {
             if(row==null) {
                 return null;
             }
+            return ExtractProductValues( row );
+        }
+
+        private Product ExtractProductValues(DataRow row) {
             Product product = Product.CreateProduct();
             product.ProductID = row["id_producto"].ToString();
             product.ClientID = row["id_cliente"].ToString();
@@ -141,7 +118,6 @@ namespace FeriaVirtual.Data.Repository {
             product.ProductQuantity= float.Parse( row["cantidad_producto"].ToString() );
             return product;
         }
-
 
         public IList<Product> FindAllProducts(string clientID) {
             sql.Clear();
@@ -158,14 +134,7 @@ namespace FeriaVirtual.Data.Repository {
                 return productList;
             }
             foreach(DataRow row in dataTable.Rows) {
-                Product product = Product.CreateProduct();
-                product.ProductID=row["id_producto"].ToString();
-                product.ClientID=row["id_cliente"].ToString();
-                product.ProductName=row["nombre_producto"].ToString();
-                product.Observation= row["obs_producto"].ToString();
-                product.ProductValue = float.Parse( row["valor_producto"].ToString() );
-                product.ProductQuantity=float.Parse( row["cantidad_producto"].ToString() );
-                productList.Add( product );
+                productList.Add( ExtractProductValues( row ) );
             }
             return productList;
         }

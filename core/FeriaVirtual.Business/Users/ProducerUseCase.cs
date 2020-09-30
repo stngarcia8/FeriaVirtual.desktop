@@ -31,7 +31,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void NewProduct(Product product,string clientID) {
             try {
-                ProductValidator validator = ProductValidator.CreateValidator( product,false );
+                IValidator validator = ProductValidator.CreateValidator( product,false );
                 validator.Validate();
                 repository.NewProduct( product,clientID );
             } catch(Exception ex) {
@@ -42,13 +42,14 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditProduct(Product product) {
             try {
-                ProductValidator validator = ProductValidator.CreateValidator( product,true );
+                IValidator validator = ProductValidator.CreateValidator( product,true );
                 validator.Validate();
                 repository.EditProduct( product );
             } catch(Exception ex) {
                 throw ex;
             }
         }
+
 
         public void DeleteProduct(string productID) {
             try {

@@ -10,7 +10,7 @@ namespace FeriaVirtual.API.Controllers {
 
 
         [HttpPost]
-        public IHttpActionResult LoginPos(LoginDTO loginDTO) {
+        public IHttpActionResult LoginPos(LoginDto loginDTO) {
             try {
                 LoginUseCase login = LoginUseCase.CreateLogin( loginDTO.Username,loginDTO.Password );
                 login.StartSession();
@@ -20,8 +20,8 @@ namespace FeriaVirtual.API.Controllers {
             }
         }
 
-        private SessionDTO GetSessionLogged(LoginUseCase login) {
-            SessionDTO sesion = new SessionDTO();
+        private SessionDto GetSessionLogged(LoginUseCase login) {
+            SessionDto sesion = new SessionDto();
             Employee employee = login.EmployeeLogged;
             sesion.ClientID= employee.EmployeeID;
             sesion.UserId=employee.Credentials.UserId;

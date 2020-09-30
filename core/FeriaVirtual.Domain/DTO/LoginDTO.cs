@@ -1,6 +1,6 @@
 ﻿namespace FeriaVirtual.Domain.DTO {
 
-    public class LoginDTO {
+    public class LoginDto {
 
         // properties.
         public string Username { get; set; }
@@ -8,7 +8,7 @@
 
 
         // Constructor
-        public LoginDTO() { }
+        public LoginDto() { }
 
 
     }

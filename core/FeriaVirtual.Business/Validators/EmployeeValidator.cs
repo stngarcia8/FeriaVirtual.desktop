@@ -7,13 +7,10 @@ using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class EmployeeValidator:Validator {
+    public class EmployeeValidator:Validator, IValidator {
 
         private Employee employee;
-        private readonly bool editMode;
         private readonly bool changedPassword;
-        private readonly int usernameLength = 6;
-        private readonly int passwordLength = 8;
 
 
         // Constructor
@@ -36,9 +33,9 @@ namespace FeriaVirtual.Business.Validators {
             ValidateUsername();
             ValidatePassword();
             ValidateEmail();
-            ValidateProfile();
-            ValidateFirstName();
-            ValidateLastName();
+            ValidatingEmptyField( employee.Profile.ProfileID,"rol del empleado" );
+            ValidatingEmptyField( employee.FirstName,"nombre del empleado" );
+            ValidatingEmptyField( employee.LastName,"apellido del empleado" );
             if(ErrorMessages.Count>0) {
                 throw new InvalidEmployeeException( GenerateErrorMessage() );
             }
@@ -93,34 +90,6 @@ namespace FeriaVirtual.Business.Validators {
                 ErrorMessages.Add( "El email ingresado no es una dirección de correo válida." );
             }
         }
-
-
-        private void ValidateProfile() {
-            if(employee.Profile.ProfileID.Equals( 0 )) {
-                ErrorMessages.Add( "Debe seleccionar el tipo de rol para el empleado." );
-            }
-        }
-
-
-        private void ValidateFirstName() {
-            if(string.IsNullOrEmpty( employee.FirstName )) {
-                ErrorMessages.Add( "Debe ingresar el nombre real del empleado." );
-            }
-        }
-
-
-
-        private void ValidateLastName() {
-            if(string.IsNullOrEmpty( employee.LastName )) {
-                ErrorMessages.Add( "Debe ingresar el apellido del empleado." );
-            }
-        }
-
-
-
-
-
-
 
 
     }

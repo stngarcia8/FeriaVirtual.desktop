@@ -3,10 +3,9 @@ using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class ComercialDataValidator:Validator {
+    public class ComercialDataValidator:Validator, IValidator {
 
         private ComercialData data;
-        private readonly bool editMode;
 
         // Constructor
         private ComercialDataValidator(ComercialData data,bool editMode) : base() {
@@ -35,26 +34,6 @@ namespace FeriaVirtual.Business.Validators {
                 throw new InvalidClientException( GenerateErrorMessage() );
             }
         }
-
-
-        private void ValidatingEmptyField(string value,string fieldName) {
-            if(string.IsNullOrEmpty( value )) {
-                ErrorMessages.Add( string.Format( "El campo {0} no puede quedar vacío.",fieldName ) );
-            }
-        }
-
-        private void ValidatingEmptyField(int value,string fieldName) {
-            if(value.Equals( 0 )) {
-                ErrorMessages.Add( string.Format( "El campo {0} no puede quedar vacío.",fieldName ) );
-            }
-        }
-
-
-
-
-
-
-
 
     }
 }

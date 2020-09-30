@@ -1,6 +1,6 @@
 ﻿namespace FeriaVirtual.Domain.DTO {
 
-    public class ComercialDataDTO {
+    public class ComercialDataDto {
 
         public string ClientID { get; set; }
         public string ComercialID { get; set; }
@@ -18,7 +18,7 @@
 
 
         // Contructors.
-        public ComercialDataDTO() { }
+        public ComercialDataDto() { }
 
 
     }

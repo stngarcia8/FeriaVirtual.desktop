@@ -7,13 +7,10 @@ using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class ClientValidator:Validator {
+    public class ClientValidator:Validator, IValidator {
 
         private Client client;
-        private readonly bool editMode;
         private readonly bool changedPassword;
-        private readonly int usernameLength = 6;
-        private readonly int passwordLength = 8;
         private readonly int profileID;
         private readonly string singleProfileName;
 
@@ -27,6 +24,7 @@ namespace FeriaVirtual.Business.Validators {
             processName= (!editMode ? string.Format( "registrar {0}",singleProfileName ) : string.Format( "editar {0}",singleProfileName ));
         }
 
+
         // Named constructor.
         public static ClientValidator CreateValidator(Client client,bool editMode,bool changedPassword,int profileID,string singleProfileName) {
             return new ClientValidator( client,editMode,changedPassword,profileID,singleProfileName );
@@ -38,9 +36,9 @@ namespace FeriaVirtual.Business.Validators {
             ValidateUsername();
             ValidatePassword();
             ValidateEmail();
-            ValidateProfile();
-            ValidateFirstName();
-            ValidateLastName();
+            ValidatingEmptyField( client.Profile.ProfileID,string.Format( "rol de {0}",singleProfileName ) );
+            ValidatingEmptyField( client.FirstName,string.Format( "{0}",singleProfileName ) );
+            ValidatingEmptyField( client.LastName,string.Format( "apellido de {0}",singleProfileName ) );
             if(ErrorMessages.Count>0) {
                 throw new InvalidClientException( GenerateErrorMessage() );
             }
@@ -98,25 +96,7 @@ namespace FeriaVirtual.Business.Validators {
         }
 
 
-        private void ValidateProfile() {
-            if(client.Profile.ProfileID.Equals( 0 )) {
-                ErrorMessages.Add( "Debe seleccionar el tipo de rol para el cliente." );
-            }
-        }
 
-
-        private void ValidateFirstName() {
-            if(string.IsNullOrEmpty( client.FirstName )) {
-                ErrorMessages.Add( string.Format( "Debe ingresar el nombre real del {0}.",singleProfileName ) );
-            }
-        }
-
-
-        private void ValidateLastName() {
-            if(string.IsNullOrEmpty( client.LastName )) {
-                ErrorMessages.Add( string.Format( "Debe ingresar el apellido del {0}.",singleProfileName ) );
-            }
-        }
 
     }
 }
