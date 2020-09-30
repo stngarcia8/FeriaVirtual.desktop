@@ -38,6 +38,15 @@ COMMIT;
 
 
 prompt Creando tablas de la base de datos.;
+prompt Creando tabla de cierre de pedidos.;
+CREATE TABLE fv_user.cierre_pedido (
+    id_cierre       VARCHAR2(40) NOT NULL,
+    id_pedido      VARCHAR2(40) NOT NULL,
+    id_tipo_cierre  NUMBER(2) NOT NULL,
+    fecha_cierre    DATE,
+    obs_cierre      VARCHAR2(100),
+    CONSTRAINT cierre_pedido_pk PRIMARY KEY ( id_cierre )
+) TABLESPACE fv_env;
 
 prompt Creando tabla de ciudades.;
 CREATE TABLE fv_user.ciudad (
@@ -75,6 +84,12 @@ CREATE TABLE fv_user.contrato_cliente (
     id           VARCHAR2(40) NOT NULL,
     id_contrato  VARCHAR2(40) NOT NULL,
     id_cliente   VARCHAR2(40) NOT NULL,
+    fecha_aceptacion   date,
+    fecha_registro     date,
+    obs_contrato      varchar2(100),
+    obs_cliente        varchar2(100), 
+    valor_adicional    number(9,2) default 0 not null,
+    valor_multa    number(9,2) default 0 not null,
     constraint contrato_cliente_pk primary key (id)
 ) tablespace fv_env;
 
@@ -142,6 +157,7 @@ CREATE TABLE fv_user.pago (
     id_pedido   VARCHAR2(40) NOT NULL,
     fecha_pago  DATE NOT NULL,
     monto_pago  NUMBER(9, 2) NOT NULL,
+    descuento_pago number(4,2) not null,
     obs_pago    VARCHAR2(100) NOT NULL,
     constraint pago_pk primary key (id_pago)
 ) tablespace fv_env;
@@ -186,6 +202,9 @@ CREATE TABLE fv_user.seguro (
     id_seguro        VARCHAR2(40) NOT NULL,
     nombre_seguro    VARCHAR2(50) NOT NULL,
     compania_seguro  VARCHAR2(50) NOT NULL,
+    desc_seguro      varchar(100),
+    disponible_seguro number(1) not null,
+    primabase_seguro number(9,2) not null,
     constraint seguro_pk primary key (id_seguro)
 ) tablespace fv_env;
 
@@ -196,6 +215,13 @@ CREATE TABLE fv_user.telefono (
     num_telefono  VARCHAR2(15) NOT NULL,
     constraint telefono_pk primary key (id_telefono)
 ) tablespace fv_env;
+
+prompt Creando tabla tipo cierre.;
+CREATE TABLE fv_user.tipo_cierre (
+    id_tipo_cierre    NUMBER(2) NOT NULL,
+    desc_tipo_cierre  VARCHAR2(20) NOT NULL,
+    CONSTRAINT tipo_cierre_pk PRIMARY KEY ( id_tipo_cierre )
+) TABLESPACE fv_env;
 
 prompt Creando tabla tipo_transporte.;
 CREATE TABLE fv_user.tipo_transporte (
@@ -223,12 +249,22 @@ CREATE TABLE fv_user.vehiculo (
     patente_vehiculo varchar2(15) not null,
     modelo_vehiculo     VARCHAR2(50) NOT NULL,
     capacidad_vehiculo  NUMBER(9, 2) NOT NULL,
+    disponibilidad_vehiculo number(1) default 1 not null,
     constraint vehiculo_pk primary key (id_vehiculo)
 ) tablespace fv_env;
 
 
 
 prompt Agregando claves foraneas.;
+prompt alterando tabla cierre_pedido.;
+alter table fv_user.cierre_pedido 
+    add constraint cierre_pedido_pedido_fk foreign key (id_pedido)
+        references fv_user.pedido (id_pedido);
+
+alter table fv_user.cierre_pedido 
+    add constraint cierre_pedido_tipocierre_fk foreign key (id_tipo_cierre)
+        REFERENCES fv_user.tipo_cierre ( id_tipo_cierre );
+
 prompt Alterando ciudad.;
 ALTER TABLE fv_user.ciudad
     ADD CONSTRAINT ciudad_pais_fk FOREIGN KEY ( cod_pais )
@@ -620,7 +656,8 @@ create or replace view fv_user.vwVehiculos as
 select 
     id_vehiculo, id_cliente, 
     tipo_vehiculo AS "Tipo",
-    patente_vehiculo, modelo_vehiculo, capacidad_vehiculo 
+    patente_vehiculo, modelo_vehiculo, 
+    capacidad_vehiculo, disponibilidad_vehiculo 
 from fv_user.vehiculo; 
 
 
