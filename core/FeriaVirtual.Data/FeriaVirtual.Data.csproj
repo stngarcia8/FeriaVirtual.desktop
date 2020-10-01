@@ -45,6 +45,7 @@
     <Compile Include="Repository\CarrierRepository.cs" />
     <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\ComercialDataRepository.cs" />
+    <Compile Include="Repository\ContractRepository.cs" />
     <Compile Include="Repository\ExternalClientRepository.cs" />
     <Compile Include="Repository\InternalClientRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />

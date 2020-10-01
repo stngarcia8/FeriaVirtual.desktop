@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Business.Users;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -96,7 +97,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
                 DataTable data = new DataTable();
                 this.ListDataGridView.DataSource = null;
                 if(filterType.Equals( 0 )) data = useCase.FindAll();
-                if(filterType.Equals( 1 )) data = useCase.FindUserByUsername( this.ListFilterTextBox.Text );
+                if(filterType.Equals( 1)) data=useCase.FindUsersByUsername(this.ListFilterTextBox.Text);
                 if(filterType.Equals( 2 )) data = useCase.FindActiveUsers();
                 if(filterType.Equals( 3 )) data = useCase.FindInactiveUsers();
                 this.ListDataGridView.DataSource = data;
@@ -122,9 +123,13 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
             if(this.ListDataGridView.Rows.Count.Equals( 0 )) {
                 this.ListCountLabel.Text = "No hay registros disponibles.";
                 this.OptionEditButton.Enabled = false;
+                this.OptionEditToolStripMenuItem.Enabled = false;
             } else {
                 this.ListCountLabel.Text = this.ListDataGridView.Rows.Count.ToString() + " registros encontrados.";
+                this.OptionEditButton.Enabled = true;
+                this.OptionEditToolStripMenuItem.Enabled = true;
                 this.ListDataGridView.Rows[0].Selected = true;
+                this.ListDataGridView.CurrentCell = this.ListDataGridView.Rows[0].Cells[3];
                 this.ListDataGridView.Focus();
             }
         }

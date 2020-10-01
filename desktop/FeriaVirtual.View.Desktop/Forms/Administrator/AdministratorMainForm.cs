@@ -1,5 +1,6 @@
 ﻿using System;
 using FeriaVirtual.View.Desktop.Forms.Maintenance.Client;
+using FeriaVirtual.View.Desktop.Forms.Maintenance.Contract;
 using System.Windows.Forms;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Maintenance.User;
@@ -22,7 +23,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
 
         private void AdministratorMainForm_FormClosing(object sender,FormClosingEventArgs e) {
             DialogResult result = MessageBox.Show( "¿Esta seguro de cerrar la sesión?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question );
-            e.Cancel= (result==DialogResult.Yes ? false : true);
+            e.Cancel= result==DialogResult.Yes ? false : true;
         }
 
         #endregion
@@ -35,6 +36,10 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
 
         private void MaintenanceCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
             this.OpenForm( new MaintenanceCarrierForm() );
+        }
+
+        private void BusinessContractToolStripMenuItem_Click(object sender,EventArgs e) {
+            this.OpenForm(new ContractMaintenanceForm());
         }
 
 

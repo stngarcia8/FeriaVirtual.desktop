@@ -138,9 +138,12 @@
             // 
             // BusinessContractToolStripMenuItem
             // 
+            this.BusinessContractToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_contract;
+            this.BusinessContractToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BusinessContractToolStripMenuItem.Name = "BusinessContractToolStripMenuItem";
             this.BusinessContractToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.BusinessContractToolStripMenuItem.Text = "&Control de contratos";
+            this.BusinessContractToolStripMenuItem.Click += new System.EventHandler(this.BusinessContractToolStripMenuItem_Click);
             // 
             // BusinessToolStripSeparator1
             // 

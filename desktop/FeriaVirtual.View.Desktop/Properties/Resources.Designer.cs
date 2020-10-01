@@ -93,6 +93,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap contract_asociation {
+            get {
+                object obj = ResourceManager.GetObject("contract-asociation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap customer_register {
             get {
                 object obj = ResourceManager.GetObject("customer-register", resourceCulture);
@@ -186,6 +196,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         internal static System.Drawing.Bitmap maipogrande_logo3 {
             get {
                 object obj = ResourceManager.GetObject("maipogrande-logo3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_contract {
+            get {
+                object obj = ResourceManager.GetObject("menu-contract", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

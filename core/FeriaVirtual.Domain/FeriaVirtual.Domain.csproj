@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Contract.cs" />
     <Compile Include="DomainExeptions\DomainException.cs" />
     <Compile Include="DTO\ComercialDataDto.cs" />
     <Compile Include="DTO\LoginDto.cs" />

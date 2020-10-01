@@ -11,7 +11,7 @@ namespace FeriaVirtual.Business.Validators {
         private ComercialDataValidator(ComercialData data,bool editMode) : base() {
             this.data= data;
             this.editMode= editMode;
-            processName= string.Format( "{0} datos comerciales",(editMode ? "actualizando" : "ingresando") );
+            processName= string.Format( "{0} datos comerciales",editMode ? "actualizando" : "ingresando" );
         }
 
 

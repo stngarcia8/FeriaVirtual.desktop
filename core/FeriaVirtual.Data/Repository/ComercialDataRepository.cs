@@ -61,7 +61,7 @@ namespace FeriaVirtual.Data.Repository {
             }
         }
 
-        public ComercialData FindById(string id) {
+        public new  ComercialData FindById(string id) {
             sql.Append( "select * from fv_user.vwObtenerDatosComerciales where id_cliente=:pId " );
             base.FindById( id );
             return GetComercialData();

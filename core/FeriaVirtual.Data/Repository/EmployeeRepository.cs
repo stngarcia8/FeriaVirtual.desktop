@@ -22,15 +22,44 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-        public new void FindByName(string username) {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where username=:pName " );
-            base.FindByName( username );
+        public void FindTableByName(string username) {
+            sql.Append("select * from fv_user.vwObtenerUsuarios where username=:pName ");
+            base.FindByName(username);
         }
 
 
-        public new void FindById(string id) {
+        public new  Employee FindByName(string username) {
+            sql.Append( "select * from fv_user.vwObtenerUsuarios where username=:pName " );
+            base.FindByName( username );
+            return this.GetEmployeeData();
+        }
+
+
+        private Employee GetEmployeeData() {
+            if(dataTable.Rows.Count.Equals( 0 )) {
+                return null;
+            }
+            DataRow row = dataTable.Rows[0];
+            Employee employee = Employee.CreateEmployee();
+            employee.EmployeeID = row["id_empleado"].ToString();
+            employee.FirstName = row["Nombre"].ToString();
+            employee.LastName=  row["Apellido"].ToString();
+            employee.Credentials.UserId = row["id_usuario"].ToString();
+            employee.Credentials.Username= row["username"].ToString();
+            employee.Credentials.Password = row["password"].ToString();
+            employee.Credentials.EncriptedPassword= row["password"].ToString();
+            employee.Credentials.Email= row["Email"].ToString();
+            employee.Credentials.IsActive= (int.Parse( row["is_active"].ToString() ).Equals( 1 ) ? true : false);
+            employee.Profile.ProfileID= int.Parse( row["id_rol"].ToString() );
+            employee.Profile.ProfileName= row["Rol"].ToString();
+            return employee;
+        }
+
+
+       public new Employee FindById(string id) {
             sql.Append( "select * from fv_user.vwObtenerUsuarios where id_usuario=:pId " );
             base.FindById( id );
+            return this.GetEmployeeData();
         }
 
 
@@ -55,28 +84,26 @@ namespace FeriaVirtual.Data.Repository {
 
 
         public void NewEmployee(Employee employee) {
-            IQueryAction query = DefineQueryAction( "spAgregarUsuario" );
-            query.AddParameter( "pIdUsuario",employee.Credentials.UserId,DbType.String );
-            query.AddParameter( "pUserName",employee.Credentials.Username,DbType.String );
-            query.AddParameter( "pPassword",employee.Credentials.EncriptedPassword,DbType.String );
-            query.AddParameter( "pEmail",employee.Credentials.Email,DbType.String );
-            query.AddParameter( "pIdEmpleado",employee.EmployeeID,DbType.String );
-            query.AddParameter( "pIdRol",employee.Profile.ProfileID,DbType.Int32 );
-            query.AddParameter( "pNombre",employee.FirstName,DbType.String );
-            query.AddParameter( "pApellido",employee.LastName,DbType.String );
+            IQueryAction query = DefineQueryAction("spAgregarUsuario");
+            query.AddParameter("pUserName",employee.Credentials.Username,DbType.String);
+            query = DefineEmployeeParameters(employee,query);
             query.ExecuteQuery();
         }
 
+        private IQueryAction DefineEmployeeParameters(Employee employee,IQueryAction query) {
+            query.AddParameter("pIdUsuario",employee.Credentials.UserId,DbType.String);
+            query.AddParameter("pPassword",employee.Credentials.EncriptedPassword,DbType.String);
+            query.AddParameter("pEmail",employee.Credentials.Email,DbType.String);
+            query.AddParameter("pIdEmpleado",employee.EmployeeID,DbType.String);
+            query.AddParameter("pIdRol",employee.Profile.ProfileID,DbType.Int32);
+            query.AddParameter("pNombre",employee.FirstName,DbType.String);
+            query.AddParameter("pApellido",employee.LastName,DbType.String);
+            return query;
+        }
 
         public void EditEmployee(Employee employee) {
             IQueryAction query = DefineQueryAction( "spActualizarUsuario" );
-            query.AddParameter( "pIdUsuario",employee.Credentials.UserId,DbType.String );
-            query.AddParameter( "pPassword",employee.Credentials.EncriptedPassword,DbType.String );
-            query.AddParameter( "pEmail",employee.Credentials.Email,DbType.String );
-            query.AddParameter( "pIdEmpleado",employee.EmployeeID,DbType.String );
-            query.AddParameter( "pIdRol",employee.Profile.ProfileID,DbType.Int32 );
-            query.AddParameter( "pNombre",employee.FirstName,DbType.String );
-            query.AddParameter( "pApellido",employee.LastName,DbType.String );
+            query = DefineEmployeeParameters(employee,query);
             query.ExecuteQuery();
         }
 

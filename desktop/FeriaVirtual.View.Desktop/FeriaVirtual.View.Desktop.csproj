@@ -93,6 +93,12 @@
     <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.Designer.cs">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.Designer.cs">
+      <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Maintenance\User\MaintenanceUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Maintenance\Client\MaintenanceClientForm.resx">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\Contract\ContractMaintenanceForm.resx">
+      <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Maintenance\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
@@ -239,6 +248,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maipogrande-logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contract-asociation.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-contract.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
