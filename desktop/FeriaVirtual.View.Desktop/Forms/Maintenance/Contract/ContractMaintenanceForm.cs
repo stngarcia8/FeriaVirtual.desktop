@@ -87,7 +87,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
 
         private void ConfigureForm() {
-            Text= string.Format("Maestro de contratos de {0}",profileName);
+            Text= string.Format("Maestro de contratos para {0}",profileName);
             OptionNewToolStripMenuItem.Text = string.Format("&Nuevo contrato de {0}",singleProfileName);
             OptionEditToolStripMenuItem.Text = string.Format("&Editar contrato de {0}",singleProfileName);
             ListTitleLabel.Text= string.Format("Lista de contratos de {0} disponibles",profileName);
@@ -135,6 +135,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
 
         private void HideColumns() {
+            ListDataGridView.Columns["id_contrato"].Visible= false;
+            ListDataGridView.Columns["id_tipo_contrato"].Visible= false;
+            ListDataGridView.Columns["esta_vigente"].Visible= false;
+            ListDataGridView.Columns["perfil_contrato"].Visible= false;
+            ListDataGridView.Columns["Fecha registro"].Visible= false;
         }
 
 
@@ -182,7 +187,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             if(row == null) {
                 return;
             }
-            idSelected=  row.Cells[1].Value.ToString();
+            idSelected=  row.Cells[0].Value.ToString();
         }
 
 

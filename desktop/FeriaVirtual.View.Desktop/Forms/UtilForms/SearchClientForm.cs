@@ -24,7 +24,7 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
         }
 
         private void SearchClientForm_Load(object sender,EventArgs e) {
-            Text = string.Format("Buscando {0}...",this.ProfileName);
+            Text = string.Format("Buscando {0}...",ProfileName);
             ListFilterTextBox.Text= string.Empty;
             LoadFilters();
             ListFilterComboBox.SelectedIndex = 0;

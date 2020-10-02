@@ -164,7 +164,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Client {
                 OptionEditToolStripMenuItem.Enabled= true;
                 ListCountLabel.Text = string.Format("{0} {1} encontrados.",ListDataGridView.Rows.Count.ToString(),profileName);
                 ListDataGridView.Rows[0].Selected = true;
-                ListDataGridView.CurrentCell = ListDataGridView.Rows[0].Cells[4];
                 ListDataGridView.Focus();
             }
         }

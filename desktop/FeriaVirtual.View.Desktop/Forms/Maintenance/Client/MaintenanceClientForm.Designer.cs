@@ -140,8 +140,8 @@
             this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
             this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.OptionCloseToolStripMenuItem.Text = "&&Cerrar formulario";
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
             this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
             // ClientToolStripMenuItem

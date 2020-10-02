@@ -53,7 +53,7 @@ namespace FeriaVirtual.Data.Repository {
 
 
         public void NewContract(Contract contract) {
-            IQueryAction query = DefineQueryAction("spAgregarContrato ");
+            IQueryAction query = DefineQueryAction("spAgregarContratos ");
             query = DefineQueryParameters(contract,query);
             query.AddParameter("pPerfil",profileID,DbType.Int32);
             query.ExecuteQuery();

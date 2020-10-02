@@ -27,6 +27,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchClientForm));
             this.ListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ListFilterButton = new System.Windows.Forms.Button();
+            this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.ListFilterLabel = new System.Windows.Forms.Label();
             this.ListCountLabel = new System.Windows.Forms.Label();
             this.ListTitleLabel = new System.Windows.Forms.Label();
@@ -35,7 +36,6 @@
             this.ListDataGridView = new System.Windows.Forms.DataGridView();
             this.SearchAceptButton = new System.Windows.Forms.Button();
             this.SearchCancelButton = new System.Windows.Forms.Button();
-            this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.ListTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +83,14 @@
             this.ListFilterButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ListFilterButton.UseVisualStyleBackColor = true;
             this.ListFilterButton.Click += new System.EventHandler(this.ListFilterButton_Click);
+            // 
+            // FormImageList
+            // 
+            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
+            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FormImageList.Images.SetKeyName(0, "button-find.png");
+            this.FormImageList.Images.SetKeyName(1, "button-acept.png");
+            this.FormImageList.Images.SetKeyName(2, "button-cancel.png");
             // 
             // ListFilterLabel
             // 
@@ -206,14 +214,6 @@
             this.SearchCancelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.SearchCancelButton.UseVisualStyleBackColor = true;
             this.SearchCancelButton.Click += new System.EventHandler(this.SearchCancelButton_Click);
-            // 
-            // FormImageList
-            // 
-            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
-            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.FormImageList.Images.SetKeyName(0, "button-find.png");
-            this.FormImageList.Images.SetKeyName(1, "button-acept.png");
-            this.FormImageList.Images.SetKeyName(2, "button-cancel.png");
             // 
             // SearchClientForm
             // 
