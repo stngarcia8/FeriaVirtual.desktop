@@ -12,7 +12,7 @@ namespace FeriaVirtual.Business.Validators {
         private VehicleValidator(Vehicle data,bool editMode) : base() {
             this.data= data;
             this.editMode= editMode;
-            processName= string.Format( "{0} vehiculo",(editMode ? "actualizar" : "registrar") );
+            processName= string.Format( "{0} vehiculo",editMode ? "actualizar" : "registrar" );
         }
 
 

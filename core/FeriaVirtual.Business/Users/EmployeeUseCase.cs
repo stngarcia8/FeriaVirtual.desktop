@@ -38,16 +38,19 @@ namespace FeriaVirtual.Business.Users {
             return repository.DataSource;
         }
 
-
-        public DataTable FindUserByUsername(string username) {
-            repository.FindByName( username );
+        public DataTable  FindUsersByUsername(string username) {
+            repository.FindTableByName(username);
             return repository.DataSource;
         }
 
 
-        public DataTable FindUserById(string idUsuario) {
-            repository.FindById( idUsuario );
-            return repository.DataSource;
+        public Employee FindUserByUsername(string username) {
+            return repository.FindByName( username );
+        }
+
+
+        public Employee FindUserById(string idUsuario) {
+            return repository.FindById( idUsuario ); ;
         }
 
 

@@ -61,7 +61,7 @@ namespace FeriaVirtual.Business.Users {
             empLogged.Credentials= user;
             empLogged.Credentials.EncriptedPassword= row["password"].ToString();
             empLogged.Credentials.Email= row["Email"].ToString();
-            empLogged.Credentials.IsActive= (int.Parse( row["is_active"].ToString() ).Equals( 1 ) ? true : false);
+            empLogged.Credentials.IsActive= int.Parse( row["is_active"].ToString() ).Equals( 1 ) ? true : false;
             empLogged.Profile.ProfileID= int.Parse( row["id_rol"].ToString() );
             empLogged.Profile.ProfileName= row["Rol"].ToString();
         }

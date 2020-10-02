@@ -93,6 +93,24 @@
     <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.Designer.cs">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Maintenance\Contract\AssociateClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\AssociateClientForm.Designer.cs">
+      <DependentUpon>AssociateClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.Designer.cs">
+      <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Maintenance\Contract\ContractRegisterForm.Designer.cs">
+      <DependentUpon>ContractRegisterForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Maintenance\User\MaintenanceUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +128,12 @@
     </Compile>
     <Compile Include="Forms\UtilForms\ChangePasswordForm.Designer.cs">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UtilForms\SearchClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UtilForms\SearchClientForm.Designer.cs">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ActualUser.cs" />
     <Compile Include="Program.cs" />
@@ -129,6 +153,15 @@
     <EmbeddedResource Include="Forms\Maintenance\Client\MaintenanceClientForm.resx">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\Contract\AssociateClientForm.resx">
+      <DependentUpon>AssociateClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\Contract\ContractMaintenanceForm.resx">
+      <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Maintenance\Contract\ContractRegisterForm.resx">
+      <DependentUpon>ContractRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Maintenance\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UtilForms\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UtilForms\SearchClientForm.resx">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -239,6 +275,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maipogrande-logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contract-asociation.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contract-form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button-Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

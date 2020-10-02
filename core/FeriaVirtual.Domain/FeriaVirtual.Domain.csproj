@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\Contract.cs" />
+    <Compile Include="Contracts\ContractDetail.cs" />
     <Compile Include="DomainExeptions\DomainException.cs" />
-    <Compile Include="DTO\ComercialDataDto.cs" />
-    <Compile Include="DTO\LoginDto.cs" />
-    <Compile Include="DTO\SessionDto.cs" />
+    <Compile Include="Dto\ComercialDataDto.cs" />
+    <Compile Include="Dto\ContractType.cs" />
+    <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Dto\SessionDto.cs" />
     <Compile Include="Elements\Order.cs" />
     <Compile Include="Elements\OrderDetail.cs" />
     <Compile Include="Elements\Product.cs" />
@@ -62,6 +65,8 @@
     <Compile Include="Users\Producer.cs" />
     <Compile Include="Users\UserProfile.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="DiagramaDeClases-feriaVirtual-domain.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

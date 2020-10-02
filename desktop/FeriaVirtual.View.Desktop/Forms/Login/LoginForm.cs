@@ -28,17 +28,16 @@ namespace FeriaVirtual.View.Desktop.Login {
 
         private void StartSession() {
             try {
-                Credential user = Credential.CreateCredential( );
-                user.Username= this.UsernameTextBox.Text;
-                user.Password= this.PasswordTextBox.Text;
+                Credential user = Credential.CreateCredential();
+                user.Username= UsernameTextBox.Text;
+                user.Password= PasswordTextBox.Text;
                 user.EncriptedPassword=user.EncryptPassword();
-                LoginUseCase login = LoginUseCase.CreateLogin( user.Username,user.EncriptedPassword );
-                
+                LoginUseCase login = LoginUseCase.CreateLogin(user.Username,user.EncriptedPassword);
                 login.StartSession();
                 ActualUser.ActualEmployee= login.EmployeeLogged;
                 OpenForm();
             } catch(Exception ex) {
-                MessageBox.Show( ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
+                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 UsernameTextBox.Focus();
             }
         }
@@ -47,14 +46,14 @@ namespace FeriaVirtual.View.Desktop.Login {
         // Open form method.
         private void OpenForm() {
             Form form = null;
-            if(ActualUser.ActualEmployee.Profile.ProfileID.Equals( 1 )) {
+            if(ActualUser.ActualEmployee.Profile.ProfileID.Equals(1)) {
                 form=new AdministratorMainForm();
             }
-            if(ActualUser.ActualEmployee.Profile.ProfileID.Equals( 2 )) {
+            if(ActualUser.ActualEmployee.Profile.ProfileID.Equals(2)) {
                 form= new ConsultorMainForm();
             }
             Hide();
-            ICommand openFormCommand = OpenFormCommand.Open( form );
+            ICommand openFormCommand = OpenFormCommand.Open(form);
             openFormCommand.Execute();
         }
 

@@ -21,7 +21,7 @@ namespace FeriaVirtual.Business.Validators {
             this.changedPassword= changedPassword;
             this.profileID= profileID;
             this.singleProfileName= singleProfileName;
-            processName= (!editMode ? string.Format( "registrar {0}",singleProfileName ) : string.Format( "editar {0}",singleProfileName ));
+            processName= !editMode ? string.Format( "registrar {0}",singleProfileName ) : string.Format( "editar {0}",singleProfileName );
         }
 
 

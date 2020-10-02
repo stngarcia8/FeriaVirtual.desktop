@@ -21,20 +21,20 @@ namespace FeriaVirtual.Data.Repository {
         // Define query selection.
         protected IQuerySelect DefineQuerySelect(string sqlString) {
             connection = OracleConnect.CreateConnection();
-            return connection.CreateQuerySelect( sqlString );
+            return connection.CreateQuerySelect(sqlString);
         }
 
 
         //Define action query.
         protected IQueryAction DefineQueryAction(string storeProcedureName) {
             connection = OracleConnect.CreateConnection();
-            return connection.CreateQueryAction( storeProcedureName );
+            return connection.CreateQueryAction(storeProcedureName);
         }
 
 
         // Find all items
         protected void FindAll() {
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
         }
@@ -42,16 +42,16 @@ namespace FeriaVirtual.Data.Repository {
 
         // Find items by idntifier.
         protected void FindById(int id) {
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.Int32 );
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pId",id,DbType.Int32);
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
         }
 
 
         protected void FindById(string id) {
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pId",id,DbType.String );
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pId",id,DbType.String);
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
         }
@@ -59,8 +59,8 @@ namespace FeriaVirtual.Data.Repository {
 
         // Find items by name.
         protected void FindByName(string name) {
-            IQuerySelect querySelect = DefineQuerySelect( sql.ToString() );
-            querySelect.AddParameter( "pName",name,DbType.String );
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pName",name,DbType.String);
             dataTable = querySelect.ExecuteQuery();
             connection.CloseConnection();
         }
