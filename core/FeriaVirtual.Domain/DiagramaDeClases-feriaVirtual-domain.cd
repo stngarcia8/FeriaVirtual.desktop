@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FeriaVirtual.Domain.Contracts.Contract">
+    <Position X="2" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAACAAAFAgAEKAgAAAAgAgACAAAAAACAAEAAAAA=</HashCode>
+      <FileName>Contracts\Contract.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypeContract" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Details" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Contracts.ContractDetail">
+    <Position X="5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEoACAAACAAAgAAAAAAAgAAAAAAAAAAAAQAAEAAAAE=</HashCode>
+      <FileName>Contracts\ContractDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Dto.ContractType">
+    <Position X="0.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Dto\ContractType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Elements.ComercialData">
+    <Position X="12" Y="6.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQQgAAAKIIAgAIAAAAQAAAAAIAAIACAAAAAAAAAAA=</HashCode>
+      <FileName>Elements\ComercialData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Elements.Order">
+    <Position X="17.75" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAAAQIWAgAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Elements\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="OrderDetailList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Elements.OrderDetail">
+    <Position X="18" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAIABAAAAAAAgAAAAAAAAAAAAAAAAABAAAAgAAAAAA=</HashCode>
+      <FileName>Elements\OrderDetail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Elements.Product">
+    <Position X="3.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAAAAIAAgAEAAAQAAAAAAAAAAAAAAAAAEBIAAA=</HashCode>
+      <FileName>Elements\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Elements.Vehicle">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAIAAgAAAAAAAAAAAACAgAAAAAAEAAACCAA=</HashCode>
+      <FileName>Elements\Vehicle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Carrier">
+    <Position X="4.25" Y="0.5" Width="2.25" />
+    <InheritanceLine Type="FeriaVirtual.Domain.Users.Person" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="3" />
+        <Point X="11.25" Y="0.688" />
+        <Point X="6.5" Y="0.688" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAIAAAIAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Users\Carrier.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="VehicleList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Client">
+    <Position X="7" Y="4.75" Width="2.25" />
+    <InheritanceLine Type="FeriaVirtual.Domain.Users.Person" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.25" Y="5" />
+        <Point X="9.25" Y="5" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="Credentials" Type="FeriaVirtual.Domain.Users.Credential">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.533" Y="-0.363" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Users\Client.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Credentials" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Credential">
+    <Position X="8" Y="9.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAgAEEQIAAAgAgAAAAAACAAAAAAEAAAA=</HashCode>
+      <FileName>Users\Credential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Employee">
+    <Position X="14" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAAAAAAgCEAAAAAAAAAAAEAAAAABAAAAAAAAg=</HashCode>
+      <FileName>Users\Employee.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Credentials" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.ExternalClient">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAQAAAAAAEAA=</HashCode>
+      <FileName>Users\ExternalClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="OrderList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.InternalClient">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAABAAAAAAQAAAAAAEAA=</HashCode>
+      <FileName>Users\InternalClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="OrderList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Person">
+    <Position X="10.25" Y="3" Width="2" />
+    <AssociationLine Name="Profile" Type="FeriaVirtual.Domain.Users.UserProfile" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="3.312" />
+        <Point X="12.625" Y="3.312" />
+        <Point X="12.625" Y="6.125" />
+        <Point X="16.562" Y="6.125" />
+        <Point X="16.562" Y="6.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.604" Y="0.11" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAggAEAgAAAAAAAAEAAAAAABAAAAAAAAg=</HashCode>
+      <FileName>Users\Person.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ComercialInfo" />
+      <Property Name="Profile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.Producer">
+    <Position X="7" Y="1.5" Width="2.5" />
+    <InheritanceLine Type="FeriaVirtual.Domain.Users.Person" FixedToPoint="true">
+      <Path>
+        <Point X="11.25" Y="3" />
+        <Point X="11.25" Y="2" />
+        <Point X="9.5" Y="2" />
+      </Path>
+    </InheritanceLine>
+    <AssociationLine Name="ProductList" Type="FeriaVirtual.Domain.Elements.Product" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="7" Y="2.841" />
+        <Point X="4.562" Y="2.841" />
+        <Point X="4.562" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIUAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Users\Producer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="ProductList" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="FeriaVirtual.Domain.Users.UserProfile">
+    <Position X="15.25" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAgAA=</HashCode>
+      <FileName>Users\UserProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -61,7 +61,7 @@ namespace FeriaVirtual.Data.Repository {
 
         private IQueryAction DefineQueryParameters(Contract contract,IQueryAction query) {
             query.AddParameter("pIdContrato",contract.ContractID,DbType.String);
-            query.AddParameter("pIdTipo",contract.TypeContractID,DbType.Int32);
+            query.AddParameter("pIdTipo",contract.TypeContract.ContractTypeID,DbType.Int32);
             query.AddParameter("pInicio",contract.StartDate,DbType.Date);
             query.AddParameter("pTermino",contract.EndDate,DbType.Date);
             query.AddParameter("pDescripcion",contract.ContractDescription,DbType.String);

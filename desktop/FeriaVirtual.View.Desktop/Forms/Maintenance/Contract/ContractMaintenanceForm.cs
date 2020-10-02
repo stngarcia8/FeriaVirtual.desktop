@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FeriaVirtual.Business.Contracts;
 
@@ -20,7 +14,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         private string singleProfileName;
 
 
-                                  public ContractMaintenanceForm() {
+        public ContractMaintenanceForm() {
             InitializeComponent();
             profileID=5;
             profileName= "Productores";
@@ -28,7 +22,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void ContractMaintenanceForm_Load(object sender,EventArgs e) {
-            this.ListFilterTextBox.Visible=false;
+            ListFilterTextBox.Visible=false;
             ConfigureForm();
         }
 
@@ -46,7 +40,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.Close();
+            Close();
         }
 
         private void ClientProducerToolStripMenuItem_Click(object sender,EventArgs e) {
@@ -67,8 +61,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             OpenRegisterForm(false);
         }
 
-                private void OptionCloseButton_Click(object sender,EventArgs e) {
-            this.Close();
+        private void OptionCloseButton_Click(object sender,EventArgs e) {
+            Close();
         }
 
         private void ListFilterComboBox_SelectedIndexChanged(object sender,EventArgs e) {
@@ -131,7 +125,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
                     data = useCase.FindInvalidContracts();
                 }
                 ListDataGridView.DataSource = data;
-                 HideColumns();
+                HideColumns();
                 DisplayCounts();
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
@@ -162,6 +156,18 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
 
         private void OpenRegisterForm(bool isNew) {
+            ContractRegisterForm form = new ContractRegisterForm {
+                IsNewRecord = isNew,
+                idSelected = isNew ? string.Empty : idSelected
+            };
+            form.ProfileID= profileID;
+            form.ProfileName= profileName;
+            form.SingleProfileName= singleProfileName;
+            form.ShowDialog();
+            if(form.IsSaved) {
+                LoadUsers(ListFilterComboBox.SelectedIndex);
+
+            }
 
         }
 

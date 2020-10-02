@@ -56,6 +56,7 @@
     <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="Exceptions\InvalidUserRegisterException.cs" />
     <Compile Include="Exceptions\InvalidVehicleException.cs" />
+    <Compile Include="HelpersUseCases\ContractTypeUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\CarrierUseCase.cs" />
     <Compile Include="Users\ClientUseCase.cs" />
