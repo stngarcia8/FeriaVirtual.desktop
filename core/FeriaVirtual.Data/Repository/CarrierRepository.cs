@@ -2,6 +2,7 @@
 using System.Data;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Infraestructure.Database;
 
 
@@ -76,12 +77,13 @@ namespace FeriaVirtual.Data.Repository {
             IQueryAction query = DefineQueryAction( "spActualizarVehiculos " );
             query.AddParameter( "pIdVehiculo",vehicle.VehicleID,DbType.String );
             query = DefineParameters( vehicle,query );
+            query.AddParameter("pDisponibilidad",vehicle.VehicleAvailable,DbType.Int32);
             query.ExecuteQuery();
         }
 
 
         private IQueryAction DefineParameters(Vehicle vehicle,IQueryAction query) {
-            query.AddParameter( "pTipo",vehicle.VehicleType,DbType.String );
+            query.AddParameter( "pIdTipo",vehicle.VehicleType.VehicleTypeID,DbType.Int32);
             query.AddParameter( "pPatente",vehicle.VehiclePatent,DbType.String );
             query.AddParameter( "pModelo",vehicle.VehicleModel,DbType.String );
             query.AddParameter( "pCapacidad",vehicle.VehicleCapacity,DbType.Decimal );
@@ -119,11 +121,12 @@ namespace FeriaVirtual.Data.Repository {
             Vehicle vehicle = Vehicle.CreateVehicle();
             vehicle.VehicleID=  row["id_vehiculo"].ToString();
             vehicle.ClientID= row["id_cliente"].ToString();
-            vehicle.VehicleType= row["Tipo"].ToString();
-            vehicle.VehiclePatent= row["patente_vehiculo"].ToString();
-            vehicle.VehicleModel=   row["modelo_vehiculo"].ToString();
-            vehicle.VehicleCapacity= float.Parse( row["capacidad_vehiculo"].ToString() );
-            vehicle.VehicleAvailable = int.Parse( row["disponibilidad_vehiculo"].ToString());
+            vehicle.VehicleType.VehicleTypeID = int.Parse(row["id_tipo_transporte"].ToString());
+            vehicle.VehicleType.VehicleTypeDescription = row["Tipo"].ToString();
+            vehicle.VehiclePatent= row["Patente"].ToString();
+            vehicle.VehicleModel=   row["Modelo"].ToString();
+            vehicle.VehicleCapacity= float.Parse( row["Capacidad"].ToString() );
+            vehicle.VehicleAvailable = int.Parse( row["Disponible"].ToString());
             return vehicle;
         }
 
@@ -148,7 +151,7 @@ namespace FeriaVirtual.Data.Repository {
             }
             return vehicleList;
         }
-        
+
 
     }
 }

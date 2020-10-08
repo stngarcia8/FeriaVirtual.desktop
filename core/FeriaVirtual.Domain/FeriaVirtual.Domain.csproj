@@ -44,10 +44,13 @@
     <Compile Include="Contracts\Contract.cs" />
     <Compile Include="Contracts\ContractDetail.cs" />
     <Compile Include="DomainExeptions\DomainException.cs" />
+    <Compile Include="Dto\City.cs" />
     <Compile Include="Dto\ComercialDataDto.cs" />
     <Compile Include="Dto\ContractType.cs" />
+    <Compile Include="Dto\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="Dto\SessionDto.cs" />
+    <Compile Include="Dto\VehicleType.cs" />
     <Compile Include="Elements\Order.cs" />
     <Compile Include="Elements\OrderDetail.cs" />
     <Compile Include="Elements\Product.cs" />

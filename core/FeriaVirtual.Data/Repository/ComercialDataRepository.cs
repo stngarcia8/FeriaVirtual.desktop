@@ -44,8 +44,7 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter("pEmail",data.Email,DbType.String);
             query.AddParameter("pDNI",data.ComercialDNI,DbType.String);
             query.AddParameter("pDireccion",data.Address,DbType.String);
-            query.AddParameter("pCiudad",data.City,DbType.String);
-            query.AddParameter("pPais",data.Country,DbType.String);
+            query.AddParameter("pIdCiudad",data.City.CityID,DbType.Int32);
             query.AddParameter("pTelefono",data.PhoneNumber,DbType.String);
             return query;
         }
@@ -88,8 +87,11 @@ namespace FeriaVirtual.Data.Repository {
             data.Email= row["Email"].ToString();
             data.ComercialDNI= row["DNI"].ToString();
             data.Address= row["Direccion"].ToString();
-            data.City= row["Ciudad"].ToString();
-            data.Country= row["Pais"].ToString();
+            data.City.CityID = int.Parse(row["id_ciudad"].ToString());
+            data.City.CityName = row["Ciudad"].ToString();
+            data.Country.CountryID= int.Parse(row["id_pais"].ToString());
+            data.Country.CountryName = row["Pais"].ToString();
+            data.Country.CountryPrefix= row["Prefijo"].ToString();
             data.PhoneNumber= row["Telefono"].ToString();
             return data;
         }

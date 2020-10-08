@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Domain.Dto;
 
 namespace FeriaVirtual.Domain.Elements {
 
@@ -12,8 +13,8 @@ namespace FeriaVirtual.Domain.Elements {
         public string Email { get; set; }
         public string ComercialDNI { get; set; }
         public string Address { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public City City { get; set; }
+        public Country Country { get; set; }
         public string PhoneNumber { get; set; }
 
 
@@ -36,8 +37,8 @@ namespace FeriaVirtual.Domain.Elements {
             Email= string.Empty;
             ComercialDNI= string.Empty;
             Address=string.Empty;
-            City= string.Empty;
-            Country= string.Empty;
+            City= City.CreateCity();
+            Country= Country.CreateCountry();
             PhoneNumber= string.Empty;
         }
 
@@ -51,6 +52,6 @@ namespace FeriaVirtual.Domain.Elements {
             return new ComercialData( comercialId,companyName,comercialDNI );
         }
 
-                                 
+
     }
 }

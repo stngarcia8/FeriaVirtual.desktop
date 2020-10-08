@@ -2,7 +2,7 @@
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Business.Elements {
@@ -65,8 +65,11 @@ namespace FeriaVirtual.Business.Elements {
             data.Email= row["Email"].ToString();
             data.ComercialDNI= row["DNI"].ToString();
             data.Address= row["Direccion"].ToString();
-            data.City = row["Ciudad"].ToString();
-            data.Country= row["Pais"].ToString();
+            data.City.CityID = int.Parse(row["id_ciudad"].ToString());
+            data.City.CityName = row["Ciudad"].ToString();
+            data.Country.CountryID = int.Parse(row["id_pais"].ToString());
+            data.Country.CountryName= row["Pais"].ToString();
+            data.Country.CountryPrefix = row["Prefijo"].ToString();
             data.PhoneNumber= row["Telefono"].ToString();
             return data;
         }

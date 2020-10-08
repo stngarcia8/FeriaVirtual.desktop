@@ -11,47 +11,47 @@ namespace FeriaVirtual.API.Controllers {
 
         [HttpGet]
         public IHttpActionResult Get(string productID) {
-            if(string.IsNullOrEmpty( productID )) {
-                return BadRequest( "Parámetro inválido, el id del producto es incorrecto" );
+            if(string.IsNullOrEmpty(productID)) {
+                return BadRequest("Parámetro inválido, el id del producto es incorrecto");
             }
             try {
                 ProducerUseCase usecase = ProducerUseCase.CreateUseCase();
-                Product product = usecase.FindProductByID( productID );
-                return Ok( product );
+                Product product = usecase.FindProductByID(productID);
+                return Ok(product);
             } catch(Exception ex) {
-                return BadRequest( ex.Message.ToString() );
+                return BadRequest(ex.Message.ToString());
             }
         }
 
 
         [HttpGet]
         public IHttpActionResult GetAll(string clientID) {
-            if(string.IsNullOrEmpty( clientID )) {
-                return BadRequest( "Parámetro inválido, el id del cliente es incorrecto" );
+            if(string.IsNullOrEmpty(clientID)) {
+                return BadRequest("Parámetro inválido, el id del cliente es incorrecto");
             }
             try {
                 ProducerUseCase usecase = ProducerUseCase.CreateUseCase();
-                IList<Product> productList = usecase.FindAllProducts( clientID );
-                return Ok( productList );
+                IList<Product> productList = usecase.FindAllProducts(clientID);
+                return Ok(productList);
             } catch(Exception ex) {
-                return BadRequest( ex.Message.ToString() );
+                return BadRequest(ex.Message.ToString());
             }
         }
 
 
         [HttpPost]
-        public IHttpActionResult Post(string clientID,Product product) {
-            if(string.IsNullOrEmpty( clientID ) || product==null) {
-                return BadRequest( "Parámetros inválidos, el id de cliente o los datos del producto son incorrectos" );
+        public IHttpActionResult Post(Product product) {
+            if( product==null) {
+                return BadRequest("Parámetros inválidos, los datos del producto son incorrectos");
             }
             try {
                 string newID = Guid.NewGuid().ToString();
                 product.ProductID = newID;
                 ProducerUseCase usecase = ProducerUseCase.CreateUseCase();
-                usecase.NewProduct( product,clientID );
-                return Ok( "Producto almacenado correctamente." );
+                usecase.NewProduct(product,product.ClientID);
+                return Ok("Producto almacenado correctamente.");
             } catch(Exception ex) {
-                return BadRequest( ex.Message.ToString() );
+                return BadRequest(ex.Message.ToString());
             }
         }
 
@@ -59,14 +59,14 @@ namespace FeriaVirtual.API.Controllers {
         [HttpPut]
         public IHttpActionResult Put(Product product) {
             if(product==null) {
-                return BadRequest( "Parámetro inválido, los datos del producto son  incorrectos" );
+                return BadRequest("Parámetro inválido, los datos del producto son  incorrectos");
             }
             try {
                 ProducerUseCase usecase = ProducerUseCase.CreateUseCase();
-                usecase.EditProduct( product );
-                return Ok( "Producto actualizado correctamente." );
+                usecase.EditProduct(product);
+                return Ok("Producto actualizado correctamente.");
             } catch(Exception ex) {
-                return BadRequest( ex.Message.ToString() );
+                return BadRequest(ex.Message.ToString());
             }
         }
 
@@ -74,15 +74,15 @@ namespace FeriaVirtual.API.Controllers {
 
         [HttpDelete]
         public IHttpActionResult Delete(string productID) {
-            if(string.IsNullOrEmpty( productID )) {
-                return BadRequest( "Parámetro inválido, el id de producto es incorrecto" );
+            if(string.IsNullOrEmpty(productID)) {
+                return BadRequest("Parámetro inválido, el id de producto es incorrecto");
             }
             try {
                 ProducerUseCase usecase = ProducerUseCase.CreateUseCase();
-                usecase.DeleteProduct( productID );
-                return Ok( "Producto eliminado correctamente." );
+                usecase.DeleteProduct(productID);
+                return Ok("Producto eliminado correctamente.");
             } catch(Exception ex) {
-                return BadRequest( ex.Message.ToString() );
+                return BadRequest(ex.Message.ToString());
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {

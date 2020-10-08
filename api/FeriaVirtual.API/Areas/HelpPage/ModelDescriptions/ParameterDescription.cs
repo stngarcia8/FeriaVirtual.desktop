@@ -1,12 +1,8 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace FeriaVirtual.API.Areas.HelpPage.ModelDescriptions
-{
-    public class ParameterDescription
-    {
-        public ParameterDescription()
-        {
+namespace FeriaVirtual.API.Areas.HelpPage.ModelDescriptions {
+    public class ParameterDescription {
+        public ParameterDescription() {
             Annotations = new Collection<ParameterAnnotation>();
         }
 

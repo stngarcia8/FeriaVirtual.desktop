@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using FeriaVirtual.Business.Users;
-using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.API.Controllers {

@@ -1,12 +1,8 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace FeriaVirtual.API.Areas.HelpPage.ModelDescriptions
-{
-    public class EnumTypeModelDescription : ModelDescription
-    {
-        public EnumTypeModelDescription()
-        {
+namespace FeriaVirtual.API.Areas.HelpPage.ModelDescriptions {
+    public class EnumTypeModelDescription:ModelDescription {
+        public EnumTypeModelDescription() {
             Values = new Collection<EnumValueDescription>();
         }
 

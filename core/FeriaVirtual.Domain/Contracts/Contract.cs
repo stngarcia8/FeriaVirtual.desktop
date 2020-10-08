@@ -1,5 +1,5 @@
 ﻿using System;
-using FeriaVirtual.Domain.DTO;
+using FeriaVirtual.Domain.Dto;
 using System.Collections.Generic;
 
 namespace FeriaVirtual.Domain.Contracts {

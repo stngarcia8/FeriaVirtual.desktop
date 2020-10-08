@@ -1,9 +1,5 @@
-﻿using System;
+﻿using System.Web.Http;
 using FeriaVirtual.API.App_Start;
-using FeriaVirtual.API.Controllers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
 
 namespace FeriaVirtual.API {
 
@@ -21,8 +17,8 @@ namespace FeriaVirtual.API {
                 defaults: new { id = RouteParameter.Optional }
                 );
 
-            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            config.EnableCors( new AccessPolicyCors() );
+            System.Net.Http.Formatting.JsonMediaTypeFormatter json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            config.EnableCors(new AccessPolicyCors());
         }
 
     }

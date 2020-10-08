@@ -1,4 +1,4 @@
-﻿namespace FeriaVirtual.Domain.DTO {
+﻿namespace FeriaVirtual.Domain.Dto {
 
     public class ComercialDataDto {
 

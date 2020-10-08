@@ -25,15 +25,15 @@ namespace FeriaVirtual.Business.Users {
 
 
         public Carrier FindCarrierById(string carrierID) {
-            repository.FindById( carrierID );
+            repository.FindById(carrierID);
             return repository.Carrier;
         }
 
         public void NewVehicle(Vehicle vehicle,string clientID) {
             try {
-                IValidator validator = VehicleValidator.CreateValidator( vehicle,false );
+                IValidator validator = VehicleValidator.CreateValidator(vehicle,false);
                 validator.Validate();
-                repository.NewVehicle( vehicle,clientID );
+                repository.NewVehicle(vehicle,clientID);
             } catch(Exception ex) {
                 throw ex;
             }
@@ -41,9 +41,9 @@ namespace FeriaVirtual.Business.Users {
 
         public void EditVehicle(Vehicle vehicle) {
             try {
-                IValidator validator = VehicleValidator.CreateValidator( vehicle,true );
+                IValidator validator = VehicleValidator.CreateValidator(vehicle,true);
                 validator.Validate();
-                repository.EditVehicle( vehicle );
+                repository.EditVehicle(vehicle);
             } catch(Exception ex) {
                 throw ex;
             }
@@ -52,7 +52,7 @@ namespace FeriaVirtual.Business.Users {
 
         public void DeleteVehicle(string vehicleID) {
             try {
-                repository.DeleteVehicle( vehicleID );
+                repository.DeleteVehicle(vehicleID);
             } catch(Exception ex) {
                 throw ex;
             }
@@ -62,7 +62,7 @@ namespace FeriaVirtual.Business.Users {
         public Vehicle FindVehicleByID(string vehicleID) {
             Vehicle vehicle = Vehicle.CreateVehicle();
             try {
-                vehicle =  repository.FindVehicleByID( vehicleID );
+                vehicle =  repository.FindVehicleByID(vehicleID);
             } catch(Exception ex) {
                 vehicle = null;
                 throw ex;
@@ -74,16 +74,13 @@ namespace FeriaVirtual.Business.Users {
         public IList<Vehicle> FindAllVehicles(string clientID) {
             IList<Vehicle> vehicleList = new List<Vehicle>();
             try {
-                vehicleList= repository.FindAllVehicles( clientID );
+                vehicleList= repository.FindAllVehicles(clientID);
             } catch(Exception ex) {
                 vehicleList= null;
                 throw ex;
             }
             return vehicleList;
         }
-
-
-
 
     }
 
