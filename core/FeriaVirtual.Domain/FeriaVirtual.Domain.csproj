@@ -49,6 +49,7 @@
     <Compile Include="Dto\ContractType.cs" />
     <Compile Include="Dto\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Dto\PaymentCondition.cs" />
     <Compile Include="Dto\SessionDto.cs" />
     <Compile Include="Dto\VehicleType.cs" />
     <Compile Include="Elements\Order.cs" />

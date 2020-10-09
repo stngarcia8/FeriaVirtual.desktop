@@ -1,30 +1,34 @@
 ﻿using System;
+using FeriaVirtual.Domain.Dto;
 using System.Collections.Generic;
 
 namespace FeriaVirtual.Domain.Elements {
-    public class Order {
 
+    public class Order {
+        // Properties
         public string OrderID { get; set; }
         public string ClientID { get; set; }
+        public PaymentCondition Condition { get; set; }
         public DateTime OrderDate { get; set; }
-        public bool OrderStatus { get; set; }
+        public float OrderDiscount { get; set; }
         public IList<OrderDetail> OrderDetailList { get; set; }
 
 
         // Constructors
         private Order() {
-            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,DateTime.Now,false );
+            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,DateTime.Now,0);
         }
 
-        private Order(string orderID,string clientID,DateTime dateOrder,bool statusOrder) {
-            InitializeObjects( orderID,clientID,dateOrder,statusOrder );
+        private Order(string orderID,string clientID,DateTime dateOrder,float discount) {
+            InitializeObjects( orderID,clientID,dateOrder,discount);
         }
 
-        private void InitializeObjects(string orderID,string clientID,DateTime dateOrder,bool statusOrder) {
+        private void InitializeObjects(string orderID,string clientID,DateTime dateOrder,float discount) {
             OrderID=orderID;
             ClientID=clientID;
+            Condition= PaymentCondition.CreateCondition();
             OrderDate=OrderDate;
-            OrderStatus=OrderStatus;
+            OrderDiscount = discount;
             OrderDetailList= new List<OrderDetail>();
         }
 
@@ -34,8 +38,8 @@ namespace FeriaVirtual.Domain.Elements {
             return new Order();
         }
 
-        public static Order CreateOrder(string orderID,string clientID,DateTime dateOrder,bool statusOrder) {
-            return new Order( orderID,clientID,dateOrder,statusOrder );
+        public static Order CreateOrder(string orderID,string clientID,DateTime dateOrder,float orderDiscount) {
+            return new Order( orderID,clientID,dateOrder,orderDiscount);
         }
 
 

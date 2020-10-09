@@ -52,6 +52,7 @@
     <Compile Include="Repository\ExternalClientRepository.cs" />
     <Compile Include="Repository\InternalClientRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />

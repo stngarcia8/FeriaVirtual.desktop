@@ -183,6 +183,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InternalClientController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TokenGenerator.cs" />

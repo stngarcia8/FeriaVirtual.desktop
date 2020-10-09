@@ -57,6 +57,7 @@
     <Compile Include="Exceptions\InvalidUserRegisterException.cs" />
     <Compile Include="Exceptions\InvalidVehicleException.cs" />
     <Compile Include="HelpersUseCases\ContractTypeUseCase.cs" />
+    <Compile Include="Orders\OrderUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\CarrierUseCase.cs" />
     <Compile Include="Users\ClientUseCase.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Validators\EmployeeValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
+    <Compile Include="Validators\OrderValidator.cs" />
     <Compile Include="Validators\ProductValidator.cs" />
     <Compile Include="Validators\Validator.cs" />
     <Compile Include="Validators\VehicleValidator.cs" />
