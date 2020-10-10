@@ -26,39 +26,37 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssociateClientForm));
             this.DataClientGroupBox = new System.Windows.Forms.GroupBox();
-            this.FirstNameLabel = new System.Windows.Forms.Label();
-            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
-            this.LastNameLabel = new System.Windows.Forms.Label();
-            this.LastNameTextBox = new System.Windows.Forms.TextBox();
-            this.DniLabel = new System.Windows.Forms.Label();
-            this.DniTextBox = new System.Windows.Forms.TextBox();
-            this.CompanyNameLabel = new System.Windows.Forms.Label();
-            this.CompanyNameTextBox = new System.Windows.Forms.TextBox();
-            this.FantasyNameLabel = new System.Windows.Forms.Label();
-            this.FantasyNameTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.EmailLabel = new System.Windows.Forms.Label();
             this.CommercialDniTextBox = new System.Windows.Forms.TextBox();
             this.CommercialDniLabel = new System.Windows.Forms.Label();
             this.CommercialBusinessTextBox = new System.Windows.Forms.TextBox();
             this.CommercialBusinessLabel = new System.Windows.Forms.Label();
+            this.FantasyNameTextBox = new System.Windows.Forms.TextBox();
+            this.FantasyNameLabel = new System.Windows.Forms.Label();
+            this.CompanyNameTextBox = new System.Windows.Forms.TextBox();
+            this.CompanyNameLabel = new System.Windows.Forms.Label();
+            this.DniTextBox = new System.Windows.Forms.TextBox();
+            this.DniLabel = new System.Windows.Forms.Label();
+            this.LastNameTextBox = new System.Windows.Forms.TextBox();
+            this.LastNameLabel = new System.Windows.Forms.Label();
+            this.FirstNameTextBox = new System.Windows.Forms.TextBox();
+            this.FirstNameLabel = new System.Windows.Forms.Label();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.ContractualDataGroupBox = new System.Windows.Forms.GroupBox();
-            this.ObservationLabel = new System.Windows.Forms.Label();
-            this.ObservationTextBox = new System.Windows.Forms.TextBox();
-            this.AdditionalValueLabel = new System.Windows.Forms.Label();
-            this.AdditionalValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.FineValueLabel = new System.Windows.Forms.Label();
             this.FineValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.ObservationClientLabel = new System.Windows.Forms.Label();
-            this.ObservationClientTextBox = new System.Windows.Forms.TextBox();
+            this.FineValueLabel = new System.Windows.Forms.Label();
+            this.AdditionalValueNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.AdditionalValueLabel = new System.Windows.Forms.Label();
+            this.ObservationTextBox = new System.Windows.Forms.TextBox();
+            this.ObservationLabel = new System.Windows.Forms.Label();
             this.CancelContractButton = new System.Windows.Forms.Button();
             this.AceptContractButton = new System.Windows.Forms.Button();
             this.SearchClientButton = new System.Windows.Forms.Button();
             this.DataClientGroupBox.SuspendLayout();
             this.ContractualDataGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AdditionalValueNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FineValueNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AdditionalValueNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // DataClientGroupBox
@@ -86,101 +84,6 @@
             this.DataClientGroupBox.TabIndex = 0;
             this.DataClientGroupBox.TabStop = false;
             this.DataClientGroupBox.Text = "Datos del cliente";
-            // 
-            // FirstNameLabel
-            // 
-            this.FirstNameLabel.AutoSize = true;
-            this.FirstNameLabel.Location = new System.Drawing.Point(3, 25);
-            this.FirstNameLabel.Name = "FirstNameLabel";
-            this.FirstNameLabel.Size = new System.Drawing.Size(61, 17);
-            this.FirstNameLabel.TabIndex = 0;
-            this.FirstNameLabel.Text = "Nombre";
-            // 
-            // FirstNameTextBox
-            // 
-            this.FirstNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.FirstNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FirstNameTextBox.Location = new System.Drawing.Point(3, 50);
-            this.FirstNameTextBox.Name = "FirstNameTextBox";
-            this.FirstNameTextBox.ReadOnly = true;
-            this.FirstNameTextBox.Size = new System.Drawing.Size(147, 23);
-            this.FirstNameTextBox.TabIndex = 1;
-            // 
-            // LastNameLabel
-            // 
-            this.LastNameLabel.AutoSize = true;
-            this.LastNameLabel.Location = new System.Drawing.Point(175, 25);
-            this.LastNameLabel.Name = "LastNameLabel";
-            this.LastNameLabel.Size = new System.Drawing.Size(70, 17);
-            this.LastNameLabel.TabIndex = 2;
-            this.LastNameLabel.Text = "Apellidos:";
-            // 
-            // LastNameTextBox
-            // 
-            this.LastNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.LastNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LastNameTextBox.Location = new System.Drawing.Point(175, 50);
-            this.LastNameTextBox.Name = "LastNameTextBox";
-            this.LastNameTextBox.ReadOnly = true;
-            this.LastNameTextBox.Size = new System.Drawing.Size(147, 23);
-            this.LastNameTextBox.TabIndex = 3;
-            // 
-            // DniLabel
-            // 
-            this.DniLabel.AutoSize = true;
-            this.DniLabel.Location = new System.Drawing.Point(350, 25);
-            this.DniLabel.Name = "DniLabel";
-            this.DniLabel.Size = new System.Drawing.Size(60, 17);
-            this.DniLabel.TabIndex = 4;
-            this.DniLabel.Text = "Dni/Rut:";
-            // 
-            // DniTextBox
-            // 
-            this.DniTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.DniTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DniTextBox.Location = new System.Drawing.Point(350, 50);
-            this.DniTextBox.Name = "DniTextBox";
-            this.DniTextBox.ReadOnly = true;
-            this.DniTextBox.Size = new System.Drawing.Size(147, 23);
-            this.DniTextBox.TabIndex = 5;
-            // 
-            // CompanyNameLabel
-            // 
-            this.CompanyNameLabel.AutoSize = true;
-            this.CompanyNameLabel.Location = new System.Drawing.Point(0, 79);
-            this.CompanyNameLabel.Name = "CompanyNameLabel";
-            this.CompanyNameLabel.Size = new System.Drawing.Size(93, 17);
-            this.CompanyNameLabel.TabIndex = 6;
-            this.CompanyNameLabel.Text = "Razón social:";
-            // 
-            // CompanyNameTextBox
-            // 
-            this.CompanyNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.CompanyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CompanyNameTextBox.Location = new System.Drawing.Point(0, 100);
-            this.CompanyNameTextBox.Name = "CompanyNameTextBox";
-            this.CompanyNameTextBox.ReadOnly = true;
-            this.CompanyNameTextBox.Size = new System.Drawing.Size(250, 23);
-            this.CompanyNameTextBox.TabIndex = 7;
-            // 
-            // FantasyNameLabel
-            // 
-            this.FantasyNameLabel.AutoSize = true;
-            this.FantasyNameLabel.Location = new System.Drawing.Point(275, 79);
-            this.FantasyNameLabel.Name = "FantasyNameLabel";
-            this.FantasyNameLabel.Size = new System.Drawing.Size(142, 17);
-            this.FantasyNameLabel.TabIndex = 8;
-            this.FantasyNameLabel.Text = "Nombre de fantasía:";
-            // 
-            // FantasyNameTextBox
-            // 
-            this.FantasyNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.FantasyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FantasyNameTextBox.Location = new System.Drawing.Point(275, 100);
-            this.FantasyNameTextBox.Name = "FantasyNameTextBox";
-            this.FantasyNameTextBox.ReadOnly = true;
-            this.FantasyNameTextBox.Size = new System.Drawing.Size(225, 23);
-            this.FantasyNameTextBox.TabIndex = 9;
             // 
             // EmailTextBox
             // 
@@ -239,6 +142,101 @@
             this.CommercialBusinessLabel.TabIndex = 10;
             this.CommercialBusinessLabel.Text = "Giro comercial:";
             // 
+            // FantasyNameTextBox
+            // 
+            this.FantasyNameTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.FantasyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FantasyNameTextBox.Location = new System.Drawing.Point(275, 100);
+            this.FantasyNameTextBox.Name = "FantasyNameTextBox";
+            this.FantasyNameTextBox.ReadOnly = true;
+            this.FantasyNameTextBox.Size = new System.Drawing.Size(225, 23);
+            this.FantasyNameTextBox.TabIndex = 9;
+            // 
+            // FantasyNameLabel
+            // 
+            this.FantasyNameLabel.AutoSize = true;
+            this.FantasyNameLabel.Location = new System.Drawing.Point(275, 79);
+            this.FantasyNameLabel.Name = "FantasyNameLabel";
+            this.FantasyNameLabel.Size = new System.Drawing.Size(142, 17);
+            this.FantasyNameLabel.TabIndex = 8;
+            this.FantasyNameLabel.Text = "Nombre de fantasía:";
+            // 
+            // CompanyNameTextBox
+            // 
+            this.CompanyNameTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.CompanyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CompanyNameTextBox.Location = new System.Drawing.Point(0, 100);
+            this.CompanyNameTextBox.Name = "CompanyNameTextBox";
+            this.CompanyNameTextBox.ReadOnly = true;
+            this.CompanyNameTextBox.Size = new System.Drawing.Size(250, 23);
+            this.CompanyNameTextBox.TabIndex = 7;
+            // 
+            // CompanyNameLabel
+            // 
+            this.CompanyNameLabel.AutoSize = true;
+            this.CompanyNameLabel.Location = new System.Drawing.Point(0, 79);
+            this.CompanyNameLabel.Name = "CompanyNameLabel";
+            this.CompanyNameLabel.Size = new System.Drawing.Size(93, 17);
+            this.CompanyNameLabel.TabIndex = 6;
+            this.CompanyNameLabel.Text = "Razón social:";
+            // 
+            // DniTextBox
+            // 
+            this.DniTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.DniTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DniTextBox.Location = new System.Drawing.Point(350, 50);
+            this.DniTextBox.Name = "DniTextBox";
+            this.DniTextBox.ReadOnly = true;
+            this.DniTextBox.Size = new System.Drawing.Size(147, 23);
+            this.DniTextBox.TabIndex = 5;
+            // 
+            // DniLabel
+            // 
+            this.DniLabel.AutoSize = true;
+            this.DniLabel.Location = new System.Drawing.Point(350, 25);
+            this.DniLabel.Name = "DniLabel";
+            this.DniLabel.Size = new System.Drawing.Size(60, 17);
+            this.DniLabel.TabIndex = 4;
+            this.DniLabel.Text = "Dni/Rut:";
+            // 
+            // LastNameTextBox
+            // 
+            this.LastNameTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.LastNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LastNameTextBox.Location = new System.Drawing.Point(175, 50);
+            this.LastNameTextBox.Name = "LastNameTextBox";
+            this.LastNameTextBox.ReadOnly = true;
+            this.LastNameTextBox.Size = new System.Drawing.Size(147, 23);
+            this.LastNameTextBox.TabIndex = 3;
+            // 
+            // LastNameLabel
+            // 
+            this.LastNameLabel.AutoSize = true;
+            this.LastNameLabel.Location = new System.Drawing.Point(175, 25);
+            this.LastNameLabel.Name = "LastNameLabel";
+            this.LastNameLabel.Size = new System.Drawing.Size(70, 17);
+            this.LastNameLabel.TabIndex = 2;
+            this.LastNameLabel.Text = "Apellidos:";
+            // 
+            // FirstNameTextBox
+            // 
+            this.FirstNameTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.FirstNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FirstNameTextBox.Location = new System.Drawing.Point(3, 50);
+            this.FirstNameTextBox.Name = "FirstNameTextBox";
+            this.FirstNameTextBox.ReadOnly = true;
+            this.FirstNameTextBox.Size = new System.Drawing.Size(147, 23);
+            this.FirstNameTextBox.TabIndex = 1;
+            // 
+            // FirstNameLabel
+            // 
+            this.FirstNameLabel.AutoSize = true;
+            this.FirstNameLabel.Location = new System.Drawing.Point(3, 25);
+            this.FirstNameLabel.Name = "FirstNameLabel";
+            this.FirstNameLabel.Size = new System.Drawing.Size(61, 17);
+            this.FirstNameLabel.TabIndex = 0;
+            this.FirstNameLabel.Text = "Nombre";
+            // 
             // FormImageList
             // 
             this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
@@ -250,8 +248,6 @@
             // ContractualDataGroupBox
             // 
             this.ContractualDataGroupBox.BackColor = System.Drawing.SystemColors.Control;
-            this.ContractualDataGroupBox.Controls.Add(this.ObservationClientTextBox);
-            this.ContractualDataGroupBox.Controls.Add(this.ObservationClientLabel);
             this.ContractualDataGroupBox.Controls.Add(this.FineValueNumericUpDown);
             this.ContractualDataGroupBox.Controls.Add(this.FineValueLabel);
             this.ContractualDataGroupBox.Controls.Add(this.AdditionalValueNumericUpDown);
@@ -261,60 +257,10 @@
             this.ContractualDataGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ContractualDataGroupBox.Location = new System.Drawing.Point(10, 200);
             this.ContractualDataGroupBox.Name = "ContractualDataGroupBox";
-            this.ContractualDataGroupBox.Size = new System.Drawing.Size(515, 150);
+            this.ContractualDataGroupBox.Size = new System.Drawing.Size(515, 100);
             this.ContractualDataGroupBox.TabIndex = 2;
             this.ContractualDataGroupBox.TabStop = false;
             this.ContractualDataGroupBox.Text = "Datos contractuales";
-            // 
-            // ObservationLabel
-            // 
-            this.ObservationLabel.AutoSize = true;
-            this.ObservationLabel.Location = new System.Drawing.Point(3, 25);
-            this.ObservationLabel.Name = "ObservationLabel";
-            this.ObservationLabel.Size = new System.Drawing.Size(90, 17);
-            this.ObservationLabel.TabIndex = 0;
-            this.ObservationLabel.Text = "Observación";
-            // 
-            // ObservationTextBox
-            // 
-            this.ObservationTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.ObservationTextBox.Location = new System.Drawing.Point(150, 25);
-            this.ObservationTextBox.MaxLength = 100;
-            this.ObservationTextBox.Name = "ObservationTextBox";
-            this.ObservationTextBox.Size = new System.Drawing.Size(350, 23);
-            this.ObservationTextBox.TabIndex = 1;
-            // 
-            // AdditionalValueLabel
-            // 
-            this.AdditionalValueLabel.Location = new System.Drawing.Point(3, 75);
-            this.AdditionalValueLabel.Name = "AdditionalValueLabel";
-            this.AdditionalValueLabel.Size = new System.Drawing.Size(147, 50);
-            this.AdditionalValueLabel.TabIndex = 2;
-            this.AdditionalValueLabel.Text = "Porcentaje recargo adicional:";
-            // 
-            // AdditionalValueNumericUpDown
-            // 
-            this.AdditionalValueNumericUpDown.BackColor = System.Drawing.Color.Yellow;
-            this.AdditionalValueNumericUpDown.DecimalPlaces = 2;
-            this.AdditionalValueNumericUpDown.Location = new System.Drawing.Point(150, 75);
-            this.AdditionalValueNumericUpDown.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            131072});
-            this.AdditionalValueNumericUpDown.Name = "AdditionalValueNumericUpDown";
-            this.AdditionalValueNumericUpDown.Size = new System.Drawing.Size(75, 23);
-            this.AdditionalValueNumericUpDown.TabIndex = 3;
-            this.AdditionalValueNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // FineValueLabel
-            // 
-            this.FineValueLabel.AutoSize = true;
-            this.FineValueLabel.Location = new System.Drawing.Point(250, 75);
-            this.FineValueLabel.Name = "FineValueLabel";
-            this.FineValueLabel.Size = new System.Drawing.Size(124, 17);
-            this.FineValueLabel.TabIndex = 4;
-            this.FineValueLabel.Text = "Porcentaje multa:";
             // 
             // FineValueNumericUpDown
             // 
@@ -331,22 +277,55 @@
             this.FineValueNumericUpDown.TabIndex = 5;
             this.FineValueNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ObservationClientLabel
+            // FineValueLabel
             // 
-            this.ObservationClientLabel.Location = new System.Drawing.Point(25, 125);
-            this.ObservationClientLabel.Name = "ObservationClientLabel";
-            this.ObservationClientLabel.Size = new System.Drawing.Size(100, 50);
-            this.ObservationClientLabel.TabIndex = 6;
-            this.ObservationClientLabel.Text = "Observación cliente:";
+            this.FineValueLabel.AutoSize = true;
+            this.FineValueLabel.Location = new System.Drawing.Point(250, 75);
+            this.FineValueLabel.Name = "FineValueLabel";
+            this.FineValueLabel.Size = new System.Drawing.Size(124, 17);
+            this.FineValueLabel.TabIndex = 4;
+            this.FineValueLabel.Text = "Porcentaje multa:";
             // 
-            // ObservationClientTextBox
+            // AdditionalValueNumericUpDown
             // 
-            this.ObservationClientTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.ObservationClientTextBox.Location = new System.Drawing.Point(150, 125);
-            this.ObservationClientTextBox.MaxLength = 100;
-            this.ObservationClientTextBox.Name = "ObservationClientTextBox";
-            this.ObservationClientTextBox.Size = new System.Drawing.Size(350, 23);
-            this.ObservationClientTextBox.TabIndex = 7;
+            this.AdditionalValueNumericUpDown.BackColor = System.Drawing.Color.Yellow;
+            this.AdditionalValueNumericUpDown.DecimalPlaces = 2;
+            this.AdditionalValueNumericUpDown.Location = new System.Drawing.Point(150, 75);
+            this.AdditionalValueNumericUpDown.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            131072});
+            this.AdditionalValueNumericUpDown.Name = "AdditionalValueNumericUpDown";
+            this.AdditionalValueNumericUpDown.Size = new System.Drawing.Size(75, 23);
+            this.AdditionalValueNumericUpDown.TabIndex = 3;
+            this.AdditionalValueNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // AdditionalValueLabel
+            // 
+            this.AdditionalValueLabel.Location = new System.Drawing.Point(3, 75);
+            this.AdditionalValueLabel.Name = "AdditionalValueLabel";
+            this.AdditionalValueLabel.Size = new System.Drawing.Size(147, 50);
+            this.AdditionalValueLabel.TabIndex = 2;
+            this.AdditionalValueLabel.Text = "Porcentaje recargo adicional:";
+            // 
+            // ObservationTextBox
+            // 
+            this.ObservationTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.ObservationTextBox.Location = new System.Drawing.Point(150, 25);
+            this.ObservationTextBox.MaxLength = 100;
+            this.ObservationTextBox.Name = "ObservationTextBox";
+            this.ObservationTextBox.Size = new System.Drawing.Size(350, 23);
+            this.ObservationTextBox.TabIndex = 1;
+            // 
+            // ObservationLabel
+            // 
+            this.ObservationLabel.AutoSize = true;
+            this.ObservationLabel.Location = new System.Drawing.Point(3, 25);
+            this.ObservationLabel.Name = "ObservationLabel";
+            this.ObservationLabel.Size = new System.Drawing.Size(90, 17);
+            this.ObservationLabel.TabIndex = 0;
+            this.ObservationLabel.Text = "Observación";
             // 
             // CancelContractButton
             // 
@@ -354,7 +333,7 @@
             this.CancelContractButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.CancelContractButton.ImageKey = "button-cancel.png";
             this.CancelContractButton.ImageList = this.FormImageList;
-            this.CancelContractButton.Location = new System.Drawing.Point(525, 300);
+            this.CancelContractButton.Location = new System.Drawing.Point(525, 250);
             this.CancelContractButton.Name = "CancelContractButton";
             this.CancelContractButton.Size = new System.Drawing.Size(125, 50);
             this.CancelContractButton.TabIndex = 4;
@@ -369,7 +348,7 @@
             this.AceptContractButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.AceptContractButton.ImageKey = "button-acept.png";
             this.AceptContractButton.ImageList = this.FormImageList;
-            this.AceptContractButton.Location = new System.Drawing.Point(525, 225);
+            this.AceptContractButton.Location = new System.Drawing.Point(525, 175);
             this.AceptContractButton.Name = "AceptContractButton";
             this.AceptContractButton.Size = new System.Drawing.Size(125, 50);
             this.AceptContractButton.TabIndex = 3;
@@ -397,7 +376,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 355);
+            this.ClientSize = new System.Drawing.Size(658, 314);
             this.Controls.Add(this.CancelContractButton);
             this.Controls.Add(this.AceptContractButton);
             this.Controls.Add(this.ContractualDataGroupBox);
@@ -414,8 +393,8 @@
             this.DataClientGroupBox.PerformLayout();
             this.ContractualDataGroupBox.ResumeLayout(false);
             this.ContractualDataGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AdditionalValueNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FineValueNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AdditionalValueNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,8 +421,6 @@
         private System.Windows.Forms.Button SearchClientButton;
         private System.Windows.Forms.ImageList FormImageList;
         private System.Windows.Forms.GroupBox ContractualDataGroupBox;
-        private System.Windows.Forms.TextBox ObservationClientTextBox;
-        private System.Windows.Forms.Label ObservationClientLabel;
         private System.Windows.Forms.NumericUpDown FineValueNumericUpDown;
         private System.Windows.Forms.Label FineValueLabel;
         private System.Windows.Forms.NumericUpDown AdditionalValueNumericUpDown;

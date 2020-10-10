@@ -3,7 +3,7 @@ using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Domain.Contracts {
 
-    public class ContractDetail {
+    public class ContractDetail{
 
         // Properties
         public string DetailID { get; set; }

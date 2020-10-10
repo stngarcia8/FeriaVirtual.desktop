@@ -114,7 +114,6 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
             } else {
                 ListCountLabel.Text = string.Format("{0} {1} encontrados.",ListDataGridView.Rows.Count.ToString(),ProfileName);
                 ListDataGridView.Rows[0].Selected = true;
-                // ListDataGridView.CurrentCell = ListDataGridView.Rows[0].Cells[5];
                 ListDataGridView.Focus();
             }
         }
@@ -139,7 +138,6 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
                 GetClientData(usecase.FindClientById(idSelected));
                 ComercialDataUseCase usecaseCD = ComercialDataUseCase.CreateUseCase();
                 CustomerFound.ComercialInfo= usecaseCD.FindComercialDataByID(CustomerFound.ID);
-
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 isFound= false;

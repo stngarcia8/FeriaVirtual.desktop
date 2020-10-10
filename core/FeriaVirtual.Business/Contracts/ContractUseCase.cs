@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Domain.Contracts;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -47,6 +48,10 @@ namespace FeriaVirtual.Business.Contracts {
         public DataTable FindContractById(string contractID) {
             repository.FindById(contractID);
             return repository.DataSource;
+        }
+
+        public Contract  FindOneContractByID(string contractID) {
+            return repository.FindOneContractById(contractID);
         }
 
         public void NewContract(Contract contract) {

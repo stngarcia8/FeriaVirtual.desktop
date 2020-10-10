@@ -75,7 +75,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             CurrentDetail.ContractObservation= ObservationTextBox.Text;
             CurrentDetail.AdditionalValue= float.Parse(AdditionalValueNumericUpDown.Value.ToString());
             CurrentDetail.FineValue= float.Parse(FineValueNumericUpDown.Value.ToString());
-            CurrentDetail.ClientObservation= ObservationClientTextBox.Text;
             IsSaved= true;
             Close();
         }
@@ -97,7 +96,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             ObservationTextBox.Text= string.Empty;
             AdditionalValueNumericUpDown.Value= 0;
             FineValueNumericUpDown.Value= 0;
-            ObservationClientTextBox.Text= string.Empty;
         }
 
         private void putInfoDataIntoControls() {
@@ -106,7 +104,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             ObservationTextBox.Text= CurrentDetail.ContractObservation;
             AdditionalValueNumericUpDown.Value = decimal.Parse(CurrentDetail.AdditionalValue.ToString());
             FineValueNumericUpDown.Value= decimal.Parse(CurrentDetail.FineValue.ToString());
-            ObservationClientTextBox.Text= CurrentDetail.ClientObservation;
             ObservationTextBox.Focus();
         }
 
