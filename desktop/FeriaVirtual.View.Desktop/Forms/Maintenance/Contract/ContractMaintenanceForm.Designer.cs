@@ -388,7 +388,6 @@
             this.ListFilterComboBox.Name = "ListFilterComboBox";
             this.ListFilterComboBox.Size = new System.Drawing.Size(209, 25);
             this.ListFilterComboBox.TabIndex = 5;
-            this.ListFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.ListFilterComboBox_SelectedIndexChanged);
             // 
             // ListFilterTextBox
             // 

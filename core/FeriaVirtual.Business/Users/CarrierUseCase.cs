@@ -1,28 +1,26 @@
 ﻿using System;
+using NLog;
 using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
 
-
 namespace FeriaVirtual.Business.Users {
 
     public class CarrierUseCase {
-
-        private CarrierRepository repository;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly CarrierRepository repository;
 
         // Constructor
         private CarrierUseCase() {
             repository= CarrierRepository.OpenRepository();
         }
 
-
         // Named constructor
         public static CarrierUseCase CreateUseCase() {
             return new CarrierUseCase();
         }
-
 
         public Carrier FindCarrierById(string carrierID) {
             repository.FindById(carrierID);
@@ -35,7 +33,8 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.NewVehicle(vehicle,clientID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al crear un vehiculo");
+                throw;
             }
         }
 
@@ -45,43 +44,40 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditVehicle(vehicle);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al editar información de vehiculo");
+                throw;
             }
         }
-
 
         public void DeleteVehicle(string vehicleID) {
             try {
                 repository.DeleteVehicle(vehicleID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al eliminar información de vehiculo");
+                throw;
             }
         }
 
-
         public Vehicle FindVehicleByID(string vehicleID) {
-            Vehicle vehicle = Vehicle.CreateVehicle();
+            Vehicle vehicle;
             try {
                 vehicle =  repository.FindVehicleByID(vehicleID);
             } catch(Exception ex) {
-                vehicle = null;
-                throw ex;
+                logger.Error(ex,"Error al buscar un vehiculo por identificador");
+                throw;
             }
             return vehicle;
         }
 
-
         public IList<Vehicle> FindAllVehicles(string clientID) {
-            IList<Vehicle> vehicleList = new List<Vehicle>();
+            IList<Vehicle> vehicleList;
             try {
                 vehicleList= repository.FindAllVehicles(clientID);
             } catch(Exception ex) {
-                vehicleList= null;
-                throw ex;
+                logger.Error(ex,"Error al buscar información de todos los vehiculos de un transportista");
+                throw;
             }
             return vehicleList;
         }
-
     }
-
 }

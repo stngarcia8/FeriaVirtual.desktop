@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {
@@ -7,8 +6,7 @@ namespace FeriaVirtual.Domain.Users {
     public class Producer:Person {
 
         // Properties
-        public IList<Product> ProductList;
-
+        public IList<Product> ProductList { get; set; }
 
         // constructors
         private Producer() : base() {
@@ -16,10 +14,9 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         private Producer(string id,string firstName,string lastName,string dni) :
-    base( id,firstName,lastName,dni ) {
+    base(id,firstName,lastName,dni) {
             ProductList= new List<Product>();
         }
-
 
         // Named constructors.
         public static Producer CreateProducer() {
@@ -27,18 +24,15 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         public static Producer CreateProducer(string id,string firstName,string lastName,string dni) {
-            return new Producer( id,firstName,lastName,dni );
+            return new Producer(id,firstName,lastName,dni);
         }
 
-
         public void AddProduct(Product product) {
-            ProductList.Add( product );
+            ProductList.Add(product);
         }
 
         public void RemoveProduct(Product product) {
-            ProductList.Remove( product );
+            ProductList.Remove(product);
         }
-
-
     }
 }

@@ -4,7 +4,6 @@ using FeriaVirtual.Domain.Users;
 namespace FeriaVirtual.Infraestructure.Mailer {
 
     public class MailSender {
-
         private readonly MailTypeMessage typeMessage;
         private readonly Client client;
 
@@ -16,14 +15,13 @@ namespace FeriaVirtual.Infraestructure.Mailer {
 
         // Named Constructor.
         public static MailSender CreateSender(Client client,MailTypeMessage typeMessage) {
-            return new MailSender( client,typeMessage );
+            return new MailSender(client,typeMessage);
         }
 
         public void SendMail() {
             MailConfigurator configurator = MailConfigurator.CreateConfigurator();
-            MailMessageConfigurator messageConfigurator = MailMessageConfigurator.CreateMessage( client,typeMessage );
-            configurator.SMTP.SendMailAsync( messageConfigurator.Message );
+            MailMessageConfigurator messageConfigurator = MailMessageConfigurator.CreateMessage(client,typeMessage);
+            configurator.SMTP.SendMailAsync(messageConfigurator.Message);
         }
-
     }
 }

@@ -4,86 +4,80 @@ using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
+using NLog;
 
 namespace FeriaVirtual.Business.Users {
 
     public class ProducerUseCase {
-
-        private ProducerRepository repository;
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly ProducerRepository repository;
 
         // Constructor
         private ProducerUseCase() {
             repository= ProducerRepository.OpenRepository();
         }
 
-
         // Named constructor
         public static ProducerUseCase CreateUseCase() {
             return new ProducerUseCase();
         }
 
-
         public Producer FindProducerById(string producerID) {
-            repository.FindById( producerID );
+            repository.FindById(producerID);
             return repository.Producer;
         }
 
         public void NewProduct(Product product,string clientID) {
             try {
-                IValidator validator = ProductValidator.CreateValidator( product,false );
+                IValidator validator = ProductValidator.CreateValidator(product,false);
                 validator.Validate();
-                repository.NewProduct( product,clientID );
+                repository.NewProduct(product,clientID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al crear producto");
+                throw;
             }
         }
-
 
         public void EditProduct(Product product) {
             try {
-                IValidator validator = ProductValidator.CreateValidator( product,true );
+                IValidator validator = ProductValidator.CreateValidator(product,true);
                 validator.Validate();
-                repository.EditProduct( product );
+                repository.EditProduct(product);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al editar producto");
+                throw;
             }
         }
-
 
         public void DeleteProduct(string productID) {
             try {
-                repository.DeleteProduct( productID );
+                repository.DeleteProduct(productID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al eliminar producto");
+                throw;
             }
         }
 
-
         public Product FindProductByID(string productID) {
-            Product product = Product.CreateProduct();
+            Product product;
             try {
-                product =  repository.FindProductByID( productID );
+                product =  repository.FindProductByID(productID);
             } catch(Exception ex) {
-                product = null;
-                throw ex;
+                logger.Error(ex,"Error al buscar producto por identificador");
+                throw;
             }
             return product;
         }
 
-
         public IList<Product> FindAllProducts(string clientID) {
-            IList<Product> productList = new List<Product>();
+            IList<Product> productList;
             try {
-                productList= repository.FindAllProducts( clientID );
+                productList= repository.FindAllProducts(clientID);
             } catch(Exception ex) {
-                productList= null;
-                throw ex;
+                logger.Error(ex,"Error al buscar todos los productos");
+                throw;
             }
             return productList;
         }
-
-
     }
-
 }

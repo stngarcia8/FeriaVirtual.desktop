@@ -3,7 +3,7 @@ using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Domain.Contracts {
 
-    public class ContractDetail{
+    public class ContractDetail {
 
         // Properties
         public string DetailID { get; set; }
@@ -14,7 +14,6 @@ namespace FeriaVirtual.Domain.Contracts {
         public string ClientObservation { get; set; }
         public DateTime DateAcepted { get; set; }
         public DateTime RegisterDate { get; set; }
-
 
         // constructor
         private ContractDetail() {
@@ -36,7 +35,5 @@ namespace FeriaVirtual.Domain.Contracts {
         public static ContractDetail CreateDetail() {
             return new ContractDetail();
         }
-
     }
-
 }

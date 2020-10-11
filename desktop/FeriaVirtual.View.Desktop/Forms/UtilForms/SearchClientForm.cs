@@ -1,30 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using FeriaVirtual.Business.Elements;
 using FeriaVirtual.Business.Users;
-
+using FeriaVirtual.View.Desktop.Helpers;
 
 namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
 
     public partial class SearchClientForm:Form {
-
         private string idSelected;
 
         // properties.
         public Domain.Users.Client CustomerFound { get; set; }
-        public bool isFound { get; set; }
-        public int ProfileID { get; set; }
-        public string ProfileName { get; set; }
-        public string SingleProfileName { get; set; }
+
+        public bool IsFound { get; set; }
+        public IProfileInfo Profile { get; set; }
 
         public SearchClientForm() {
             InitializeComponent();
-            isFound= false;
+            IsFound= false;
         }
 
         private void SearchClientForm_Load(object sender,EventArgs e) {
-            Text = string.Format("Buscando {0}...",ProfileName);
+            Text = string.Format("Buscando {0}...",Profile.ProfileName);
             ListFilterTextBox.Text= string.Empty;
             LoadFilters();
             ListFilterComboBox.SelectedIndex = 0;
@@ -32,7 +31,7 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
         }
 
         private void ListFilterComboBox_SelectedIndexChanged(object sender,EventArgs e) {
-            ListFilterTextBox.Visible = ListFilterComboBox.SelectedIndex.Equals(1) ? true : false;
+            ListFilterTextBox.Visible = ListFilterComboBox.SelectedIndex.Equals(1);
         }
 
         private void ListFilterButton_Click(object sender,EventArgs e) {
@@ -41,13 +40,13 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
 
         private void SearchAceptButton_Click(object sender,EventArgs e) {
             LoadUserInfo();
-            isFound= true;
+            IsFound= true;
             Close();
         }
 
         private void SearchCancelButton_Click(object sender,EventArgs e) {
             CustomerFound= null;
-            isFound= false;
+            IsFound= false;
             Close();
         }
 
@@ -58,24 +57,23 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
         private void ListDataGridView_DoubleClick(object sender,EventArgs e) {
             GetRecordId();
             LoadUserInfo();
-            isFound= true;
+            IsFound= true;
             Close();
         }
-
 
         private void LoadFilters() {
             ListFilterComboBox.BeginUpdate();
             ListFilterComboBox.Items.Clear();
-            ListFilterComboBox.Items.Add("Todos");
-            ListFilterComboBox.Items.Add(string.Format("Nombre de {0}",SingleProfileName));
-            ListFilterComboBox.Items.Add(string.Format("{0} habilitados",ProfileName));
-            ListFilterComboBox.Items.Add(string.Format("{0} inhabilitados",ProfileName));
+            ListFilterComboBox.Items.Add(string.Format("Todos los {0}",Profile.ProfileName));
+            ListFilterComboBox.Items.Add(string.Format("Nombre de {0}",Profile.SingleProfileName));
+            ListFilterComboBox.Items.Add(string.Format("{0} habilitados",Profile.ProfileName));
+            ListFilterComboBox.Items.Add(string.Format("{0} inhabilitados",Profile.ProfileName));
             ListFilterComboBox.EndUpdate();
         }
 
         private void LoadUsers(int filterType) {
             try {
-                ClientUseCase useCase = ClientUseCase.CreateUseCase(ProfileID,SingleProfileName);
+                ClientUseCase useCase = ClientUseCase.CreateUseCase(Profile.ProfileID,Profile.SingleProfileName);
                 DataTable data = new DataTable();
                 ListDataGridView.DataSource = null;
                 if(filterType.Equals(0)) {
@@ -99,25 +97,21 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
         }
 
         private void HideColumns() {
-            ListDataGridView.Columns["id_cliente"].Visible = false;
-            ListDataGridView.Columns["id_usuario"].Visible = false;
-            ListDataGridView.Columns["id_rol"].Visible = false;
-            ListDataGridView.Columns["nombre_cliente"].Visible = false;
-            ListDataGridView.Columns["apellido_cliente"].Visible = false;
-            ListDataGridView.Columns["password"].Visible = false;
-            ListDataGridView.Columns["is_active"].Visible = false;
+            IList<string> cols = new List<string>() { "id_cliente","id_usuario","id_rol","nombre_cliente","apellido_cliente","password","is_active" };
+            foreach(string col in cols) {
+                ListDataGridView.Columns[col].Visible=false;
+            }
         }
 
         private void DisplayCounts() {
             if(ListDataGridView.Rows.Count.Equals(0)) {
-                ListCountLabel.Text = string.Format("No hay {0} disponibles.",ProfileName);
+                ListCountLabel.Text = string.Format("No hay {0} disponibles.",Profile.ProfileName);
             } else {
-                ListCountLabel.Text = string.Format("{0} {1} encontrados.",ListDataGridView.Rows.Count.ToString(),ProfileName);
+                ListCountLabel.Text = string.Format("{0} {1} encontrados.",ListDataGridView.Rows.Count.ToString(),Profile.ProfileName);
                 ListDataGridView.Rows[0].Selected = true;
                 ListDataGridView.Focus();
             }
         }
-
 
         private void GetRecordId() {
             idSelected = string.Empty;
@@ -131,16 +125,15 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
             idSelected=  row.Cells[1].Value.ToString();
         }
 
-
         private void LoadUserInfo() {
             try {
-                ClientUseCase usecase = ClientUseCase.CreateUseCase(ProfileID,SingleProfileName);
+                ClientUseCase usecase = ClientUseCase.CreateUseCase(Profile.ProfileID,Profile.SingleProfileName);
                 GetClientData(usecase.FindClientById(idSelected));
                 ComercialDataUseCase usecaseCD = ComercialDataUseCase.CreateUseCase();
                 CustomerFound.ComercialInfo= usecaseCD.FindComercialDataByID(CustomerFound.ID);
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                isFound= false;
+                IsFound= false;
                 Close();
             }
         }
@@ -154,12 +147,9 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
             CustomerFound.Credentials.Password = row["password"].ToString();
             CustomerFound.Credentials.EncriptedPassword= row["password"].ToString();
             CustomerFound.Credentials.Email= row["Email"].ToString();
-            CustomerFound.Credentials.IsActive= (int.Parse(row["is_active"].ToString()).Equals(1) ? true : false);
+            CustomerFound.Credentials.IsActive= int.Parse(row["is_active"].ToString()) == (int)Data.Enums.UserStatus.Active;
             CustomerFound.Profile.ProfileID= int.Parse(row["id_rol"].ToString());
             CustomerFound.Profile.ProfileName= row["Rol"].ToString();
         }
-
-
-
     }
 }

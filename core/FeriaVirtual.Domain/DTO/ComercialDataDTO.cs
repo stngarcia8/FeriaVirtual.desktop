@@ -1,7 +1,6 @@
 ﻿namespace FeriaVirtual.Domain.Dto {
 
     public class ComercialDataDto {
-
         public string ClientID { get; set; }
         public string ComercialID { get; set; }
         public string CompanyName { get; set; }
@@ -16,10 +15,7 @@
         public string CountryName { get; set; }
         public string CountryPrefix { get; set; }
 
-
         // Contructors.
         public ComercialDataDto() { }
-
-
     }
 }

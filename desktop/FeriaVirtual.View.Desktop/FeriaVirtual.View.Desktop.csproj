@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,8 +49,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.5\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -136,6 +145,16 @@
       <DependentUpon>SearchClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ActualUser.cs" />
+    <Compile Include="Helpers\AdministratorProfile.cs" />
+    <Compile Include="Helpers\CarrierProfile.cs" />
+    <Compile Include="Helpers\ConsultantProfile.cs" />
+    <Compile Include="Helpers\DataGridViewConfigurator.cs" />
+    <Compile Include="Helpers\EnumProfileInfo.cs" />
+    <Compile Include="Helpers\ExternalCustomerProfile.cs" />
+    <Compile Include="Helpers\InternalCustomerProfile.cs" />
+    <Compile Include="Helpers\IProfileInfo.cs" />
+    <Compile Include="Helpers\ProducerProfile.cs" />
+    <Compile Include="Helpers\ProfileInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Administrator\AdministratorMainForm.resx">
@@ -184,6 +203,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -225,6 +251,10 @@
     <ProjectReference Include="..\..\core\FeriaVirtual.Business\FeriaVirtual.Business.csproj">
       <Project>{93381343-a55e-4830-8612-03c04786689f}</Project>
       <Name>FeriaVirtual.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\FeriaVirtual.Data\FeriaVirtual.Data.csproj">
+      <Project>{F540F224-83AA-4A15-9647-4312F8833B28}</Project>
+      <Name>FeriaVirtual.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\core\FeriaVirtual.Domain\FeriaVirtual.Domain.csproj">
       <Project>{b2c61472-ff54-47a4-8f7f-5e40ea40b14c}</Project>

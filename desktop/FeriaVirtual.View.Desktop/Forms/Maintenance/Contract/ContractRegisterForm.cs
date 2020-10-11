@@ -1,34 +1,28 @@
 ﻿using System;
-using FeriaVirtual.Business.HelpersUseCases;
-using System.Data;
-using FeriaVirtual.Business.Contracts;
-using FeriaVirtual.Domain.Contracts;
-using FeriaVirtual.View.Desktop.Forms.UtilForms;
-
+using NLog;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using FeriaVirtual.Business.Contracts;
+using FeriaVirtual.Business.HelpersUseCases;
+using FeriaVirtual.Domain.Contracts;
+using FeriaVirtual.View.Desktop.Helpers;
 
 namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
     public partial class ContractRegisterForm:Form {
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private Domain.Contracts.Contract contract;
         private Domain.Contracts.ContractDetail currentDetail = ContractDetail.CreateDetail();
-        private BindingList<ContractDetail> source = new BindingList<ContractDetail>();
+        private BindingList<ContractDetail> source;
 
         // Properties
         public bool IsNewRecord { get; set; }
-        public bool IsSaved { get; set; }
-        public string idSelected { get; set; }
-        public string ProfileName { get; set; }
-        public string SingleProfileName { get; set; }
-        public int ProfileID { get; set; }
 
+        public bool IsSaved { get; set; }
+        public string IdSelected { get; set; }
+        public IProfileInfo Profile { get; set; }
 
         // Forms events method
         public ContractRegisterForm() {
@@ -37,28 +31,23 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void ContractRegisterForm_Load(object sender,EventArgs e) {
-            this.ConfigureForm();
+            ConfigureForm();
             LoadContractTypes();
             if(IsNewRecord) {
-                this.ContractValidCheckBox.Checked= true;
-                this.contract = Domain.Contracts.Contract.CreateContract();
-                 //this.contract.Details = new BindingList<ContractDetail>();
+                ContractValidCheckBox.Checked= true;
+                contract = Domain.Contracts.Contract.CreateContract();
                 CleanControls();
             } else {
                 LoadContractInfo();
                 PutContractInfoToControls();
             }
-            source.AllowNew= true;
-            source.AllowEdit= true;
-            source.AllowRemove= true;
+            ConfigureBindingList();
+            ConfigureCustomerList();
             StartDateTimePicker.Focus();
-            this.ConfigureCustomerList();
         }
 
-
-
         // Form buttons events method.
-      private void DeleteContractButton_Click(object sender,EventArgs e) {
+        private void DeleteContractButton_Click(object sender,EventArgs e) {
             // aqui tengo que eliminar el contrato si es que se puede...
         }
 
@@ -66,8 +55,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             if(!SaveContractData()) {
                 return;
             }
-            this.IsSaved= true;
-            this.Close();
+            IsSaved= true;
+            Close();
         }
 
         private void ContractCancelButton_Click(object sender,EventArgs e) {
@@ -75,24 +64,19 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             Close();
         }
 
-
-
         // datagridview events method
         private void ListClientDataGridView_SelectionChanged(object sender,EventArgs e) {
-            this.GetCurrentDetail();
+            GetCurrentDetail();
         }
 
         private void ListClientDataGridView_DoubleClick(object sender,EventArgs e) {
-            this.GetCurrentDetail();
-            OpenCustomerAssociationForm(false);
+            this.EditCustomer();
         }
 
-
-
-        // datagridview contextmenu controls
+        // datagridview contextmenu controls events methods.
         private void ListRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.ConfigureCustomerList();
-            this.ListClientDataGridView.Focus();
+            ConfigureCustomerList();
+            ListClientDataGridView.Focus();
         }
 
         private void ListAddToolStripMenuItem_Click(object sender,EventArgs e) {
@@ -100,112 +84,116 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void ListEditToolStripMenuItem_Click(object sender,EventArgs e) {
-            GetCurrentDetail();
-            OpenCustomerAssociationForm(false);
+            this.EditCustomer();
         }
 
         private void ListRemoveToolStripMenuItem_Click(object sender,EventArgs e) {
-            if(this.ListClientDataGridView.Rows.Count.Equals(0)) {
+            if(ListClientDataGridView.Rows.Count.Equals(0)) {
                 return;
             }
-            this.GetCurrentDetail();
-            source.Remove(currentDetail);
-            currentDetail = ContractDetail.CreateDetail();
-            //this.ListClientDataGridView.Rows.Remove(this.ListClientDataGridView.SelectedRows[0]);
+            ListClientDataGridView.Rows.Remove(ListClientDataGridView.SelectedRows[0]);
         }
-
 
         // Form methods
         private void ConfigureForm() {
-            Text= (IsNewRecord ? string.Format("Nuevo contrato de {0}.",SingleProfileName) : string.Format("Editando contrato de {0}.",SingleProfileName));
-            this.ListAddToolStripMenuItem.Text = string.Format("Asociar nuevo {0}",this.SingleProfileName);
+            Text= (IsNewRecord ? string.Format("Nuevo contrato de {0}.",Profile.SingleProfileName) : string.Format("Editando contrato de {0}.",Profile.SingleProfileName));
+            ListAddToolStripMenuItem.Text = string.Format("Asociar nuevo {0}",Profile.SingleProfileName);
             DeleteContractButton.Visible= !IsNewRecord;
-            this.ClientLabel.Text= string.Format("{0} asociados al contrato.",this.ProfileName);
-            this.ClientTabPage.Text = string.Format("{0} asociados",this.ProfileName);
+            ClientLabel.Text= string.Format("{0} asociados al contrato.",Profile.ProfileName);
+            ClientTabPage.Text = string.Format("{0} asociados",Profile.ProfileName);
+        }
+
+        private void ConfigureBindingList() {
+            source = new BindingList<ContractDetail>(contract.Details) {
+                AllowNew= true,
+                AllowEdit= true,
+                AllowRemove= true
+            };
+            source.AllowNew= true;
         }
 
         private void LoadContractTypes() {
-            this.ContractTypeComboBox.BeginUpdate();
+            ContractTypeComboBox.BeginUpdate();
             ContractTypeUseCase usecase = ContractTypeUseCase.CreateUseCase();
-            this.ContractTypeComboBox.DataSource = usecase.FindAll();
-            this.ContractTypeComboBox.DisplayMember= "desc_tipo_contrato";
-            this.ContractTypeComboBox.ValueMember = "id_tipo_contrato";
-            this.ContractTypeComboBox.EndUpdate();
+            ContractTypeComboBox.DataSource = usecase.FindAll();
+            ContractTypeComboBox.DisplayMember= "desc_tipo_contrato";
+            ContractTypeComboBox.ValueMember = "id_tipo_contrato";
+            ContractTypeComboBox.EndUpdate();
         }
 
         private void CleanControls() {
-            this.StartDateTimePicker.Value = DateTime.Now.Date;
-            this.EndDateTimePicker.Value= DateTime.Now.AddMonths(6);
-            this.CommissionNumericUpDown.Value= 0;
-            this.DescriptionContractTextBox.Text= string.Empty;
-            this.ContractValidCheckBox.Checked = true;
-            this.contract = Domain.Contracts.Contract.CreateContract();
-            this.ListClientDataGridView.DataSource = source;
+            StartDateTimePicker.Value = DateTime.Now.Date;
+            EndDateTimePicker.Value= DateTime.Now.AddMonths(6);
+            CommissionNumericUpDown.Value= 0;
+            DescriptionContractTextBox.Text= string.Empty;
+            ContractValidCheckBox.Checked = true;
+            contract = Domain.Contracts.Contract.CreateContract();
         }
 
         private void OpenCustomerAssociationForm(bool isNew) {
             AssociateClientForm form = new AssociateClientForm {
-                CurrentDetail= this.currentDetail
-            }; ;
-            form.ProfileID = this.ProfileID;
+                CurrentDetail= currentDetail,
+                Profile=Profile
+            }; 
             form.IsNewRecord = isNew;
-            this.ProfileName= this.ProfileName;
-            form.SingleProfileName=  this.SingleProfileName;
             form.ActualDetails = contract.Details;
             form.ShowDialog();
-            if(form.IsSaved) {
-                if(isNew) {
-                    //source.Add(form.CurrentDetail);
-                    this.contract.Details.Add(form.CurrentDetail);
-
-                } else {
-                    // aqui tengo que editar
-                }
-                this.ConfigureCustomerList();
+            if(form.IsSaved && isNew) {
+                contract.Details.Add(form.CurrentDetail);
+                ConfigureBindingList();
+                ConfigureCustomerList();
             }
         }
 
-
         private void ConfigureCustomerList() {
-            ListClientDataGridView.DataSource=this.contract.Details;
-            //ListClientDataGridView.DataSource =source;
+            ListClientDataGridView.SelectionChanged-= ListClientDataGridView_SelectionChanged;
+            ListClientDataGridView.DataSource= null;
+            ListClientDataGridView.DataSource=source;
             ListClientDataGridView.Refresh();
-            this.ConfigureGrid();
+            ConfigureGrid();
+            ListClientDataGridView.SelectionChanged+= ListClientDataGridView_SelectionChanged;
         }
 
         private void ConfigureGrid() {
-            ListClientDataGridView.Columns["DetailID"].Visible=false;
-            ListClientDataGridView.Columns["ContractObservation"].Visible=false;
-            ListClientDataGridView.Columns["DateAcepted"].Visible=false;
-            ListClientDataGridView.Columns["ClientObservation"].Visible=false;
-            ListClientDataGridView.Columns["RegisterDate"].Visible=false;
-            ListClientDataGridView.Columns["Customer"].HeaderText = this.SingleProfileName;
-            ListClientDataGridView.Columns["AdditionalValue"].HeaderText = "Valor adic.";
-            ListClientDataGridView.Columns["AdditionalValue"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
-            ListClientDataGridView.Columns["AdditionalValue"].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
-            ListClientDataGridView.Columns["FineValue"].HeaderText = "Valor multa";
-            ListClientDataGridView.Columns["FineValue"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
-            ListClientDataGridView.Columns["FineValue"].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
+            IList<string> cols = new List<string> { "DetailID","ContractObservation","ClientObservation","RegisterDate","DateAcepted" };
+            foreach(string col in cols) {
+                ListClientDataGridView.Columns[col].Visible= false;
+            }
+            ListClientDataGridView.Columns["Customer"].HeaderText = Profile.SingleProfileName;
+            ConfigureNumericColumn("AdditionalValue","Valor adic.");
+            ConfigureNumericColumn("FineValue","Valor multa");
+        }
+
+        private void ConfigureNumericColumn(string colName,string headerText) {
+            ListClientDataGridView.Columns[colName].HeaderText = headerText;
+            ListClientDataGridView.Columns[colName].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+            ListClientDataGridView.Columns[colName].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
+            ListClientDataGridView.Columns[colName].DefaultCellStyle.Format="N2";
         }
 
         private void GetCurrentDetail() {
-            if(source.Count.Equals(0)) {
+            if(contract.Details.Count.Equals(0)) {
                 currentDetail = ContractDetail.CreateDetail();
                 return;
             }
-            DataGridViewRow row = this.ListClientDataGridView.SelectedRows[0];
-            currentDetail = row.DataBoundItem as ContractDetail;
+            try {
+                DataGridViewRow row = ListClientDataGridView.SelectedRows[0];
+                currentDetail = row.DataBoundItem as ContractDetail;
+            } catch (Exception ex) {
+                logger.Error(ex,"listando asociados a contrato");
+                throw;
+            }
         }
 
         private void PutInfoControlsToContract() {
-            this.contract.StartDate = this.StartDateTimePicker.Value;
-            this.contract.EndDate = this.EndDateTimePicker.Value;
-            this.contract.IsValid = (this.ContractValidCheckBox.Checked ? 1 : 0);
-            this.contract.ContractDescription = this.DescriptionContractTextBox.Text;
-            this.contract.ContractCommission = float.Parse(this.CommissionNumericUpDown.Value.ToString());
-            this.contract.TypeContract.ContractTypeID= int.Parse(this.ContractTypeComboBox.SelectedValue.ToString());
-            this.contract.TypeContract.ContractTypeName= this.ContractTypeComboBox.Text;
-            this.contract.Details = source.ToList();
+            contract.StartDate = StartDateTimePicker.Value;
+            contract.EndDate = EndDateTimePicker.Value;
+            contract.IsValid = (ContractValidCheckBox.Checked ? 1 : 0);
+            contract.ContractDescription = DescriptionContractTextBox.Text;
+            contract.ContractCommission = float.Parse(CommissionNumericUpDown.Value.ToString());
+            contract.TypeContract.ContractTypeID= int.Parse(ContractTypeComboBox.SelectedValue.ToString());
+            contract.TypeContract.ContractTypeName= ContractTypeComboBox.Text;
+            contract.Details = contract.Details.ToList();
         }
 
         private bool SaveContractData() {
@@ -213,14 +201,14 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             string message = string.Empty;
             PutInfoControlsToContract();
             try {
-                ContractUseCase usecase = ContractUseCase.CreateUseCase(this.ProfileID,this.SingleProfileName);
+                ContractUseCase usecase = ContractUseCase.CreateUseCase(Profile.ProfileID,Profile.SingleProfileName);
                 if(IsNewRecord) {
-                    usecase.NewContract(this.contract);
-                    message = string.Format("El contrato de {0} ha sido almacenado correctamente.",this.ProfileName);
+                    usecase.NewContract(contract);
+                    message = string.Format("El contrato de {0} ha sido almacenado correctamente.",Profile.ProfileName);
                     MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 } else {
-                    usecase.EditContract(this.contract);
-                    message= string.Format("El contrato de {0} ha sido actualizado correctamente.",this.ProfileName);
+                    usecase.EditContract(contract);
+                    message= string.Format("El contrato de {0} ha sido actualizado correctamente.",Profile.ProfileName);
                     MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 result= true;
@@ -233,8 +221,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
         private void LoadContractInfo() {
             try {
-                ContractUseCase usecase = ContractUseCase.CreateUseCase(ProfileID,SingleProfileName);
-                this.contract = usecase.FindOneContractByID(this.idSelected);
+                ContractUseCase usecase = ContractUseCase.CreateUseCase(Profile.ProfileID,Profile.SingleProfileName);
+                contract = usecase.FindOneContractByID(IdSelected);
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 Close();
@@ -242,17 +230,18 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void PutContractInfoToControls() {
-            this.StartDateTimePicker.Value = this.contract.StartDate;
-            this.EndDateTimePicker.Value = this.contract.EndDate;
-            this.ContractValidCheckBox.Checked  = (this.contract.IsValid==1 ? true : false);
-            this.DescriptionContractTextBox.Text = this.contract.ContractDescription;
-            this.CommissionNumericUpDown.Value = decimal.Parse(this.contract.ContractCommission.ToString());
-            this.ContractTypeComboBox.Text = this.contract.TypeContract.ContractTypeName;
+            StartDateTimePicker.Value = contract.StartDate;
+            EndDateTimePicker.Value = contract.EndDate;
+            ContractValidCheckBox.Checked  = contract.IsValid==1;
+            DescriptionContractTextBox.Text = contract.ContractDescription;
+            CommissionNumericUpDown.Value = decimal.Parse(contract.ContractCommission.ToString());
+            ContractTypeComboBox.Text = contract.TypeContract.ContractTypeName;
         }
 
-
-
-
+        private void EditCustomer() {
+            GetCurrentDetail();
+            OpenCustomerAssociationForm(false);
+        }
 
 
     }

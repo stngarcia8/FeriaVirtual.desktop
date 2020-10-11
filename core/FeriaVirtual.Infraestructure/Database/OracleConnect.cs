@@ -1,33 +1,31 @@
 ﻿using System;
 using FeriaVirtual.Infraestructure.Exceptions;
+using NLog;
 using Oracle.ManagedDataAccess.Client;
 
 namespace FeriaVirtual.Infraestructure.Database {
-    public class OracleConnect:IOracleConnect, IDisposable {
 
+    public class OracleConnect:IOracleConnect, IDisposable {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private bool disposed = false;
         private OracleConnection connection;
         private OracleTransaction transaction;
         private readonly string conecctionString;
-
 
         // Constructor.
         private OracleConnect() {
             conecctionString = GenerateConnectionString();
         }
 
-
         // Named constructor
         public static OracleConnect CreateConnection() {
             return new OracleConnect();
         }
 
-
         // Generate connection string
         private string GenerateConnectionString() {
-            return string.Format( "Data Source={0};User Id={1};Password={2};","localhost/xe","fv_user","fv_pwd" );
+            return string.Format("Data Source={0};User Id={1};Password={2};","localhost/xe","fv_user","fv_pwd");
         }
-
 
         // Get connection method.
         public OracleConnection GetConnection() {
@@ -37,8 +35,7 @@ namespace FeriaVirtual.Infraestructure.Database {
             return connection;
         }
 
-
-        //  Get transaction method.
+        // Get transaction method.
         public OracleTransaction GetTransaction() {
             if(transaction == null) {
                 InitializeObjects();
@@ -46,21 +43,18 @@ namespace FeriaVirtual.Infraestructure.Database {
             return transaction;
         }
 
-
-        //  Initialize objects method.
-        private void InitializeObjects
-            () {
+        // Initialize objects method.
+        private void InitializeObjects() {
             try {
-                connection = new OracleConnection( conecctionString );
+                connection = new OracleConnection(conecctionString);
                 connection.Open();
                 transaction = connection.BeginTransaction();
             } catch {
-                ConnectionFailedException ex = new ConnectionFailedException( "El servidor de base de datos no se encuentra disponible, comunique este problema al administrador del servicio de base de datos." );
-                throw ex;
+                ConnectionFailedException ex = new ConnectionFailedException("El servidor de base de datos no se encuentra disponible, comunique este problema al administrador del servicio de base de datos.");
+                logger.Error(ex,"error al conectar a Oracle");
+                throw;
             }
         }
-
-
 
         // Commit method.
         public void Commit() {
@@ -69,7 +63,6 @@ namespace FeriaVirtual.Infraestructure.Database {
             }
         }
 
-
         // Rollback method.
         public void RollBack() {
             if(transaction != null) {
@@ -77,19 +70,18 @@ namespace FeriaVirtual.Infraestructure.Database {
             }
         }
 
-
         // Create selection objects method.
         public IQuerySelect CreateQuerySelect(string sql) {
             try {
                 OracleCommand command = GetConnection().CreateCommand();
                 command.CommandText = sql;
                 command.Transaction = transaction;
-                return QuerySelect.CreateQuery( command );
-            } catch {
+                return QuerySelect.CreateQuery(command);
+            } catch(Exception ex) {
+                logger.Error(ex,"Error al crear consulta de selección");
                 throw;
             }
         }
-
 
         // Create action query method.
         public IQueryAction CreateQueryAction(string storedProcedureName) {
@@ -98,19 +90,18 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.CommandText = storedProcedureName;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Transaction = transaction;
-                return QueryAction.CreateQuery( command );
-            } catch  (Exception ex){
-                throw ex;
+                return QueryAction.CreateQuery(command);
+            } catch(Exception ex) {
+                logger.Error(ex,"Error al crear consulta de acción");
+                throw;
             }
         }
-
 
         // Close connection method.
         public void CloseConnection() {
             ClosingTransaction();
             ClosingConnection();
         }
-
 
         // Close transaction method.
         private void ClosingTransaction() {
@@ -120,7 +111,6 @@ namespace FeriaVirtual.Infraestructure.Database {
             }
         }
 
-
         // Close oracle connection.
         private void ClosingConnection() {
             if(connection != null) {
@@ -129,15 +119,14 @@ namespace FeriaVirtual.Infraestructure.Database {
             }
         }
 
-
         // Disposed method.
+
         #region "Destructor."
 
         public void Dispose() {
-            Dispose( true );
-            GC.SuppressFinalize( this );
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
-
 
         protected virtual void Dispose(bool disposing) {
             if(disposed) {
@@ -151,10 +140,9 @@ namespace FeriaVirtual.Infraestructure.Database {
         }
 
         ~OracleConnect() {
-            Dispose( false );
+            Dispose(false);
         }
 
-        #endregion
-
+        #endregion "Destructor."
     }
 }

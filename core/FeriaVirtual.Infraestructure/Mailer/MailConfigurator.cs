@@ -4,8 +4,7 @@ using System.Net.Mail;
 namespace FeriaVirtual.Infraestructure.Mailer {
 
     public class MailConfigurator {
-
-        private SmtpClient smtpClient;
+        private readonly SmtpClient smtpClient;
 
         // Properties.
         public SmtpClient SMTP => smtpClient;
@@ -27,13 +26,7 @@ namespace FeriaVirtual.Infraestructure.Mailer {
             smtpClient.EnableSsl = true;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential( "maipogrande.fv@gmail.com","avaras08" );
+            smtpClient.Credentials = new NetworkCredential("maipogrande.fv@gmail.com","avaras08");
         }
-
-
-
-
-
-
     }
 }

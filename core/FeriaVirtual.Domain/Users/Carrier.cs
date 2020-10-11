@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {
@@ -7,8 +6,7 @@ namespace FeriaVirtual.Domain.Users {
     public class Carrier:Person {
 
         // Properties
-        public IList<Vehicle> VehicleList;
-
+        public IList<Vehicle> VehicleList { get; set; }
 
         // constructors
         private Carrier() : base() {
@@ -16,10 +14,9 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         private Carrier(string id,string firstName,string lastName,string dni) :
-            base( id,firstName,lastName,dni ) {
+            base(id,firstName,lastName,dni) {
             VehicleList= new List<Vehicle>();
         }
-
 
         // Named constructors.
         public static Carrier CreateCarrier() {
@@ -27,18 +24,15 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         public static Carrier CreateCarrier(string id,string firstName,string lastName,string dni) {
-            return new Carrier( id,firstName,lastName,dni );
+            return new Carrier(id,firstName,lastName,dni);
         }
 
-
         public void AddVehicle(Vehicle vehicle) {
-            VehicleList.Add( vehicle );
+            VehicleList.Add(vehicle);
         }
 
         public void RemoveVehicle(Vehicle vehicle) {
-            VehicleList.Remove( vehicle );
+            VehicleList.Remove(vehicle);
         }
-
-
     }
 }

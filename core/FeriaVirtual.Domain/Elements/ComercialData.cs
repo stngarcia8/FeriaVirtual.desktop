@@ -4,7 +4,6 @@ using FeriaVirtual.Domain.Dto;
 namespace FeriaVirtual.Domain.Elements {
 
     public class ComercialData {
-
         public string ComercialID { get; set; }
         public string ClientID { get; set; }
         public string CompanyName { get; set; }
@@ -17,14 +16,13 @@ namespace FeriaVirtual.Domain.Elements {
         public Country Country { get; set; }
         public string PhoneNumber { get; set; }
 
-
         // Contructor.
         private ComercialData() {
-            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,string.Empty );
+            InitializeObjects(Guid.NewGuid().ToString(),string.Empty,string.Empty);
         }
 
         private ComercialData(string comercialId,string companyName,string comercialDNI) {
-            InitializeObjects( comercialId,companyName,comercialDNI );
+            InitializeObjects(comercialId,companyName,comercialDNI);
         }
 
         private void InitializeObjects(string comercialId,string companyName,string comercialDNI) {
@@ -42,16 +40,13 @@ namespace FeriaVirtual.Domain.Elements {
             PhoneNumber= string.Empty;
         }
 
-
         // Named contructors.
         public static ComercialData CreateComercialData() {
             return new ComercialData();
         }
 
         public static ComercialData CreateComercialData(string comercialId,string companyName,string comercialDNI) {
-            return new ComercialData( comercialId,companyName,comercialDNI );
+            return new ComercialData(comercialId,companyName,comercialDNI);
         }
-
-
     }
 }

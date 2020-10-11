@@ -15,9 +15,5 @@
             sql.Append("select * from fv_user.tipo_contrato order by id_tipo_contrato  ");
             base.FindAll();
         }
-
-
-
     }
-
 }

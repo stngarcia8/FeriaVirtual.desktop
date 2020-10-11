@@ -1,9 +1,12 @@
 ﻿using FeriaVirtual.Domain.DomainExeptions;
 
 namespace FeriaVirtual.Business.Exceptions {
+
+#pragma warning disable S3925 // "ISerializable" should be implemented correctly
     public class InvalidLoginException:DomainException {
+#pragma warning restore S3925 // "ISerializable" should be implemented correctly
 
-        public InvalidLoginException(string message) : base( message ) { }
-
+        public InvalidLoginException(string message) : base(message) {
+        }
     }
 }

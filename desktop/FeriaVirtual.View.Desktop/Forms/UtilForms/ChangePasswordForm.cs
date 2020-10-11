@@ -8,13 +8,12 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
 
         // Properties.
         public bool PasswordChanged { get; set; }
-        public string NewPassword { get; set; }
 
+        public string NewPassword { get; set; }
 
         public ChangePasswordForm() {
             InitializeComponent();
         }
-
 
         private void ChangePasswordForm_Load(object sender,EventArgs e) {
             NewPasswordTextBox.Text= string.Empty;
@@ -48,9 +47,5 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
             }
             return result;
         }
-
-
-
-
     }
 }

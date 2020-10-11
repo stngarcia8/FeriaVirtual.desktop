@@ -4,14 +4,14 @@
 
         // Properties
         public int VehicleTypeID { get; set; }
+
         public string VehicleTypeDescription { get; set; }
 
-            // Constructor
-            private VehicleType() {
+        // Constructor
+        private VehicleType() {
             VehicleTypeID= 0;
             VehicleTypeDescription= string.Empty;
         }
-
 
         // Named constructor
         public static VehicleType CreateVehicle() {
@@ -21,8 +21,5 @@
         public override string ToString() {
             return VehicleTypeDescription;
         }
-
-
-
     }
 }

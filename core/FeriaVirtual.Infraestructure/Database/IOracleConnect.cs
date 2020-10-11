@@ -1,6 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 
 namespace FeriaVirtual.Infraestructure.Database {
+
     public interface IOracleConnect {
 
         void CloseConnection();
@@ -16,6 +17,5 @@ namespace FeriaVirtual.Infraestructure.Database {
         OracleTransaction GetTransaction();
 
         void RollBack();
-
     }
 }

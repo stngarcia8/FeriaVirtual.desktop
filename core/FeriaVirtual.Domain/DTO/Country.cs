@@ -1,8 +1,10 @@
 ﻿namespace FeriaVirtual.Domain.Dto {
+
     public class Country {
 
         // Properties
         public int CountryID { get; set; }
+
         public string CountryName { get; set; }
         public string CountryPrefix { get; set; }
 
@@ -13,17 +15,13 @@
             CountryPrefix= string.Empty;
         }
 
-
         // Named constructor
         public static Country CreateCountry() {
             return new Country();
         }
 
-
         public override string ToString() {
             return CountryName;
         }
-
-
     }
 }

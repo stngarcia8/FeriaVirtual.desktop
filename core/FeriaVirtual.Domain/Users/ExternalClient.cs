@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
-using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
 
 namespace FeriaVirtual.Domain.Users {
 
     public class ExternalClient:Person {
 
-
         // Properties
-        public IList<Order> OrderList;
+        public IList<Order> OrderList { get; set; }
 
         // constructors
         private ExternalClient() : base() {
@@ -16,10 +14,9 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         private ExternalClient(string id,string firstName,string lastName,string dni) :
-            base( id,firstName,lastName,dni ) {
+            base(id,firstName,lastName,dni) {
             OrderList= new List<Order>();
         }
-
 
         // Named constructors.
         public static ExternalClient CreateClient() {
@@ -27,19 +24,15 @@ namespace FeriaVirtual.Domain.Users {
         }
 
         public static ExternalClient CreateClient(string id,string firstName,string lastName,string dni) {
-            return new ExternalClient( id,firstName,lastName,dni );
+            return new ExternalClient(id,firstName,lastName,dni);
         }
 
-
         public void AddOrder(Order order) {
-            OrderList.Add( order );
+            OrderList.Add(order);
         }
 
         public void RemoveOrder(Order order) {
-            OrderList.Remove( order );
+            OrderList.Remove(order);
         }
-
-
-
     }
 }

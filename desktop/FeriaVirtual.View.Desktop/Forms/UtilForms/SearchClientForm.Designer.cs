@@ -70,6 +70,7 @@
             // 
             this.ListFilterButton.AutoSize = true;
             this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ListFilterButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ListFilterButton.ForeColor = System.Drawing.Color.Black;
             this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -185,6 +186,7 @@
             // 
             this.SearchAceptButton.AutoSize = true;
             this.SearchAceptButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SearchAceptButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.SearchAceptButton.ForeColor = System.Drawing.Color.Black;
             this.SearchAceptButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SearchAceptButton.ImageKey = "button-acept.png";
@@ -202,6 +204,7 @@
             // 
             this.SearchCancelButton.AutoSize = true;
             this.SearchCancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SearchCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.SearchCancelButton.ForeColor = System.Drawing.Color.Black;
             this.SearchCancelButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SearchCancelButton.ImageKey = "button-cancel.png";
@@ -217,9 +220,11 @@
             // 
             // SearchClientForm
             // 
+            this.AcceptButton = this.SearchAceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
+            this.CancelButton = this.SearchCancelButton;
             this.ClientSize = new System.Drawing.Size(484, 331);
             this.Controls.Add(this.SearchCancelButton);
             this.Controls.Add(this.SearchAceptButton);

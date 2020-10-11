@@ -15,7 +15,5 @@
             sql.Append("select * from fv_user.tipo_transporte order by id_tipo_transporte  ");
             base.FindAll();
         }
-
-
     }
 }

@@ -4,6 +4,7 @@
 
         // Properties.
         public string SessionID { get; set; }
+
         public string UserId { get; set; }
         public string ClientID { get; set; }
         public string Username { get; set; }
@@ -12,9 +13,7 @@
         public int ProfileID { get; set; }
         public string ProfileName { get; set; }
 
-
-        public SessionDto() { }
-
-
+        public SessionDto() {
+        }
     }
 }

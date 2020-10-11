@@ -8,7 +8,9 @@ using FeriaVirtual.View.Desktop.Forms.Consultor;
 using FeriaVirtual.View.Desktop.Helpers;
 
 namespace FeriaVirtual.View.Desktop.Login {
+
     public partial class LoginForm:Form {
+
         public LoginForm() {
             InitializeComponent();
         }
@@ -28,20 +30,19 @@ namespace FeriaVirtual.View.Desktop.Login {
 
         private void StartSession() {
             try {
-                Credential user = Credential.CreateCredential();
-                user.Username= UsernameTextBox.Text;
-                user.Password= PasswordTextBox.Text;
-                user.EncriptedPassword=user.EncryptPassword();
-                LoginUseCase login = LoginUseCase.CreateLogin(user.Username,user.EncriptedPassword);
-                login.StartSession();
-                ActualUser.ActualEmployee= login.EmployeeLogged;
-                OpenForm();
+            Credential user = Credential.CreateCredential();
+            user.Username= UsernameTextBox.Text;
+            user.Password= PasswordTextBox.Text;
+            user.EncriptedPassword=user.EncryptPassword();
+            LoginUseCase login = LoginUseCase.CreateLogin(user.Username,user.EncriptedPassword);
+            login.StartSession();
+            ActualUser.ActualEmployee= login.EmployeeLogged;
+            OpenForm();
             } catch(Exception ex) {
-                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
-                UsernameTextBox.Focus();
+            MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            UsernameTextBox.Focus();
             }
         }
-
 
         // Open form method.
         private void OpenForm() {
@@ -56,7 +57,5 @@ namespace FeriaVirtual.View.Desktop.Login {
             ICommand openFormCommand = OpenFormCommand.Open(form);
             openFormCommand.Execute();
         }
-
-
     }
 }

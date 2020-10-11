@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using FeriaVirtual.Domain.Contracts;
 using FeriaVirtual.Infraestructure.Database;
@@ -7,7 +7,6 @@ using FeriaVirtual.Infraestructure.Database;
 namespace FeriaVirtual.Data.Repository {
 
     public class ContractRepository:Repository {
-
         private readonly int profileID;
 
         // Constructor
@@ -20,14 +19,12 @@ namespace FeriaVirtual.Data.Repository {
             return new ContractRepository(profileId);
         }
 
-
         public new void FindAll() {
             sql.Append("select * from fv_user.vwObtenerContratos  where perfil_contrato=:pIdPerfil ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             querySelect.AddParameter("pIdPerfil",profileID,DbType.Int32);
             dataTable = querySelect.ExecuteQuery();
         }
-
 
         public new void FindById(string id) {
             sql.Append("select * from fv_user.vwObtenerContratos where id_contrato=:pId and perfil_contrato=:pIdPerfil ");
@@ -37,7 +34,6 @@ namespace FeriaVirtual.Data.Repository {
             dataTable = querySelect.ExecuteQuery();
         }
 
-
         public void FindValidContracts() {
             sql.Append("select * from fv_user.vwObtenerContratos where esta_vigente=1 and perfil_contrato=:pIdPerfil ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
@@ -45,14 +41,12 @@ namespace FeriaVirtual.Data.Repository {
             dataTable = querySelect.ExecuteQuery();
         }
 
-
         public void FindInvalidContracts() {
             sql.Append("select * from fv_user.vwObtenerContratos where esta_vigente=0 and perfil_contrato=:pIdPerfil ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             querySelect.AddParameter("pIdPerfil",profileID,DbType.Int32);
             dataTable = querySelect.ExecuteQuery();
         }
-
 
         public void NewContract(Contract contract) {
             IQueryAction query = DefineQueryAction("spAgregarContratos ");
@@ -119,7 +113,7 @@ namespace FeriaVirtual.Data.Repository {
             contract.IsValid = int.Parse(row["esta_vigente"].ToString());
             contract.ContractCommission = float.Parse(row["Comision"].ToString());
             contract.Details = new List<ContractDetail>();
-            contract.Details = FindDetails(contract.ContractID); 
+            contract.Details = FindDetails(contract.ContractID);
             return contract;
         }
 
@@ -131,7 +125,7 @@ namespace FeriaVirtual.Data.Repository {
             return GetDetailsData(querySelect.ExecuteQuery());
         }
 
-        private IList<ContractDetail> GetDetailsData( DataTable data) {
+        private IList<ContractDetail> GetDetailsData(DataTable data) {
             IList<ContractDetail> detailList = new List<ContractDetail>();
             if(data.Rows.Count.Equals(0)) {
                 return detailList;
@@ -152,9 +146,5 @@ namespace FeriaVirtual.Data.Repository {
             detail.FineValue = float.Parse(row["Valor multa"].ToString());
             return detail;
         }
-
-
-
     }
-
 }

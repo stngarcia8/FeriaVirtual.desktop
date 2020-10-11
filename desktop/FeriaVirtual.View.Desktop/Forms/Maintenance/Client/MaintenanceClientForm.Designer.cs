@@ -101,7 +101,7 @@
             this.OptionNewToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_new;
             this.OptionNewToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionNewToolStripMenuItem.Name = "OptionNewToolStripMenuItem";
-            this.OptionNewToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.OptionNewToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionNewToolStripMenuItem.Text = "&Nuevo cliente";
             this.OptionNewToolStripMenuItem.Click += new System.EventHandler(this.OptionNewToolStripMenuItem_Click);
             // 
@@ -110,14 +110,14 @@
             this.OptionEditToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_edit;
             this.OptionEditToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionEditToolStripMenuItem.Name = "OptionEditToolStripMenuItem";
-            this.OptionEditToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.OptionEditToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionEditToolStripMenuItem.Text = "&Editar cliente";
             this.OptionEditToolStripMenuItem.Click += new System.EventHandler(this.OptionEditToolStripMenuItem_Click);
             // 
             // OptionToolStripSeparator1
             // 
             this.OptionToolStripSeparator1.Name = "OptionToolStripSeparator1";
-            this.OptionToolStripSeparator1.Size = new System.Drawing.Size(172, 6);
+            this.OptionToolStripSeparator1.Size = new System.Drawing.Size(166, 6);
             // 
             // OptionRefreshToolStripMenuItem
             // 
@@ -126,21 +126,21 @@
             this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
             this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
             this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
             this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
             // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
-            this.optionToolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
             // 
             // OptionCloseToolStripMenuItem
             // 
             this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
             this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
             this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 

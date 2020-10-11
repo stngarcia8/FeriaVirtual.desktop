@@ -1,18 +1,11 @@
 ﻿using System;
-using FeriaVirtual.Domain.Users;
-using FeriaVirtual.Business.Users;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using FeriaVirtual.Business.Users;
 
 namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
-    public partial class MaintenanceUserForm:Form {
 
+    public partial class MaintenanceUserForm:Form {
         private string idSelected;
 
         public MaintenanceUserForm() {
@@ -20,138 +13,141 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.User {
         }
 
         private void MaintenanceUserForm_Load(object sender,EventArgs e) {
-            this.ListFilterTextBox.Text = string.Empty;
-            this.LoadFilters();
-            this.ListFilterComboBox.SelectedIndex = 0;
-            this.LoadUsers( 0 );
+            ListFilterTextBox.Text = string.Empty;
+            LoadFilters();
+            ListFilterComboBox.SelectedIndex = 0;
+            LoadUsers(0);
         }
 
         private void OptionNewToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.OpenRegisterForm( true );
+            OpenRegisterForm(true);
         }
 
         private void OptionEditToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.GetRecordId();
-            this.OpenRegisterForm( false );
+            EditUserInfo();
         }
 
         private void OptionRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.LoadUsers( this.ListFilterComboBox.SelectedIndex );
+            LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
         private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.Close();
+            Close();
         }
 
-
-
-
-
-
         private void OptionNewButton_Click(object sender,EventArgs e) {
-            this.OpenRegisterForm( true );
+            OpenRegisterForm(true);
         }
 
         private void OptionEditButton_Click(object sender,EventArgs e) {
-            this.GetRecordId();
-            this.OpenRegisterForm( false );
+            EditUserInfo();
         }
 
         private void OptionCloseButton_Click(object sender,EventArgs e) {
-            this.Close();
+            Close();
         }
 
         private void ListFilterComboBox_SelectedIndexChanged(object sender,EventArgs e) {
-            this.ListFilterTextBox.Visible = (this.ListFilterComboBox.SelectedIndex.Equals( 1 ) ? true : false);
+            ListFilterTextBox.Visible = ListFilterComboBox.SelectedIndex.Equals(1);
         }
 
         private void ListFilterButton_Click(object sender,EventArgs e) {
-            this.LoadUsers( this.ListFilterComboBox.SelectedIndex );
+            LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
         private void ListDataGridView_SelectionChanged(object sender,EventArgs e) {
-            this.GetRecordId();
+            GetRecordId();
         }
 
         private void ListDataGridView_DoubleClick(object sender,EventArgs e) {
-            this.GetRecordId();
-            this.OpenRegisterForm( false );
+            EditUserInfo();
         }
-
-
 
         private void LoadFilters() {
-            this.ListFilterComboBox.BeginUpdate();
-            this.ListFilterComboBox.Items.Clear();
-            this.ListFilterComboBox.Items.Add( "Todos" );
-            this.ListFilterComboBox.Items.Add( "Nombre de usuario");
-            this.ListFilterComboBox.Items.Add( "Usuarios habilitados" );
-            this.ListFilterComboBox.Items.Add( "Usuarios inhabilitados" );
-            this.ListFilterComboBox.EndUpdate();
+            ListFilterComboBox.BeginUpdate();
+            ListFilterComboBox.Items.Clear();
+            ListFilterComboBox.Items.Add("Todos");
+            ListFilterComboBox.Items.Add("Nombre de usuario");
+            ListFilterComboBox.Items.Add("Usuarios habilitados");
+            ListFilterComboBox.Items.Add("Usuarios inhabilitados");
+            ListFilterComboBox.EndUpdate();
         }
-
 
         private void LoadUsers(int filterType) {
             try {
                 EmployeeUseCase useCase = EmployeeUseCase.CreateUseCase();
                 DataTable data = new DataTable();
-                this.ListDataGridView.DataSource = null;
-                if(filterType.Equals( 0 )) data = useCase.FindAll();
-                if(filterType.Equals( 1)) data=useCase.FindUsersByUsername(this.ListFilterTextBox.Text);
-                if(filterType.Equals( 2 )) data = useCase.FindActiveUsers();
-                if(filterType.Equals( 3 )) data = useCase.FindInactiveUsers();
-                this.ListDataGridView.DataSource = data;
-                 this.HideColumns();
-                this.DisplayCounts();
+                ListDataGridView.DataSource = null;
+                if(filterType.Equals(0)) {
+                    data = useCase.FindAll();
+                }
+                if(filterType.Equals(1)) {
+                    data=useCase.FindUsersByUsername(ListFilterTextBox.Text);
+                }
+                if(filterType.Equals(2)) {
+                    data = useCase.FindActiveUsers();
+                }
+                if(filterType.Equals(3)) {
+                    data = useCase.FindInactiveUsers();
+                }
+                ListDataGridView.DataSource = data;
+                HideColumns();
+                DisplayCounts();
             } catch(Exception ex) {
-                MessageBox.Show( ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation );
+                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
         }
-
 
         private void HideColumns() {
-            this.ListDataGridView.Columns["id_usuario"].Visible = false;
-            this.ListDataGridView.Columns["id_empleado"].Visible = false;
-            this.ListDataGridView.Columns["password"].Visible = false;
-            this.ListDataGridView.Columns["id_rol"].Visible = false;
-            this.ListDataGridView.Columns["is_active"].Visible = false;
+            ListDataGridView.Columns["id_usuario"].Visible = false;
+            ListDataGridView.Columns["id_empleado"].Visible = false;
+            ListDataGridView.Columns["password"].Visible = false;
+            ListDataGridView.Columns["id_rol"].Visible = false;
+            ListDataGridView.Columns["is_active"].Visible = false;
         }
 
-
-
         private void DisplayCounts() {
-            if(this.ListDataGridView.Rows.Count.Equals( 0 )) {
-                this.ListCountLabel.Text = "No hay registros disponibles.";
-                this.OptionEditButton.Enabled = false;
-                this.OptionEditToolStripMenuItem.Enabled = false;
+            if(ListDataGridView.Rows.Count.Equals(0)) {
+                ListCountLabel.Text = "No hay registros disponibles.";
+                OptionEditButton.Enabled = false;
+                OptionEditToolStripMenuItem.Enabled = false;
             } else {
-                this.ListCountLabel.Text = this.ListDataGridView.Rows.Count.ToString() + " registros encontrados.";
-                this.OptionEditButton.Enabled = true;
-                this.OptionEditToolStripMenuItem.Enabled = true;
-                this.ListDataGridView.Rows[0].Selected = true;
-                this.ListDataGridView.CurrentCell = this.ListDataGridView.Rows[0].Cells[3];
-                this.ListDataGridView.Focus();
+                ListCountLabel.Text = ListDataGridView.Rows.Count.ToString() + " registros encontrados.";
+                OptionEditButton.Enabled = true;
+                OptionEditToolStripMenuItem.Enabled = true;
+                ListDataGridView.Rows[0].Selected = true;
+                ListDataGridView.CurrentCell = ListDataGridView.Rows[0].Cells[3];
+                ListDataGridView.Focus();
             }
         }
 
-
         private void OpenRegisterForm(bool isNew) {
-            UserRegisterForm form = new UserRegisterForm();
-             form.IsNewRecord = isNew;
-              form.idSelected = (isNew ? string.Empty : this.idSelected);
+            UserRegisterForm userRegisterForm = new UserRegisterForm();
+            UserRegisterForm form = userRegisterForm;
+            form.IsNewRecord = isNew;
+            form.IdSelected = (isNew ? string.Empty : idSelected);
             form.ShowDialog();
-             if(form.IsSaved) this.LoadUsers( this.ListFilterComboBox.SelectedIndex );
+            if(form.IsSaved) {
+                LoadUsers(ListFilterComboBox.SelectedIndex);
+            }
         }
-
 
         private void GetRecordId() {
-            this.idSelected = string.Empty;
-            if(this.ListDataGridView.Rows.Count.Equals( 0 )) return;
-            DataGridViewRow row = this.ListDataGridView.CurrentRow;
-            if(row == null) return;
-            this.idSelected=  row.Cells[1].Value.ToString();
+            idSelected = string.Empty;
+            if(ListDataGridView.Rows.Count.Equals(0)) {
+                return;
+            }
+
+            DataGridViewRow row = ListDataGridView.CurrentRow;
+            if(row == null) {
+                return;
+            }
+            idSelected=  row.Cells[1].Value.ToString();
         }
 
-
+        private void EditUserInfo() {
+            GetRecordId();
+            OpenRegisterForm(false);
+        }
     }
 }

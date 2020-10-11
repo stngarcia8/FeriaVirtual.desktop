@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data;
 using FeriaVirtual.Data.HelpersRepository;
+using NLog;
 
 namespace FeriaVirtual.Business.HelpersUseCases {
 
     public class ContractTypeUseCase {
-
-        private ContractTypeRepository repository;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly ContractTypeRepository repository;
 
         // Constructor.
         public ContractTypeUseCase() {
@@ -23,10 +24,9 @@ namespace FeriaVirtual.Business.HelpersUseCases {
                 repository.FindAll();
                 return repository.DataSource;
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error cargando tipos de contratos");
+                throw;
             }
         }
-
     }
-
 }

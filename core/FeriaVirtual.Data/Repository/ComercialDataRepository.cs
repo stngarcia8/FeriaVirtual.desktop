@@ -1,4 +1,6 @@
 ﻿using System;
+using NLog;
+using FeriaVirtual.Data.Exceptions;
 using System.Data;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Infraestructure.Database;
@@ -6,7 +8,7 @@ using FeriaVirtual.Infraestructure.Database;
 namespace FeriaVirtual.Data.Repository {
 
     public class ComercialDataRepository:Repository {
-
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         // Constructor
         private ComercialDataRepository() : base() { }
@@ -25,17 +27,17 @@ namespace FeriaVirtual.Data.Repository {
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error creando dato comercial");
+                throw;
             }
         }
 
         private void SearchExistingBusinessData(string clientID) {
             FindById(clientID);
             if(dataTable.Rows.Count>=1) {
-                throw new Exception("No esta permitido agregar multiples instancias de un dato comercial de una persona.");
+                throw new RepeatedBusinessDataException("No esta permitido agregar multiples instancias de un dato comercial de una persona.");
             }
         }
-
 
         private IQueryAction DefineParameters(ComercialData data,IQueryAction query) {
             query.AddParameter("pRSocial",data.CompanyName,DbType.String);
@@ -56,7 +58,8 @@ namespace FeriaVirtual.Data.Repository {
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al editar datos comerciales");
+                throw;
             }
         }
 
@@ -66,13 +69,11 @@ namespace FeriaVirtual.Data.Repository {
             return GetComercialData();
         }
 
-
         public void DeleteComercialData(string comercialID) {
             IQueryAction query = DefineQueryAction("spEliminarDatosComerciales ");
             query.AddParameter("pIdComercial",comercialID,DbType.String);
             query.ExecuteQuery();
         }
-
 
         private ComercialData GetComercialData() {
             if(dataTable.Rows.Count.Equals(0)) {
@@ -95,8 +96,5 @@ namespace FeriaVirtual.Data.Repository {
             data.PhoneNumber= row["Telefono"].ToString();
             return data;
         }
-
-
-
     }
 }

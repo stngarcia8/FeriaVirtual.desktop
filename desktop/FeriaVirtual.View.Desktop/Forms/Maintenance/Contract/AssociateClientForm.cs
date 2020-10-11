@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using FeriaVirtual.Domain.Contracts;
 using FeriaVirtual.View.Desktop.Forms.UtilForms;
+using FeriaVirtual.View.Desktop.Helpers;
 
 namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
@@ -10,14 +11,13 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
         // Properties.
         public Domain.Users.Client CustomerAssociated { get; set; }
+
         public bool IsNewRecord { get; set; }
         public bool IsSaved { get; set; }
-        public string idSelected { get; set; }
-        public string ProfileName { get; set; }
-        public string SingleProfileName { get; set; }
-        public int ProfileID { get; set; }
+        public string IdSelected { get; set; }
         public ContractDetail CurrentDetail { get; set; }
         public IList<ContractDetail> ActualDetails { get; set; }
+        public IProfileInfo Profile { get; set; }
 
         public AssociateClientForm() {
             InitializeComponent();
@@ -25,28 +25,26 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void AssociateClientForm_Load(object sender,EventArgs e) {
-            Text= (IsNewRecord ? string.Format("Asociando nuevo {0}.",SingleProfileName) : string.Format("Editando {0} asociado.",SingleProfileName));
-            AceptContractButton.Enabled = (IsNewRecord ? false : true);
-            SearchClientButton.Visible = (!IsNewRecord ? false : true);
-            DataClientGroupBox.Text= string.Format("Datos del {0}",SingleProfileName);
+            Text= (IsNewRecord ? string.Format("Asociando nuevo {0}.",Profile.SingleProfileName) : string.Format("Editando {0} asociado.",Profile.SingleProfileName));
+            AceptContractButton.Enabled = !IsNewRecord;
+            SearchClientButton.Visible = !IsNewRecord;
+            DataClientGroupBox.Text= string.Format("Datos del {0}",Profile.SingleProfileName);
             if(IsNewRecord) {
                 CurrentDetail = ContractDetail.CreateDetail();
                 ClearControls();
             } else {
-                putInfoDataIntoControls();
+                PutInfoDataIntoControls();
             }
         }
 
         private void SearchClientButton_Click(object sender,EventArgs e) {
             SearchClientForm form = new SearchClientForm {
-                SingleProfileName = SingleProfileName,
-                ProfileID= ProfileID,
-                ProfileName = ProfileName
+                Profile= Profile
             };
             form.ShowDialog();
-            if(form.isFound) {
+            if(form.IsFound) {
                 if(FindRepeatCustomerInDetails(form.CustomerFound)) {
-                    string message = string.Format("El {0} que intenta asociar al contrato ya se encuentra en la lista de {1} asociados al contrato.",SingleProfileName,ProfileName);
+                    string message = string.Format("El {0} que intenta asociar al contrato ya se encuentra en la lista de {1} asociados al contrato.",Profile.SingleProfileName,Profile.ProfileName);
                     MessageBox.Show(message,"Atención!",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     CustomerAssociated= null;
                     ClearControls();
@@ -55,7 +53,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
                     PutCustomerDataIntoControls();
                 }
             }
-            AceptContractButton.Enabled = (CustomerAssociated==null ? false : true);
+            AceptContractButton.Enabled = CustomerAssociated !=null;
         }
 
         private bool FindRepeatCustomerInDetails(Domain.Users.Client customer) {
@@ -68,7 +66,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             }
             return isRepeated;
         }
-
 
         private void AceptContractButton_Click(object sender,EventArgs e) {
             CurrentDetail.Customer = CustomerAssociated;
@@ -98,7 +95,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             FineValueNumericUpDown.Value= 0;
         }
 
-        private void putInfoDataIntoControls() {
+        private void PutInfoDataIntoControls() {
             CustomerAssociated = CurrentDetail.Customer;
             PutCustomerDataIntoControls();
             ObservationTextBox.Text= CurrentDetail.ContractObservation;
@@ -106,8 +103,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             FineValueNumericUpDown.Value= decimal.Parse(CurrentDetail.FineValue.ToString());
             ObservationTextBox.Focus();
         }
-
-
 
         private void PutCustomerDataIntoControls() {
             FirstNameTextBox.Text= CustomerAssociated.FirstName;
@@ -119,12 +114,5 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             CommercialDniTextBox.Text= CustomerAssociated.ComercialInfo.ComercialDNI;
             EmailTextBox.Text= CustomerAssociated.ComercialInfo.Email;
         }
-
-
-
-
-
-
-
     }
 }

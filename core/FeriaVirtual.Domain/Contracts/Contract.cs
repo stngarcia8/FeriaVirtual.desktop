@@ -1,5 +1,4 @@
 ﻿using System;
-using FeriaVirtual.Domain.Dto;
 using System.Collections.Generic;
 
 namespace FeriaVirtual.Domain.Contracts {
@@ -8,6 +7,7 @@ namespace FeriaVirtual.Domain.Contracts {
 
         // Properties
         public string ContractID { get; set; }
+
         public Dto.ContractType TypeContract { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -17,12 +17,10 @@ namespace FeriaVirtual.Domain.Contracts {
         public DateTime ContractRegisterDate { get; set; }
         public IList<ContractDetail> Details { get; set; }
 
-
         // Constructor
         private Contract() {
             InitializeObjects();
         }
-
 
         private void InitializeObjects() {
             ContractID = Guid.NewGuid().ToString();
@@ -35,7 +33,6 @@ namespace FeriaVirtual.Domain.Contracts {
             ContractRegisterDate= DateTime.Now.Date;
             Details = new List<ContractDetail>();
         }
-
 
         // Named constructor.
         public static Contract CreateContract() {
@@ -57,9 +54,5 @@ namespace FeriaVirtual.Domain.Contracts {
         public override string ToString() {
             return ContractDescription;
         }
-
-
-
     }
-
 }

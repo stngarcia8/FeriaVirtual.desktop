@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\desktop\packages\NLog.4.7.5\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\UserStatusEnum.cs" />
+    <Compile Include="Exceptions\RepeatedBusinessDataException.cs" />
     <Compile Include="HelpersRepository\ContractTypeRepository.cs" />
     <Compile Include="HelpersRepository\HelperRepository.cs" />
     <Compile Include="HelpersRepository\VehicleTypeRepository.cs" />

@@ -9,34 +9,29 @@ namespace FeriaVirtual.Data.Repository {
         // Constructor.
         private EmployeeRepository() { }
 
-
         // Named constructor.
         public static EmployeeRepository OpenRepository() {
             return new EmployeeRepository();
         }
 
-
         public new void FindAll() {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios " );
+            sql.Append("select * from fv_user.vwObtenerUsuarios ");
             base.FindAll();
         }
-
 
         public void FindTableByName(string username) {
             sql.Append("select * from fv_user.vwObtenerUsuarios where username=:pName ");
             base.FindByName(username);
         }
 
-
-        public new  Employee FindByName(string username) {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where username=:pName " );
-            base.FindByName( username );
-            return this.GetEmployeeData();
+        public new Employee FindByName(string username) {
+            sql.Append("select * from fv_user.vwObtenerUsuarios where username=:pName ");
+            base.FindByName(username);
+            return GetEmployeeData();
         }
 
-
         private Employee GetEmployeeData() {
-            if(dataTable.Rows.Count.Equals( 0 )) {
+            if(dataTable.Rows.Count.Equals(0)) {
                 return null;
             }
             DataRow row = dataTable.Rows[0];
@@ -49,39 +44,34 @@ namespace FeriaVirtual.Data.Repository {
             employee.Credentials.Password = row["password"].ToString();
             employee.Credentials.EncriptedPassword= row["password"].ToString();
             employee.Credentials.Email= row["Email"].ToString();
-            employee.Credentials.IsActive= (int.Parse( row["is_active"].ToString() ).Equals( 1 ) ? true : false);
-            employee.Profile.ProfileID= int.Parse( row["id_rol"].ToString() );
+            employee.Credentials.IsActive= int.Parse(row["is_active"].ToString())== (int)Enums.UserStatus.Active;
+            employee.Profile.ProfileID= int.Parse(row["id_rol"].ToString());
             employee.Profile.ProfileName= row["Rol"].ToString();
             return employee;
         }
 
-
-       public new Employee FindById(string id) {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where id_usuario=:pId " );
-            base.FindById( id );
-            return this.GetEmployeeData();
+        public new Employee FindById(string id) {
+            sql.Append("select * from fv_user.vwObtenerUsuarios where id_usuario=:pId ");
+            base.FindById(id);
+            return GetEmployeeData();
         }
-
 
         public void FindActiveUsers() {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where is_active=1 " );
+            sql.Append("select * from fv_user.vwObtenerUsuarios where is_active=1 ");
             base.FindAll();
         }
-
 
         public void FindInactiveUsers() {
-            sql.Append( "select * from fv_user.vwObtenerUsuarios where is_active=0 " );
+            sql.Append("select * from fv_user.vwObtenerUsuarios where is_active=0 ");
             base.FindAll();
         }
 
-
         public void EnableOrDisableUser(string id,int typeAction) {
-            IQueryAction query = DefineQueryAction( "spHabilitarUsuario" );
-            query.AddParameter( "pIdUsuario",id,DbType.String );
-            query.AddParameter( "pTipoAccion",typeAction,DbType.Int32 );
+            IQueryAction query = DefineQueryAction("spHabilitarUsuario");
+            query.AddParameter("pIdUsuario",id,DbType.String);
+            query.AddParameter("pTipoAccion",typeAction,DbType.Int32);
             query.ExecuteQuery();
         }
-
 
         public void NewEmployee(Employee employee) {
             IQueryAction query = DefineQueryAction("spAgregarUsuario");
@@ -102,10 +92,9 @@ namespace FeriaVirtual.Data.Repository {
         }
 
         public void EditEmployee(Employee employee) {
-            IQueryAction query = DefineQueryAction( "spActualizarUsuario" );
+            IQueryAction query = DefineQueryAction("spActualizarUsuario");
             query = DefineEmployeeParameters(employee,query);
             query.ExecuteQuery();
         }
-
     }
 }

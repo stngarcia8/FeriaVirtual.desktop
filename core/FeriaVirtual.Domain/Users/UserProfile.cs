@@ -1,8 +1,10 @@
 ﻿namespace FeriaVirtual.Domain.Users {
+
     public class UserProfile {
 
         // properties
         public int ProfileID { get; set; }
+
         public string ProfileName { get; set; }
 
         //Constructors.
@@ -22,14 +24,11 @@
         }
 
         public static UserProfile CreateProfile(int profileId,string profileName) {
-            return new UserProfile( profileId,profileName );
+            return new UserProfile(profileId,profileName);
         }
-
 
         public override string ToString() {
             return ProfileName;
         }
-
-
     }
 }

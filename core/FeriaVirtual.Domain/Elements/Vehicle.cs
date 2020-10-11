@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using FeriaVirtual.Domain.Dto;
 
 namespace FeriaVirtual.Domain.Elements {
@@ -8,6 +7,7 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Properties.
         public string VehicleID { get; set; }
+
         public string ClientID { get; set; }
         public VehicleType VehicleType { get; set; }
         public string VehiclePatent { get; set; }
@@ -15,14 +15,13 @@ namespace FeriaVirtual.Domain.Elements {
         public float VehicleCapacity { get; set; }
         public int VehicleAvailable { get; set; }
 
-
         // Constructor
         private Vehicle() {
-            InitializeObjects( Guid.NewGuid().ToString(),string.Empty,string.Empty,0 );
+            InitializeObjects(Guid.NewGuid().ToString(),string.Empty,string.Empty,0);
         }
 
         private Vehicle(string id,string clientID,string patent,float capacity) {
-            InitializeObjects( id,clientID,patent,capacity );
+            InitializeObjects(id,clientID,patent,capacity);
         }
 
         private void InitializeObjects(string id,string clientID,string patent,float capacity) {
@@ -35,15 +34,13 @@ namespace FeriaVirtual.Domain.Elements {
             VehicleAvailable = 1;
         }
 
-
         // Named constructors.
         public static Vehicle CreateVehicle() {
             return new Vehicle();
         }
 
         public static Vehicle CreateVehicle(string id,string clientID,string patent,float capacity) {
-            return new Vehicle( id,clientID,patent,capacity );
+            return new Vehicle(id,clientID,patent,capacity);
         }
-
     }
 }

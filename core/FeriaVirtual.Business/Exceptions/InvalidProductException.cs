@@ -2,9 +2,11 @@
 
 namespace FeriaVirtual.Business.Exceptions {
 
+#pragma warning disable S3925 // "ISerializable" should be implemented correctly
     public class InvalidProductException:DomainException {
+#pragma warning restore S3925 // "ISerializable" should be implemented correctly
 
-        public InvalidProductException(string message) : base( message ) { }
-
+        public InvalidProductException(string message) : base(message) {
+        }
     }
 }

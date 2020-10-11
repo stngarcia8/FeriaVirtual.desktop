@@ -2,58 +2,56 @@
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Elements;
+using NLog;
 
 namespace FeriaVirtual.Business.Elements {
 
     public class ComercialDataUseCase {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private ComercialDataRepository repository;
+        private readonly ComercialDataRepository repository;
 
         // Constructor.
         private ComercialDataUseCase() {
             repository= ComercialDataRepository.OpenRepository();
         }
 
-
         // Named constructor.
         public static ComercialDataUseCase CreateUseCase() {
             return new ComercialDataUseCase();
         }
 
-
         public void NewCommercialData(ComercialData data,string clientID) {
             try {
-                IValidator validator = ComercialDataValidator.CreateValidator( data,false );
+                IValidator validator = ComercialDataValidator.CreateValidator(data,false);
                 validator.Validate();
-                repository.NewComercialData( data,clientID );
+                repository.NewComercialData(data,clientID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error creando datos comerciales");
+                throw;
             }
         }
-
 
         public void EditCommercialData(ComercialData data,string clientID) {
             try {
-                IValidator validator = ComercialDataValidator.CreateValidator( data,true );
+                IValidator validator = ComercialDataValidator.CreateValidator(data,true);
                 validator.Validate();
-                repository.EditComercialData( data,clientID );
+                repository.EditComercialData(data,clientID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error editando datos comerciales");
+                throw;
             }
         }
 
-
         public ComercialData FindComercialDataByID(string id) {
-            repository.FindById( id );
-            return ConvertToComercialData( repository.DataSource );
+            repository.FindById(id);
+            return ConvertToComercialData(repository.DataSource);
         }
-
 
         private ComercialData ConvertToComercialData(DataTable table) {
             ComercialData data = ComercialData.CreateComercialData();
-            if(table.Rows.Count.Equals( 0 )) {
+            if(table.Rows.Count.Equals(0)) {
                 return data;
             }
             DataRow row = table.Rows[0];
@@ -74,14 +72,13 @@ namespace FeriaVirtual.Business.Elements {
             return data;
         }
 
-
         public void DeleteCommercialData(string comercialID) {
             try {
-                repository.DeleteComercialData( comercialID );
+                repository.DeleteComercialData(comercialID);
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error eliminando datos comerciales");
+                throw;
             }
         }
-
     }
 }

@@ -330,53 +330,54 @@
             // CancelContractButton
             // 
             this.CancelContractButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelContractButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CancelContractButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelContractButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CancelContractButton.ImageKey = "button-cancel.png";
             this.CancelContractButton.ImageList = this.FormImageList;
-            this.CancelContractButton.Location = new System.Drawing.Point(525, 250);
+            this.CancelContractButton.Location = new System.Drawing.Point(525, 275);
             this.CancelContractButton.Name = "CancelContractButton";
-            this.CancelContractButton.Size = new System.Drawing.Size(125, 50);
+            this.CancelContractButton.Size = new System.Drawing.Size(125, 25);
             this.CancelContractButton.TabIndex = 4;
             this.CancelContractButton.Text = "Cancelar";
-            this.CancelContractButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CancelContractButton.UseVisualStyleBackColor = true;
             this.CancelContractButton.Click += new System.EventHandler(this.CancelContractButton_Click);
             // 
             // AceptContractButton
             // 
             this.AceptContractButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AceptContractButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.AceptContractButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.AceptContractButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.AceptContractButton.ImageKey = "button-acept.png";
             this.AceptContractButton.ImageList = this.FormImageList;
-            this.AceptContractButton.Location = new System.Drawing.Point(525, 175);
+            this.AceptContractButton.Location = new System.Drawing.Point(525, 225);
             this.AceptContractButton.Name = "AceptContractButton";
-            this.AceptContractButton.Size = new System.Drawing.Size(125, 50);
+            this.AceptContractButton.Size = new System.Drawing.Size(125, 25);
             this.AceptContractButton.TabIndex = 3;
             this.AceptContractButton.Text = "Aceptar";
-            this.AceptContractButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.AceptContractButton.UseVisualStyleBackColor = true;
             this.AceptContractButton.Click += new System.EventHandler(this.AceptContractButton_Click);
             // 
             // SearchClientButton
             // 
             this.SearchClientButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SearchClientButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.SearchClientButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SearchClientButton.ImageKey = "button-find.png";
             this.SearchClientButton.ImageList = this.FormImageList;
             this.SearchClientButton.Location = new System.Drawing.Point(525, 25);
             this.SearchClientButton.Name = "SearchClientButton";
-            this.SearchClientButton.Size = new System.Drawing.Size(125, 50);
+            this.SearchClientButton.Size = new System.Drawing.Size(100, 50);
             this.SearchClientButton.TabIndex = 1;
             this.SearchClientButton.Text = "&Buscar cliente";
-            this.SearchClientButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.SearchClientButton.UseVisualStyleBackColor = true;
             this.SearchClientButton.Click += new System.EventHandler(this.SearchClientButton_Click);
             // 
             // AssociateClientForm
             // 
+            this.AcceptButton = this.AceptContractButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(658, 314);
+            this.CancelButton = this.CancelContractButton;
+            this.ClientSize = new System.Drawing.Size(653, 314);
             this.Controls.Add(this.CancelContractButton);
             this.Controls.Add(this.AceptContractButton);
             this.Controls.Add(this.ContractualDataGroupBox);

@@ -1,24 +1,16 @@
-﻿using System;
-using System.Data;
-using FeriaVirtual.Business.Exceptions;
-using FeriaVirtual.Business.Orders;
+﻿using FeriaVirtual.Business.Exceptions;
 using FeriaVirtual.Domain.Elements;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FeriaVirtual.Business.Validators {
 
-    public class OrderValidator: Validator, IValidator{
-
-        private Order order;
+    public class OrderValidator:Validator, IValidator {
+        private readonly Order order;
 
         //Constructor
         private OrderValidator(Order order,bool editMode) : base() {
             this.order=order;
             this.editMode= editMode;
-            processName= !editMode ?"registrar solicitud":"editar solicitud";
+            processName= !editMode ? "registrar solicitud" : "editar solicitud";
         }
 
         // Named constructor
@@ -34,9 +26,5 @@ namespace FeriaVirtual.Business.Validators {
                 throw new InvalidOrderException(GenerateErrorMessage());
             }
         }
-
-
-
-
     }
 }

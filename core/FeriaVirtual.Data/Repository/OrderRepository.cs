@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using System.Data;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Repository {
 
-    public class OrderRepository: Repository {
-
-        private Order order;
+    public class OrderRepository:Repository {
+        private readonly Order order;
 
         // properties
         public Order Order => order;
@@ -31,15 +25,14 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter("pIdCliente",clientID,DbType.String);
             query = DefineParameters(order,query);
             query.ExecuteQuery();
-            OrderDetailSave(order,clientID);
+            OrderDetailSave(order);
         }
 
-
-                public void EditOrder(Order order,string clientID) {
+        public void EditOrder(Order order,string clientID) {
             IQueryAction query = DefineQueryAction("spActualizarPedido ");
             query = DefineParameters(order,query);
             query.ExecuteQuery();
-            OrderDetailSave(order,clientID);
+            OrderDetailSave(order);
         }
 
         private IQueryAction DefineParameters(Order order,IQueryAction query) {
@@ -49,7 +42,7 @@ namespace FeriaVirtual.Data.Repository {
             return query;
         }
 
-        private void OrderDetailSave(Order order, string clientID) {
+        private void OrderDetailSave(Order order) {
             foreach(OrderDetail d in order.OrderDetailList) {
                 IQueryAction queryDetail = DefineQueryAction("spAgregarDetallePedido ");
                 queryDetail.AddParameter("pIdPedido",order.OrderID,DbType.String);
@@ -58,10 +51,5 @@ namespace FeriaVirtual.Data.Repository {
                 queryDetail.ExecuteQuery();
             }
         }
-
-
-
-
-
     }
 }

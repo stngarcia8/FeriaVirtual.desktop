@@ -1,4 +1,5 @@
 ﻿using System;
+using NLog;
 using System.Data;
 using FeriaVirtual.Business.Exceptions;
 using FeriaVirtual.Business.Validators;
@@ -6,14 +7,14 @@ using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Users {
-    public class LoginUseCase {
 
+    public class LoginUseCase {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private Credential user;
         private Employee empLogged;
 
         // Properties.
         public Employee EmployeeLogged => empLogged;
-
 
         // Constructor
         private LoginUseCase(string anUsername,string aPassword) {
@@ -24,48 +25,45 @@ namespace FeriaVirtual.Business.Users {
 
         // Named constructor
         public static LoginUseCase CreateLogin(string anUsername,string aPassword) {
-            return new LoginUseCase( anUsername,aPassword );
+            return new LoginUseCase(anUsername,aPassword);
         }
-
 
         public void StartSession() {
             try {
-                IValidator validator = LoginValidator.CreateValidator( user.Username,user.Password );
+                IValidator validator = LoginValidator.CreateValidator(user.Username,user.Password);
                 user.EncriptedPassword = user.Password;
                 validator.Validate();
-                LoginRepository repository = LoginRepository.OpenRepository( user );
+                LoginRepository repository = LoginRepository.OpenRepository(user);
                 repository.SignIn();
                 DataTable userData = repository.DataSource;
-                if(userData.Rows.Count.Equals( 0 )) {
-                    throw new InvalidLoginException( "El nombre de usuario o contraseña no son correctos" );
+                if(userData.Rows.Count.Equals(0)) {
+                    throw new InvalidLoginException("El nombre de usuario o contraseña no son correctos");
                 }
-                GetUserData( userData );
+                GetUserData(userData);
                 if(!user.IsActive) {
-                    throw new InvalidLoginException( "El usuario tiene su cuenta inactiva, informe este inconveniente al administrador del sistema." );
+                    throw new InvalidLoginException("El usuario tiene su cuenta inactiva, informe este inconveniente al administrador del sistema.");
                 }
             } catch(Exception ex) {
-                throw ex;
+                logger.Error(ex,"Error al iniciar sesión");
+                throw;
             }
         }
 
-
         private void GetUserData(DataTable userInfo) {
             DataRow row = userInfo.Rows[0];
-            user = Credential.CreateCredential( row["id_usuario"].ToString(),
+            user = Credential.CreateCredential(row["id_usuario"].ToString(),
                 row["username"].ToString(),
-                row["password"].ToString() );
+                row["password"].ToString());
             empLogged = Employee.CreateEmployee(
                 row["id_empleado"].ToString(),
                 row["Nombre"].ToString(),
-                row["Apellido"].ToString() );
+                row["Apellido"].ToString());
             empLogged.Credentials= user;
             empLogged.Credentials.EncriptedPassword= row["password"].ToString();
             empLogged.Credentials.Email= row["Email"].ToString();
-            empLogged.Credentials.IsActive= int.Parse( row["is_active"].ToString() ).Equals( 1 ) ? true : false;
-            empLogged.Profile.ProfileID= int.Parse( row["id_rol"].ToString() );
+            empLogged.Credentials.IsActive= int.Parse(row["is_active"].ToString()) == (int)Data.Enums.UserStatus.Active;
+            empLogged.Profile.ProfileID= int.Parse(row["id_rol"].ToString());
             empLogged.Profile.ProfileName= row["Rol"].ToString();
         }
-
-
     }
 }
