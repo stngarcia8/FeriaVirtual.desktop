@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using System.Data;
 using FeriaVirtual.Business.Exceptions;
 using FeriaVirtual.Business.Validators;
@@ -9,7 +8,6 @@ using FeriaVirtual.Domain.Users;
 namespace FeriaVirtual.Business.Users {
 
     public class LoginUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private Credential user;
         private Employee empLogged;
 
@@ -44,7 +42,6 @@ namespace FeriaVirtual.Business.Users {
                     throw new InvalidLoginException("El usuario tiene su cuenta inactiva, informe este inconveniente al administrador del sistema.");
                 }
             } catch(Exception ex) {
-                logger.Error(ex,"Error al iniciar sesión");
                 throw;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -8,7 +7,6 @@ using FeriaVirtual.Domain.Users;
 namespace FeriaVirtual.Business.Users {
 
     public class ClientUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ClientRepository repository;
         private readonly int profileID;
         private readonly string singleProfileName;
@@ -57,7 +55,6 @@ namespace FeriaVirtual.Business.Users {
                 client.Credentials.EncriptedPassword= client.Credentials.EncryptPassword();
                 repository.NewClient(client);
             } catch(Exception ex) {
-                logger.Error(ex,"Error creando nuevo perfil de usuario");
                 throw;
             }
         }
@@ -68,7 +65,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditClient(client);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al modificar perfil del cliente");
                 throw;
             }
         }
@@ -77,7 +73,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 repository.EnableOrDisableClient(idUser,userStatus ? 0 : 1);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al habilitar/inhabilitar cliente");
                 throw;
             }
         }

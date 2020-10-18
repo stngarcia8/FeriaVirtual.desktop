@@ -3,12 +3,10 @@ using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Contracts;
-using NLog;
 
 namespace FeriaVirtual.Business.Contracts {
 
     public class ContractUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ContractRepository repository;
         private readonly string singleProfileName;
 
@@ -53,7 +51,6 @@ namespace FeriaVirtual.Business.Contracts {
                 validator.Validate();
                 repository.NewContract(contract);
             } catch(Exception ex) {
-                logger.Error(ex,"Error creando nuevo contrato");
                 throw;
             }
         }
@@ -64,7 +61,6 @@ namespace FeriaVirtual.Business.Contracts {
                 validator.Validate();
                 repository.EditContract(contract);
             } catch(Exception ex) {
-                logger.Error(ex,"Error editando contrato");
                 throw;
             }
         }
@@ -73,7 +69,6 @@ namespace FeriaVirtual.Business.Contracts {
             try {
                 repository.DeleteContract(contractID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error eliminando contrato");
                 throw;
             }
         }

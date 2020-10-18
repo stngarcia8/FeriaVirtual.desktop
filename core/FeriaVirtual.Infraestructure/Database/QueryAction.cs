@@ -1,12 +1,10 @@
 ﻿using System;
-using NLog;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
 namespace FeriaVirtual.Infraestructure.Database {
 
     public class QueryAction:Query, IQueryAction {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         // Constructor
         private QueryAction(OracleCommand command) : base(command) { }
@@ -27,7 +25,6 @@ namespace FeriaVirtual.Infraestructure.Database {
             try {
                 recordCount = command.ExecuteNonQuery();
             } catch (Exception ex) {
-                logger.Error(ex,"Error al ejecutar consulta de acción");
                 throw;
             }
             return recordCount;

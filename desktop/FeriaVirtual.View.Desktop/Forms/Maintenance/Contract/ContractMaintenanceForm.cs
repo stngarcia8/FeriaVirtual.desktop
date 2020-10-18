@@ -146,6 +146,10 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
                 Profile = profile
             };
             form.ShowDialog();
+            if(form.IsSaved) {
+                LoadUsers(ListFilterComboBox.SelectedIndex);
+                this.ListDataGridView.Focus();
+            }
         }
 
         private void GetRecordId() {

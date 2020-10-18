@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog">
-      <HintPath>..\..\desktop\packages\NLog.4.7.5\NLog.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +50,7 @@
     <Compile Include="Dto\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="Dto\PaymentCondition.cs" />
+    <Compile Include="Dto\ProductCategory.cs" />
     <Compile Include="Dto\SessionDto.cs" />
     <Compile Include="Dto\VehicleType.cs" />
     <Compile Include="Elements\Order.cs" />

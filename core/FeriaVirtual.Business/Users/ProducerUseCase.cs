@@ -4,12 +4,10 @@ using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
-using NLog;
 
 namespace FeriaVirtual.Business.Users {
 
     public class ProducerUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ProducerRepository repository;
 
         // Constructor
@@ -33,7 +31,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.NewProduct(product,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al crear producto");
                 throw;
             }
         }
@@ -44,7 +41,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditProduct(product);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al editar producto");
                 throw;
             }
         }
@@ -53,7 +49,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 repository.DeleteProduct(productID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al eliminar producto");
                 throw;
             }
         }
@@ -63,7 +58,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 product =  repository.FindProductByID(productID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al buscar producto por identificador");
                 throw;
             }
             return product;
@@ -74,7 +68,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 productList= repository.FindAllProducts(clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al buscar todos los productos");
                 throw;
             }
             return productList;

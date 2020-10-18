@@ -7,13 +7,13 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Properties.
         public string VehicleID { get; set; }
-
         public string ClientID { get; set; }
         public VehicleType VehicleType { get; set; }
         public string VehiclePatent { get; set; }
         public string VehicleModel { get; set; }
         public float VehicleCapacity { get; set; }
         public int VehicleAvailable { get; set; }
+        public string Observation { get; set; }
 
         // Constructor
         private Vehicle() {
@@ -32,6 +32,7 @@ namespace FeriaVirtual.Domain.Elements {
             VehicleModel= string.Empty;
             VehicleCapacity= capacity;
             VehicleAvailable = 1;
+            Observation= string.Empty;
         }
 
         // Named constructors.

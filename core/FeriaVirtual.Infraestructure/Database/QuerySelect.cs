@@ -1,12 +1,10 @@
 ﻿using System;
-using NLog;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 
 namespace FeriaVirtual.Infraestructure.Database {
 
     public class QuerySelect:Query, IQuerySelect {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         // Constructor
         private QuerySelect(OracleCommand command) : base(command) { }
@@ -30,7 +28,6 @@ namespace FeriaVirtual.Infraestructure.Database {
                 };
                 dataAdapter.Fill(dataTable);
             } catch (Exception ex) {
-                logger.Error(ex,"Error al ejecutar consulta de selección");
                 throw;
             }
             return dataTable;

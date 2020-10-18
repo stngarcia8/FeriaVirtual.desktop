@@ -4,8 +4,7 @@
 
         // Properties
         public int ConditionID { get; set; }
-
-        public string ConditionDescription { get; set; }
+public string ConditionDescription { get; set; }
 
         //Constructor
         private PaymentCondition() {

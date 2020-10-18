@@ -56,23 +56,23 @@ namespace FeriaVirtual.Data.Repository {
 
         public void NewProduct(Product product,string clientID) {
             IQueryAction query = DefineQueryAction("spAgregarProductos ");
-            query.AddParameter("pIdProducto",product.ProductID,DbType.String);
             query.AddParameter("pIdCliente",clientID,DbType.String);
             query = DefineProductParameters(product,query);
             query.ExecuteQuery();
         }
 
         private IQueryAction DefineProductParameters(Product product,IQueryAction query) {
+            query.AddParameter("pIdProducto",product.ProductID,DbType.String);
             query.AddParameter("pNombre",product.ProductName,DbType.String);
             query.AddParameter("pObservacion",product.Observation,DbType.String);
             query.AddParameter("pValor",product.ProductValue,DbType.Decimal);
             query.AddParameter("pCantidad",product.ProductQuantity,DbType.Decimal);
+            query.AddParameter("pIdCategoria",product.Category.CategoryID,DbType.Int32);
             return query;
         }
 
         public void EditProduct(Product product) {
             IQueryAction query = DefineQueryAction("spActualizarProductos ");
-            query.AddParameter("pIdProducto",product.ProductID,DbType.String);
             query = DefineProductParameters(product,query);
             query.ExecuteQuery();
         }
@@ -85,7 +85,7 @@ namespace FeriaVirtual.Data.Repository {
 
         public Product FindProductByID(string productID) {
             sql.Clear();
-            sql.Append("select * from fv_user.producto where id_producto=:pId ");
+            sql.Append("select * from fv_user.vwObtenerProductos where id_producto=:pId ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             querySelect.AddParameter("pId",productID,DbType.String);
             dataTable = querySelect.ExecuteQuery();
@@ -104,16 +104,18 @@ namespace FeriaVirtual.Data.Repository {
             Product product = Product.CreateProduct();
             product.ProductID = row["id_producto"].ToString();
             product.ClientID = row["id_cliente"].ToString();
-            product.ProductName= row["nombre_producto"].ToString();
-            product.Observation= row["obs_producto"].ToString();
-            product.ProductValue= float.Parse(row["valor_producto"].ToString());
-            product.ProductQuantity= float.Parse(row["cantidad_producto"].ToString());
+            product.ProductName= row["Producto"].ToString();
+            product.Category.CategoryID= int.Parse(row["id_categoria"].ToString());
+            product.Category.CategoryName= row["Categoria"].ToString();
+            product.ProductValue= float.Parse(row["Valor"].ToString());
+            product.ProductQuantity= float.Parse(row["Cantidad"].ToString());
+            product.Observation= row["Observacion"].ToString();
             return product;
         }
 
         public IList<Product> FindAllProducts(string clientID) {
             sql.Clear();
-            sql.Append("select * from fv_user.producto where id_cliente=:pId ");
+            sql.Append("select * from fv_user.vwObtenerProductos where id_cliente=:pId ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             querySelect.AddParameter("pId",clientID,DbType.String);
             dataTable = querySelect.ExecuteQuery();

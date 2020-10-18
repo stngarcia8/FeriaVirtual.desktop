@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using FeriaVirtual.Data.Exceptions;
 using System.Data;
 using FeriaVirtual.Domain.Elements;
@@ -8,7 +7,6 @@ using FeriaVirtual.Infraestructure.Database;
 namespace FeriaVirtual.Data.Repository {
 
     public class ComercialDataRepository:Repository {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         // Constructor
         private ComercialDataRepository() : base() { }
@@ -27,7 +25,6 @@ namespace FeriaVirtual.Data.Repository {
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
             } catch(Exception ex) {
-                logger.Error(ex,"Error creando dato comercial");
                 throw;
             }
         }
@@ -58,7 +55,6 @@ namespace FeriaVirtual.Data.Repository {
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
             } catch(Exception ex) {
-                logger.Error(ex,"Error al editar datos comerciales");
                 throw;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
@@ -7,7 +6,6 @@ using FeriaVirtual.Domain.Elements;
 namespace FeriaVirtual.Business.Orders {
 
     public class OrderUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly OrderRepository repository;
 
         // Constructor
@@ -26,7 +24,6 @@ namespace FeriaVirtual.Business.Orders {
                 validator.Validate();
                 repository.NewOrder(order,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error creando solicitud");
                 throw;
             }
         }
@@ -37,7 +34,6 @@ namespace FeriaVirtual.Business.Orders {
                 validator.Validate();
                 repository.EditOrder(order,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al editar solicitud de compra");
                 throw;
             }
         }

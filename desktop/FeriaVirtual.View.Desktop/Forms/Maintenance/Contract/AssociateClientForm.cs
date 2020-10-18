@@ -27,7 +27,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         private void AssociateClientForm_Load(object sender,EventArgs e) {
             Text= (IsNewRecord ? string.Format("Asociando nuevo {0}.",Profile.SingleProfileName) : string.Format("Editando {0} asociado.",Profile.SingleProfileName));
             AceptContractButton.Enabled = !IsNewRecord;
-            SearchClientButton.Visible = !IsNewRecord;
+            SearchClientButton.Visible = IsNewRecord;
             DataClientGroupBox.Text= string.Format("Datos del {0}",Profile.SingleProfileName);
             if(IsNewRecord) {
                 CurrentDetail = ContractDetail.CreateDetail();

@@ -1,12 +1,10 @@
 ﻿using System;
 using FeriaVirtual.Infraestructure.Exceptions;
-using NLog;
 using Oracle.ManagedDataAccess.Client;
 
 namespace FeriaVirtual.Infraestructure.Database {
 
     public class OracleConnect:IOracleConnect, IDisposable {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private bool disposed = false;
         private OracleConnection connection;
         private OracleTransaction transaction;
@@ -51,7 +49,6 @@ namespace FeriaVirtual.Infraestructure.Database {
                 transaction = connection.BeginTransaction();
             } catch {
                 ConnectionFailedException ex = new ConnectionFailedException("El servidor de base de datos no se encuentra disponible, comunique este problema al administrador del servicio de base de datos.");
-                logger.Error(ex,"error al conectar a Oracle");
                 throw;
             }
         }
@@ -78,7 +75,6 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.Transaction = transaction;
                 return QuerySelect.CreateQuery(command);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al crear consulta de selección");
                 throw;
             }
         }
@@ -92,7 +88,6 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.Transaction = transaction;
                 return QueryAction.CreateQuery(command);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al crear consulta de acción");
                 throw;
             }
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -8,7 +7,6 @@ using FeriaVirtual.Domain.Users;
 namespace FeriaVirtual.Business.Users {
 
     public class EmployeeUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly EmployeeRepository repository;
 
         // Constructor.
@@ -57,7 +55,6 @@ namespace FeriaVirtual.Business.Users {
                 employee.Credentials.EncriptedPassword= employee.Credentials.EncryptPassword();
                 repository.NewEmployee(employee);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al crear empleado");
                 throw;
             }
         }
@@ -68,7 +65,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditEmployee(employee);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al editar empleado");
                 throw;
             }
         }
@@ -77,7 +73,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 repository.EnableOrDisableUser(idUser,(userStatus ? 0 : 1));
             } catch(Exception ex) {
-                logger.Error(ex, "Error al habilitar/inhabilitar empleado");
                 throw;
             }
         }

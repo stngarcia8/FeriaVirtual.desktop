@@ -56,7 +56,6 @@ namespace FeriaVirtual.Data.Repository {
 
         public void NewVehicle(Vehicle vehicle,string clientID) {
             IQueryAction query = DefineQueryAction("spAgregarVehiculos ");
-            query.AddParameter("pIdVehiculo",vehicle.VehicleID,DbType.String);
             query.AddParameter("pIdCliente",clientID,DbType.String);
             query = DefineParameters(vehicle,query);
             query.ExecuteQuery();
@@ -64,17 +63,18 @@ namespace FeriaVirtual.Data.Repository {
 
         public void EditVehicle(Vehicle vehicle) {
             IQueryAction query = DefineQueryAction("spActualizarVehiculos ");
-            query.AddParameter("pIdVehiculo",vehicle.VehicleID,DbType.String);
             query = DefineParameters(vehicle,query);
             query.AddParameter("pDisponibilidad",vehicle.VehicleAvailable,DbType.Int32);
             query.ExecuteQuery();
         }
 
         private IQueryAction DefineParameters(Vehicle vehicle,IQueryAction query) {
+            query.AddParameter("pIdVehiculo",vehicle.VehicleID,DbType.String);
             query.AddParameter("pIdTipo",vehicle.VehicleType.VehicleTypeID,DbType.Int32);
             query.AddParameter("pPatente",vehicle.VehiclePatent,DbType.String);
             query.AddParameter("pModelo",vehicle.VehicleModel,DbType.String);
             query.AddParameter("pCapacidad",vehicle.VehicleCapacity,DbType.Decimal);
+            query.AddParameter("pObservacion",vehicle.Observation,DbType.String);
             return query;
         }
 
@@ -111,12 +111,13 @@ namespace FeriaVirtual.Data.Repository {
             vehicle.VehicleModel=   row["Modelo"].ToString();
             vehicle.VehicleCapacity= float.Parse(row["Capacidad"].ToString());
             vehicle.VehicleAvailable = int.Parse(row["Disponible"].ToString());
+            vehicle.Observation = row["Observacion"].ToString();
             return vehicle;
         }
 
         public IList<Vehicle> FindAllVehicles(string clientID) {
             sql.Clear();
-            sql.Append("select * from fv_user.vwVehiculos where id_cliente=:pId ");
+            sql.Append("select * from fv_user.vwObtenerVehiculos where id_cliente=:pId ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
             querySelect.AddParameter("pId",clientID,DbType.String);
             dataTable = querySelect.ExecuteQuery();

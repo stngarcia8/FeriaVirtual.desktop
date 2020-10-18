@@ -3,12 +3,10 @@ using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Elements;
-using NLog;
 
 namespace FeriaVirtual.Business.Elements {
 
     public class ComercialDataUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private readonly ComercialDataRepository repository;
 
@@ -28,7 +26,6 @@ namespace FeriaVirtual.Business.Elements {
                 validator.Validate();
                 repository.NewComercialData(data,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error creando datos comerciales");
                 throw;
             }
         }
@@ -39,7 +36,6 @@ namespace FeriaVirtual.Business.Elements {
                 validator.Validate();
                 repository.EditComercialData(data,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error editando datos comerciales");
                 throw;
             }
         }
@@ -50,10 +46,10 @@ namespace FeriaVirtual.Business.Elements {
         }
 
         private ComercialData ConvertToComercialData(DataTable table) {
-            ComercialData data = ComercialData.CreateComercialData();
             if(table.Rows.Count.Equals(0)) {
-                return data;
+                return null;
             }
+            ComercialData data = ComercialData.CreateComercialData();
             DataRow row = table.Rows[0];
             data.ComercialID= row["id_comercial"].ToString();
             data.ClientID = row["id_cliente"].ToString();
@@ -76,7 +72,6 @@ namespace FeriaVirtual.Business.Elements {
             try {
                 repository.DeleteComercialData(comercialID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error eliminando datos comerciales");
                 throw;
             }
         }

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1231
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.API", "FeriaVirtual.API\FeriaVirtual.API.csproj", "{AE5F4640-291E-44E9-AC13-021B988027B2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.Infraestructure", "..\core\FeriaVirtual.Infraestructure\FeriaVirtual.Infraestructure.csproj", "{27BC5B12-D811-429C-9C9C-977F879AB8C4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.API", "FeriaVirtual.API\FeriaVirtual.API.csproj", "{5E561174-C5E3-473E-BF39-37DC6F86DBBC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.Domain", "..\core\FeriaVirtual.Domain\FeriaVirtual.Domain.csproj", "{B2C61472-FF54-47A4-8F7F-5E40EA40B14C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.Infraestructure", "..\core\FeriaVirtual.Infraestructure\FeriaVirtual.Infraestructure.csproj", "{27BC5B12-D811-429C-9C9C-977F879AB8C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeriaVirtual.Data", "..\core\FeriaVirtual.Data\FeriaVirtual.Data.csproj", "{F540F224-83AA-4A15-9647-4312F8833B28}"
 EndProject
@@ -19,18 +19,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE5F4640-291E-44E9-AC13-021B988027B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE5F4640-291E-44E9-AC13-021B988027B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE5F4640-291E-44E9-AC13-021B988027B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE5F4640-291E-44E9-AC13-021B988027B2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E561174-C5E3-473E-BF39-37DC6F86DBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E561174-C5E3-473E-BF39-37DC6F86DBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E561174-C5E3-473E-BF39-37DC6F86DBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E561174-C5E3-473E-BF39-37DC6F86DBBC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B2C61472-FF54-47A4-8F7F-5E40EA40B14C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2C61472-FF54-47A4-8F7F-5E40EA40B14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2C61472-FF54-47A4-8F7F-5E40EA40B14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2C61472-FF54-47A4-8F7F-5E40EA40B14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BC5B12-D811-429C-9C9C-977F879AB8C4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F540F224-83AA-4A15-9647-4312F8833B28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F540F224-83AA-4A15-9647-4312F8833B28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F540F224-83AA-4A15-9647-4312F8833B28}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,6 +44,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3B82D36C-F7CC-40E1-A472-AC8EC1639054}
+		SolutionGuid = {E0427241-32C1-43C5-AA7D-1800CC9F010C}
 	EndGlobalSection
 EndGlobal

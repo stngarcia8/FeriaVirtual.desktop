@@ -8,7 +8,6 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Properties
         public string OrderID { get; set; }
-
         public string ClientID { get; set; }
         public PaymentCondition Condition { get; set; }
         public DateTime OrderDate { get; set; }

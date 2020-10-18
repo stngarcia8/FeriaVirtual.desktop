@@ -1,5 +1,4 @@
 ﻿using System;
-using NLog;
 using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -9,7 +8,6 @@ using FeriaVirtual.Domain.Users;
 namespace FeriaVirtual.Business.Users {
 
     public class CarrierUseCase {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private readonly CarrierRepository repository;
 
         // Constructor
@@ -33,7 +31,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.NewVehicle(vehicle,clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al crear un vehiculo");
                 throw;
             }
         }
@@ -44,7 +41,6 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditVehicle(vehicle);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al editar información de vehiculo");
                 throw;
             }
         }
@@ -53,7 +49,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 repository.DeleteVehicle(vehicleID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al eliminar información de vehiculo");
                 throw;
             }
         }
@@ -63,7 +58,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 vehicle =  repository.FindVehicleByID(vehicleID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al buscar un vehiculo por identificador");
                 throw;
             }
             return vehicle;
@@ -74,7 +68,6 @@ namespace FeriaVirtual.Business.Users {
             try {
                 vehicleList= repository.FindAllVehicles(clientID);
             } catch(Exception ex) {
-                logger.Error(ex,"Error al buscar información de todos los vehiculos de un transportista");
                 throw;
             }
             return vehicleList;

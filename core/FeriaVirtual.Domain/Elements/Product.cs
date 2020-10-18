@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Domain.Dto;
 
 namespace FeriaVirtual.Domain.Elements {
 
@@ -6,12 +7,12 @@ namespace FeriaVirtual.Domain.Elements {
 
         // Properties.
         public string ProductID { get; set; }
-
         public string ClientID { get; set; }
         public string ProductName { get; set; }
-        public string Observation { get; set; }
+        public ProductCategory Category { get; set; }
         public float ProductValue { get; set; }
         public float ProductQuantity { get; set; }
+        public string Observation { get; set; }
 
         // constructors
         private Product() {
@@ -26,9 +27,10 @@ namespace FeriaVirtual.Domain.Elements {
             ProductID=productID;
             ClientID=clientID;
             ProductName=productName;
-            Observation= string.Empty;
             ProductValue= productValue;
             ProductQuantity=productQuantity;
+            Category = ProductCategory.CreateCategory();
+            Observation= string.Empty;
         }
 
         // Named constructors.
