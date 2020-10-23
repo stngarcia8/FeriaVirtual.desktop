@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using FeriaVirtual.API.Models;
 using FeriaVirtual.Business.Users;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Products;
 
 namespace FeriaVirtual.API.Controllers {
 
@@ -56,6 +55,28 @@ namespace FeriaVirtual.API.Controllers {
                 return BadRequest(ex.Message.ToString());
             }
         }
+
+
+        /// <summary>
+        /// Devuelve la lista de los productos de exportacion
+        /// </summary>
+        /// <returns>
+        /// Ok, con los productos del exportación
+        /// Badrequest, si los parámetros enviados son incorrectos.
+        /// </returns>
+        [Route("api/v1/products/export/all/")]
+        [HttpGet]
+        public IHttpActionResult GetAllExportProducts() {
+            try {
+                IList<ProductDto> productList = usecase.FindAllExportProducts();
+                return Ok(productList);
+            } catch(Exception ex) {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+
+
 
         /// <summary>
         /// Almacena un nuevo producto para el productor.

@@ -14,6 +14,8 @@ namespace FeriaVirtual.Domain.Contracts {
         public string ClientObservation { get; set; }
         public DateTime DateAcepted { get; set; }
         public DateTime RegisterDate { get; set; }
+        public int Status { get; set; }
+        public string StatusDescription { get; set; }
 
         // constructor
         private ContractDetail() {
@@ -29,6 +31,8 @@ namespace FeriaVirtual.Domain.Contracts {
             AdditionalValue = 0;
             FineValue = 0;
             Customer = Client.CreateClient();
+            Status= 0;
+            StatusDescription= "No visualizado";
         }
 
         // Named constructor.

@@ -1,4 +1,5 @@
 ﻿using System;
+using FeriaVirtual.Business.Documents;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -9,14 +10,26 @@ namespace FeriaVirtual.Business.Contracts {
     public class ContractUseCase {
         private readonly ContractRepository repository;
         private readonly string singleProfileName;
+        private readonly string profileName;
 
         // constructor
-        private ContractUseCase(int profileID,string singleProfileName) {
+        private ContractUseCase(int profileID) {
             repository = ContractRepository.OpenRepository(profileID);
-            this.singleProfileName=singleProfileName;
+            this.singleProfileName= (profileID.Equals(5)?"Productor":"Transportista");
+            this.profileName= (profileID.Equals(5) ? "Productores" : "Transportistas");
         }
 
-        // Named constructor.
+
+        private ContractUseCase(int profileID,string singleProfileName) {
+            repository = ContractRepository.OpenRepository(profileID);
+            this.singleProfileName= singleProfileName;
+            this.profileName= (singleProfileName.ToLower().Equals("productor") ? "Productores" : "Transportistas");
+        }
+
+        // Named constructors.
+        public static ContractUseCase CreateUseCase(int profileID) {
+            return new ContractUseCase(profileID);
+        }
         public static ContractUseCase CreateUseCase(int profileID,string singleProfileName) {
             return new ContractUseCase(profileID,singleProfileName);
         }
@@ -72,5 +85,38 @@ namespace FeriaVirtual.Business.Contracts {
                 throw;
             }
         }
+
+        public void AcceptContract(string contractID, string clientID, string observation) {
+            try {
+                Contract contract = repository.FindOneContractAceptedById(contractID);
+                foreach(ContractDetail d in contract.Details) {
+                    if(d.Customer.ID!=clientID) {
+                        contract.RemoveDetail(d);
+                    } else {
+                        d.ClientObservation= observation;
+                    }
+                }
+                ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
+                generator.Generate();
+                string filePath = generator.PdfFilePath;
+                generator= null;
+                repository.AcceptContract(contract, filePath);
+            } catch(Exception ex) {
+                throw;
+            }
+        }
+
+
+        public void ContractRefuse(string contractID,string clientID,string observation) {
+            try {
+                repository.RefuseContract(contractID,clientID,observation);
+            } catch(Exception ex) {
+                throw;
+            }
+        }
+
+
+
+
     }
 }

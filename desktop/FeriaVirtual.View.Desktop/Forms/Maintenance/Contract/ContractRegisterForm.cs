@@ -1,5 +1,5 @@
 ﻿using System;
-using NLog;
+using FeriaVirtual.Business.Documents;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,7 +12,6 @@ using FeriaVirtual.View.Desktop.Helpers;
 namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
     public partial class ContractRegisterForm:Form {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
         private Domain.Contracts.Contract contract;
         private Domain.Contracts.ContractDetail currentDetail = ContractDetail.CreateDetail();
         private BindingList<ContractDetail> source;
@@ -48,7 +47,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
 
         // Form buttons events method.
         private void DeleteContractButton_Click(object sender,EventArgs e) {
-            // aqui tengo que eliminar el contrato si es que se puede...
+            if(!this.DeleteContract()) {
+                return;
+            }
+            this.IsSaved= true;
+            this.Close();
         }
 
         private void ContractSaveButton_Click(object sender,EventArgs e) {
@@ -70,7 +73,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void ListClientDataGridView_DoubleClick(object sender,EventArgs e) {
-            this.EditCustomer();
+            EditCustomer();
         }
 
         // datagridview contextmenu controls events methods.
@@ -84,11 +87,14 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void ListEditToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.EditCustomer();
+            EditCustomer();
         }
 
         private void ListRemoveToolStripMenuItem_Click(object sender,EventArgs e) {
             if(ListClientDataGridView.Rows.Count.Equals(0)) {
+                return;
+            }
+            if(ListClientDataGridView.SelectedRows.Count.Equals(0)) {
                 return;
             }
             ListClientDataGridView.Rows.Remove(ListClientDataGridView.SelectedRows[0]);
@@ -134,7 +140,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             AssociateClientForm form = new AssociateClientForm {
                 CurrentDetail= currentDetail,
                 Profile=Profile
-            }; 
+            };
             form.IsNewRecord = isNew;
             form.ActualDetails = contract.Details;
             form.ShowDialog();
@@ -150,16 +156,22 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
             ListClientDataGridView.DataSource= null;
             ListClientDataGridView.DataSource=source;
             ListClientDataGridView.Refresh();
+            if(this.ListClientDataGridView.Rows.Count.Equals(0)) {
+                this.DeleteContractButton.Visible= (this.IsNewRecord ? false:true);
+            } else {
+                this.DeleteContractButton.Visible=false;
+            }
             ConfigureGrid();
             ListClientDataGridView.SelectionChanged+= ListClientDataGridView_SelectionChanged;
         }
 
         private void ConfigureGrid() {
-            IList<string> cols = new List<string> { "DetailID","ContractObservation","ClientObservation","RegisterDate","DateAcepted" };
+            IList<string> cols = new List<string> { "DetailID","ContractObservation","ClientObservation","RegisterDate","DateAcepted", "Status" };
             foreach(string col in cols) {
                 ListClientDataGridView.Columns[col].Visible= false;
             }
             ListClientDataGridView.Columns["Customer"].HeaderText = Profile.SingleProfileName;
+            ListClientDataGridView.Columns["StatusDescription"].HeaderText = "Estado";
             ConfigureNumericColumn("AdditionalValue","Valor adic.");
             ConfigureNumericColumn("FineValue","Valor multa");
         }
@@ -176,13 +188,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
                 currentDetail = ContractDetail.CreateDetail();
                 return;
             }
-            try {
-                DataGridViewRow row = ListClientDataGridView.SelectedRows[0];
-                currentDetail = row.DataBoundItem as ContractDetail;
-            } catch (Exception ex) {
-                logger.Error(ex,"listando asociados a contrato");
-                throw;
-            }
+            DataGridViewRow row = ListClientDataGridView.CurrentRow;
+            currentDetail = row.DataBoundItem as ContractDetail;
         }
 
         private void PutInfoControlsToContract() {
@@ -241,6 +248,23 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         private void EditCustomer() {
             GetCurrentDetail();
             OpenCustomerAssociationForm(false);
+        }
+
+        private bool DeleteContract() {
+            bool deleteStatus = false;
+            string message = "¿Esta seguro de eliminar el contrato?";
+            DialogResult result = MessageBox.Show(message,"Atención!",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(result.Equals(DialogResult.No)) return deleteStatus;
+            ContractUseCase usecase = ContractUseCase.CreateUseCase(Profile.ProfileID, Profile.ProfileName);
+            try {
+                usecase.DeleteContract(this.IdSelected);
+                message = "El contrato ha sido eliminado correctamente.";
+                MessageBox.Show(message,"Atención!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                deleteStatus = true;
+            } catch (Exception ex) {
+                deleteStatus= false;
+            }
+            return deleteStatus;
         }
 
 

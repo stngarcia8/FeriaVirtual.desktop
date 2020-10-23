@@ -7,8 +7,7 @@ namespace FeriaVirtual.Domain.Contracts {
 
         // Properties
         public string ContractID { get; set; }
-
-        public Dto.ContractType TypeContract { get; set; }
+        public ContractType TypeContract { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int IsValid { get; set; }
@@ -24,7 +23,7 @@ namespace FeriaVirtual.Domain.Contracts {
 
         private void InitializeObjects() {
             ContractID = Guid.NewGuid().ToString();
-            TypeContract =  new Dto.ContractType();
+            TypeContract =  new ContractType();
             StartDate = DateTime.Now.Date;
             EndDate = DateTime.Now.Date.AddMonths(6);
             IsValid = 1;

@@ -1,8 +1,8 @@
 ﻿using FeriaVirtual.Business.Exceptions;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.CommercialsData;
+
 
 namespace FeriaVirtual.Business.Validators {
-
     public class ComercialDataValidator:Validator, IValidator {
         private readonly ComercialData data;
 

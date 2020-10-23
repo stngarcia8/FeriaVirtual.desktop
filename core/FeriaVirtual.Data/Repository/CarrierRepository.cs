@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
+using FeriaVirtual.Domain.Vehicles;
 using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Repository {

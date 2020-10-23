@@ -1,16 +1,10 @@
 ﻿using System;
-using FeriaVirtual.Business.Elements;
-using FeriaVirtual.Domain.Elements;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using FeriaVirtual.Business.Elements;
+using FeriaVirtual.Domain.CommercialsData;
 
-namespace FeriaVirtual.API.Controllers
-{
-    public class CommercialDataController : ApiController
-    {
+namespace FeriaVirtual.API.Controllers {
+    public class CommercialDataController:ApiController {
 
         private ComercialDataUseCase usecase = ComercialDataUseCase.CreateUseCase();
 
@@ -31,9 +25,9 @@ namespace FeriaVirtual.API.Controllers
                 return BadRequest("Parámetro inválido, el id del cliente es incorrecto");
             }
             try {
-                 ComercialData comercialData;
+                ComercialData comercialData;
                 comercialData = usecase.FindComercialDataByID(clientID);
-                    if (comercialData == null) {
+                if(comercialData == null) {
                     return NotFound();
                 }
                 return Ok(comercialData);

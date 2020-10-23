@@ -1,5 +1,5 @@
 ﻿using FeriaVirtual.Business.Exceptions;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Products;
 
 namespace FeriaVirtual.Business.Validators {
 

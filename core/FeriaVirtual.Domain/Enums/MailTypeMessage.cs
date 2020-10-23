@@ -3,6 +3,8 @@
     public enum MailTypeMessage {
         NewClient,
         EditClient,
-        DeleteAccount
+        DeleteAccount,
+        ContractAccepted,
+        ContractRefused
     }
 }

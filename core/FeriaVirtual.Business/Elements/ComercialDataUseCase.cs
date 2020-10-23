@@ -2,7 +2,7 @@
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.CommercialsData;
 
 namespace FeriaVirtual.Business.Elements {
 
@@ -25,7 +25,7 @@ namespace FeriaVirtual.Business.Elements {
                 IValidator validator = ComercialDataValidator.CreateValidator(data,false);
                 validator.Validate();
                 repository.NewComercialData(data,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -35,7 +35,7 @@ namespace FeriaVirtual.Business.Elements {
                 IValidator validator = ComercialDataValidator.CreateValidator(data,true);
                 validator.Validate();
                 repository.EditComercialData(data,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -71,7 +71,7 @@ namespace FeriaVirtual.Business.Elements {
         public void DeleteCommercialData(string comercialID) {
             try {
                 repository.DeleteComercialData(comercialID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }

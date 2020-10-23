@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.Elements;
 using FeriaVirtual.Domain.Users;
+using FeriaVirtual.Domain.Vehicles;
 
 namespace FeriaVirtual.Business.Users {
 
@@ -30,7 +30,7 @@ namespace FeriaVirtual.Business.Users {
                 IValidator validator = VehicleValidator.CreateValidator(vehicle,false);
                 validator.Validate();
                 repository.NewVehicle(vehicle,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -40,7 +40,7 @@ namespace FeriaVirtual.Business.Users {
                 IValidator validator = VehicleValidator.CreateValidator(vehicle,true);
                 validator.Validate();
                 repository.EditVehicle(vehicle);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -48,7 +48,7 @@ namespace FeriaVirtual.Business.Users {
         public void DeleteVehicle(string vehicleID) {
             try {
                 repository.DeleteVehicle(vehicleID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -57,7 +57,7 @@ namespace FeriaVirtual.Business.Users {
             Vehicle vehicle;
             try {
                 vehicle =  repository.FindVehicleByID(vehicleID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
             return vehicle;
@@ -67,7 +67,7 @@ namespace FeriaVirtual.Business.Users {
             IList<Vehicle> vehicleList;
             try {
                 vehicleList= repository.FindAllVehicles(clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
             return vehicleList;

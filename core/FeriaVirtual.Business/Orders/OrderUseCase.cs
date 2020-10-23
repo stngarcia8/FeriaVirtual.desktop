@@ -1,7 +1,7 @@
 ﻿using System;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Orders;
 
 namespace FeriaVirtual.Business.Orders {
 
@@ -23,7 +23,7 @@ namespace FeriaVirtual.Business.Orders {
                 IValidator validator = OrderValidator.CreateValidator(order,false);
                 validator.Validate();
                 repository.NewOrder(order,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -33,7 +33,7 @@ namespace FeriaVirtual.Business.Orders {
                 IValidator validator = OrderValidator.CreateValidator(order,true);
                 validator.Validate();
                 repository.EditOrder(order,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }

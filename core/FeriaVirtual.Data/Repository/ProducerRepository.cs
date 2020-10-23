@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Products;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
 
@@ -132,5 +132,30 @@ namespace FeriaVirtual.Data.Repository {
             }
             return productList;
         }
+
+        public IList<ProductDto> FindAllExportProducts() {
+            sql.Clear();
+            sql.Append("select * from fv_user.vwObtenerProductosExportacion where id_categoria=1 order by nombre_producto ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            dataTable = querySelect.ExecuteQuery();
+            return GetExportProductsData();
+        }
+
+        private IList<ProductDto> GetExportProductsData() {
+            IList<ProductDto> productList = new List<ProductDto>();
+            if(dataTable.Rows.Count.Equals(0)) {
+                return productList;
+            }
+            foreach(DataRow row in dataTable.Rows) {
+                productList.Add(new ProductDto(row["nombre_producto"].ToString()));
+            }
+            return productList;
+        }
+
+
+
+
+
+
     }
 }

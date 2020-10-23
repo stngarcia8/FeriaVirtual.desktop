@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using FeriaVirtual.Domain.Contracts;
+using FeriaVirtual.Domain.Enums;
 using FeriaVirtual.Infraestructure.Database;
+using FeriaVirtual.Infraestructure.Mailer;
 
 namespace FeriaVirtual.Data.Repository {
 
@@ -140,11 +142,48 @@ namespace FeriaVirtual.Data.Repository {
             ContractDetail detail = ContractDetail.CreateDetail();
             detail.Customer.ID = row["id_cliente"].ToString();
             detail.Customer.FirstName= row["Cliente"].ToString();
+            detail.Customer.DNI = row["Rut"].ToString();
+            detail.Customer.Credentials.Email = row["email"].ToString();
             detail.ContractObservation= row["Observacion contrato"].ToString();
             detail.ClientObservation= row["Observacion cliente"].ToString();
             detail.AdditionalValue=float.Parse(row["Valor adicional"].ToString());
             detail.FineValue = float.Parse(row["Valor multa"].ToString());
+            detail.Status= int.Parse(row["estado_aceptacion"].ToString());
+            detail.StatusDescription= row["Estado"].ToString();
+            ComercialDataRepository r = ComercialDataRepository.OpenRepository();
+            detail.Customer.ComercialInfo= r.FindById(detail.Customer.ID);
             return detail;
         }
+
+        public void AcceptContract(Contract contract, string contractFilePath) {
+            ContractDetail detail = contract.Details[0];
+            IQueryAction query = DefineQueryAction("spAceptarRechazarContrato  ");
+            query.AddParameter("pIdContrato",contract.ContractID,DbType.String);
+            query.AddParameter("pIdCliente",detail.Customer.ID,DbType.String);
+            query.AddParameter("pEstado",1,DbType.Int32);
+            query.AddParameter("pObservacion",detail.ClientObservation,DbType.String);
+            query.ExecuteQuery();
+            MailContractSender sender = MailContractSender.CreateSender(contract,contractFilePath, MailTypeMessage.ContractAccepted);
+            sender.SendMail();
+        }
+
+        public void RefuseContract(string contractID, string clientID, string observation) {
+            IQueryAction query = DefineQueryAction("spAceptarRechazarContrato  ");
+            query.AddParameter("pIdContrato",contractID,DbType.String);
+            query.AddParameter("pIdCliente",clientID,DbType.String);
+            query.AddParameter("pEstado",2,DbType.Int32);
+            query.AddParameter("pObservacion",observation,DbType.String);
+            query.ExecuteQuery();
+        }
+
+        public Contract FindOneContractAceptedById(string contractID) {
+            sql.Clear();
+            sql.Append("select * from fv_user.vwObtenerContratos where id_contrato=:pId ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pId",contractID,DbType.String);
+            return GetContractData(querySelect.ExecuteQuery());
+        }
+
+
     }
 }

@@ -233,6 +233,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Menu_configuraciones {
+            get {
+                object obj = ResourceManager.GetObject("Menu-configuraciones", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_contract {
             get {
                 object obj = ResourceManager.GetObject("menu-contract", resourceCulture);

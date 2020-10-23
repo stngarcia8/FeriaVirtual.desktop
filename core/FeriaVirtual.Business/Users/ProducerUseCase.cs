@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Products;
 using FeriaVirtual.Domain.Users;
 
 namespace FeriaVirtual.Business.Users {
@@ -30,7 +30,7 @@ namespace FeriaVirtual.Business.Users {
                 IValidator validator = ProductValidator.CreateValidator(product,false);
                 validator.Validate();
                 repository.NewProduct(product,clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -40,7 +40,7 @@ namespace FeriaVirtual.Business.Users {
                 IValidator validator = ProductValidator.CreateValidator(product,true);
                 validator.Validate();
                 repository.EditProduct(product);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -48,7 +48,7 @@ namespace FeriaVirtual.Business.Users {
         public void DeleteProduct(string productID) {
             try {
                 repository.DeleteProduct(productID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -57,7 +57,7 @@ namespace FeriaVirtual.Business.Users {
             Product product;
             try {
                 product =  repository.FindProductByID(productID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
             return product;
@@ -67,10 +67,23 @@ namespace FeriaVirtual.Business.Users {
             IList<Product> productList;
             try {
                 productList= repository.FindAllProducts(clientID);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
             return productList;
         }
+
+        public IList<ProductDto> FindAllExportProducts() {
+            IList<ProductDto> productList;
+            try {
+                productList= repository.FindAllExportProducts();
+            } catch(Exception) {
+                throw;
+            }
+            return productList;
+        }
+
+
+
     }
 }

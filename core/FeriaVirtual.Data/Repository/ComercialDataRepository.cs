@@ -1,8 +1,9 @@
 ﻿using System;
-using FeriaVirtual.Data.Exceptions;
 using System.Data;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Data.Exceptions;
 using FeriaVirtual.Infraestructure.Database;
+using FeriaVirtual.Domain.CommercialsData;
+
 
 namespace FeriaVirtual.Data.Repository {
 
@@ -24,7 +25,7 @@ namespace FeriaVirtual.Data.Repository {
                 query.AddParameter("pIdCliente",clientID,DbType.String);
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -54,7 +55,7 @@ namespace FeriaVirtual.Data.Repository {
                 query.AddParameter("pIdComercial",data.ComercialID,DbType.String);
                 query = DefineParameters(data,query);
                 query.ExecuteQuery();
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }

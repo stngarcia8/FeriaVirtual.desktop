@@ -1,5 +1,5 @@
 ﻿using System;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.CommercialsData;
 
 namespace FeriaVirtual.Domain.Users {
 

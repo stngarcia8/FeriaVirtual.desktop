@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using FeriaVirtual.Business.Users;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Vehicles;
 
-namespace FeriaVirtual.API.Controllers
-{
+namespace FeriaVirtual.API.Controllers {
 
-    public class VehicleController : ApiController
-    {
+    public class VehicleController:ApiController {
 
         private CarrierUseCase usecase = CarrierUseCase.CreateUseCase();
 

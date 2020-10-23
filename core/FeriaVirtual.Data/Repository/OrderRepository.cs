@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using FeriaVirtual.Domain.Elements;
+using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Repository {
