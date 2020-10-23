@@ -11,8 +11,13 @@
 --  conectar con docker
 --  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
 SET ECHO OFF;
+set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+prompt;
+prompt ----------------------------------------;
 prompt Creando tablas de la base de datos.;
+prompt ----------------------------------------;
+prompt;
 
 prompt Creando tabla categorias de productos.;
 CREATE TABLE fv_user.categoria_producto(
@@ -88,6 +93,7 @@ CREATE TABLE fv_user.contrato_cliente (
     obs_cliente        varchar2(100),
     valor_adicional    number(5,2) default 0 not null,
     valor_multa         number(5,2) default 0 not null,
+    estado_aceptacion   number(1) default 0 not null,
     constraint contrato_cliente_pk primary key (id)
 ) tablespace fv_env;
 
@@ -112,7 +118,7 @@ prompt Creando tabla detalle_pedido.;
 CREATE TABLE fv_user.detalle_pedido (
     id              VARCHAR2(40) NOT NULL,
     id_pedido       VARCHAR2(40) NOT NULL,
-    id_producto     VARCHAR2(40) NOT NULL,
+    nombre_producto VARCHAR2(50) NOT NULL,
     cantidad        NUMBER(5) NOT NULL,
     constraint      detalle_pedido_pk primary key (id)
 ) tablespace fv_env;
@@ -302,7 +308,8 @@ prompt Agregando claves foraneas.;
 prompt alterando tabla cierre_pedido.;
 alter table fv_user.cierre_pedido
     add constraint cierre_pedido_pedido_fk foreign key (id_pedido)
-        references fv_user.pedido (id_pedido);
+        references fv_user.pedido (id_pedido) 
+        ON DELETE CASCADE;
 alter table fv_user.cierre_pedido
     add constraint cierre_pedido_tipocierre_fk foreign key (id_tipo_cierre)
         REFERENCES fv_user.tipo_cierre ( id_tipo_cierre );
@@ -311,7 +318,8 @@ alter table fv_user.cierre_pedido
 prompt Alterando ciudad.;
 ALTER TABLE fv_user.ciudad
     ADD CONSTRAINT ciudad_pais_fk FOREIGN KEY ( id_pais )
-        REFERENCES fv_user.pais ( id_pais );
+        REFERENCES fv_user.pais ( id_pais ) 
+        ON DELETE CASCADE;
 
 
 prompt Alterando tabla cliente.;
@@ -333,7 +341,8 @@ ALTER TABLE fv_user.contrato_cliente
     ADD CONSTRAINT contrato_cliente_cliente_fk FOREIGN KEY ( id_cliente )
         REFERENCES fv_user.cliente ( id_cliente )
     ADD CONSTRAINT contrato_cliente_contrato_fk FOREIGN KEY ( id_contrato )
-        REFERENCES fv_user.contrato ( id_contrato );
+        REFERENCES fv_user.contrato ( id_contrato ) 
+        ON DELETE CASCADE;
 
 
 prompt Alterando tabla dato_comercial.;
@@ -348,8 +357,7 @@ prompt Alterando tabla detalle_pedido.
 ALTER TABLE fv_user.detalle_pedido
     ADD CONSTRAINT detalle_pedido_pedido_fk FOREIGN KEY ( id_pedido )
         REFERENCES fv_user.pedido ( id_pedido )
-    ADD CONSTRAINT detalle_pedido_producto_fk FOREIGN KEY ( id_producto )
-        REFERENCES fv_user.producto ( id_producto );
+        ON DELETE CASCADE;
 
 
 prompt Alterando tabla empleado.;
@@ -399,6 +407,7 @@ prompt alterando tabla seguimiento_pedido.;
 ALTER TABLE fv_user.seguimiento_pedido
     add constraint seguimiento_pedido_seguimiento_fk foreign key (id_pedido)
         references fv_user.pedido (id_pedido)
+        ON DELETE CASCADE
     add constraint seguimiento_estado_seguimiento_fk foreign key (id_estado)
         references fv_user.estado_pedido (id_estado)
     add constraint seguimiento_proceso_seguimiento_fk foreign key (id_proceso)

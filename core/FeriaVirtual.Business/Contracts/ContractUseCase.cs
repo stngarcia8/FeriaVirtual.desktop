@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FeriaVirtual.Business.Documents;
 using System.Data;
 using FeriaVirtual.Business.Validators;
@@ -115,6 +116,14 @@ namespace FeriaVirtual.Business.Contracts {
             }
         }
 
+
+        public IList<ContractDto> GetContractByCustomerID(string customerID) {
+            try {
+                return repository.FindContractByCustomerId(customerID);
+            } catch (Exception ex) {
+                throw; ;
+            }
+        }
 
 
 

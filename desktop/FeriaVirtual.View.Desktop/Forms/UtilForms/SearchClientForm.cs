@@ -122,6 +122,7 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
             if(row == null) {
                 return;
             }
+            row = ListDataGridView.CurrentRow;
             idSelected=  row.Cells[1].Value.ToString();
         }
 

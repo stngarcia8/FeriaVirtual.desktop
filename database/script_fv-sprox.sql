@@ -11,8 +11,14 @@
 --  conectar con docker
 --  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
 SET ECHO OFF;
+set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+prompt;
+prompt ----------------------------------------;
 prompt Creando procedimientos almacenados.;
+prompt ----------------------------------------;
+prompt;
+
 
 prompt Procedimiento almacenado de usuarios.;
 CREATE OR REPLACE PROCEDURE fv_user.spAgregarUsuario(
@@ -183,15 +189,9 @@ create or replace procedure fv_user.spEliminarProductos(
     pIdProducto varchar2) is
     vCantProductos number default 0;
 begin
-    select count(id_producto)
-      into vCantProductos
-    from fv_user.detalle_pedido
+    delete from fv_user.producto
     where id_producto = pIdProducto;
-    if vCantProductos=0 then
-        delete from fv_user.producto
-        where id_producto = pIdProducto;
-        commit;
-    end if;
+    commit;
 end spEliminarProductos;
 /
 
@@ -302,6 +302,19 @@ BEGIN
     WHERE id_contrato = :old.id_contrato;
 END;
 /
+CREATE OR REPLACE PROCEDURE fv_user.spAceptarRechazarContrato(
+    pIdContrato VARCHAR2, pIdCliente VARCHAR2, 
+    pEstado NUMBER, pObservacion VARCHAR2) IS
+BEGIN
+        UPDATE fv_user.contrato_cliente 
+        SET estado_aceptacion = pEstado,
+            fecha_aceptacion = SYSDATE,
+            obs_cliente = pObservacion
+    WHERE id_contrato = pIdContrato AND id_cliente = pIdCliente;
+    COMMIT;
+END spAceptarRechazarContrato;
+/
+)
 
 prompt Procedimientos almacenados para pedidos.;
 CREATE OR REPLACE PROCEDURE fv_user.spAgregarPedido(
@@ -324,12 +337,12 @@ BEGIN
 END spAgregarPedido;
 /
 CREATE OR REPLACE PROCEDURE fv_user.spAgregarDetallePedido(
-    pIdPedido VARCHAR, pIdProducto VARCHAR, pCantidad NUMBER) IS
+    pIdPedido VARCHAR, pProducto VARCHAR, pCantidad NUMBER) IS
 BEGIN
     INSERT INTO fv_user.detalle_pedido
-        (id, id_pedido, id_producto, cantidad)
+        (id, id_pedido, nombre_producto, cantidad)
     VALUES 
-        (sys_guid(), pIdPedido, pIdProducto, pCantidad);
+        (sys_guid(), pIdPedido, pProducto, pCantidad);
     COMMIT;
 END spAgregarDetallePedido;
 /

@@ -1,4 +1,4 @@
--- Archivo: script_fv.sql
+-- Archivo: script_fv-main.sql
 --     Inicia la ejecución del script de creación de base de datos de feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
 -- Descripcion: Genera la base en oracle para el aplicativo de feria virtual.
@@ -11,30 +11,31 @@
 --  conectar con docker
 --  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
 SET ECHO OFF;
-ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+set feedback off;
 clear screen;
+prompt ----------------------------------------;
+prompt: Feria virtual.;
+prompt --------------;
+prompt;
+prompt script de creación de la base de datos;
+prompt para el proyecto "Feria Virtual";
+prompt Ramo de portafolio de título DUOC UC.;
+prompt;
+prompt 2020, Arenas, Avalos, Garcia, Repetto.;
+prompt ----------------------------------------;
+prompt;
 
-prompt Eliminando usuario y tablespace.;
-DROP USER fv_user CASCADE;
-DROP tablespace fv_env INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+prompt Ajustando la sesion para feria virtual.;
+ALTER SESSION SET "_ORACLE_SCRIPT" = true;
 
-prompt Creando tablespace y usuario para feria virtual.;
-CREATE TABLESPACE fv_env DATAFILE 'fv_env.dbf' SIZE 500M autoextend ON;
-CREATE USER fv_user IDENTIFIED BY fv_pwd DEFAULT TABLESPACE fv_env temporary tablespace temp;
-
-prompt Asignando los privilegios al usuario.;
-GRANT CREATE SESSION TO fv_user;
-GRANT RESOURCE TO fv_user;
-GRANT CREATE VIEW TO fv_user;
--- REVOKE UNLIMITED TABLESPACE FROM fvirtual_user;
-
-prompt Definiendo el tablespace que trabajara el usuario.;
-ALTER USER fv_user QUOTA UNLIMITED ON fv_env;
-
-prompt Estableciendo cambios.;
-COMMIT;
-
+@/script_files/script_fv-user.sql;
 @/script_files/script_fv-table.sql;
 @/script_files/script_fv-sprox.sql;
 @/script_files/script_fv-view.sql;
 @/script_files/script_fv-popul.sql;
+
+prompt;
+prompt ----------------------------------------;
+prompt Base de datos de feria virtual lista!;
+prompt;
+prompt;

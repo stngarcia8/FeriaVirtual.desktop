@@ -10,6 +10,9 @@ namespace FeriaVirtual.Domain.Orders {
         public string OrderID { get; set; }
         public string ClientID { get; set; }
         public PaymentCondition Condition { get; set; }
+        public OrderStatus Status { get; set; }
+        public OrderTracker Tracker { get; set; }
+        public OrderProcess ActualProcess { get; set; }
         public DateTime OrderDate { get; set; }
         public float OrderDiscount { get; set; }
         public IList<OrderDetail> OrderDetailList { get; set; }

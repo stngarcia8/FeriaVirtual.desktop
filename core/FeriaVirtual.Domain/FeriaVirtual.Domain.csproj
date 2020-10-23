@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Contract.cs" />
     <Compile Include="Contracts\ContractDetail.cs" />
+    <Compile Include="Contracts\ContractDto.cs" />
     <Compile Include="DomainExeptions\DomainException.cs" />
     <Compile Include="CommercialsData\City.cs" />
     <Compile Include="CommercialsData\ComercialDataDto.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Users\UserProfile.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DiagramaDeClases-feriaVirtual-v2.cd" />
     <None Include="DiagramaDeClases-feriaVirtual-domain.cd" />
   </ItemGroup>
   <ItemGroup />

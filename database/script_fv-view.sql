@@ -1,7 +1,6 @@
 -- Archivo: script_fv-view.sql
 --      Crea las vistas para feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
--- Descripcion: Genera la base en oracle para el aplicativo de feria virtual.
 -- Instrucciones:
 --  Usar la cuenta de sysdba.
 --  conectarse desde la consola y ejecutar el script:
@@ -11,9 +10,13 @@
 --  conectar con docker
 --  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
 SET ECHO OFF;
+set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+prompt;
+prompt ----------------------------------------;
 prompt Creando vistas predefinidas.;
-
+prompt ----------------------------------------;
+prompt;
 
 prompt Creando vistas de usuarios del sistema.;
 create or replace view fv_user.vwObtenerUsuarios as
@@ -119,6 +122,12 @@ FROM fv_user.producto pro
     INNER JOIN categoria_producto cat ON pro.id_categoria = cat.id_categoria;
 
 
+prompt Creando vista para los productos de exportacion.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerProductosExportacion AS 
+SELECT  DISTINCT nombre_producto, id_categoria
+FROM fv_user.producto;
+
+
 prompt Creando vista para los vehiculos.;
 CREATE OR REPLACE VIEW fv_user.vwObtenerVehiculos AS
 SELECT
@@ -158,12 +167,49 @@ CREATE OR REPLACE VIEW fv_user.vwAsociadosContrato AS
 SELECT 
     con.id_contrato, cli.id_cliente, 
     cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
+    cli.dni_cliente AS "Rut", usr.email,
     con.obs_contrato AS "Observacion contrato",
     con.obs_cliente AS "Observacion cliente",
     con.valor_adicional AS "Valor adicional",
-    con.valor_multa AS "Valor multa"
+    con.valor_multa AS "Valor multa",
+    con.estado_aceptacion,
+    CASE con.estado_aceptacion
+        WHEN 0 THEN 'No visualizado'
+        WHEN 1 THEN 'Aceptado'
+        WHEN 2 THEN 'Rechazado'
+    END AS "Estado"
 FROM fv_user.contrato_cliente con 
-    INNER JOIN fv_user.cliente cli ON con.id_cliente = cli.id_cliente;
+    INNER JOIN fv_user.cliente cli ON con.id_cliente = cli.id_cliente 
+    INNER JOIN fv_user.usuario usr ON cli.id_usuario = usr.id_usuario;
+
+prompt Creando vista de contrato por asociados.;
+CREATE OR REPLACE VIEW fv_user.vwContratoPorAsociado AS 
+SELECT 
+    con.id_contrato, cli.id_cliente, 
+    cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
+    cli.dni_cliente AS "Rut", usr.email,
+    con.obs_contrato AS "Observacion contrato",
+    con.obs_cliente AS "Observacion cliente",
+    cto.inicio_contrato AS "Inicio", cto.termino_contrato AS "Termino",
+    cto.esta_vigente,
+    CASE cto.esta_vigente 
+        WHEN 0 THEN 'Caducado'
+        WHEN 1 THEN 'Vigente'
+    END AS "Vigente",
+    cto.desc_contrato AS "Descripcion", 
+    cto.comision_contrato "Comision",
+    con.valor_adicional AS "Valor adicional",
+    con.valor_multa AS "Valor multa",
+    con.estado_aceptacion,
+    CASE con.estado_aceptacion
+        WHEN 0 THEN 'No visualizado'
+        WHEN 1 THEN 'Aceptado'
+        WHEN 2 THEN 'Rechazado'
+    END AS "Estado"
+FROM fv_user.contrato_cliente con 
+    INNER JOIN fv_user.cliente cli ON con.id_cliente = cli.id_cliente 
+    INNER JOIN fv_user.usuario usr ON cli.id_usuario = usr.id_usuario 
+    INNER JOIN fv_user.contrato cto ON con.id_contrato = cto.id_contrato;
 
 
 prompt Creando vista para pedidos.;

@@ -184,6 +184,43 @@ namespace FeriaVirtual.Data.Repository {
             return GetContractData(querySelect.ExecuteQuery());
         }
 
+        public IList<ContractDto> FindContractByCustomerId(string clientID) {
+            sql.Clear();
+            sql.Append("select * from fv_user.vwContratoPorAsociado where id_cliente=:pIdCliente ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pIdCliente",clientID,DbType.String);
+            return GetAssociateContractData(querySelect.ExecuteQuery());
+        }
+
+        private IList<ContractDto> GetAssociateContractData(DataTable data) {
+            if(data.Rows.Count.Equals(0)) {
+                return null;
+            }
+            IList<ContractDto> contractList = new List<ContractDto>();
+            foreach(DataRow row in data.Rows) {
+                ContractDto c = new ContractDto();
+                c.ContractID = row["id_contrato"].ToString();
+                c.ClientID = row["id_cliente"].ToString();
+                c.Customername= row["Cliente"].ToString();
+                c.CustomerDNI= row["Rut"].ToString();
+                c.CustomerEmail = row["email"].ToString();
+                c.ContractObservation= row["Observacion contrato"].ToString();
+                c.CustomerObservation= row["Observacion cliente"].ToString();
+                c.StartDate= row["Inicio"].ToString();
+                c.EndDate = row["Termino"].ToString();
+                c.IsValid= int.Parse(row["esta_vigente"].ToString());
+                c.ValidDescription= row["Vigente"].ToString();
+                c.ContractDescription= row["Descripcion"].ToString();
+                c.CommisionValue= float.Parse(row["Comision"].ToString());
+                c.AdditionalValue= float.Parse(row["Valor adicional"].ToString());
+                c.FineValue= float.Parse(row["Valor multa"].ToString());
+                c.Status= int.Parse(row["estado_aceptacion"].ToString());
+                c.StatusDescription= row["Estado"].ToString();
+                contractList.Add(c);
+            }
+            return contractList;
+        }
+
 
     }
 }
