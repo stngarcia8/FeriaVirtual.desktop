@@ -132,6 +132,12 @@
     <Compile Include="Forms\Maintenance\User\UserRegisterForm.Designer.cs">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Offers\OfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Offers\OfferForm.Designer.cs">
+      <DependentUpon>OfferForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UtilForms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Maintenance\User\UserRegisterForm.resx">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Offers\OfferForm.resx">
+      <DependentUpon>OfferForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UtilForms\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>

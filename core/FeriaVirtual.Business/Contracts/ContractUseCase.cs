@@ -97,11 +97,11 @@ namespace FeriaVirtual.Business.Contracts {
                         d.ClientObservation= observation;
                     }
                 }
-                ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
-                generator.Generate();
-                string filePath = generator.PdfFilePath;
-                generator= null;
-                repository.AcceptContract(contract, filePath);
+                //ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
+                //generator.Generate();
+                //string filePath = generator.PdfFilePath;
+                //generator= null;
+                repository.AcceptContract(contract);
             } catch(Exception ex) {
                 throw;
             }

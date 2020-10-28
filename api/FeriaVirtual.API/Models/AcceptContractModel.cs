@@ -21,6 +21,6 @@
         /// Corresponde a las observaciones realizadas por el cliente que acepta/rechaza el
         /// contrato.
         /// </summary>
-        public string Observation { get; set; }
+        public string CustomerObservation { get; set; }
     }
 }

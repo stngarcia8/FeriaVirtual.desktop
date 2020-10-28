@@ -50,6 +50,7 @@
     <Compile Include="Contracts\ContractType.cs" />
     <Compile Include="CommercialsData\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Orders\OrderDto.cs" />
     <Compile Include="Orders\PaymentCondition.cs" />
     <Compile Include="Products\ProductCategory.cs" />
     <Compile Include="Products\ProductDto.cs" />

@@ -5,7 +5,7 @@ namespace FeriaVirtual.Domain.Orders {
     public class OrderDetail {
         public string OrderDetailID { get; set; }
         public string OrderID { get; set; }
-        public string ProductID { get; set; }
+        public string ProductName { get; set; }
         public float Quantity { get; set; }
 
         // Constructors.
@@ -13,14 +13,14 @@ namespace FeriaVirtual.Domain.Orders {
             InitializeObjects(Guid.NewGuid().ToString(),string.Empty,string.Empty,0);
         }
 
-        private OrderDetail(string orderDetailID,string orderID,string productID,float quantity) {
-            InitializeObjects(orderDetailID,orderID,ProductID,quantity);
+        private OrderDetail(string orderDetailID,string orderID,string productName,float quantity) {
+            InitializeObjects(orderDetailID,orderID,productName,quantity);
         }
 
-        private void InitializeObjects(string orderDetailID,string orderID,string productID,float quantity) {
+        private void InitializeObjects(string orderDetailID,string orderID,string productName,float quantity) {
             OrderDetailID=orderDetailID;
             OrderID = orderID;
-            ProductID = productID;
+            ProductName = productName;
             Quantity=quantity;
         }
 
@@ -29,8 +29,8 @@ namespace FeriaVirtual.Domain.Orders {
             return new OrderDetail();
         }
 
-        public static OrderDetail CreateDetail(string orderDetailID,string orderID,string productID,float quantity) {
-            return new OrderDetail(orderDetailID,orderID,productID,quantity);
+        public static OrderDetail CreateDetail(string orderDetailID,string orderID,string productName,float quantity) {
+            return new OrderDetail(orderDetailID,orderID,productName,quantity);
         }
     }
 }

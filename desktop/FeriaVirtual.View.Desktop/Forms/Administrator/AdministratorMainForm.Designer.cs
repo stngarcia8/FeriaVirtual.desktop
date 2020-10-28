@@ -128,10 +128,10 @@
             this.BusinessToolStripSeparator2,
             this.BusinessTransportAuctionToolStripMenuItem,
             this.BusinessProductDistributionToolStripMenuItem,
-            this.BusinessResultNotifyToolStripMenuItem,
             this.BusinessToolStripSeparator3,
             this.BusinessPaymentsReceptionToolStripMenuItem,
-            this.BusinessPaymentsDistributionToolStripMenuItem});
+            this.BusinessPaymentsDistributionToolStripMenuItem,
+            this.BusinessResultNotifyToolStripMenuItem});
             this.BusinessToolStripMenuItem.Name = "BusinessToolStripMenuItem";
             this.BusinessToolStripMenuItem.Size = new System.Drawing.Size(155, 21);
             this.BusinessToolStripMenuItem.Text = "&Procesos de negocio";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
@@ -37,5 +38,26 @@ namespace FeriaVirtual.Business.Orders {
                 throw;
             }
         }
+
+        public void DeleteOrder(string orderID) {
+            try {
+                repository.DeleteOrder(orderID);
+            } catch(Exception ex) {
+                throw;
+            }
+        }
+
+        public IList<OrderDto> GetOrderToPublish(int statusID, string customerID) {
+            try {
+                return repository.PublishOrdersToApi(statusID, customerID);
+            }catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+
+
+
+
     }
 }

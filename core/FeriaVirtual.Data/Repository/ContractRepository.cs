@@ -155,7 +155,7 @@ namespace FeriaVirtual.Data.Repository {
             return detail;
         }
 
-        public void AcceptContract(Contract contract, string contractFilePath) {
+        public void AcceptContract(Contract contract) {
             ContractDetail detail = contract.Details[0];
             IQueryAction query = DefineQueryAction("spAceptarRechazarContrato  ");
             query.AddParameter("pIdContrato",contract.ContractID,DbType.String);
@@ -163,8 +163,8 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter("pEstado",1,DbType.Int32);
             query.AddParameter("pObservacion",detail.ClientObservation,DbType.String);
             query.ExecuteQuery();
-            MailContractSender sender = MailContractSender.CreateSender(contract,contractFilePath, MailTypeMessage.ContractAccepted);
-            sender.SendMail();
+            //MailContractSender sender = MailContractSender.CreateSender(contract,contractFilePath, MailTypeMessage.ContractAccepted);
+            //sender.SendMail();
         }
 
         public void RefuseContract(string contractID, string clientID, string observation) {
@@ -206,15 +206,15 @@ namespace FeriaVirtual.Data.Repository {
                 c.CustomerEmail = row["email"].ToString();
                 c.ContractObservation= row["Observacion contrato"].ToString();
                 c.CustomerObservation= row["Observacion cliente"].ToString();
-                c.StartDate= row["Inicio"].ToString();
-                c.EndDate = row["Termino"].ToString();
-                c.IsValid= int.Parse(row["esta_vigente"].ToString());
+                c.StartDate= DateTime.Parse(row["Inicio"].ToString()).ToString("yyyy/MM/dd");
+                c.EndDate = DateTime.Parse(row["Termino"].ToString()).ToString("yyyy/MM/dd");
+                c.IsValid= row["esta_vigente"].ToString();
                 c.ValidDescription= row["Vigente"].ToString();
                 c.ContractDescription= row["Descripcion"].ToString();
                 c.CommisionValue= float.Parse(row["Comision"].ToString());
                 c.AdditionalValue= float.Parse(row["Valor adicional"].ToString());
                 c.FineValue= float.Parse(row["Valor multa"].ToString());
-                c.Status= int.Parse(row["estado_aceptacion"].ToString());
+                c.Status= row["estado_aceptacion"].ToString();
                 c.StatusDescription= row["Estado"].ToString();
                 contractList.Add(c);
             }

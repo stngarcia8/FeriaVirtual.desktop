@@ -105,14 +105,23 @@ namespace FeriaVirtual.View.Desktop.Forms.Maintenance.Contract {
         }
 
         private void PutCustomerDataIntoControls() {
-            FirstNameTextBox.Text= CustomerAssociated.FirstName;
-            LastNameTextBox.Text = CustomerAssociated.LastName;
-            DniTextBox.Text= CustomerAssociated.DNI;
-            CompanyNameTextBox.Text= CustomerAssociated.ComercialInfo.CompanyName;
-            FantasyNameTextBox.Text= CustomerAssociated.ComercialInfo.FantasyName;
-            CommercialBusinessTextBox.Text= CustomerAssociated.ComercialInfo.ComercialBusiness;
-            CommercialDniTextBox.Text= CustomerAssociated.ComercialInfo.ComercialDNI;
-            EmailTextBox.Text= CustomerAssociated.ComercialInfo.Email;
+            try {
+
+                FirstNameTextBox.Text= CustomerAssociated.FirstName;
+                LastNameTextBox.Text = CustomerAssociated.LastName;
+                DniTextBox.Text= CustomerAssociated.DNI;
+                CompanyNameTextBox.Text= CustomerAssociated.ComercialInfo.CompanyName;
+                FantasyNameTextBox.Text= CustomerAssociated.ComercialInfo.FantasyName;
+                CommercialBusinessTextBox.Text= CustomerAssociated.ComercialInfo.ComercialBusiness;
+                CommercialDniTextBox.Text= CustomerAssociated.ComercialInfo.ComercialDNI;
+                EmailTextBox.Text= CustomerAssociated.ComercialInfo.Email;
+                AceptContractButton.Enabled= true;
+            } catch(Exception) {
+                string message = string.Format("El {0} que desea agregar no posee sus datos comerciales ingresados, imposible agregar a contrato.",Profile.SingleProfileName);
+                MessageBox.Show(message,"Atención!",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                AceptContractButton.Enabled= false;
+
+            }
         }
     }
 }

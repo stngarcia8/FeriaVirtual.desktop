@@ -10,11 +10,10 @@ namespace FeriaVirtual.Domain.Orders {
         public string OrderID { get; set; }
         public string ClientID { get; set; }
         public PaymentCondition Condition { get; set; }
-        public OrderStatus Status { get; set; }
         public OrderTracker Tracker { get; set; }
-        public OrderProcess ActualProcess { get; set; }
         public DateTime OrderDate { get; set; }
         public float OrderDiscount { get; set; }
+        public string Observation { get; set; }
         public IList<OrderDetail> OrderDetailList { get; set; }
 
         // Constructors
@@ -30,8 +29,10 @@ namespace FeriaVirtual.Domain.Orders {
             OrderID=orderID;
             ClientID=clientID;
             Condition= PaymentCondition.CreateCondition();
+            Tracker= OrderTracker.CreateTracker();
             OrderDate=dateOrder;
             OrderDiscount = discount;
+            Observation = string.Empty;
             OrderDetailList= new List<OrderDetail>();
         }
 

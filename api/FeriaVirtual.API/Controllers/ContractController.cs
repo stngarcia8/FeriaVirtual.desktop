@@ -1,17 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
 using FeriaVirtual.API.Models;
 using FeriaVirtual.Business.Contracts;
 using FeriaVirtual.Domain.Contracts;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
-namespace FeriaVirtual.API.Controllers
-{
-    public class ContractController : ApiController
-    {
+namespace FeriaVirtual.API.Controllers {
+    public class ContractController:ApiController {
 
         /// <summary>
         /// Permite obtener el contrato de un productor/transportista.
@@ -25,14 +20,14 @@ namespace FeriaVirtual.API.Controllers
         /// </returns>
         [Route("api/v1/contracts")]
         [HttpGet]
-        public IHttpActionResult GetByClientID(int profileID, string clientID) {
+        public IHttpActionResult GetByClientID(int profileID,string clientID) {
             if(string.IsNullOrEmpty(clientID) || (profileID<=0)) {
                 return BadRequest("Parámetros inválidos, el identificador del cliente es incorrecto.");
             }
             try {
                 ContractUseCase usecase = ContractUseCase.CreateUseCase(profileID);
                 IList<ContractDto> contractList = usecase.GetContractByCustomerID(clientID);
-                if (contractList == null) {
+                if(contractList == null) {
                     return NotFound();
                 }
                 return Ok(contractList);
@@ -54,14 +49,14 @@ namespace FeriaVirtual.API.Controllers
         [Route("api/v1/contracts/accept")]
         [HttpPatch]
         public IHttpActionResult PatchAccept(RequestContractModel model) {
-if(model == null) {
+            if(model == null) {
                 return BadRequest("Parámetros inválidos, los parámetros enviados no corresponden.");
             }
             try {
                 ContractUseCase usecase = ContractUseCase.CreateUseCase(model.ProfileID);
-                usecase.AcceptContract(model.ContractID,model.ClientID,model.Observation);
+                usecase.AcceptContract(model.ContractID,model.ClientID,model.CustomerObservation);
                 return Ok("Contrato procesado correctamente.");
-            } catch (Exception ex) {
+            } catch(Exception ex) {
                 return BadRequest(ex.Message.ToString());
             }
         }
@@ -85,7 +80,7 @@ if(model == null) {
             }
             try {
                 ContractUseCase usecase = ContractUseCase.CreateUseCase(model.ProfileID);
-                usecase.ContractRefuse(model.ContractID,model.ClientID,model.Observation);
+                usecase.ContractRefuse(model.ContractID,model.ClientID,model.CustomerObservation);
                 return Ok("Contrato procesado correctamente.");
             } catch(Exception ex) {
                 return BadRequest(ex.Message.ToString());

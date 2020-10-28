@@ -1,4 +1,6 @@
-﻿namespace FeriaVirtual.Domain.Contracts {
+﻿using System;
+
+namespace FeriaVirtual.Domain.Contracts {
 
     public class ContractDto {
 
@@ -12,13 +14,13 @@
         public string CustomerObservation { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public int IsValid { get; set; }
+        public string IsValid { get; set; }
         public string ValidDescription { get; set; }
         public string ContractDescription { get; set; }
         public float CommisionValue { get; set; }
         public float AdditionalValue { get; set; }
         public float FineValue { get; set; }
-        public int Status { get; set; }
+        public string Status { get; set; }
         public string StatusDescription { get; set; }
 
         // constructor
