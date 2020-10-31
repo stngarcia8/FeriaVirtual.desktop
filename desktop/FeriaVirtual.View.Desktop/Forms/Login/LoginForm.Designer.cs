@@ -29,8 +29,8 @@
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
-            this.LoginButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
+            this.LoginButton = new System.Windows.Forms.Button();
             this.CancelLoginButton = new System.Windows.Forms.Button();
             this.FormPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
@@ -50,7 +50,7 @@
             this.UsernameTextBox.Location = new System.Drawing.Point(125, 25);
             this.UsernameTextBox.MaxLength = 150;
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(150, 23);
+            this.UsernameTextBox.Size = new System.Drawing.Size(200, 23);
             this.UsernameTextBox.TabIndex = 2;
             // 
             // PasswordLabel
@@ -67,9 +67,16 @@
             this.PasswordTextBox.Location = new System.Drawing.Point(125, 75);
             this.PasswordTextBox.MaxLength = 128;
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(150, 23);
+            this.PasswordTextBox.Size = new System.Drawing.Size(200, 23);
             this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            // 
+            // FormImageList
+            // 
+            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
+            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
+            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
             // 
             // LoginButton
             // 
@@ -78,7 +85,7 @@
             this.LoginButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LoginButton.ImageKey = "button-acept.png";
             this.LoginButton.ImageList = this.FormImageList;
-            this.LoginButton.Location = new System.Drawing.Point(75, 125);
+            this.LoginButton.Location = new System.Drawing.Point(125, 125);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(90, 27);
             this.LoginButton.TabIndex = 5;
@@ -86,13 +93,6 @@
             this.LoginButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.LoginButton.UseVisualStyleBackColor = true;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
-            // 
-            // FormImageList
-            // 
-            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
-            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.FormImageList.Images.SetKeyName(0, "button-acept.png");
-            this.FormImageList.Images.SetKeyName(1, "button-cancel.png");
             // 
             // CancelLoginButton
             // 
@@ -102,7 +102,7 @@
             this.CancelLoginButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CancelLoginButton.ImageKey = "button-cancel.png";
             this.CancelLoginButton.ImageList = this.FormImageList;
-            this.CancelLoginButton.Location = new System.Drawing.Point(175, 125);
+            this.CancelLoginButton.Location = new System.Drawing.Point(225, 125);
             this.CancelLoginButton.Name = "CancelLoginButton";
             this.CancelLoginButton.Size = new System.Drawing.Size(98, 27);
             this.CancelLoginButton.TabIndex = 6;
@@ -126,8 +126,9 @@
             this.AcceptButton = this.LoginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.CancelButton = this.CancelLoginButton;
-            this.ClientSize = new System.Drawing.Size(283, 163);
+            this.ClientSize = new System.Drawing.Size(346, 163);
             this.Controls.Add(this.CancelLoginButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.PasswordTextBox);
@@ -140,6 +141,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(362, 202);
             this.Name = "LoginForm";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

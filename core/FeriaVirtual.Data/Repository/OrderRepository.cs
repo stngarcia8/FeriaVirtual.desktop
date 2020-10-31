@@ -22,6 +22,42 @@ namespace FeriaVirtual.Data.Repository {
             return new OrderRepository();
         }
 
+        public void GetOrderByStatus(int statusID, int rolID) {
+            sql.Clear();
+            sql.Append("select * from fv_user.vwObtenerPedidoToApi where id_estado=:pIdEstado and id_rol=:pIdRol ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pIdEstado",statusID,DbType.Int32);
+            querySelect.AddParameter("pIdRol",rolID,DbType.Int32);
+            dataTable= querySelect.ExecuteQuery();
+        }
+
+        public DataTable GetOrderDetailById(string orderID) {
+            sql.Clear();
+            sql.Append("select * from fv_user.detalle_pedido where id_pedido=:pId ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pId",orderID,DbType.String);
+            dataTable = querySelect.ExecuteQuery();
+            return DataSource;
+        }
+
+        public void GenerateProposeProduct(string orderID) {
+            try {
+            IQueryAction queryAction = DefineQueryAction("spGenerarPropuestaProductos  ");
+            queryAction.AddParameter("idped",orderID,DbType.String);
+            queryAction.ExecuteQuery();
+            } catch (Exception ex) {
+                throw ex;
+            }
+            }
+
+        public void GetProposeProduct(string orderID) {
+            sql.Clear();
+            sql.Append("select * from vwObtenerResultadoPropuesta where id_pedido=:pId ");
+            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pId",orderID,DbType.String);
+            dataTable= querySelect.ExecuteQuery();
+        }
+
         public void NewOrder(Order order,string clientID) {
             IQueryAction query = DefineQueryAction("spAgregarPedido ");
             query.AddParameter("pIdCliente",clientID,DbType.String);
@@ -124,7 +160,12 @@ namespace FeriaVirtual.Data.Repository {
             return d;
         }
 
-
+        public void AceptProposeProducts(string orderID) {
+            IQueryAction query = DefineQueryAction("spAceptarPropuestaProductos ");
+            query.AddParameter("pIdPedido",orderID,DbType.String);
+            query.AddParameter("pGuid",Guid.NewGuid().ToString(),DbType.String);
+            query.ExecuteQuery();
+        }
 
 
     }

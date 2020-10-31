@@ -206,8 +206,8 @@ namespace FeriaVirtual.Data.Repository {
                 c.CustomerEmail = row["email"].ToString();
                 c.ContractObservation= row["Observacion contrato"].ToString();
                 c.CustomerObservation= row["Observacion cliente"].ToString();
-                c.StartDate= DateTime.Parse(row["Inicio"].ToString()).ToString("yyyy/MM/dd");
-                c.EndDate = DateTime.Parse(row["Termino"].ToString()).ToString("yyyy/MM/dd");
+                c.StartDate= DateTime.Parse(row["Inicio"].ToString()).ToString("yyyy-MM-dd");
+                c.EndDate = DateTime.Parse(row["Termino"].ToString()).ToString("yyyy-MM-dd");
                 c.IsValid= row["esta_vigente"].ToString();
                 c.ValidDescription= row["Vigente"].ToString();
                 c.ContractDescription= row["Descripcion"].ToString();

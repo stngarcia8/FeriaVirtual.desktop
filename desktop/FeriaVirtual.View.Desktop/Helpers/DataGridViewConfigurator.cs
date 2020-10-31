@@ -23,8 +23,16 @@ namespace FeriaVirtual.View.Desktop.Helpers {
             }
         }
 
+        public void NumericColumn(string colName,string headerText) {
+            datagrid.Columns[colName].HeaderText = headerText;
+            datagrid.Columns[colName].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[colName].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
+            datagrid.Columns[colName].DefaultCellStyle.Format="N2";
+        }
 
-
+        public void ChangeHeader(string colName,string headerText) {
+            datagrid.Columns[colName].HeaderText = headerText;
+        }
 
     }
 }

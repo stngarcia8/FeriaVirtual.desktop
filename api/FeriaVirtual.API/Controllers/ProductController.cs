@@ -68,7 +68,7 @@ namespace FeriaVirtual.API.Controllers {
         [HttpGet]
         public IHttpActionResult GetAllExportProducts() {
             try {
-                IList<ProductDto> productList = usecase.FindAllExportProducts();
+                IList<ProductDto> productList = usecase.FindAllProductByCategory(1);
                 return Ok(productList);
             } catch(Exception ex) {
                 return BadRequest(ex.Message.ToString());
@@ -76,6 +76,41 @@ namespace FeriaVirtual.API.Controllers {
         }
 
 
+        /// <summary>
+        /// Obtiene los productos para los clientes internos de la plataforma.
+        /// </summary>
+        /// <returns>
+        /// Ok, con la lista de productos para clientes internos,
+        /// badrequest, si ocurre algun problema.
+        /// </returns>
+        [Route("api/v1/products/import/all/")]
+        [HttpGet]
+        public IHttpActionResult GetAllImportProducts() {
+            try {
+                IList<ProductDto> productList = usecase.FindAllProductByCategory(2);
+                return Ok(productList);
+            } catch(Exception ex) {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Carga los productos en oferta a los clientes internos.
+        /// </summary>
+        /// <returns>
+        /// Ok, con la lista de productos en oferta, 
+        /// Badrequest si es invalido
+        /// </returns>
+        [Route("api/v1/products/offer/all/")]
+        [HttpGet]
+        public IHttpActionResult GetAllOfferProducts() {
+            try {
+                IList<ProductDto> productList = usecase.FindAllProductByCategory(3);
+                return Ok(productList);
+            } catch(Exception ex) {
+                return BadRequest(ex.Message.ToString());
+            }
+        }
 
 
         /// <summary>

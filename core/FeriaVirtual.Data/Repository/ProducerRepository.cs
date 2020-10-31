@@ -133,10 +133,11 @@ namespace FeriaVirtual.Data.Repository {
             return productList;
         }
 
-        public IList<ProductDto> FindAllExportProducts() {
+        public IList<ProductDto> FindAllProductByCategory(int categoryID) {
             sql.Clear();
-            sql.Append("select * from fv_user.vwObtenerProductosExportacion where id_categoria=1 order by nombre_producto ");
+            sql.Append("select * from fv_user.vwObtenerProductosExportacion where id_categoria=:pIdCategoria order by nombre_producto ");
             IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
+            querySelect.AddParameter("pIdCategoria",categoryID,DbType.Int32);
             dataTable = querySelect.ExecuteQuery();
             return GetExportProductsData();
         }

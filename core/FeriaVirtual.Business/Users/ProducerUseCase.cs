@@ -73,10 +73,10 @@ namespace FeriaVirtual.Business.Users {
             return productList;
         }
 
-        public IList<ProductDto> FindAllExportProducts() {
+        public IList<ProductDto> FindAllProductByCategory(int categoryID) {
             IList<ProductDto> productList;
             try {
-                productList= repository.FindAllExportProducts();
+                productList= repository.FindAllProductByCategory(categoryID);
             } catch(Exception) {
                 throw;
             }

@@ -4,7 +4,6 @@
 
         // Properties
         public int CountryID { get; set; }
-
         public string CountryName { get; set; }
         public string CountryPrefix { get; set; }
 

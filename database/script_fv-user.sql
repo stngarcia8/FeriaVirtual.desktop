@@ -20,7 +20,7 @@ DROP USER fv_user CASCADE;
 DROP tablespace fv_env INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
 
 prompt Creando tablespace y usuario para feria virtual.;
-CREATE TABLESPACE fv_env DATAFILE 'fv_env.dbf' SIZE 500M autoextend ON;
+CREATE TABLESPACE fv_env DATAFILE 'fv_env.dbf' SIZE 500 M autoextend ON;
 CREATE USER fv_user IDENTIFIED BY fv_pwd DEFAULT TABLESPACE fv_env temporary tablespace temp;
 
 prompt Asignando los privilegios al usuario.;

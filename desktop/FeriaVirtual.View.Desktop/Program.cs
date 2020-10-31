@@ -6,10 +6,6 @@ namespace FeriaVirtual.View.Desktop {
 
     internal static class Program {
 
-        // Log static properties
-                /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
         [STAThread]
         private static void Main() {
             Application.EnableVisualStyles();

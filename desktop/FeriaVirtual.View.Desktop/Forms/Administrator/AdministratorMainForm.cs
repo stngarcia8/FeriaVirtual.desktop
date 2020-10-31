@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using FeriaVirtual.View.Desktop.Commands;
-using FeriaVirtual.View.Desktop.Forms.Maintenance.Client;
-using FeriaVirtual.View.Desktop.Forms.Maintenance.Contract;
-using FeriaVirtual.View.Desktop.Forms.Maintenance.User;
+using FeriaVirtual.View.Desktop.Forms.Client;
+using FeriaVirtual.View.Desktop.Forms.Orders;
+using FeriaVirtual.View.Desktop.Forms.Contract;
+using FeriaVirtual.View.Desktop.Forms.User;
 using FeriaVirtual.View.Desktop.Helpers;
 
 namespace FeriaVirtual.View.Desktop.Forms.Administrator {
@@ -23,13 +24,17 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
 
         private void AdministratorMainForm_FormClosing(object sender,FormClosingEventArgs e) {
             DialogResult result = MessageBox.Show("¿Esta seguro de cerrar la sesión?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            e.Cancel= result==DialogResult.No;
+            if(result== DialogResult.Yes) {
+                e.Cancel=false;
+            } else {
+                e.Cancel=true;
+            }
         }
 
         #endregion Manejo del formulario
 
         private void CloseToolStripMenuItem_Click(object sender,EventArgs e) {
-            Close();
+            Application.Exit();
         }
 
         private void MaintenanceCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
@@ -38,6 +43,10 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
 
         private void BusinessContractToolStripMenuItem_Click(object sender,EventArgs e) {
             OpenForm(new ContractMaintenanceForm());
+        }
+
+        private void BusinessExternalSalesToolStripMenuItem_Click(object sender,EventArgs e) {
+            OpenForm(new ExternalOrderForm());
         }
 
         private void MaintenanceUserToolStripMenuItem_Click(object sender,EventArgs e) {
@@ -51,5 +60,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
             command.Execute();
             Show();
         }
+
+
     }
 }

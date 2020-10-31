@@ -30,6 +30,7 @@ ALTER SESSION SET "_ORACLE_SCRIPT" = true;
 
 @/script_files/script_fv-user.sql;
 @/script_files/script_fv-table.sql;
+@/script_files/script_fv-pkgs.sql;
 @/script_files/script_fv-sprox.sql;
 @/script_files/script_fv-view.sql;
 @/script_files/script_fv-popul.sql;
