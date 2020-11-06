@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\RepeatedBusinessDataException.cs" />
     <Compile Include="HelpersRepository\ContractTypeRepository.cs" />
     <Compile Include="HelpersRepository\HelperRepository.cs" />
+    <Compile Include="HelpersRepository\SafeRepository.cs" />
     <Compile Include="HelpersRepository\VehicleTypeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CarrierRepository.cs" />

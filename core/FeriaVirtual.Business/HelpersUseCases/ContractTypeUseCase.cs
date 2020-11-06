@@ -22,7 +22,7 @@ namespace FeriaVirtual.Business.HelpersUseCases {
                 repository.FindAll();
                 return repository.DataSource;
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
     }

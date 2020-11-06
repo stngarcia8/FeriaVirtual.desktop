@@ -58,12 +58,13 @@
             // 
             this.FormLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.FormLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.FormLabel.Location = new System.Drawing.Point(125, 0);
+            this.FormLabel.Location = new System.Drawing.Point(125, -25);
             this.FormLabel.Name = "FormLabel";
-            this.FormLabel.Size = new System.Drawing.Size(325, 50);
+            this.FormLabel.Size = new System.Drawing.Size(325, 75);
             this.FormLabel.TabIndex = 1;
             this.FormLabel.Text = "Lista de productos seleccionados según mejor precio y cantidad disponibles para l" +
     "a orden de compra seleccionada.";
+            this.FormLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ProductDataGridView
             // 
@@ -73,7 +74,7 @@
             this.ProductDataGridView.AllowUserToResizeColumns = false;
             this.ProductDataGridView.AllowUserToResizeRows = false;
             this.ProductDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.ProductDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ProductDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductDataGridView.Location = new System.Drawing.Point(125, 50);
             this.ProductDataGridView.MultiSelect = false;
@@ -158,7 +159,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 303);
             this.Name = "ProposeProductsForm";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Propuesta de productos";

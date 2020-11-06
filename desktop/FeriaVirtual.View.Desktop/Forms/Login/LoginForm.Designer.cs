@@ -47,6 +47,7 @@
             // 
             // UsernameTextBox
             // 
+            this.UsernameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UsernameTextBox.Location = new System.Drawing.Point(125, 25);
             this.UsernameTextBox.MaxLength = 150;
             this.UsernameTextBox.Name = "UsernameTextBox";
@@ -64,6 +65,7 @@
             // 
             // PasswordTextBox
             // 
+            this.PasswordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PasswordTextBox.Location = new System.Drawing.Point(125, 75);
             this.PasswordTextBox.MaxLength = 128;
             this.PasswordTextBox.Name = "PasswordTextBox";

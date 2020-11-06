@@ -88,11 +88,11 @@
             // EmailTextBox
             // 
             this.EmailTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.EmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EmailTextBox.Location = new System.Drawing.Point(357, 150);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.ReadOnly = true;
-            this.EmailTextBox.Size = new System.Drawing.Size(147, 23);
+            this.EmailTextBox.Size = new System.Drawing.Size(147, 16);
             this.EmailTextBox.TabIndex = 15;
             // 
             // EmailLabel
@@ -107,11 +107,11 @@
             // CommercialDniTextBox
             // 
             this.CommercialDniTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.CommercialDniTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CommercialDniTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CommercialDniTextBox.Location = new System.Drawing.Point(182, 150);
             this.CommercialDniTextBox.Name = "CommercialDniTextBox";
             this.CommercialDniTextBox.ReadOnly = true;
-            this.CommercialDniTextBox.Size = new System.Drawing.Size(147, 23);
+            this.CommercialDniTextBox.Size = new System.Drawing.Size(147, 16);
             this.CommercialDniTextBox.TabIndex = 13;
             // 
             // CommercialDniLabel
@@ -126,11 +126,11 @@
             // CommercialBusinessTextBox
             // 
             this.CommercialBusinessTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.CommercialBusinessTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CommercialBusinessTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CommercialBusinessTextBox.Location = new System.Drawing.Point(10, 150);
             this.CommercialBusinessTextBox.Name = "CommercialBusinessTextBox";
             this.CommercialBusinessTextBox.ReadOnly = true;
-            this.CommercialBusinessTextBox.Size = new System.Drawing.Size(147, 23);
+            this.CommercialBusinessTextBox.Size = new System.Drawing.Size(147, 16);
             this.CommercialBusinessTextBox.TabIndex = 11;
             // 
             // CommercialBusinessLabel
@@ -145,11 +145,11 @@
             // FantasyNameTextBox
             // 
             this.FantasyNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.FantasyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FantasyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.FantasyNameTextBox.Location = new System.Drawing.Point(275, 100);
             this.FantasyNameTextBox.Name = "FantasyNameTextBox";
             this.FantasyNameTextBox.ReadOnly = true;
-            this.FantasyNameTextBox.Size = new System.Drawing.Size(225, 23);
+            this.FantasyNameTextBox.Size = new System.Drawing.Size(225, 16);
             this.FantasyNameTextBox.TabIndex = 9;
             // 
             // FantasyNameLabel
@@ -164,11 +164,11 @@
             // CompanyNameTextBox
             // 
             this.CompanyNameTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.CompanyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CompanyNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.CompanyNameTextBox.Location = new System.Drawing.Point(0, 100);
             this.CompanyNameTextBox.Name = "CompanyNameTextBox";
             this.CompanyNameTextBox.ReadOnly = true;
-            this.CompanyNameTextBox.Size = new System.Drawing.Size(250, 23);
+            this.CompanyNameTextBox.Size = new System.Drawing.Size(250, 16);
             this.CompanyNameTextBox.TabIndex = 7;
             // 
             // CompanyNameLabel
@@ -247,7 +247,7 @@
             // 
             // ContractualDataGroupBox
             // 
-            this.ContractualDataGroupBox.BackColor = System.Drawing.SystemColors.Control;
+            this.ContractualDataGroupBox.BackColor = System.Drawing.Color.LightGray;
             this.ContractualDataGroupBox.Controls.Add(this.FineValueNumericUpDown);
             this.ContractualDataGroupBox.Controls.Add(this.FineValueLabel);
             this.ContractualDataGroupBox.Controls.Add(this.AdditionalValueNumericUpDown);
@@ -311,7 +311,9 @@
             // 
             // ObservationTextBox
             // 
-            this.ObservationTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.ObservationTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.ObservationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ObservationTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.ObservationTextBox.Location = new System.Drawing.Point(150, 25);
             this.ObservationTextBox.MaxLength = 100;
             this.ObservationTextBox.Name = "ObservationTextBox";

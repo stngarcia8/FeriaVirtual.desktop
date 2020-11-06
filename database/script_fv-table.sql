@@ -315,6 +315,21 @@ CREATE TABLE fv_user.seguro
 ) tablespace fv_env;
 
 
+prompt Creando tabla de subastas.;
+CREATE TABLE fv_user.subasta
+(
+    id_subasta              VARCHAR2(40) NOT NULL,
+    id_pedido               VARCHAR2(40) NOT NULL,
+    fecha_subasta           DATE DEFAULT sysdate,
+    valor_propuesto         NUMBER(9,2) DEFAULT 0,
+    peso_comprometido       NUMBER(9,2) DEFAULT 0,
+    fecha_limite            DATE DEFAULT sysdate,
+    observacion_subasta     VARCHAR2(100) NOT NULL,
+    estado_subasta          number(1) default 0,
+    CONSTRAINT subasta_pk PRIMARY KEY (id_subasta)
+) TABLESPACE fv_env;
+
+
 prompt Creando tabla tipo cierre.;
 CREATE TABLE fv_user.tipo_cierre
 (
@@ -473,7 +488,8 @@ ALTER TABLE fv_user.producto
 prompt Alterando tabla resultado pedido.;
 Alter table fv_user.resultado_propuesto
     ADD constraint resultado_propuesto_pedido_fk foreign key (id_pedido)
-        references fv_user.pedido (id_pedido)
+        references fv_user.pedido (id_pedido) 
+            ON DELETE CASCADE
     ADD constraint resultado_propuesto_producto_fk foreign key (id_producto)
         references fv_user.producto (id_producto);
 
@@ -481,7 +497,8 @@ Alter table fv_user.resultado_propuesto
 prompt Alterando tabla pie de pedido.;
 Alter table fv_user.pie_pedido
     ADD constraint pie_pedido_pedido_fk foreign key (id_pedido)
-        references fv_user.pedido (id_pedido);
+        references fv_user.pedido (id_pedido)
+            ON DELETE CASCADE;
 
 
 prompt alterando tabla seguimiento_pedido.;
@@ -493,6 +510,15 @@ ALTER TABLE fv_user.seguimiento_pedido
         references fv_user.estado_pedido (id_estado)
     add constraint seguimiento_proceso_seguimiento_fk foreign key (id_proceso)
         references fv_user.proceso_pedido (id_proceso);
+
+prompt Alterando tabla subasta.;
+ALTER TABLE fv_user.subasta
+    ADD CONSTRAINT subasta_pedido_fk FOREIGN KEY ( id_pedido )
+        REFERENCES fv_user.pedido ( id_pedido )
+        ON DELETE CASCADE;
+
+
+
 
 
 prompt Alterando tabla vehiculo.;

@@ -13,6 +13,9 @@
 SET ECHO OFF;
 set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+ALTER SESSION SET CURRENT_SCHEMA = fv_user;
+ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '$' NLS_ISO_CURRENCY= 'AMERICA' NLS_NUMERIC_CHARACTERS= '.,' NLS_CALENDAR= 'GREGORIAN' NLS_DATE_FORMAT= 'DD-MON-RR' NLS_DATE_LANGUAGE= 'SPANISH' NLS_SORT= 'BINARY';
+
 prompt;
 prompt ----------------------------------------;
 prompt insertando registros iniciales.;
@@ -1950,7 +1953,7 @@ VALUES ('F8E7572A-8C1C-9856-FF79-2EBEDDFF0F2D', '4D454509-2548-F6DD-1B33-731A132
 
 
 prompt "Eliminando algunos productos para diferenciar entre cliente externo e interno.;"
-delete from producto 
+delete from fv_user.producto 
 where id_categoria=2 and nombre_producto in ('Almendras', 'Frutillas', 'Mandarinas', 'Paltas', 'Ciruelas', 'Cerezas', 'Guindas', 'Palta Hass');
 
 

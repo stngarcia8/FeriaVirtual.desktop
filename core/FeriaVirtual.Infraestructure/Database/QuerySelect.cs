@@ -28,7 +28,7 @@ namespace FeriaVirtual.Infraestructure.Database {
                 };
                 dataAdapter.Fill(dataTable);
             } catch (Exception ex) {
-                throw;
+                throw ex;
             }
             return dataTable;
         }

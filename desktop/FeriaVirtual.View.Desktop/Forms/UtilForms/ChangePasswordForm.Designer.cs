@@ -143,7 +143,6 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(371, 194);
             this.Name = "ChangePasswordForm";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambio de contraseña.";

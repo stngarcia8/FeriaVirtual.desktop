@@ -59,6 +59,7 @@
             // 
             // EmailTextBox
             // 
+            this.EmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EmailTextBox.Location = new System.Drawing.Point(250, 150);
             this.EmailTextBox.MaxLength = 254;
             this.EmailTextBox.Name = "EmailTextBox";
@@ -76,6 +77,8 @@
             // 
             // LastnameTextBox
             // 
+            this.LastnameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LastnameTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.LastnameTextBox.Location = new System.Drawing.Point(250, 100);
             this.LastnameTextBox.MaxLength = 50;
             this.LastnameTextBox.Name = "LastnameTextBox";
@@ -93,6 +96,8 @@
             // 
             // FirstnameTextBox
             // 
+            this.FirstnameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FirstnameTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.FirstnameTextBox.Location = new System.Drawing.Point(250, 75);
             this.FirstnameTextBox.MaxLength = 30;
             this.FirstnameTextBox.Name = "FirstnameTextBox";
@@ -110,6 +115,7 @@
             // 
             // PasswordTextBox
             // 
+            this.PasswordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PasswordTextBox.Location = new System.Drawing.Point(250, 25);
             this.PasswordTextBox.MaxLength = 128;
             this.PasswordTextBox.Name = "PasswordTextBox";
@@ -128,6 +134,7 @@
             // 
             // UsernameTextBox
             // 
+            this.UsernameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UsernameTextBox.Location = new System.Drawing.Point(250, 0);
             this.UsernameTextBox.MaxLength = 150;
             this.UsernameTextBox.Name = "UsernameTextBox";
@@ -145,6 +152,8 @@
             // 
             // DNITextBox
             // 
+            this.DNITextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DNITextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.DNITextBox.Location = new System.Drawing.Point(250, 125);
             this.DNITextBox.MaxLength = 20;
             this.DNITextBox.Name = "DNITextBox";
@@ -259,7 +268,7 @@
             this.Controls.Add(this.EnableUserButton);
             this.Controls.Add(this.FormPictureBox);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(571, 271);
             this.Name = "CarrierRegisterForm";

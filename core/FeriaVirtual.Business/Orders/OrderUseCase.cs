@@ -92,6 +92,93 @@ namespace FeriaVirtual.Business.Orders {
             }
         }
 
+        public void NewAuction(Auction auction, string orderID) {
+            try {
+                repository.NewAuction(auction,orderID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public void EditAuction(Auction auction,string orderID) {
+            try {
+                repository.EditAuction(auction,orderID);
+            } catch(Exception ex) {
+                throw ex;
+            }
+        }
+
+        public void DeleteAuction(string orderID) {
+            try {
+                repository.DeleteAuction(orderID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+
+        public void CloseAuction(string orderID, string auctionID) {
+            try {
+                repository.CloseAuction(orderID, auctionID);
+            } catch(Exception ex) {
+                throw ex;
+            }
+        }
+
+
+
+        public Auction GetAuctionById(string orderID) {
+            try {
+                return repository.GetAuctionById(orderID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public void ChangeAuctionStatus(string auctionID, int status) {
+            try {
+                repository.ChangeAuctionStatus(auctionID,status);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+public IList<Auction> GetAllAvailableAuction() {
+            try {
+                return repository.FinAllAuction();
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public void RegisterBidValue(AuctionBidValue bidValue) {
+            try {
+                BidValueValidator validator = BidValueValidator.CreateValidator(bidValue);
+                validator.Validate();
+                repository.SaveAuctionBidValue(bidValue);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public DataTable GetAuctionBidValue(string auctionID) {
+            try {
+                repository.GetBidValueByAuctionID(auctionID);
+                return repository.DataSource;
+            } catch (Exception ex) {
+                throw ex;
+            }
+        } 
+
+        public void CreateOrderDispatch(Auction auction,string orderID,string clientID,int safeID) {
+            try {
+                repository.NewOrderDispatch(auction,orderID,clientID,safeID);
+            } catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+
 
 
 

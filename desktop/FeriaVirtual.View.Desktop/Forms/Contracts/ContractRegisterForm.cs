@@ -261,7 +261,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Contract {
                 message = "El contrato ha sido eliminado correctamente.";
                 MessageBox.Show(message,"Atención!",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 deleteStatus = true;
-            } catch (Exception ex) {
+            } catch  {
                 deleteStatus= false;
             }
             return deleteStatus;

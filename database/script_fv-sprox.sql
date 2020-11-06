@@ -389,12 +389,11 @@ prompt Creando procedimiento para ejecucion de paquete de productos.;
 CREATE OR REPLACE PROCEDURE fv_user.spGenerarPropuestaProductos(
     idped pedido.id_pedido%TYPE) IS
 BEGIN
-    DELETE FROM fv_user.resultado_propuesto 
-    WHERE id_pedido = idped;
-    fv_user.pkg_Total_productos.nombre_producto(idped);
+    fv_user.pkg_Total_productos.sp_nombre_producto(idped);
     fv_user.pkg_Total_productos.sp_total_productos(idped);
     COMMIT;
 END spGenerarPropuestaProductos;
+/
 /
 
 
@@ -402,11 +401,55 @@ prompt Creando procedimiento para aceptar propuesta de productos.;
 CREATE OR REPLACE PROCEDURE fv_user.spAceptarPropuestaProductos(
     pIdPedido VARCHAR2, pGuid VARCHAR2) IS
 BEGIN
-    fv_user.pkg_Total_productos.sp_actualizar_productos(pIdPedido);
+    fv_user.pkg_Total_productos.sp_actualiza(pIdPedido);
     fv_user.spActualizarEstadoPedido(
         pIdPedido, 2, 2, pGuid);
+        COMMIT;
 END spAceptarPropuestaProductos;
 /
+
+
+prompt Creando procedimientos almacenados para subastas.;
+create or replace procedure fv_user.spAgregarSubasta(
+    pIdSubasta varchar2, pIdPedido varchar2, 
+    pValor NUMBER, pPeso number, pFechaLimite date,
+    pObservacion varchar2) is
+begin
+    insert into fv_user.subasta 
+        (id_subasta, id_pedido,
+        valor_propuesto, peso_comprometido, 
+        fecha_limite, observacion_subasta, estado_subasta)
+    values 
+        (pIdSubasta, pIdPedido, 
+        pValor, pPeso,
+        pFechaLimite, pObservacion, 1);
+    commit;
+end  spAgregarSubasta;
+/
+CREATE OR REPLACE PROCEDURE fv_user.spActualizarSubasta(
+    pIdSubasta VARCHAR2, pValor NUMBER, pPeso NUMBER, 
+    pFechaLimite DATE, pObservacion VARCHAR2) IS
+BEGIN
+    UPDATE fv_user.subasta 
+    SET valor_propuesto = pValor, 
+        peso_comprometido = pPeso, 
+        fecha_subasta = sysdate,
+        fecha_limite = pFechaLimite, 
+        observacion_subasta = pObservacion
+    WHERE id_subasta = pIdSubasta;
+    COMMIT;
+END  spActualizarSubasta;
+/
+CREATE OR REPLACE PROCEDURE fv_user.spCambiarEstadoSubasta(
+    pIdSubasta VARCHAR2, pEstado NUMBER) IS
+BEGIN
+    UPDATE fv_user.subasta 
+    SET estado_subasta = pEstado 
+    WHERE id_subasta = pIdSubasta;
+    COMMIT;
+END spCambiarEstadoSubasta;
+/
+
 
 
 prompt Confirmando cambios.;

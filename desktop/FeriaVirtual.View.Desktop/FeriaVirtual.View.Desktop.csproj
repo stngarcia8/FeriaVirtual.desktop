@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\LoadProposeProduct.cs" />
     <Compile Include="Forms\Administrator\AdministratorMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,11 +127,23 @@
     <Compile Include="Forms\Orders\AuctionForm.Designer.cs">
       <DependentUpon>AuctionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Orders\AuctionResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\AuctionResultForm.Designer.cs">
+      <DependentUpon>AuctionResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Orders\ExternalOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Orders\ExternalOrderForm.Designer.cs">
       <DependentUpon>ExternalOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\ProductDispatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\ProductDispatchForm.Designer.cs">
+      <DependentUpon>ProductDispatchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Orders\ProposeProductsForm.cs">
       <SubType>Form</SubType>
@@ -209,8 +222,14 @@
     <EmbeddedResource Include="Forms\Orders\AuctionForm.resx">
       <DependentUpon>AuctionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\AuctionResultForm.resx">
+      <DependentUpon>AuctionResultForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\ExternalOrderForm.resx">
       <DependentUpon>ExternalOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\ProductDispatchForm.resx">
+      <DependentUpon>ProductDispatchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\ProposeProductsForm.resx">
       <DependentUpon>ProposeProductsForm.cs</DependentUpon>
@@ -372,6 +391,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mg-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-auctionView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-notify.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form.notify.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

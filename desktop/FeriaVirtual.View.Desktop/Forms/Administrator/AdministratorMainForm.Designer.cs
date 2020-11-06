@@ -178,7 +178,7 @@
             this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
             this.CloseToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CloseToolStripMenuItem.RightToLeftAutoMirrorImage = true;
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
             this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 

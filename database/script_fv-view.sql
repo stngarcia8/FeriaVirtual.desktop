@@ -274,11 +274,11 @@ SELECT
     to_char(ped.fecha_pedido, 'dd/MM/yyyy') AS "Fecha orden",
     ped.descuento_solicitado AS "Descuento",
     ped.obs_pedido AS "Observacion",
-    seg.id_estado, cli.id_rol, 
+    (SELECT * FROM (SELECT id_estado FROM fv_user.seguimiento_pedido WHERE id_pedido = ped.id_pedido ORDER BY id_estado DESC) WHERE ROWNUM = 1  ) AS "ID_ESTADO",
+    cli.id_rol, 
     cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente"
 FROM fv_user.pedido ped 
     INNER JOIN fv_user.condicion_pago cpa ON ped.id_condicion = cpa.id_condicion 
-    INNER JOIN fv_user.seguimiento_pedido seg ON ped.id_pedido = seg.id_pedido 
     INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente;
 
 
@@ -288,7 +288,8 @@ SELECT
     res.id_respuesta, res.id_pedido, 
     cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Productor",
     pro.nombre_producto AS "Producto", pro.cantidad_producto AS "Stock disponible", 
-    res.cantidad AS "Cantidad solicitada", res.costo_unitario AS "Valor KG"
+    res.cantidad AS "Cantidad solicitada", res.costo_unitario AS "Valor KG", 
+    (res.cantidad * res.costo_unitario) AS "Total"
 FROM fv_user.resultado_propuesto res 
     INNER JOIN fv_user.producto pro ON res.id_producto = pro.id_producto 
     INNER JOIN fv_user.cliente cli ON pro.id_cliente = cli.id_cliente

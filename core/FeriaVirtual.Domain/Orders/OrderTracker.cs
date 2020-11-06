@@ -8,7 +8,6 @@ namespace FeriaVirtual.Domain.Orders {
         public string TrackerID { get; set; }
     public string OrderID { get; set; }
         public OrderStatus Status { get; set; }
-        public OrderProcess ActualProcess { get; set; }
         public DateTime TrackerDate { get; set; }
 
         private OrderTracker() {
@@ -23,7 +22,6 @@ namespace FeriaVirtual.Domain.Orders {
             TrackerID = trackerID;
             OrderID = orderID;
             Status= OrderStatus.CreateStatus();
-            ActualProcess= OrderProcess.CreateProcess();
             TrackerDate= DateTime.Now.Date;
         }
 

@@ -14,6 +14,8 @@ set feedback off;
 
 prompt Ajustando la sesion para feria virtual.;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '$' NLS_ISO_CURRENCY= 'AMERICA' NLS_NUMERIC_CHARACTERS= '.,' NLS_CALENDAR= 'GREGORIAN' NLS_DATE_FORMAT= 'DD-MON-RR' NLS_DATE_LANGUAGE= 'SPANISH' NLS_SORT= 'BINARY';
+
 
 prompt Eliminando usuario y tablespace.;
 DROP USER fv_user CASCADE;

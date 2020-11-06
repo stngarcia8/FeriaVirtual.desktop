@@ -46,6 +46,10 @@ namespace FeriaVirtual.Infraestructure.Database {
             try {
                 connection = new OracleConnection(conecctionString);
                 connection.Open();
+                OracleGlobalization info = connection.GetSessionInfo();
+                info.Language="SPANISH";
+                info.Territory="CHILE";
+                connection.SetSessionInfo(info);
                 transaction = connection.BeginTransaction();
             } catch {
                 ConnectionFailedException ex = new ConnectionFailedException("El servidor de base de datos no se encuentra disponible, comunique este problema al administrador del servicio de base de datos.");
@@ -74,7 +78,7 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.CommandText = sql;
                 command.Transaction = transaction;
                 return QuerySelect.CreateQuery(command);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }
@@ -87,7 +91,7 @@ namespace FeriaVirtual.Infraestructure.Database {
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Transaction = transaction;
                 return QueryAction.CreateQuery(command);
-            } catch(Exception ex) {
+            } catch(Exception) {
                 throw;
             }
         }

@@ -25,7 +25,7 @@ namespace FeriaVirtual.Infraestructure.Database {
             try {
                 recordCount = command.ExecuteNonQuery();
             } catch (Exception ex) {
-                throw;
+                throw ex;
             }
             return recordCount;
         }

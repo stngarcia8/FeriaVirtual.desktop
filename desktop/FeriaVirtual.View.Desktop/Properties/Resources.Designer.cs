@@ -193,6 +193,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap form_notify {
+            get {
+                object obj = ResourceManager.GetObject("form.notify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap form_ProposeProduct {
             get {
                 object obj = ResourceManager.GetObject("form-ProposeProduct", resourceCulture);
@@ -263,6 +273,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap menu_auctionView {
+            get {
+                object obj = ResourceManager.GetObject("menu-auctionView", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Menu_configuraciones {
             get {
                 object obj = ResourceManager.GetObject("Menu-configuraciones", resourceCulture);
@@ -316,6 +336,16 @@ namespace FeriaVirtual.View.Desktop.Properties {
         internal static System.Drawing.Bitmap menu_externalOrders {
             get {
                 object obj = ResourceManager.GetObject("menu-externalOrders", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_notify {
+            get {
+                object obj = ResourceManager.GetObject("menu-notify", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

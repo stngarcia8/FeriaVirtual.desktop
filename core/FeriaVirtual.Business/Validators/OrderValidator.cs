@@ -20,7 +20,7 @@ namespace FeriaVirtual.Business.Validators {
 
         // Validate contract method.
         public void Validate() {
-            ValidatingEmptyField(order.OrderDiscount,"descuento solicitado");
+            //ValidatingEmptyField(order.OrderDiscount,"descuento solicitado");
             ValidatingValueField(order.OrderDiscount,"descuento solicitado");
             if(ErrorMessages.Count>0) {
                 throw new InvalidOrderException(GenerateErrorMessage());

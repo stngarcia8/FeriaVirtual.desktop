@@ -418,7 +418,7 @@
             this.ListDataGridView.AllowUserToOrderColumns = true;
             this.ListDataGridView.AllowUserToResizeRows = false;
             this.ListDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.ListDataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ListDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ListDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ListTableLayoutPanel.SetColumnSpan(this.ListDataGridView, 4);

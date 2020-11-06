@@ -42,7 +42,7 @@ namespace FeriaVirtual.Business.Users {
                     throw new InvalidLoginException("El usuario tiene su cuenta inactiva, informe este inconveniente al administrador del sistema.");
                 }
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 

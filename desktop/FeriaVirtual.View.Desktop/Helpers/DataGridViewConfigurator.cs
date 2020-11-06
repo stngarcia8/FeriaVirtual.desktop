@@ -30,6 +30,19 @@ namespace FeriaVirtual.View.Desktop.Helpers {
             datagrid.Columns[colName].DefaultCellStyle.Format="N2";
         }
 
+        public void NumericIntegerColumn(string colName,string headerText) {
+            datagrid.Columns[colName].HeaderText = headerText;
+            datagrid.Columns[colName].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[colName].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
+        }
+
+        public void CurrencyColumn(string colName,string headerText) {
+            datagrid.Columns[colName].HeaderText = headerText;
+            datagrid.Columns[colName].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+            datagrid.Columns[colName].AutoSizeMode= DataGridViewAutoSizeColumnMode.ColumnHeader;
+            datagrid.Columns[colName].DefaultCellStyle.Format="C0";
+        }
+
         public void ChangeHeader(string colName,string headerText) {
             datagrid.Columns[colName].HeaderText = headerText;
         }

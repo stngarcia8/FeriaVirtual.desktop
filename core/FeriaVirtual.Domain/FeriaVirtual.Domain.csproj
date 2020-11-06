@@ -50,6 +50,9 @@
     <Compile Include="Contracts\ContractType.cs" />
     <Compile Include="CommercialsData\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Orders\Auction.cs" />
+    <Compile Include="Orders\AuctionProduct.cs" />
+    <Compile Include="Orders\AuctionBidValue.cs" />
     <Compile Include="Orders\OrderDto.cs" />
     <Compile Include="Orders\PaymentCondition.cs" />
     <Compile Include="Products\ProductCategory.cs" />
@@ -61,7 +64,6 @@
     <Compile Include="Products\Product.cs" />
     <Compile Include="Vehicles\Vehicle.cs" />
     <Compile Include="Enums\MailTypeMessage.cs" />
-    <Compile Include="Orders\OrderProcess.cs" />
     <Compile Include="Orders\OrderStatus.cs" />
     <Compile Include="Orders\OrderTracker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

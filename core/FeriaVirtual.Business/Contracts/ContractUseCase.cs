@@ -65,7 +65,7 @@ namespace FeriaVirtual.Business.Contracts {
                 validator.Validate();
                 repository.NewContract(contract);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -75,7 +75,7 @@ namespace FeriaVirtual.Business.Contracts {
                 validator.Validate();
                 repository.EditContract(contract);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -83,7 +83,7 @@ namespace FeriaVirtual.Business.Contracts {
             try {
                 repository.DeleteContract(contractID);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -103,7 +103,7 @@ namespace FeriaVirtual.Business.Contracts {
                 //generator= null;
                 repository.AcceptContract(contract);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -112,7 +112,7 @@ namespace FeriaVirtual.Business.Contracts {
             try {
                 repository.RefuseContract(contractID,clientID,observation);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -121,7 +121,7 @@ namespace FeriaVirtual.Business.Contracts {
             try {
                 return repository.FindContractByCustomerId(customerID);
             } catch (Exception ex) {
-                throw; ;
+                throw  ex;
             }
         }
 

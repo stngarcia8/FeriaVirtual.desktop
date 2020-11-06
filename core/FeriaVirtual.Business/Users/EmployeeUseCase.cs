@@ -55,7 +55,7 @@ namespace FeriaVirtual.Business.Users {
                 employee.Credentials.EncriptedPassword= employee.Credentials.EncryptPassword();
                 repository.NewEmployee(employee);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -65,7 +65,7 @@ namespace FeriaVirtual.Business.Users {
                 validator.Validate();
                 repository.EditEmployee(employee);
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
 
@@ -73,7 +73,7 @@ namespace FeriaVirtual.Business.Users {
             try {
                 repository.EnableOrDisableUser(idUser,(userStatus ? 0 : 1));
             } catch(Exception ex) {
-                throw;
+                throw ex;
             }
         }
     }
