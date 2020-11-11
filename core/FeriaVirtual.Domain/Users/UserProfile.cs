@@ -1,34 +1,41 @@
-﻿namespace FeriaVirtual.Domain.Users {
+﻿namespace FeriaVirtual.Domain.Users{
 
-    public class UserProfile {
+    public class UserProfile{
 
         // properties
-        public int ProfileID { get; set; }
+        public int ProfileId{ get; set; }
 
-        public string ProfileName { get; set; }
+        public string ProfileName{ get; set; }
+
 
         //Constructors.
-        private UserProfile() {
-            ProfileID= 0;
+        private UserProfile(){
+            ProfileId = 0;
             ProfileName = string.Empty;
         }
 
-        private UserProfile(int profileId,string profileName) {
-            ProfileID = profileId;
+
+        private UserProfile(int profileId, string profileName){
+            ProfileId = profileId;
             ProfileName = profileName;
         }
 
+
         // named constructors.
-        public static UserProfile CreateProfile() {
+        public static UserProfile CreateProfile(){
             return new UserProfile();
         }
 
-        public static UserProfile CreateProfile(int profileId,string profileName) {
-            return new UserProfile(profileId,profileName);
+
+        public static UserProfile CreateProfile(int profileId, string profileName){
+            return new UserProfile(profileId, profileName);
         }
 
-        public override string ToString() {
+
+        public override string ToString(){
             return ProfileName;
         }
+
     }
+
 }

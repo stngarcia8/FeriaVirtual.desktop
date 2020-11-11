@@ -1,4 +1,4 @@
-﻿namespace FeriaVirtual.View.Desktop.Login {
+﻿namespace FeriaVirtual.View.Desktop.Forms.Login {
     partial class LoginForm {
         /// <summary>
         /// Required designer variable.

@@ -5,174 +5,207 @@ using System.Windows.Forms;
 using FeriaVirtual.Business.Users;
 using FeriaVirtual.View.Desktop.Helpers;
 
-namespace FeriaVirtual.View.Desktop.Forms.Client {
 
-    public partial class MaintenanceCarrierForm:Form {
+namespace FeriaVirtual.View.Desktop.Forms.Client{
+
+    public partial class MaintenanceCarrierForm : Form{
+
         private string idSelected;
-        public IProfileInfo Profile { get; set; }
+        public IProfileInfo Profile{ get; set; }
 
-        public MaintenanceCarrierForm() {
+
+        public MaintenanceCarrierForm(){
             InitializeComponent();
-            Profile = ProfileInfo.CreateProfileInfo(EnumProfileInfo.External_customer).Profile;
+            Profile = ProfileInfo.CreateProfileInfo(ProfileInfoEnum.ExternalCustomer).Profile;
         }
 
-        private void MaintenanceCarrierForm_Load(object sender,EventArgs e) {
+
+        private void MaintenanceCarrierForm_Load(object sender, EventArgs e){
             ConfigureForm();
         }
 
-        private void OptionNewToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionNewToolStripMenuItem_Click(object sender, EventArgs e){
             OpenRegisterForm(true);
         }
 
-        private void OptionEditToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionEditToolStripMenuItem_Click(object sender, EventArgs e){
             EditClient();
         }
 
-        private void OptionRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionRefreshToolStripMenuItem_Click(object sender, EventArgs e){
             LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
-        private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionCloseToolStripMenuItem_Click(object sender, EventArgs e){
             Close();
         }
 
-        private void ClientExternalToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.External_customer).Profile);
+
+        private void ClientExternalToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.ExternalCustomer).Profile);
         }
 
-        private void ClientInternalToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.Internal_customer).Profile);
+
+        private void ClientInternalToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.InternalCustomer).Profile);
         }
 
-        private void ClientProducerToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.Producer).Profile);
+
+        private void ClientProducerToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.Producer).Profile);
         }
 
-        private void ClientCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.Carrier).Profile);
+
+        private void ClientCarrierToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.Carrier).Profile);
         }
 
-        private void OptionNewButton_Click(object sender,EventArgs e) {
+
+        private void OptionNewButton_Click(object sender, EventArgs e){
             OpenRegisterForm(true);
         }
 
-        private void OptionEditButton_Click(object sender,EventArgs e) {
+
+        private void OptionEditButton_Click(object sender, EventArgs e){
             EditClient();
         }
 
-        private void OptionCloseButton_Click(object sender,EventArgs e) {
+
+        private void OptionCloseButton_Click(object sender, EventArgs e){
             Close();
         }
 
-        private void ListFilterComboBox_SelectedIndexChanged(object sender,EventArgs e) {
+
+        private void ListFilterComboBox_SelectedIndexChanged(object sender, EventArgs e){
             ListFilterTextBox.Visible = ListFilterComboBox.SelectedIndex.Equals(1);
         }
 
-        private void ListFilterButton_Click(object sender,EventArgs e) {
+
+        private void ListFilterButton_Click(object sender, EventArgs e){
             LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
-        private void ListDataGridView_SelectionChanged(object sender,EventArgs e) {
+
+        private void ListDataGridView_SelectionChanged(object sender, EventArgs e){
             GetRecordId();
         }
 
-        private void ListDataGridView_DoubleClick(object sender,EventArgs e) {
+
+        private void ListDataGridView_DoubleClick(object sender, EventArgs e){
             EditClient();
         }
 
-        private void ConfigureForm() {
-            Text= string.Format("Mantenedor de {0}",Profile.ProfileName);
-            OptionNewToolStripMenuItem.Text = string.Format("&Nuevo {0}",Profile.SingleProfileName);
-            OptionEditToolStripMenuItem.Text = string.Format("&Editar {0}",Profile.SingleProfileName);
-            ListTitleLabel.Text= string.Format("Lista de {0} disponibles",Profile.ProfileName);
-            ListFilterTextBox.Text= string.Empty;
+
+        private void ConfigureForm(){
+            Text = $"Mantenedor de {Profile.ProfileName}";
+            OptionNewToolStripMenuItem.Text = $"&Nuevo {Profile.SingleProfileName}";
+            OptionEditToolStripMenuItem.Text = $"&Editar {Profile.SingleProfileName}";
+            ListTitleLabel.Text = $"Lista de {Profile.ProfileName} disponibles";
+            ListFilterTextBox.Text = string.Empty;
             LoadFilters();
             ListFilterComboBox.SelectedIndex = 0;
             LoadUsers(0);
         }
 
-        private void LoadFilters() {
-            IList<string> filterList = new List<string>(){
-            string.Format("Todos los {0}",Profile.ProfileName), string.Format("Nombre de {0}",Profile.SingleProfileName),
-            string.Format("{0} habilitados",Profile.ProfileName), string.Format("{0} inhabilitados",Profile.ProfileName) };
-            FilterConfigurator configurator = FilterConfigurator.CreateConfigurator(ListFilterComboBox);
+
+        private void LoadFilters(){
+            IList<string> filterList = new List<string>{
+                $"Todos los {Profile.ProfileName}",
+                $"Nombre de {Profile.SingleProfileName}",
+                $"{Profile.ProfileName} habilitados",
+                $"{Profile.ProfileName} inhabilitados"
+            };
+            var configurator = FilterComboConfigurator.CreateConfigurator(ListFilterComboBox);
             configurator.ClearFilters();
             configurator.LoadFilters(filterList);
         }
 
-        private void LoadUsers(int filterType) {
-            try {
-                ClientUseCase useCase = ClientUseCase.CreateUseCase(Profile.ProfileID,Profile.SingleProfileName);
-                DataTable data = new DataTable();
+
+        private void LoadUsers(int filterType){
+            try{
+                var useCase = ClientUseCase.CreateUseCase(Profile.ProfileId, Profile.SingleProfileName);
+                var data = new DataTable();
                 ListDataGridView.DataSource = null;
-                if(filterType.Equals(0)) {
-                    data = useCase.FindAll();
+                switch (filterType){
+                    case 0:
+                        data = useCase.FindAll();
+                        break;
+                    case 1:
+                        data = useCase.FindClientByName(ListFilterTextBox.Text);
+                        break;
+                    case 2:
+                        data = useCase.FindActiveClients();
+                        break;
+                    case 3:
+                        data = useCase.FindInactiveClients();
+                        break;
                 }
-                if(filterType.Equals(1)) {
-                    data = useCase.FindClientByName(ListFilterTextBox.Text);
-                }
-                if(filterType.Equals(2)) {
-                    data = useCase.FindActiveClients();
-                }
-                if(filterType.Equals(3)) {
-                    data = useCase.FindInactiveClients();
-                }
+
                 ListDataGridView.DataSource = data;
-                DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(ListDataGridView);
-                IList<string> columns = new List<string>() { "id_cliente","id_usuario","id_rol","nombre_cliente","apellido_cliente","password","is_active" };
+                var configurator = DataGridViewConfigurator.CreateConfigurator(ListDataGridView);
+                IList<string> columns = new List<string>{
+                    "id_cliente", "id_usuario", "id_rol", "nombre_cliente", "apellido_cliente", "password", "is_active"
+                };
                 configurator.HideColumns(columns);
                 DisplayCounts();
-            } catch(Exception ex) {
-                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private void DisplayCounts() {
-            if(ListDataGridView.Rows.Count.Equals(0)) {
-                ListCountLabel.Text = string.Format("No hay {0} disponibles.",Profile.ProfileName);
+
+        private void DisplayCounts(){
+            if (ListDataGridView.Rows.Count.Equals(0)){
+                ListCountLabel.Text = $"No hay {Profile.ProfileName} disponibles.";
                 OptionEditButton.Enabled = false;
-                OptionEditToolStripMenuItem.Enabled= false;
-            } else {
+                OptionEditToolStripMenuItem.Enabled = false;
+            }
+            else{
                 OptionEditButton.Enabled = true;
-                OptionEditToolStripMenuItem.Enabled= true;
-                ListCountLabel.Text = string.Format("{0} {1} encontrados.",ListDataGridView.Rows.Count.ToString(),Profile.ProfileName);
+                OptionEditToolStripMenuItem.Enabled = true;
+                ListCountLabel.Text = $"{ListDataGridView.Rows.Count.ToString()} {Profile.ProfileName} encontrados.";
                 ListDataGridView.Rows[0].Selected = true;
                 ListDataGridView.Focus();
             }
         }
 
-        private void OpenRegisterForm(bool isNew) {
-            CarrierRegisterForm form = new CarrierRegisterForm {
+
+        private void OpenRegisterForm(bool isNew){
+            var form = new CarrierRegisterForm{
                 Profile = Profile,
                 IsNewRecord = isNew,
                 IdSelected = isNew ? string.Empty : idSelected
             };
             form.ShowDialog();
-            if(form.IsSaved) {
-                LoadUsers(ListFilterComboBox.SelectedIndex);
-            }
+            if (form.IsSaved) LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
-        private void GetRecordId() {
+
+        private void GetRecordId(){
             idSelected = string.Empty;
-            if(ListDataGridView.Rows.Count.Equals(0)) {
-                return;
-            }
-            DataGridViewRow row = ListDataGridView.CurrentRow;
-            if(row == null) {
-                return;
-            }
-            idSelected=  row.Cells[1].Value.ToString();
+            if (ListDataGridView.Rows.Count.Equals(0)) return;
+            var row = ListDataGridView.CurrentRow;
+            if (row == null) return;
+            idSelected = row.Cells[1].Value.ToString();
         }
 
-        private void ChangeFormStatus(IProfileInfo profile) {
+
+        private void ChangeFormStatus(IProfileInfo profile){
             Profile = profile;
             ConfigureForm();
         }
 
-        private void EditClient() {
+
+        private void EditClient(){
             GetRecordId();
             OpenRegisterForm(false);
         }
+
     }
+
 }

@@ -1,29 +1,30 @@
 ﻿using System;
 using FeriaVirtual.Domain.Users;
 
-namespace FeriaVirtual.Domain.Contracts {
 
-    public class ContractDetail {
+namespace FeriaVirtual.Domain.Contracts{
 
-        // Properties
-        public string DetailID { get; set; }
-        public Client Customer { get; set; }
-        public float AdditionalValue { get; set; }
-        public float FineValue { get; set; }
-        public string ContractObservation { get; set; }
-        public string ClientObservation { get; set; }
-        public DateTime DateAcepted { get; set; }
-        public DateTime RegisterDate { get; set; }
-        public int Status { get; set; }
-        public string StatusDescription { get; set; }
+    public class ContractDetail{
 
-        // constructor
-        private ContractDetail() {
+        public string DetailId{ get; set; }
+        public Client Customer{ get; set; }
+        public float AdditionalValue{ get; set; }
+        public float FineValue{ get; set; }
+        public string ContractObservation{ get; set; }
+        public string ClientObservation{ get; set; }
+        public DateTime DateAcepted{ get; set; }
+        public DateTime RegisterDate{ get; set; }
+        public int Status{ get; set; }
+        public string StatusDescription{ get; set; }
+
+
+        private ContractDetail(){
             InitializeObjects();
         }
 
-        private void InitializeObjects() {
-            DetailID= Guid.NewGuid().ToString();
+
+        private void InitializeObjects(){
+            DetailId = Guid.NewGuid().ToString();
             DateAcepted = DateTime.Now.Date;
             RegisterDate = DateTime.Now.Date;
             ContractObservation = string.Empty;
@@ -31,13 +32,15 @@ namespace FeriaVirtual.Domain.Contracts {
             AdditionalValue = 0;
             FineValue = 0;
             Customer = Client.CreateClient();
-            Status= 0;
-            StatusDescription= "No visualizado";
+            Status = 0;
+            StatusDescription = "No visualizado";
         }
 
-        // Named constructor.
-        public static ContractDetail CreateDetail() {
+
+        public static ContractDetail CreateDetail(){
             return new ContractDetail();
         }
+
     }
+
 }

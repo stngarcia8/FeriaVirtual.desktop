@@ -1,24 +1,29 @@
-﻿namespace FeriaVirtual.Domain.Products {
+﻿namespace FeriaVirtual.Domain.Products{
 
-    public class ProductCategory {
+    public class ProductCategory{
 
         // Properties
-        public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public int CategoryId{ get; set; }
+        public string CategoryName{ get; set; }
+
 
         // Constructor.
-        private ProductCategory() {
-            CategoryID= 0;
-            CategoryName= string.Empty;
+        private ProductCategory(){
+            CategoryId = 0;
+            CategoryName = string.Empty;
         }
 
+
         // Named constructor.
-        public static ProductCategory CreateCategory() {
+        public static ProductCategory CreateCategory(){
             return new ProductCategory();
         }
 
-        public override string ToString() {
+
+        public override string ToString(){
             return CategoryName;
         }
+
     }
+
 }

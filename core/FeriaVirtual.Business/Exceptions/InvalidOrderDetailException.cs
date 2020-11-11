@@ -1,10 +1,12 @@
 ﻿using FeriaVirtual.Domain.DomainExeptions;
 
-namespace FeriaVirtual.Business.Exceptions {
 
-    internal class InvalidOrderDetailException:DomainException {
+namespace FeriaVirtual.Business.Exceptions{
 
-        public InvalidOrderDetailException(string message) : base(message) {
-        }
+    internal class InvalidOrderDetailException : DomainException{
+
+        public InvalidOrderDetailException(string message) : base(message){ }
+
     }
+
 }

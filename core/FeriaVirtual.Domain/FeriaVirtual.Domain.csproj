@@ -50,11 +50,15 @@
     <Compile Include="Contracts\ContractType.cs" />
     <Compile Include="CommercialsData\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Orders\Auction.cs" />
     <Compile Include="Orders\AuctionProduct.cs" />
     <Compile Include="Orders\AuctionBidValue.cs" />
+    <Compile Include="Orders\OrderDispatch.cs" />
+    <Compile Include="Orders\OrderDispatchDetail.cs" />
     <Compile Include="Orders\OrderDto.cs" />
     <Compile Include="Orders\PaymentCondition.cs" />
+    <Compile Include="Orders\Safe.cs" />
     <Compile Include="Products\ProductCategory.cs" />
     <Compile Include="Products\ProductDto.cs" />
     <Compile Include="Dto\SessionDto.cs" />

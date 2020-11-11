@@ -1,10 +1,12 @@
 ﻿using FeriaVirtual.Domain.DomainExeptions;
 
-namespace FeriaVirtual.Business.Exceptions {
 
-    internal class InvalidBidValueException:DomainException {
+namespace FeriaVirtual.Business.Exceptions{
 
-        public InvalidBidValueException(string message) : base(message) {
-        }
+    internal class InvalidBidValueException : DomainException{
+
+        public InvalidBidValueException(string message) : base(message){ }
+
     }
+
 }

@@ -1,14 +1,11 @@
-﻿using System;
-
-namespace FeriaVirtual.Domain.Contracts {
+﻿namespace FeriaVirtual.Domain.Contracts {
 
     public class ContractDto {
 
-        // properties
-        public string ContractID { get; set; }
-        public string ClientID { get; set; }
+        public string ContractId { get; set; }
+        public string ClientId { get; set; }
         public string Customername { get; set; }
-        public string CustomerDNI { get; set; }
+        public string CustomerDni { get; set; }
         public string CustomerEmail { get; set; }
         public string ContractObservation { get; set; }
         public string CustomerObservation { get; set; }
@@ -23,12 +20,8 @@ namespace FeriaVirtual.Domain.Contracts {
         public string Status { get; set; }
         public string StatusDescription { get; set; }
 
-        // constructor
-        public ContractDto() { }
-
-
-
 
 
     }
+
 }

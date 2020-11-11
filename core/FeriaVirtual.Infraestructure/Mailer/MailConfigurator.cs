@@ -1,32 +1,37 @@
 ﻿using System.Net;
 using System.Net.Mail;
 
-namespace FeriaVirtual.Infraestructure.Mailer {
 
-    public class MailConfigurator {
-        private readonly SmtpClient smtpClient;
+namespace FeriaVirtual.Infraestructure.Mailer{
+
+    public class MailConfigurator{
 
         // Properties.
-        public SmtpClient SMTP => smtpClient;
+        public SmtpClient Smtp{ get; }
+
 
         // Constructor
-        private MailConfigurator() {
-            smtpClient= new SmtpClient();
-            ConfigureSMTPClient();
+        private MailConfigurator(){
+            Smtp = new SmtpClient();
+            ConfigureSmtpClient();
         }
 
+
         // Named constructor
-        public static MailConfigurator CreateConfigurator() {
+        public static MailConfigurator CreateConfigurator(){
             return new MailConfigurator();
         }
 
-        private void ConfigureSMTPClient() {
-            smtpClient.Host = "smtp.gmail.com";
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential("maipogrande.fv@gmail.com","avaras08");
+
+        private void ConfigureSmtpClient(){
+            Smtp.Host = "smtp.gmail.com";
+            Smtp.Port = 587;
+            Smtp.EnableSsl = true;
+            Smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            Smtp.UseDefaultCredentials = false;
+            Smtp.Credentials = new NetworkCredential("maipogrande.fv@gmail.com", "avaras08");
         }
+
     }
+
 }

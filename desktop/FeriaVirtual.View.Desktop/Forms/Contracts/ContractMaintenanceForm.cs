@@ -5,174 +5,194 @@ using System.Windows.Forms;
 using FeriaVirtual.Business.Contracts;
 using FeriaVirtual.View.Desktop.Helpers;
 
-namespace FeriaVirtual.View.Desktop.Forms.Contract {
 
-    public partial class ContractMaintenanceForm:Form {
+namespace FeriaVirtual.View.Desktop.Forms.Contracts{
+
+    public partial class ContractMaintenanceForm : Form{
+
         private string idSelected;
         private IProfileInfo profile;
 
-        // forms events methods
-        public ContractMaintenanceForm() {
+
+        public ContractMaintenanceForm(){
             InitializeComponent();
-            profile = ProfileInfo.CreateProfileInfo(EnumProfileInfo.Producer).Profile;
+            profile = ProfileInfo.CreateProfileInfo(ProfileInfoEnum.Producer).Profile;
         }
 
-        private void ContractMaintenanceForm_Load(object sender,EventArgs e) {
-            ListFilterTextBox.Visible=false;
+
+        private void ContractMaintenanceForm_Load(object sender, EventArgs e){
+            ListFilterTextBox.Visible = false;
             ConfigureForm();
         }
 
-        // Menuitems events methods.
-        private void OptionNewToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionNewToolStripMenuItem_Click(object sender, EventArgs e){
             OpenRegisterForm(true);
         }
 
-        private void OptionEditToolStripMenuItem_Click(object sender,EventArgs e) {
-            this.EditContract();
+
+        private void OptionEditToolStripMenuItem_Click(object sender, EventArgs e){
+            EditContract();
         }
 
-        private void OptionRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionRefreshToolStripMenuItem_Click(object sender, EventArgs e){
             LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
-        private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void OptionCloseToolStripMenuItem_Click(object sender, EventArgs e){
             Close();
         }
 
-        private void ClientProducerToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.Producer).Profile);
+
+        private void ClientProducerToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.Producer).Profile);
         }
 
-        private void ClientCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
-            ChangeFormStatus(ProfileInfo.CreateProfileInfo(EnumProfileInfo.Carrier).Profile);
+
+        private void ClientCarrierToolStripMenuItem_Click(object sender, EventArgs e){
+            ChangeFormStatus(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.Carrier).Profile);
         }
 
-        // Buttons forms events methods.
-        private void OptionNewButton_Click(object sender,EventArgs e) {
+
+        private void OptionNewButton_Click(object sender, EventArgs e){
             OpenRegisterForm(true);
         }
 
-        private void OptionEditButton_Click(object sender,EventArgs e) {
-            this.EditContract();
+
+        private void OptionEditButton_Click(object sender, EventArgs e){
+            EditContract();
         }
 
-        private void OptionCloseButton_Click(object sender,EventArgs e) {
+
+        private void OptionCloseButton_Click(object sender, EventArgs e){
             Close();
         }
 
-        // Filter controls events methods.
-        private void ListFilterButton_Click(object sender,EventArgs e) {
+
+        private void ListFilterButton_Click(object sender, EventArgs e){
             LoadUsers(ListFilterComboBox.SelectedIndex);
         }
 
-        // datagrid events methods.
-        private void ListDataGridView_SelectionChanged(object sender,EventArgs e) {
+
+        private void ListDataGridView_SelectionChanged(object sender, EventArgs e){
             GetRecordId();
         }
 
-        private void ListDataGridView_DoubleClick(object sender,EventArgs e) {
-            this.EditContract();
+
+        private void ListDataGridView_DoubleClick(object sender, EventArgs e){
+            EditContract();
         }
 
-        // Forms methods.
-        private void ConfigureForm() {
-            Text= string.Format("Maestro de contratos para {0}",profile.ProfileName);
-            OptionNewToolStripMenuItem.Text = string.Format("&Nuevo contrato de {0}",profile.SingleProfileName);
-            OptionEditToolStripMenuItem.Text = string.Format("&Editar contrato de {0}",profile.SingleProfileName);
-            ListTitleLabel.Text= string.Format("Lista de contratos de {0} disponibles",profile.ProfileName);
-            ListFilterTextBox.Text= string.Empty;
+
+        private void ConfigureForm(){
+            Text = $"Maestro de contratos para {profile.ProfileName}";
+            OptionNewToolStripMenuItem.Text = $"&Nuevo contrato de {profile.SingleProfileName}";
+            OptionEditToolStripMenuItem.Text = $"&Editar contrato de {profile.SingleProfileName}";
+            ListTitleLabel.Text = $"Lista de contratos de {profile.ProfileName} disponibles";
+            ListFilterTextBox.Text = string.Empty;
             LoadFilters();
             ListFilterComboBox.SelectedIndex = 0;
             LoadUsers(0);
         }
 
-        private void LoadFilters() {
+
+        private void LoadFilters(){
             ListFilterComboBox.BeginUpdate();
             ListFilterComboBox.Items.Clear();
             ListFilterComboBox.Items.Add("Todos los contratos");
-            ListFilterComboBox.Items.Add(string.Format("Contratos de {0} vigentes",profile.ProfileName));
-            ListFilterComboBox.Items.Add(string.Format("Contratos de {0} caducados",profile.ProfileName));
+            ListFilterComboBox.Items.Add($"Contratos de {profile.ProfileName} vigentes");
+            ListFilterComboBox.Items.Add($"Contratos de {profile.ProfileName} caducados");
             ListFilterComboBox.EndUpdate();
         }
 
-        private void LoadUsers(int filterType) {
-            try {
-                ContractUseCase useCase = ContractUseCase.CreateUseCase(profile.ProfileID,profile.SingleProfileName);
-                DataTable data = new DataTable();
+
+        private void LoadUsers(int filterType){
+            try{
+                var useCase = ContractUseCase.CreateUseCase(profile.ProfileId, profile.SingleProfileName);
+                var data = new DataTable();
                 ListDataGridView.DataSource = null;
-                if(filterType.Equals(0)) {
-                    data = useCase.FindAll();
+                switch (filterType){
+                    case 0:
+                        data = useCase.FindAll();
+                        break;
+                    case 1:
+                        data = useCase.FindValidContract();
+                        break;
+                    case 2:
+                        data = useCase.FindInvalidContracts();
+                        break;
                 }
-                if(filterType.Equals(1)) {
-                    data = useCase.FindValidContract();
-                }
-                if(filterType.Equals(2)) {
-                    data = useCase.FindInvalidContracts();
-                }
+
                 ListDataGridView.DataSource = data;
                 HideColumns();
                 DisplayCounts();
-            } catch(Exception ex) {
-                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private void HideColumns() {
-            IList<string> cols = new List<string> { "id_contrato","id_tipo_contrato","esta_vigente","perfil_contrato","Fecha registro" };
-            foreach(string col in cols) {
-                ListDataGridView.Columns[col].Visible=false;
-            }
+
+        private void HideColumns(){
+            IList<string> cols = new List<string>
+                {"id_contrato", "id_tipo_contrato", "esta_vigente", "perfil_contrato", "Fecha registro"};
+            foreach (var col in cols) ListDataGridView.Columns[col].Visible = false;
         }
 
-        private void DisplayCounts() {
-            if(ListDataGridView.Rows.Count.Equals(0)) {
-                ListCountLabel.Text = string.Format("No hay contratos para {0} disponibles.",profile.ProfileName);
+
+        private void DisplayCounts(){
+            if (ListDataGridView.Rows.Count.Equals(0)){
+                ListCountLabel.Text = $"No hay contratos para {profile.ProfileName} disponibles.";
                 OptionEditButton.Enabled = false;
-                OptionEditToolStripMenuItem.Enabled= false;
-            } else {
+                OptionEditToolStripMenuItem.Enabled = false;
+            }
+            else{
                 OptionEditButton.Enabled = true;
-                OptionEditToolStripMenuItem.Enabled= true;
-                ListCountLabel.Text = string.Format("{0} contratos para {1} encontrados.",ListDataGridView.Rows.Count.ToString(),profile.ProfileName);
+                OptionEditToolStripMenuItem.Enabled = true;
+                ListCountLabel.Text =
+                    $"{ListDataGridView.Rows.Count.ToString()} contratos para {profile.ProfileName} encontrados.";
                 ListDataGridView.Rows[0].Selected = true;
                 ListDataGridView.CurrentCell = ListDataGridView.Rows[0].Cells[4];
                 ListDataGridView.Focus();
             }
         }
 
-        private void OpenRegisterForm(bool isNew) {
-            ContractRegisterForm form = new ContractRegisterForm {
+
+        private void OpenRegisterForm(bool isNew){
+            var form = new ContractRegisterForm{
                 IsNewRecord = isNew,
                 IdSelected = isNew ? string.Empty : idSelected,
                 Profile = profile
             };
             form.ShowDialog();
-            if(form.IsSaved) {
-                LoadUsers(ListFilterComboBox.SelectedIndex);
-                this.ListDataGridView.Focus();
-            }
+            if (!form.IsSaved) return;
+            LoadUsers(ListFilterComboBox.SelectedIndex);
+            ListDataGridView.Focus();
         }
 
-        private void GetRecordId() {
+
+        private void GetRecordId(){
             idSelected = string.Empty;
-            if(ListDataGridView.Rows.Count.Equals(0)) {
-                return;
-            }
-            DataGridViewRow row = ListDataGridView.CurrentRow;
-            if(row == null) {
-                return;
-            }
-            idSelected=  row.Cells[0].Value.ToString();
+            if (ListDataGridView.Rows.Count.Equals(0)) return;
+            var row = ListDataGridView.CurrentRow;
+            if (row == null) return;
+            idSelected = row.Cells[0].Value.ToString();
         }
 
-        private void ChangeFormStatus(IProfileInfo profile) {
-            this.profile= profile;
+
+        private void ChangeFormStatus(IProfileInfo profile){
+            this.profile = profile;
             ConfigureForm();
         }
 
-        private void EditContract() {
+
+        private void EditContract(){
             GetRecordId();
             OpenRegisterForm(false);
         }
 
     }
+
 }

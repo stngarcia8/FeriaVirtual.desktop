@@ -171,6 +171,7 @@
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrderDispatchController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
@@ -178,7 +179,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AcceptContractModel.cs" />
+    <Compile Include="Models\AcceptOrderDispatchModel.cs" />
     <Compile Include="Models\AuctionModel.cs" />
+    <Compile Include="Models\OrderDispatchModel.cs" />
+    <Compile Include="Models\OrderDispatchDetailsModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

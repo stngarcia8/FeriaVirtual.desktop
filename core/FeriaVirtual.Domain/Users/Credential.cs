@@ -2,64 +2,72 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FeriaVirtual.Domain.Users {
 
-    public class Credential {
+namespace FeriaVirtual.Domain.Users{
+
+    public class Credential{
 
         // properties.
-        public string UserId { get; set; }
+        public string UserId{ get; set; }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string EncriptedPassword { get; set; }
-        public string Email { get; set; }
-        public bool IsActive { get; set; }
+        public string Username{ get; set; }
+        public string Password{ get; set; }
+        public string EncriptedPassword{ get; set; }
+        public string Email{ get; set; }
+        public bool IsActive{ get; set; }
+
 
         // Constructors.
-        private Credential() {
-            InitializeObjects(Guid.NewGuid().ToString(),string.Empty,string.Empty);
+        private Credential(){
+            InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty);
         }
 
-        private Credential(string userId,string username,string password) {
-            InitializeObjects(userId,username,password);
+
+        private Credential(string userId, string username, string password){
+            InitializeObjects(userId, username, password);
         }
 
-        private void InitializeObjects(string userId,string username,string password) {
-            UserId= userId;
-            Username= username;
-            Password= password;
-            EncriptedPassword= string.Empty;
-            Email= string.Empty;
+
+        private void InitializeObjects(string userId, string username, string password){
+            UserId = userId;
+            Username = username;
+            Password = password;
+            EncriptedPassword = string.Empty;
+            Email = string.Empty;
             IsActive = true;
         }
 
+
         // Named constructors.
-        public static Credential CreateCredential() {
+        public static Credential CreateCredential(){
             return new Credential();
         }
 
-        public static Credential CreateCredential(string userId,string username,string password) {
-            return new Credential(userId,username,password);
+
+        public static Credential CreateCredential(string userId, string username, string password){
+            return new Credential(userId, username, password);
         }
 
-        // Encriptar contraseña
-        public string EncryptPassword() {
-            if(string.IsNullOrEmpty(Password)) {
-                EncriptedPassword= string.Empty;
+
+        public string EncryptPassword(){
+            if (string.IsNullOrEmpty(Password)){
+                EncriptedPassword = string.Empty;
                 return string.Empty;
             }
-            SHA1 sha1 = SHA1CryptoServiceProvider.Create();
-            byte[] originalPassword = ASCIIEncoding.Default.GetBytes(Password);
-            byte[] hash = sha1.ComputeHash(originalPassword);
-            StringBuilder encriptedString = new StringBuilder();
-            foreach(byte i in hash) {
-                encriptedString.AppendFormat("{0:x2}",i);
-            }
+
+            var sha1 = SHA1.Create();
+            var originalPassword = Encoding.Default.GetBytes(Password);
+            var hash = sha1.ComputeHash(originalPassword);
+            var encriptedString = new StringBuilder();
+            foreach (var i in hash) encriptedString.AppendFormat("{0:x2}", i);
             return encriptedString.ToString();
         }
 
-        public override string ToString() {
+
+        public override string ToString(){
             return Username;
         }
+
     }
+
 }

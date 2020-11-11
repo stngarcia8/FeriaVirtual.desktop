@@ -1,134 +1,137 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Http;
 using FeriaVirtual.Business.Users;
 using FeriaVirtual.Domain.Vehicles;
 
-namespace FeriaVirtual.API.Controllers {
 
-    public class VehicleController:ApiController {
+namespace FeriaVirtual.API.Controllers{
 
-        private CarrierUseCase usecase = CarrierUseCase.CreateUseCase();
+    /// <summary>
+    ///     Controlador para el tratamiento de los vehículos de un transportista.
+    /// </summary>
+    public class VehicleController : ApiController{
+
+        private readonly CarrierUseCase usecase = CarrierUseCase.CreateUseCase();
 
 
         /// <summary>
-        /// Devuelve un vehiculo asociado a un transportista.
+        ///     Devuelve un vehiculo asociado a un transportista.
         /// </summary>
-        /// <param name="vehicleID">
-        /// Corresponde al identificador del vehiculo a consultar.
+        /// <param name="vehicleId">
+        ///     Corresponde al identificador del vehiculo a consultar.
         /// </param>
         /// <returns>
-        /// Vehicle - objeto que contiene la información del vehiculo.
-        /// Badreuqest - en caso de parámetros inválidos.
+        ///     Vehicle - objeto que contiene la información del vehiculo.
+        ///     Badreuqest - en caso de parámetros inválidos.
         /// </returns>
-        [Route("api/v1/vehicles/{vehicleID}")]
+        [Route("api/v1/vehicles/{vehicleId}")]
         [HttpGet]
-        public IHttpActionResult Get(string vehicleID) {
-            if(string.IsNullOrEmpty(vehicleID)) {
+        public IHttpActionResult Get(string vehicleId){
+            if (string.IsNullOrEmpty(vehicleId))
                 return BadRequest("Parámetro inválido, el id del vehiculo es incorrecto");
-            }
-            try {
-                Vehicle vehicle = usecase.FindVehicleByID(vehicleID);
+            try{
+                var vehicle = usecase.FindVehicleById(vehicleId);
                 return Ok(vehicle);
-            } catch(Exception ex) {
-                return BadRequest(ex.Message.ToString());
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message);
             }
         }
 
+
         /// <summary>
-        /// Devuelve los vehiculos asociados a un transportista.
+        ///     Devuelve los vehiculos asociados a un transportista.
         /// </summary>
-        /// <param name="clientID">
-        /// Corresponde al identificador del transportista.
+        /// <param name="clientId">
+        ///     Corresponde al identificador del transportista.
         /// </param>
         /// <returns>
-        /// Retorna la lista de vehiculos, badrequest en caso de parámetros inválidos.
+        ///     Retorna la lista de vehiculos, badrequest en caso de parámetros inválidos.
         /// </returns>
-        [Route("api/v1/vehicles/all/{clientID}")]
+        [Route("api/v1/vehicles/all/{clientId}")]
         [HttpGet]
-        public IHttpActionResult GetAll(string clientID) {
-            if(string.IsNullOrEmpty(clientID)) {
+        public IHttpActionResult GetAll(string clientId){
+            if (string.IsNullOrEmpty(clientId))
                 return BadRequest("Parámetro inválido, el id del cliente es incorrecto");
-            }
-            try {
-                IList<Vehicle> vehicleList = usecase.FindAllVehicles(clientID);
+            try{
+                var vehicleList = usecase.FindAllVehicles(clientId);
                 return Ok(vehicleList);
-            } catch(Exception ex) {
-                return BadRequest(ex.Message.ToString());
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message);
             }
         }
 
 
-
         /// <summary>
-        /// Almacena un vehiculo en la base de datos.
+        ///     Almacena un vehiculo en la base de datos.
         /// </summary>
         /// <param name="vehicle">
-        /// Objeto que contiene la información del vehiculo a grabar.
+        ///     Objeto que contiene la información del vehiculo a grabar.
         /// </param>
         /// <returns>
-        /// Ok - si el vehiculo fue almacenado correctamente.
-        /// Badrequest, si los parámetros son inválidos.
+        ///     Ok - si el vehiculo fue almacenado correctamente.
+        ///     Badrequest, si los parámetros son inválidos.
         /// </returns>
         [Route("api/v1/vehicles/")]
         [HttpPost]
-        public IHttpActionResult Post(Vehicle vehicle) {
-            if(vehicle==null) {
-                return BadRequest("Parámetros inválidos, los datos del vehiculo son incorrectos");
-            }
-            try {
-                usecase.NewVehicle(vehicle,vehicle.ClientID);
+        public IHttpActionResult Post(Vehicle vehicle){
+            if (vehicle == null) return BadRequest("Parámetros inválidos, los datos del vehiculo son incorrectos");
+            try{
+                usecase.NewVehicle(vehicle, vehicle.ClientId);
                 return Ok("Vehiculoalmacenado correctamente.");
-            } catch(Exception ex) {
-                return BadRequest(ex.Message.ToString());
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message);
             }
         }
 
+
         /// <summary>
-        /// Actualiza la información de un vehiculo.
+        ///     Actualiza la información de un vehiculo.
         /// </summary>
         /// <param name="vehicle">
-        /// Objeto que contiene la información del vehiculo
+        ///     Objeto que contiene la información del vehiculo
         /// </param>
         /// <returns>
-        /// Ok, si el vehiculo fue actualizado correctamente.
-        /// Badrequest, si los parámetros son inválidos.
+        ///     Ok, si el vehiculo fue actualizado correctamente.
+        ///     Badrequest, si los parámetros son inválidos.
         /// </returns>
         [Route("api/v1/vehicles/")]
         [HttpPut]
-        public IHttpActionResult Put(Vehicle vehicle) {
-            if(vehicle==null) {
-                return BadRequest("Parámetro inválido, los datos del vehiculo son  incorrectos");
-            }
-            try {
+        public IHttpActionResult Put(Vehicle vehicle){
+            if (vehicle == null) return BadRequest("Parámetro inválido, los datos del vehiculo son  incorrectos");
+            try{
                 usecase.EditVehicle(vehicle);
                 return Ok("Vehiculo actualizado correctamente.");
-            } catch(Exception ex) {
-                return BadRequest(ex.Message.ToString());
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message);
             }
         }
 
+
         /// <summary>
-        /// Elimina un vehiculo de untransportista en la base de datos.
+        ///     Elimina un vehiculo de untransportista en la base de datos.
         /// </summary>
-        /// <param name="vehicleID">
-        /// Corresponde al identificador del vehiculo que se desea eliminar.
+        /// <param name="vehicleId">
+        ///     Corresponde al identificador del vehiculo que se desea eliminar.
         /// </param>
         /// <returns>
-        /// Ok, si el vehiculo fue eliminado correctamente.
-        /// Badrequest, si los parámetros enviados son inválidos.
+        ///     Ok, si el vehiculo fue eliminado correctamente.
+        ///     Badrequest, si los parámetros enviados son inválidos.
         /// </returns>
-        [Route("api/v1/vehicles/{vehicleID}")]
+        [Route("api/v1/vehicles/{vehicleId}")]
         [HttpDelete]
-        public IHttpActionResult Delete(string vehicleID) {
-            if(string.IsNullOrEmpty(vehicleID)) {
+        public IHttpActionResult Delete(string vehicleId){
+            if (string.IsNullOrEmpty(vehicleId))
                 return BadRequest("Parámetro inválido, el id de vehiculo es incorrecto");
-            }
-            try {
-                usecase.DeleteVehicle(vehicleID);
+            try{
+                usecase.DeleteVehicle(vehicleId);
                 return Ok("Vehiculo eliminado correctamente.");
-            } catch(Exception ex) {
-                return BadRequest(ex.Message.ToString());
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message);
             }
         }
 

@@ -2,18 +2,10 @@
 --     Inicia la ejecución del script de creación de base de datos de feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
 -- Descripcion: Genera la base en oracle para el aplicativo de feria virtual.
--- Instrucciones:
---  Usar la cuenta de sysdba.
---  conectarse desde la consola y ejecutar el script:
---  conn / as sysdba;
---  @<rutaDelScript>/<scriptFeriaVirtual.sql;
---  esperar que termine.
---  conectar con docker
---  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
+
 SET ECHO OFF;
 set feedback off;
 clear screen;
-prompt ----------------------------------------;
 prompt: Feria virtual.;
 prompt --------------;
 prompt;
@@ -25,18 +17,21 @@ prompt 2020, Arenas, Avalos, Garcia, Repetto.;
 prompt ----------------------------------------;
 prompt;
 
+
 prompt Ajustando la sesion para feria virtual.;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '$' NLS_ISO_CURRENCY= 'AMERICA' NLS_NUMERIC_CHARACTERS= '.,' NLS_CALENDAR= 'GREGORIAN' NLS_DATE_FORMAT= 'DD-MON-RR' NLS_DATE_LANGUAGE= 'SPANISH' NLS_SORT= 'BINARY';
+
 
 @/script_files/script_fv-user.sql;
 @/script_files/script_fv-table.sql;
+@/script_files/script_fv-fkeys.sql;
 @/script_files/script_fv-pkgs.sql;
 @/script_files/script_fv-sprox.sql;
 @/script_files/script_fv-view.sql;
 @/script_files/script_fv-popul.sql;
+@/script_files/script_fv-norm.sql;
 
-prompt;
 prompt ----------------------------------------;
 prompt Base de datos de feria virtual lista!;
-prompt;
 prompt;

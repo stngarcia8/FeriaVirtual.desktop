@@ -1,36 +1,46 @@
 ﻿using System;
 
-namespace FeriaVirtual.Domain.Orders {
 
-    public class OrderDetail {
-        public string OrderDetailID { get; set; }
-        public string OrderID { get; set; }
-        public string ProductName { get; set; }
-        public float Quantity { get; set; }
+namespace FeriaVirtual.Domain.Orders{
+
+    public class OrderDetail{
+
+        public string OrderDetailId{ get; set; }
+        public string OrderId{ get; set; }
+        public string ProductName{ get; set; }
+        public float Quantity{ get; set; }
+
 
         // Constructors.
-        private OrderDetail() {
-            InitializeObjects(Guid.NewGuid().ToString(),string.Empty,string.Empty,0);
+        private OrderDetail(){
+            InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty, 0);
         }
 
-        private OrderDetail(string orderDetailID,string orderID,string productName,float quantity) {
-            InitializeObjects(orderDetailID,orderID,productName,quantity);
+
+        private OrderDetail(string orderDetailId, string orderId, string productName, float quantity){
+            InitializeObjects(orderDetailId, orderId, productName, quantity);
         }
 
-        private void InitializeObjects(string orderDetailID,string orderID,string productName,float quantity) {
-            OrderDetailID=orderDetailID;
-            OrderID = orderID;
+
+        private void InitializeObjects(string orderDetailId, string orderId, string productName, float quantity){
+            OrderDetailId = orderDetailId;
+            OrderId = orderId;
             ProductName = productName;
-            Quantity=quantity;
+            Quantity = quantity;
         }
+
 
         // Named constructors.
-        public static OrderDetail CreateDetail() {
+        public static OrderDetail CreateDetail(){
             return new OrderDetail();
         }
 
-        public static OrderDetail CreateDetail(string orderDetailID,string orderID,string productName,float quantity) {
-            return new OrderDetail(orderDetailID,orderID,productName,quantity);
+
+        public static OrderDetail CreateDetail(string orderDetailId, string orderId, string productName,
+            float quantity){
+            return new OrderDetail(orderDetailId, orderId, productName, quantity);
         }
+
     }
+
 }

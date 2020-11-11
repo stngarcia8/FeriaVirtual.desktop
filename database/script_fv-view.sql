@@ -1,22 +1,16 @@
 -- Archivo: script_fv-view.sql
 --      Crea las vistas para feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
--- Instrucciones:
---  Usar la cuenta de sysdba.
---  conectarse desde la consola y ejecutar el script:
---  conn / as sysdba;
---  @<rutaDelScript>/<scriptFeriaVirtual.sql;
---  esperar que termine.
---  conectar con docker
---  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
+
 SET ECHO OFF;
 set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+
+
 prompt;
-prompt ----------------------------------------;
 prompt Creando vistas predefinidas.;
 prompt ----------------------------------------;
-prompt;
+
 
 prompt Creando vistas de usuarios del sistema.;
 create or replace view fv_user.vwObtenerUsuarios as
@@ -248,66 +242,173 @@ CREATE OR REPLACE VIEW fv_user.vwObtenerDetallePedido AS
 SELECT det.id,
        det.id_pedido,
        nombre_producto AS "Nombre producto",
-       det.cantidad        AS "Cantidad solicitada"
+       det.cantidad    AS "Cantidad solicitada"
 FROM fv_user.detalle_pedido det;
 
 
- prompt Creando vista para obbtener el seguimiento del pedido.;
+prompt Creando vista para obbtener el seguimiento del pedido.;
 CREATE OR REPLACE VIEW fv_user.vwObtenerSeguimientoPedido AS
 SELECT seg.id_seguimiento,
        seg.id_pedido,
        est.id_estado,
        est.desc_estado                          AS "Estado",
-       pro.id_proceso,
-       pro.desc_proceso                         AS "Proceso pedido",
        to_char(seg.fecha_proceso, 'dd/MM/yyyy') AS "Fecha proceso"
 FROM fv_user.seguimiento_pedido seg
-         INNER JOIN fv_user.estado_pedido est ON seg.id_estado = est.id_estado
-         INNER JOIN fv_user.proceso_pedido pro ON seg.id_proceso = pro.id_proceso;
+         INNER JOIN fv_user.estado_pedido est ON seg.id_estado = est.id_estado;
 
 
 prompt Creando vista de pedidos para enviar a api.;
 CREATE OR REPLACE VIEW fv_user.vwObtenerPedidoToApi AS
-SELECT 
-    ped.id_pedido, ped.id_cliente,
-    cpa.id_condicion, cpa.desc_condicion "Condicion pago", 
-    to_char(ped.fecha_pedido, 'dd/MM/yyyy') AS "Fecha orden",
-    ped.descuento_solicitado AS "Descuento",
-    ped.obs_pedido AS "Observacion",
-    (SELECT * FROM (SELECT id_estado FROM fv_user.seguimiento_pedido WHERE id_pedido = ped.id_pedido ORDER BY id_estado DESC) WHERE ROWNUM = 1  ) AS "ID_ESTADO",
-    cli.id_rol, 
-    cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente"
-FROM fv_user.pedido ped 
-    INNER JOIN fv_user.condicion_pago cpa ON ped.id_condicion = cpa.id_condicion 
-    INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente;
+SELECT ped.id_pedido,
+       ped.id_cliente,
+       cli.id_rol,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente                                            AS "Cliente",
+       to_char(ped.fecha_pedido, 'dd/MM/yyyy')                                                      AS "Fecha orden",
+       cpa.id_condicion,
+       cpa.desc_condicion                                                                              "Condicion pago",
+       TRIM(dco.rsocial_comercial)                                                                  AS "empresa",
+       ped.descuento_solicitado                                                                     AS "Descuento",
+       ped.obs_pedido                                                                               AS "Observacion",
+       TRIM(dco.dir_comercial) || ', ' || TRIM(ciu.nombre_ciudad) || ' - ' || TRIM(pai.nombre_pais) AS "dir",
+       TRIM(pai.prefijo_pais) || '-' || TRIM(dco.fono_comercial)                                    AS "fono",
+       (SELECT *
+        FROM (SELECT id_estado FROM fv_user.seguimiento_pedido WHERE id_pedido = ped.id_pedido ORDER BY id_estado DESC)
+        WHERE ROWNUM = 1)                                                                           AS "ID_ESTADO",
+       nvl((SELECT nvl(estado_subasta, 0) FROM fv_user.subasta WHERE id_pedido = ped.id_pedido), 0) AS "estado_subasta"
+FROM fv_user.pedido ped
+         INNER JOIN fv_user.condicion_pago cpa ON ped.id_condicion = cpa.id_condicion
+         INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
+         INNER JOIN fv_user.dato_comercial dco ON cli.id_cliente = dco.id_cliente
+         INNER JOIN fv_user.ciudad ciu ON dco.id_ciudad = ciu.id_ciudad
+         INNER JOIN fv_user.pais pai ON ciu.id_pais = pai.id_pais;
 
+
+
+prompt Creando vista de destinos de ordenes de compra.;
+CREATE OR REPLACE VIEW fv_user.destinos AS
+SELECT dco.id_cliente,
+       TRIM(dco.rsocial_comercial)                                                                  AS "Cliente",
+       TRIM(dco.dir_comercial) || ', ' || TRIM(ciu.nombre_ciudad) || ' - ' || TRIM(pai.nombre_pais) AS "dir",
+       TRIM(pai.prefijo_pais) || '-' || TRIM(dco.fono_comercial)                                    AS "Fono"
+FROM fv_user.dato_comercial dco
+         INNER JOIN fv_user.ciudad ciu ON dco.id_ciudad = ciu.id_ciudad
+         INNER JOIN fv_user.pais pai ON ciu.id_pais = pai.id_pais;
 
 prompt Creando vista de resultados de propuestas.;
-CREATE OR REPLACE VIEW fv_user.vwObtenerResultadoPropuesta AS 
-SELECT 
-    res.id_respuesta, res.id_pedido, 
-    cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Productor",
-    pro.nombre_producto AS "Producto", pro.cantidad_producto AS "Stock disponible", 
-    res.cantidad AS "Cantidad solicitada", res.costo_unitario AS "Valor KG", 
-    (res.cantidad * res.costo_unitario) AS "Total"
-FROM fv_user.resultado_propuesto res 
-    INNER JOIN fv_user.producto pro ON res.id_producto = pro.id_producto 
-    INNER JOIN fv_user.cliente cli ON pro.id_cliente = cli.id_cliente
-ORDER BY res. costo_unitario;
+CREATE OR REPLACE VIEW fv_user.vwObtenerResultadoPropuesta AS
+SELECT res.id_respuesta,
+       res.id_pedido,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Productor",
+       pro.nombre_producto                               AS "Producto",
+       pro.cantidad_producto                             AS "Stock disponible",
+       res.cantidad                                      AS "Cantidad solicitada",
+       res.costo_unitario                                AS "Valor KG",
+       (res.cantidad * res.costo_unitario)               AS "Total"
+FROM fv_user.resultado_propuesto res
+         INNER JOIN fv_user.producto pro ON res.id_producto = pro.id_producto
+         INNER JOIN fv_user.cliente cli ON pro.id_cliente = cli.id_cliente
+ORDER BY res.costo_unitario;
 
 
 prompt Creando vista para pie del resultado de la propuesta.;
-CREATE OR REPLACE VIEW fv_user.vwObtenerTotalPropuesta AS 
-SELECT 
-    ppe.id_pedido, 
-    valor_neto AS "Valor neto",
-    to_number(19) AS "IVA", valor_iva AS "Valor IVA",
-    valor_total AS "Total",
-    ped.descuento_solicitado AS "Descuento aplicado", valor_descuento AS "Total descuento",
-    valor_total_descuento AS "Total a pagar"
-FROM fv_user.pie_pedido ppe 
-    INNER JOIN fv_user.pedido ped ON ppe.id_pedido = ped.id_pedido;
+CREATE OR REPLACE VIEW fv_user.vwObtenerTotalPropuesta AS
+SELECT ppe.id_pedido,
+       valor_neto               AS "Valor neto",
+       to_number(19)            AS "IVA",
+       valor_iva                AS "Valor IVA",
+       valor_total              AS "Total",
+       ped.descuento_solicitado AS "Descuento aplicado",
+       valor_descuento          AS "Total descuento",
+       valor_total_descuento    AS "Total a pagar"
+FROM fv_user.pie_pedido ppe
+         INNER JOIN fv_user.pedido ped ON ppe.id_pedido = ped.id_pedido;
+
+prompt Creando vista para productos de subastas.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerProductosSubasta AS
+SELECT res.id_pedido,
+       pro.nombre_producto                           as "Producto",
+       SUM(res.costo_unitario)                       AS "Valor unitario",
+       SUM(res.cantidad)                             AS "Cantidad",
+       (SUM(res.costo_unitario) * SUM(res.cantidad)) AS "Total producto"
+FROM fv_user.producto pro
+         INNER JOIN fv_user.resultado_propuesto res ON pro.id_producto = res.id_producto
+GROUP BY pro.nombre_producto, res.id_pedido;
+
+
+prompt Creando vista para las propuestas de valor en la subasta.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerPujaSubasta AS
+SELECT res.id_resultado,
+       res.id_subasta,
+       res.id_cliente,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Transportista",
+       res.valor_propuest                                AS "Puja",
+       to_char(res.fecha_propuesta, 'dd/MM/yyyy')        AS "Fecha",
+       to_char(res.fecha_propuesta, 'hh24:mi')           AS "Hora"
+FROM fv_user.resultado_subasta res
+         INNER JOIN fv_user.cliente cli ON res.id_cliente = cli.id_cliente
+ORDER BY valor_propuest;
+
+
+prompt Creando vista para las subastas.;
+CREATE OR REPLACE VIEW fv_user.vwSubastas AS
+SELECT sub.id_subasta,
+       ped.id_pedido,
+       to_char(sub.fecha_subasta, 'dd/MM/yyyy')                                                                  AS "Fecha subasta",
+       sub.valor_porcentaje,
+       sub.valor_propuesto,
+       sub.peso_comprometido,
+       to_char(fecha_limite, 'dd/MM/yyyy')                                                                       AS "Fecha limite",
+       sub.observacion_subasta                                                                                   AS "obs",
+       sub.estado_subasta,
+       sub.id_cliente                                                                                            as "id_transportista",
+       (SELECT nombre_cliente || ' ' || apellido_cliente FROM fv_user.cliente WHERE id_cliente = sub.id_cliente) AS "Transportista",
+       sub.valor_puja,
+       to_char(sub.fecha_puja, 'dd/MM/yyyy')                                                                     AS "Fecha puja",
+       sub.observacion_puja                                                                                      AS "Observacion transportista",
+       to_char(sub.fecha_respuesta, 'dd/MM/yyyy')                                                                AS "Fecha respuesta",
+       TRIM(dat.rsocial_comercial)                                                                               AS "empresa",
+       TRIM(dat.dir_comercial) || ', ' || TRIM(ciu.nombre_ciudad) || ' - ' || TRIM(pai.nombre_pais)              AS "dir",
+       TRIM(pai.prefijo_pais) || '-' || TRIM(dat.fono_comercial)                                                 AS "fono",
+       dat.email_comercial as "email"
+FROM fv_user.subasta sub
+         INNER JOIN fv_user.pedido ped ON sub.id_pedido = ped.id_pedido
+         INNER JOIN fv_user.dato_comercial dat ON ped.id_cliente = dat.id_cliente
+         INNER JOIN fv_user.ciudad ciu ON dat.id_ciudad = ciu.id_ciudad
+         INNER JOIN fv_user.pais pai ON ciu.id_pais = pai.id_pais;
+
+
+prompt  creando vista de las ordenes de despacho.;
+CREATE OR REPLACE VIEW fv_user.vwOrdenDespacho AS
+SELECT ord.id_orden,
+       ord.id_pedido,
+       ped.id_cliente,
+       ord.fecha_preparacion,
+       sub.id_cliente                                                                               AS id_transportista,
+       sub.valor_propuesto,
+       sub.peso_comprometido,
+       sub.observacion_subasta,
+       dat.rsocial_comercial,
+       TRIM(dat.dir_comercial) || ', ' || TRIM(ciu.nombre_ciudad) || ' - ' || TRIM(pai.nombre_pais) AS "dir",
+       TRIM(pai.prefijo_pais) || ' ' || TRIM(dat.fono_comercial)                                    AS "fono",
+       (SELECT id_estado
+        FROM fv_user.seguimiento_pedido
+        WHERE id_pedido = ped.id_pedido
+        ORDER BY id_estado DESC FETCH FIRST ROW ONLY)                                               AS estado_pedido,
+       ord.obs_orden,
+       seg.id_seguro,
+       seg.nombre_seguro                                                                            AS "Seguro",
+       seg.compania_seguro                                                                          AS "Aseguradora",
+       seg.primabase_seguro                                                                         AS "Prima"
+FROM fv_user.orden_despacho ord
+         INNER JOIN fv_user.subasta sub ON ord.id_pedido = sub.id_pedido
+         INNER JOIN fv_user.pedido ped ON ord.id_pedido = ped.id_pedido
+         INNER JOIN fv_user.dato_comercial dat ON ped.id_cliente = dat.id_cliente
+         INNER JOIN fv_user.ciudad ciu ON dat.id_ciudad = ciu.id_ciudad
+         INNER JOIN fv_user.pais pai ON ciu.id_pais = pai.id_pais
+         INNER JOIN fv_user.envio env ON ord.id_pedido = env.id_pedido
+         INNER JOIN fv_user.seguro seg ON env.id_seguro = seg.id_seguro;
+
 
 
 prompt Confirmando cambios.;
-commit;
+COMMIT;

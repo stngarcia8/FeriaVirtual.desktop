@@ -186,9 +186,10 @@
     <Compile Include="Helpers\CarrierProfile.cs" />
     <Compile Include="Helpers\ConsultantProfile.cs" />
     <Compile Include="Helpers\DataGridViewConfigurator.cs" />
-    <Compile Include="Helpers\EnumProfileInfo.cs" />
+    <Compile Include="Helpers\FilterNodeConfigurator.cs" />
+    <Compile Include="Helpers\ProfileInfoEnum.cs" />
     <Compile Include="Helpers\ExternalCustomerProfile.cs" />
-    <Compile Include="Helpers\FilterConfigurator.cs" />
+    <Compile Include="Helpers\FilterComboConfigurator.cs" />
     <Compile Include="Helpers\InternalCustomerProfile.cs" />
     <Compile Include="Helpers\IProfileInfo.cs" />
     <Compile Include="Helpers\ProducerProfile.cs" />

@@ -2,59 +2,48 @@
 using System.Windows.Forms;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Client;
+using FeriaVirtual.View.Desktop.Forms.Contracts;
 using FeriaVirtual.View.Desktop.Forms.Orders;
-using FeriaVirtual.View.Desktop.Forms.Contract;
 using FeriaVirtual.View.Desktop.Forms.User;
 using FeriaVirtual.View.Desktop.Helpers;
 
-namespace FeriaVirtual.View.Desktop.Forms.Administrator {
 
-    public partial class AdministratorMainForm:Form {
+namespace FeriaVirtual.View.Desktop.Forms.Administrator{
 
-        #region Manejo del formulario
+    public partial class AdministratorMainForm : Form{
 
-        public AdministratorMainForm() {
-            InitializeComponent();
-        }
-
-        private void AdministratorMainForm_Load(object sender,EventArgs e) {
-            Text= "Feria virtual - Administrador.";
-            FormStatusActiveUserToolStripStatusLabel.Text = "Usuario: " + ActualUser.ActualEmployee.ToString();
-        }
-
-        private void AdministratorMainForm_FormClosing(object sender,FormClosingEventArgs e) {
-            DialogResult result = MessageBox.Show("¿Esta seguro de cerrar la sesión?","Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if(result== DialogResult.Yes) {
-                e.Cancel=false;
-            } else {
-                e.Cancel=true;
-            }
-        }
-
-        #endregion Manejo del formulario
-
-        private void CloseToolStripMenuItem_Click(object sender,EventArgs e) {
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e){
             Application.Exit();
         }
 
-        private void MaintenanceCarrierToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void MaintenanceCarrierToolStripMenuItem_Click(object sender, EventArgs e){
             OpenForm(new MaintenanceCarrierForm());
         }
 
-        private void BusinessContractToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void BusinessContractToolStripMenuItem_Click(object sender, EventArgs e){
             OpenForm(new ContractMaintenanceForm());
         }
 
-        private void BusinessExternalSalesToolStripMenuItem_Click(object sender,EventArgs e) {
-            OpenForm(new ExternalOrderForm());
+
+        private void BusinessExternalSalesToolStripMenuItem_Click(object sender, EventArgs e){
+            OpenForm(new ExternalOrderForm(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.ExternalCustomer).Profile));
         }
 
-        private void MaintenanceUserToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void BusinessInternalSalesToolStripMenuItem_Click(object sender, EventArgs e){
+            OpenForm(new ExternalOrderForm(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.InternalCustomer).Profile));
+        }
+
+
+        private void MaintenanceUserToolStripMenuItem_Click(object sender, EventArgs e){
             OpenForm(new MaintenanceUserForm());
         }
 
+
         // Open form method.
-        private void OpenForm(Form form) {
+        private void OpenForm(Form form){
             Hide();
             ICommand command = OpenFormCommand.Open(form);
             command.Execute();
@@ -62,5 +51,27 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator {
         }
 
 
+        #region Manejo del formulario
+
+        public AdministratorMainForm(){
+            InitializeComponent();
+        }
+
+
+        private void AdministratorMainForm_Load(object sender, EventArgs e){
+            Text = "Feria virtual - Administrador.";
+            FormStatusActiveUserToolStripStatusLabel.Text = "Usuario: " + ActualUser.ActualEmployee;
+        }
+
+
+        private void AdministratorMainForm_FormClosing(object sender, FormClosingEventArgs e){
+            var result = MessageBox.Show("¿Esta seguro de cerrar la sesión?", "Atención", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            e.Cancel = result != DialogResult.Yes;
+        }
+
+        #endregion Manejo del formulario
+
     }
+
 }

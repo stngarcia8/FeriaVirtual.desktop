@@ -1,20 +1,24 @@
-﻿namespace FeriaVirtual.Domain.Orders {
+﻿namespace FeriaVirtual.Domain.Orders{
 
-    public class PaymentCondition {
+    public class PaymentCondition{
 
         // Properties
-        public int ConditionID { get; set; }
-        public string ConditionDescription { get; set; }
+        public int ConditionId{ get; set; }
+        public string ConditionDescription{ get; set; }
+
 
         //Constructor
-        private PaymentCondition() {
-            ConditionID= 0;
+        private PaymentCondition(){
+            ConditionId = 0;
             ConditionDescription = string.Empty;
         }
 
+
         // Named constructor
-        public static PaymentCondition CreateCondition() {
+        public static PaymentCondition CreateCondition(){
             return new PaymentCondition();
         }
+
     }
+
 }

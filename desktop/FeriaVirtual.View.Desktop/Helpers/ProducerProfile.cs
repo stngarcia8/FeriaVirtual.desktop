@@ -1,24 +1,29 @@
-﻿namespace FeriaVirtual.View.Desktop.Helpers {
+﻿namespace FeriaVirtual.View.Desktop.Helpers{
 
-    public class ProducerProfile:IProfileInfo {
+    public class ProducerProfile : IProfileInfo{
+
+        // Constructor
+        private ProducerProfile(){ }
+
 
         // Properties
-        public int ProfileID => (int)EnumProfileInfo.Producer;
+        public int ProfileId => (int) ProfileInfoEnum.Producer;
 
         public string ProfileName => "Productores";
         public string SingleProfileName => "Productor";
 
-        // Constructor
-        private ProducerProfile() { }
 
         // Named constructor
-        public static ProducerProfile CreateProfile() {
+        public static ProducerProfile CreateProfile(){
             return new ProducerProfile();
         }
 
+
         // Methods
-        public override string ToString() {
+        public override string ToString(){
             return SingleProfileName;
         }
+
     }
+
 }

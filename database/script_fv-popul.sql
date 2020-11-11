@@ -1,26 +1,18 @@
 -- Archivo: script_fv-popul.sql
 --      Inserta los registros iniciales a feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
--- Descripcion: Genera la base en oracle para el aplicativo de feria virtual.
--- Instrucciones:
---  Usar la cuenta de sysdba.
---  conectarse desde la consola y ejecutar el script:
---  conn / as sysdba;
---  @<rutaDelScript>/<scriptFeriaVirtual.sql;
---  esperar que termine.
---  conectar con docker
---  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
+
 SET ECHO OFF;
 set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
 ALTER SESSION SET CURRENT_SCHEMA = fv_user;
 ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '$' NLS_ISO_CURRENCY= 'AMERICA' NLS_NUMERIC_CHARACTERS= '.,' NLS_CALENDAR= 'GREGORIAN' NLS_DATE_FORMAT= 'DD-MON-RR' NLS_DATE_LANGUAGE= 'SPANISH' NLS_SORT= 'BINARY';
 
+
 prompt;
-prompt ----------------------------------------;
 prompt insertando registros iniciales.;
 prompt ----------------------------------------;
-prompt;
+
 
 prompt Insertando categorias de productos.;
 INSERT INTO fv_user.categoria_producto
@@ -40,39 +32,36 @@ VALUES (3, 'Maritimo');
 
 prompt Insertando condiciones de pago.;
 INSERT INTO fv_user.condicion_pago (id_condicion, desc_condicion)
-VALUES (1, 'Contado');
+VALUES (1, 'CONTADO');
 INSERT INTO fv_user.condicion_pago (id_condicion, desc_condicion)
-VALUES (2, '30 días');
+VALUES (2, '1 MES');
 INSERT INTO fv_user.condicion_pago (id_condicion, desc_condicion)
-VALUES (3, '60 días');
+VALUES (3, '2 MESES');
 INSERT INTO fv_user.condicion_pago (id_condicion, desc_condicion)
-VALUES (4, '90 días');
+VALUES (4, '3 MESES');
 INSERT INTO fv_user.condicion_pago (id_condicion, desc_condicion)
-VALUES (5, '120 días');
+VALUES (5, '4 MESES');
 
 
-prompt Insertando estado de pedido.;
+prompt Insertando estados de las ordenes de compra.;
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
-VALUES (1, 'Recepcionado');
+VALUES (1, 'RECEPCIONADO');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
-VALUES (2, 'En proceso');
+VALUES (2, 'PROPUESTA GENERADA');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
-VALUES (3, 'Finalizado');
+VALUES (3, 'SUBASTA PUBLICADA');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
-VALUES (4, 'Cancelado');
+VALUES (4, 'SUBASTADO');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
-VALUES (5, 'Anulado');
-
-
-prompt Insertando procesos de pedidos.;
-INSERT INTO fv_user.proceso_pedido (id_proceso, desc_proceso)
-VALUES (1, 'Negociación');
-INSERT INTO fv_user.proceso_pedido (id_proceso, desc_proceso)
-VALUES (2, 'Recolección');
-INSERT INTO fv_user.proceso_pedido (id_proceso, desc_proceso)
-VALUES (3, 'Despacho');
-INSERT INTO fv_user.proceso_pedido (id_proceso, desc_proceso)
-VALUES (4, 'Embarque');
+VALUES (5, 'DESPACHADO');
+insert into fv_user.estado_pedido 
+values (6, 'ENTREGADO');
+INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
+VALUES (7, 'ACEPTADO');
+INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
+VALUES (8, 'RECHAZADO');
+INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
+VALUES (9, 'CANCELADO');
 
 
 prompt Insertando paises.;
@@ -295,6 +284,19 @@ INSERT INTO fv_user.rol_usuario (id_rol, nombre_rol)
 VALUES (5, 'Productor');
 INSERT INTO fv_user.rol_usuario (id_rol, nombre_rol)
 VALUES (6, 'Transportista');
+
+
+prompt Insertando seguros de ejemplo.;
+insert into fv_user.seguro
+values (1, 'COBERTURA CARGA TRANSPORTES MENORES', 'AXA Seguros', 21665);
+insert into fv_user.seguro
+values (2, 'COBERTURA CARGA TERRESTRE (CAMIONES)', 'Mapfre', 77853);
+insert into fv_user.seguro
+values (3, 'SEGURO CARGA MARITIMA', 'Mapfre', 33166);
+insert into fv_user.seguro
+values (4, 'SEGURO CARGA AEREA', 'Mapfre', 33895);
+insert into fv_user.seguro
+values (5, 'SEGURO DE DAÑOS POR CAUSA EXTERNA', 'AXA Seguros', 53427);
 
 
 prompt Insertando usuarios de ejemplo.;
@@ -598,6 +600,10 @@ VALUES ('93FB9F17-2670-AB05-575B-5096F30AB71F', 'l.lambert_99', '552668dcde69cd6
 INSERT INTO fv_user.usuario(id_usuario, username, password, email, is_active, registro)
 VALUES ('D8B1B280-4496-9553-1B39-F411126ECF29', 'p.flowers_100', '6f57196fd9309e992379d3c90fec691531219eea',
         'augue.ut@auctorullamcorper.co.uk', 1, TO_DATE('2020/09/07', 'yyyy/mm/dd'));
+
+
+update fv_user.usuario
+set email = 'stngarcia8@gmail.com';
 
 
 prompt Insertando clientes de ejemplo.;
@@ -1407,12 +1413,6 @@ VALUES ('CA3372EE-B90C-42FC-F957-AB449738F141', '074C78B2-E23D-F253-5B8D-A756628
         'At Iaculis Quis LLP', 'Ventas de frutos y hortalizas', 'augue.ut@auctorullamcorper.co.uk', '25413313-2',
         '5477 Dictum Road', '413180-8406');
 
-prompt Actualizando giro comercial de transportistas.;
-UPDATE fv_user.dato_comercial
-SET giro_comercial = 'Transportes y fletes'
-WHERE id_cliente IN (SELECT id_cliente FROM fv_user.cliente WHERE id_rol = 6);
-
-
 prompt Insertando productos de ejemplo.;
 INSERT INTO fv_user.producto (id_producto, id_cliente, id_categoria, nombre_producto, obs_producto, valor_producto,
                               cantidad_producto)
@@ -1950,11 +1950,6 @@ INSERT INTO fv_user.producto (id_producto, id_cliente, id_categoria, nombre_prod
 VALUES ('F8E7572A-8C1C-9856-FF79-2EBEDDFF0F2D', '4D454509-2548-F6DD-1B33-731A13282402', 2, 'Damascos',
         'sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt tempus risus. Donec eg', 216,
         1872);
-
-
-prompt "Eliminando algunos productos para diferenciar entre cliente externo e interno.;"
-delete from fv_user.producto 
-where id_categoria=2 and nombre_producto in ('Almendras', 'Frutillas', 'Mandarinas', 'Paltas', 'Ciruelas', 'Cerezas', 'Guindas', 'Palta Hass');
 
 
 prompt Insertando transportes de ejemplo.;

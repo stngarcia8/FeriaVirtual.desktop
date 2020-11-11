@@ -1,8 +1,11 @@
-﻿namespace FeriaVirtual.View.Desktop.Helpers {
+﻿namespace FeriaVirtual.View.Desktop.Helpers{
 
-    public interface IProfileInfo {
-        int ProfileID { get; }
-        string ProfileName { get; }
-        string SingleProfileName { get; }
+    public interface IProfileInfo{
+
+        int ProfileId{ get; }
+        string ProfileName{ get; }
+        string SingleProfileName{ get; }
+
     }
+
 }

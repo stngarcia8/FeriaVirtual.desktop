@@ -1,76 +1,64 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Domain.Vehicles;
 
-namespace FeriaVirtual.Business.Users {
 
-    public class CarrierUseCase {
+namespace FeriaVirtual.Business.Users{
+
+    public class CarrierUseCase{
+
         private readonly CarrierRepository repository;
 
+
         // Constructor
-        private CarrierUseCase() {
-            repository= CarrierRepository.OpenRepository();
+        private CarrierUseCase(){
+            repository = CarrierRepository.OpenRepository();
         }
 
+
         // Named constructor
-        public static CarrierUseCase CreateUseCase() {
+        public static CarrierUseCase CreateUseCase(){
             return new CarrierUseCase();
         }
 
-        public Carrier FindCarrierById(string carrierID) {
-            repository.FindById(carrierID);
+
+        public Carrier FindCarrierById(string carrierId){
+            repository.FindById(carrierId);
             return repository.Carrier;
         }
 
-        public void NewVehicle(Vehicle vehicle,string clientID) {
-            try {
-                IValidator validator = VehicleValidator.CreateValidator(vehicle,false);
-                validator.Validate();
-                repository.NewVehicle(vehicle,clientID);
-            } catch(Exception) {
-                throw;
-            }
+
+        public void NewVehicle(Vehicle vehicle, string clientId){
+            IValidator validator = VehicleValidator.CreateValidator(vehicle, false);
+            validator.Validate();
+            repository.NewVehicle(vehicle, clientId);
         }
 
-        public void EditVehicle(Vehicle vehicle) {
-            try {
-                IValidator validator = VehicleValidator.CreateValidator(vehicle,true);
-                validator.Validate();
-                repository.EditVehicle(vehicle);
-            } catch(Exception) {
-                throw;
-            }
+
+        public void EditVehicle(Vehicle vehicle){
+            IValidator validator = VehicleValidator.CreateValidator(vehicle, true);
+            validator.Validate();
+            repository.EditVehicle(vehicle);
         }
 
-        public void DeleteVehicle(string vehicleID) {
-            try {
-                repository.DeleteVehicle(vehicleID);
-            } catch(Exception) {
-                throw;
-            }
+
+        public void DeleteVehicle(string vehicleId){
+            repository.DeleteVehicle(vehicleId);
         }
 
-        public Vehicle FindVehicleByID(string vehicleID) {
-            Vehicle vehicle;
-            try {
-                vehicle =  repository.FindVehicleByID(vehicleID);
-            } catch(Exception) {
-                throw;
-            }
-            return vehicle;
+
+        public Vehicle FindVehicleById(string vehicleId){
+            return repository.FindVehicleById(vehicleId);
         }
 
-        public IList<Vehicle> FindAllVehicles(string clientID) {
-            IList<Vehicle> vehicleList;
-            try {
-                vehicleList= repository.FindAllVehicles(clientID);
-            } catch(Exception) {
-                throw;
-            }
+
+        public IList<Vehicle> FindAllVehicles(string clientId){
+            var vehicleList = repository.FindAllVehicles(clientId);
             return vehicleList;
         }
+
     }
+
 }

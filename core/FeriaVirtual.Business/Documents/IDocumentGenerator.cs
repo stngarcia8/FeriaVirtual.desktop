@@ -1,5 +1,9 @@
-﻿namespace FeriaVirtual.Business.Documents {
-    public interface IDocumentGenerator {
+﻿namespace FeriaVirtual.Business.Documents{
+
+    public interface IDocumentGenerator{
+
         void Generate();
+
     }
+
 }

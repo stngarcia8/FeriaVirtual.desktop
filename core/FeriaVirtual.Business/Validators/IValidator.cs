@@ -1,7 +1,9 @@
-﻿namespace FeriaVirtual.Business.Validators {
+﻿namespace FeriaVirtual.Business.Validators{
 
-    public interface IValidator {
+    public interface IValidator{
 
         void Validate();
+
     }
+
 }

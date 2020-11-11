@@ -1,23 +1,15 @@
 -- Archivo: script_fv-pkgs.sql
 --          Crea los packages para feria virtual.
 -- Alumnos: Claudio Arenas, Matias Avalos, Daniel Garcia, Lucas Repetto.
--- Descripcion: Genera la base en oracle para el aplicativo de feria virtual.
--- Instrucciones:
---  Usar la cuenta de sysdba.
---  conectarse desde la consola y ejecutar el script:
---  conn / as sysdba;
---  @<rutaDelScript>/<scriptFeriaVirtual.sql;
---  esperar que termine.
---  conectar con docker
---  docker exec -it oraclexe sqlplus sys/avaras08@//localhost:1521/xe as sysdba
+
 SET ECHO OFF;
 set feedback off;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+
 prompt;
-prompt ----------------------------------------;
 prompt Creando paquetes de la base de datos.
 prompt ----------------------------------------;
-prompt;
+
 
 prompt Creando paquete  de productos.;
 CREATE OR REPLACE PACKAGE fv_user.pkg_Total_productos IS

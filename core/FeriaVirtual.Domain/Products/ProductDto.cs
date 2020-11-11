@@ -1,21 +1,26 @@
-﻿namespace FeriaVirtual.Domain.Products {
+﻿namespace FeriaVirtual.Domain.Products{
 
-    public class ProductDto {
+    public class ProductDto{
 
         // Properties
-        public string ProductName { get; set; }
+        public string ProductName{ get; set; }
+
 
         // Constructors
-        private ProductDto() {
+        private ProductDto(){
             ProductName = string.Empty;
         }
 
-        public ProductDto(string productName) {
+
+        public ProductDto(string productName){
             ProductName = productName;
         }
 
-        public override string ToString() {
+
+        public override string ToString(){
             return ProductName;
         }
+
     }
+
 }

@@ -2,30 +2,36 @@
 using System.Text;
 using FeriaVirtual.Infraestructure.Database;
 
-namespace FeriaVirtual.Data.HelpersRepository {
 
-    public abstract class HelperRepository {
-        protected IOracleConnect connection;
-        protected StringBuilder sql = new StringBuilder();
-        protected DataTable dataTable = new DataTable();
+namespace FeriaVirtual.Data.HelpersRepository{
+
+    public abstract class HelperRepository{
+
+        protected IOracleConnect Connection;
+        protected DataTable DataTable = new DataTable();
+        protected StringBuilder Sql = new StringBuilder();
 
         // Properties.
-        public DataTable DataSource => dataTable;
+        public DataTable DataSource => DataTable;
+
 
         // Constructor
-        protected HelperRepository() { }
+
 
         // Define query selection.
-        protected IQuerySelect DefineQuerySelect(string sqlString) {
-            connection = OracleConnect.CreateConnection();
-            return connection.CreateQuerySelect(sqlString);
+        protected IQuerySelect DefineQuerySelect(string sqlString){
+            Connection = OracleConnect.CreateConnection();
+            return Connection.CreateQuerySelect(sqlString);
         }
 
+
         // Find all items
-        protected void FindAll() {
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            dataTable = querySelect.ExecuteQuery();
-            connection.CloseConnection();
+        protected void FindAll(){
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            DataTable = querySelect.ExecuteQuery();
+            Connection.CloseConnection();
         }
+
     }
+
 }

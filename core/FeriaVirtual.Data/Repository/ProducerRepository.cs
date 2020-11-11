@@ -4,159 +4,160 @@ using FeriaVirtual.Domain.Products;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
 
-namespace FeriaVirtual.Data.Repository {
 
-    public class ProducerRepository:Repository {
-        private Producer producer;
+namespace FeriaVirtual.Data.Repository{
+
+    public class ProducerRepository : Repository{
 
         // Properties
-        public Producer Producer => producer;
+        public Producer Producer{ get; private set; }
+
 
         // Constructor
-        private ProducerRepository() : base() {
-            producer= Producer.CreateProducer();
+        private ProducerRepository(){
+            Producer = Producer.CreateProducer();
         }
 
+
         // Named constructor.
-        public static ProducerRepository OpenRepository() {
+        public static ProducerRepository OpenRepository(){
             return new ProducerRepository();
         }
 
-        public new void FindById(string clientID) {
-            FindProducerUserData(clientID);
+
+        public new void FindById(string clientId){
+            FindProducerUserData(clientId);
             GetProducerUserData();
-            if(producer==null) {
+            if (Producer == null) return;
+            var dataRepository = ComercialDataRepository.OpenRepository();
+            Producer.ComercialInfo = dataRepository.FindById(clientId);
+            Producer.ProductList = FindAllProducts(clientId);
+        }
+
+
+        private void FindProducerUserData(string id){
+            Sql.Append("select * from fv_user.vwObtenerClientes where id_cliente=:pId and id_rol=5 ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", id, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
+        }
+
+
+        private void GetProducerUserData(){
+            if (DataTable.Rows.Count.Equals(0)){
+                Producer = null;
                 return;
             }
-            ComercialDataRepository dataRepository = ComercialDataRepository.OpenRepository();
-            producer.ComercialInfo= dataRepository.FindById(clientID);
-            producer.ProductList =FindAllProducts(clientID);
+
+            var row = DataTable.Rows[0];
+            Producer.Id = row["id_cliente"].ToString();
+            Producer.FirstName = row["nombre_cliente"].ToString();
+            Producer.LastName = row["apellido_cliente"].ToString();
+            Producer.Dni = row["DNI"].ToString();
+            Producer.Profile.ProfileId = 5;
+            Producer.Profile.ProfileName = row["Rol"].ToString();
         }
 
-        private void FindProducerUserData(string id) {
-            sql.Append("select * from fv_user.vwObtenerClientes where id_cliente=:pId and id_rol=5 ");
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            querySelect.AddParameter("pId",id,DbType.String);
-            dataTable = querySelect.ExecuteQuery();
-        }
 
-        private void GetProducerUserData() {
-            if(dataTable.Rows.Count.Equals(0)) {
-                producer=null;
-                return;
-            }
-            DataRow row = dataTable.Rows[0];
-            producer.ID = row["id_cliente"].ToString();
-            producer.FirstName= row["nombre_cliente"].ToString();
-            producer.LastName= row["apellido_cliente"].ToString();
-            producer.DNI= row["DNI"].ToString();
-            producer.Profile.ProfileID=5;
-            producer.Profile.ProfileName= row["Rol"].ToString();
-        }
-
-        public void NewProduct(Product product,string clientID) {
-            IQueryAction query = DefineQueryAction("spAgregarProductos ");
-            query.AddParameter("pIdCliente",clientID,DbType.String);
-            query = DefineProductParameters(product,query);
+        public void NewProduct(Product product, string clientId){
+            var query = DefineQueryAction("spAgregarProductos ");
+            query.AddParameter("pIdCliente", clientId, DbType.String);
+            query = DefineProductParameters(product, query);
             query.ExecuteQuery();
         }
 
-        private IQueryAction DefineProductParameters(Product product,IQueryAction query) {
-            query.AddParameter("pIdProducto",product.ProductID,DbType.String);
-            query.AddParameter("pNombre",product.ProductName,DbType.String);
-            query.AddParameter("pObservacion",product.Observation,DbType.String);
-            query.AddParameter("pValor",product.ProductValue,DbType.Decimal);
-            query.AddParameter("pCantidad",product.ProductQuantity,DbType.Decimal);
-            query.AddParameter("pIdCategoria",product.Category.CategoryID,DbType.Int32);
+
+        private IQueryAction DefineProductParameters(Product product, IQueryAction query){
+            query.AddParameter("pIdProducto", product.ProductId, DbType.String);
+            query.AddParameter("pNombre", product.ProductName, DbType.String);
+            query.AddParameter("pObservacion", product.Observation, DbType.String);
+            query.AddParameter("pValor", product.ProductValue, DbType.Decimal);
+            query.AddParameter("pCantidad", product.ProductQuantity, DbType.Decimal);
+            query.AddParameter("pIdCategoria", product.Category.CategoryId, DbType.Int32);
             return query;
         }
 
-        public void EditProduct(Product product) {
-            IQueryAction query = DefineQueryAction("spActualizarProductos ");
-            query = DefineProductParameters(product,query);
+
+        public void EditProduct(Product product){
+            var query = DefineQueryAction("spActualizarProductos ");
+            query = DefineProductParameters(product, query);
             query.ExecuteQuery();
         }
 
-        public void DeleteProduct(string productID) {
-            IQueryAction query = DefineQueryAction("spEliminarProductos ");
-            query.AddParameter("pIdProducto",productID,DbType.String);
+
+        public void DeleteProduct(string productId){
+            var query = DefineQueryAction("spEliminarProductos ");
+            query.AddParameter("pIdProducto", productId, DbType.String);
             query.ExecuteQuery();
         }
 
-        public Product FindProductByID(string productID) {
-            sql.Clear();
-            sql.Append("select * from fv_user.vwObtenerProductos where id_producto=:pId ");
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            querySelect.AddParameter("pId",productID,DbType.String);
-            dataTable = querySelect.ExecuteQuery();
+
+        public Product FindProductById(string productId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwObtenerProductos where id_producto=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", productId, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
             return GetProductData();
         }
 
-        private Product GetProductData() {
-            DataRow row = dataTable.Rows[0];
-            if(row==null) {
-                return null;
-            }
-            return ExtractProductValues(row);
+
+        private Product GetProductData(){
+            var row = DataTable.Rows[0];
+            return row == null ? null : ExtractProductValues(row);
         }
 
-        private Product ExtractProductValues(DataRow row) {
-            Product product = Product.CreateProduct();
-            product.ProductID = row["id_producto"].ToString();
-            product.ClientID = row["id_cliente"].ToString();
-            product.ProductName= row["Producto"].ToString();
-            product.Category.CategoryID= int.Parse(row["id_categoria"].ToString());
-            product.Category.CategoryName= row["Categoria"].ToString();
-            product.ProductValue= float.Parse(row["Valor"].ToString());
-            product.ProductQuantity= float.Parse(row["Cantidad"].ToString());
-            product.Observation= row["Observacion"].ToString();
+
+        private Product ExtractProductValues(DataRow row){
+            var product = Product.CreateProduct();
+            product.ProductId = row["id_producto"].ToString();
+            product.ClientId = row["id_cliente"].ToString();
+            product.ProductName = row["Producto"].ToString();
+            product.Category.CategoryId = int.Parse(row["id_categoria"].ToString());
+            product.Category.CategoryName = row["Categoria"].ToString();
+            product.ProductValue = float.Parse(row["Valor"].ToString());
+            product.ProductQuantity = float.Parse(row["Cantidad"].ToString());
+            product.Observation = row["Observacion"].ToString();
             return product;
         }
 
-        public IList<Product> FindAllProducts(string clientID) {
-            sql.Clear();
-            sql.Append("select * from fv_user.vwObtenerProductos where id_cliente=:pId ");
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            querySelect.AddParameter("pId",clientID,DbType.String);
-            dataTable = querySelect.ExecuteQuery();
+
+        public IList<Product> FindAllProducts(string clientId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwObtenerProductos where id_cliente=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", clientId, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
             return GetProductsData();
         }
 
-        private IList<Product> GetProductsData() {
+
+        private IList<Product> GetProductsData(){
             IList<Product> productList = new List<Product>();
-            if(dataTable.Rows.Count.Equals(0)) {
-                return productList;
-            }
-            foreach(DataRow row in dataTable.Rows) {
-                productList.Add(ExtractProductValues(row));
-            }
+            if (DataTable.Rows.Count.Equals(0)) return productList;
+            foreach (DataRow row in DataTable.Rows) productList.Add(ExtractProductValues(row));
             return productList;
         }
 
-        public IList<ProductDto> FindAllProductByCategory(int categoryID) {
-            sql.Clear();
-            sql.Append("select * from fv_user.vwObtenerProductosExportacion where id_categoria=:pIdCategoria order by nombre_producto ");
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            querySelect.AddParameter("pIdCategoria",categoryID,DbType.Int32);
-            dataTable = querySelect.ExecuteQuery();
+
+        public IList<ProductDto> FindAllProductByCategory(int categoryId){
+            Sql.Clear();
+            Sql.Append(
+                "select * from fv_user.vwObtenerProductosExportacion where id_categoria=:pIdCategoria order by nombre_producto ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pIdCategoria", categoryId, DbType.Int32);
+            DataTable = querySelect.ExecuteQuery();
             return GetExportProductsData();
         }
 
-        private IList<ProductDto> GetExportProductsData() {
+
+        private IList<ProductDto> GetExportProductsData(){
             IList<ProductDto> productList = new List<ProductDto>();
-            if(dataTable.Rows.Count.Equals(0)) {
-                return productList;
-            }
-            foreach(DataRow row in dataTable.Rows) {
-                productList.Add(new ProductDto(row["nombre_producto"].ToString()));
-            }
+            if (DataTable.Rows.Count.Equals(0)) return productList;
+            foreach (DataRow row in DataTable.Rows) productList.Add(new ProductDto(row["nombre_producto"].ToString()));
             return productList;
         }
 
-
-
-
-
-
     }
+
 }

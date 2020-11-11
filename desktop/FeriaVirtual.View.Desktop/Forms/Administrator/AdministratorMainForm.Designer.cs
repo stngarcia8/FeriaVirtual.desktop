@@ -259,6 +259,7 @@
             this.BusinessInternalSalesToolStripMenuItem.Name = "BusinessInternalSalesToolStripMenuItem";
             this.BusinessInternalSalesToolStripMenuItem.Size = new System.Drawing.Size(258, 26);
             this.BusinessInternalSalesToolStripMenuItem.Text = "Procesos de ventas &internas";
+            this.BusinessInternalSalesToolStripMenuItem.Click += new System.EventHandler(this.BusinessInternalSalesToolStripMenuItem_Click);
             // 
             // BusinessToolStripSeparator2
             // 

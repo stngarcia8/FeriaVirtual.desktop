@@ -1,4 +1,4 @@
-﻿namespace FeriaVirtual.View.Desktop.Forms.Contract {
+﻿namespace FeriaVirtual.View.Desktop.Forms.Contracts {
     partial class ContractRegisterForm {
         /// <summary>
         /// Required designer variable.

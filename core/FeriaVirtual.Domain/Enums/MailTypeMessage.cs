@@ -1,10 +1,15 @@
-﻿namespace FeriaVirtual.Domain.Enums {
+﻿namespace FeriaVirtual.Domain.Enums{
 
-    public enum MailTypeMessage {
+    public enum MailTypeMessage{
+
         NewClient,
         EditClient,
         DeleteAccount,
         ContractAccepted,
-        ContractRefused
+        ContractRefused,
+        NewOrderDispatch,
+        EditOrderDispatch
+
     }
+
 }

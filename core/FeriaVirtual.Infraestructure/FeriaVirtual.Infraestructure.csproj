@@ -55,6 +55,8 @@
     <Compile Include="Mailer\MailContractMessageConfigurator.cs" />
     <Compile Include="Mailer\MailContractSender.cs" />
     <Compile Include="Mailer\MailMessageConfigurator.cs" />
+    <Compile Include="Mailer\MailOrderDispatchConfigurator.cs" />
+    <Compile Include="Mailer\MailOrderDispatchSender.cs" />
     <Compile Include="Mailer\MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

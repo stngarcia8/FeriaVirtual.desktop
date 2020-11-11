@@ -1,131 +1,113 @@
-﻿using System;
-using System.Collections.Generic;
-using FeriaVirtual.Business.Documents;
+﻿using System.Collections.Generic;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Contracts;
 
+
 namespace FeriaVirtual.Business.Contracts {
 
-    public class ContractUseCase {
+    public class ContractUseCase{
+
         private readonly ContractRepository repository;
         private readonly string singleProfileName;
-        private readonly string profileName;
+
 
         // constructor
-        private ContractUseCase(int profileID) {
-            repository = ContractRepository.OpenRepository(profileID);
-            this.singleProfileName= (profileID.Equals(5)?"Productor":"Transportista");
-            this.profileName= (profileID.Equals(5) ? "Productores" : "Transportistas");
+        private ContractUseCase(int profileId){
+            repository = ContractRepository.OpenRepository(profileId);
+            singleProfileName = profileId.Equals(5) ? "Productor" : "Transportista";
         }
 
 
-        private ContractUseCase(int profileID,string singleProfileName) {
-            repository = ContractRepository.OpenRepository(profileID);
-            this.singleProfileName= singleProfileName;
-            this.profileName= (singleProfileName.ToLower().Equals("productor") ? "Productores" : "Transportistas");
+        private ContractUseCase(int profileId, string singleProfileName){
+            repository = ContractRepository.OpenRepository(profileId);
+            this.singleProfileName = singleProfileName;
         }
+
 
         // Named constructors.
-        public static ContractUseCase CreateUseCase(int profileID) {
-            return new ContractUseCase(profileID);
-        }
-        public static ContractUseCase CreateUseCase(int profileID,string singleProfileName) {
-            return new ContractUseCase(profileID,singleProfileName);
+        public static ContractUseCase CreateUseCase(int profileId){
+            return new ContractUseCase(profileId);
         }
 
-        public DataTable FindAll() {
+
+        public static ContractUseCase CreateUseCase(int profileId, string singleProfileName){
+            return new ContractUseCase(profileId, singleProfileName);
+        }
+
+
+        public DataTable FindAll(){
             repository.FindAll();
             return repository.DataSource;
         }
 
-        public DataTable FindValidContract() {
+
+        public DataTable FindValidContract(){
             repository.FindValidContracts();
             return repository.DataSource;
         }
 
-        public DataTable FindInvalidContracts() {
+
+        public DataTable FindInvalidContracts(){
             repository.FindInvalidContracts();
             return repository.DataSource;
         }
 
-        public DataTable FindContractById(string contractID) {
-            repository.FindById(contractID);
+
+        public DataTable FindContractById(string contractId){
+            repository.FindById(contractId);
             return repository.DataSource;
         }
 
-        public Contract FindOneContractByID(string contractID) {
-            return repository.FindOneContractById(contractID);
-        }
 
-        public void NewContract(Contract contract) {
-            try {
-                IValidator validator = ContractValidator.CreateValidator(contract,false,singleProfileName);
-                validator.Validate();
-                repository.NewContract(contract);
-            } catch(Exception ex) {
-                throw ex;
-            }
-        }
-
-        public void EditContract(Contract contract) {
-            try {
-                IValidator validator = ContractValidator.CreateValidator(contract,true,singleProfileName);
-                validator.Validate();
-                repository.EditContract(contract);
-            } catch(Exception ex) {
-                throw ex;
-            }
-        }
-
-        public void DeleteContract(string contractID) {
-            try {
-                repository.DeleteContract(contractID);
-            } catch(Exception ex) {
-                throw ex;
-            }
-        }
-
-        public void AcceptContract(string contractID, string clientID, string observation) {
-            try {
-                Contract contract = repository.FindOneContractAceptedById(contractID);
-                foreach(ContractDetail d in contract.Details) {
-                    if(d.Customer.ID!=clientID) {
-                        contract.RemoveDetail(d);
-                    } else {
-                        d.ClientObservation= observation;
-                    }
-                }
-                //ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
-                //generator.Generate();
-                //string filePath = generator.PdfFilePath;
-                //generator= null;
-                repository.AcceptContract(contract);
-            } catch(Exception ex) {
-                throw ex;
-            }
+        public Contract FindOneContractByID(string contractId){
+            return repository.FindOneContractById(contractId);
         }
 
 
-        public void ContractRefuse(string contractID,string clientID,string observation) {
-            try {
-                repository.RefuseContract(contractID,clientID,observation);
-            } catch(Exception ex) {
-                throw ex;
-            }
+        public void NewContract(Contract contract){
+            IValidator validator = ContractValidator.CreateValidator(contract, false, singleProfileName);
+            validator.Validate();
+            repository.NewContract(contract);
         }
 
 
-        public IList<ContractDto> GetContractByCustomerID(string customerID) {
-            try {
-                return repository.FindContractByCustomerId(customerID);
-            } catch (Exception ex) {
-                throw  ex;
-            }
+        public void EditContract(Contract contract){
+            IValidator validator = ContractValidator.CreateValidator(contract, true, singleProfileName);
+            validator.Validate();
+            repository.EditContract(contract);
         }
 
 
+        public void DeleteContract(string contractId){
+            repository.DeleteContract(contractId);
+        }
+
+
+        public void AcceptContract(string contractId, string clientId, string observation){
+            var contract = repository.FindOneContractAceptedById(contractId);
+            foreach (var d in contract.Details) if (d.Customer.Id != clientId)
+                    contract.RemoveDetail(d);
+                else
+                    d.ClientObservation = observation;
+            //ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
+            //generator.Generate();
+            //string filePath = generator.PdfFilePath;
+            //generator= null;
+            repository.AcceptContract(contract);
+        }
+
+
+        public void ContractRefuse(string contractId, string clientId, string observation){
+            repository.RefuseContract(contractId, clientId, observation);
+        }
+
+
+        public IList<ContractDto> GetContractByCustomerId(string customerId){
+            return repository.FindContractByCustomerId(customerId);
+        }
 
     }
+
 }

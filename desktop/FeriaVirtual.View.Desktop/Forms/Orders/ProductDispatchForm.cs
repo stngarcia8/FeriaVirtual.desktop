@@ -1,75 +1,129 @@
 ﻿using System;
-using FeriaVirtual.Business.Orders;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Forms;
 using FeriaVirtual.Business.HelpersUseCases;
+using FeriaVirtual.Business.Orders;
 using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.View.Desktop.Helpers;
-    using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace FeriaVirtual.View.Desktop.Forms.Orders {
+
     public partial class ProductDispatchForm:Form {
 
         public string IdSelected { get; set; }
-        public string ClientID { get; set; }
+        public string ClientId { get; set; }
         public string CustomerName { get; set; }
         public bool IsNewRecord { get; set; }
         public Auction CurrentAuction { get; set; }
+        public OrderDispatch CurrentDispatch { get; set; }
         public bool IsSaved { get; set; }
+        public bool IsRemoveBidValue { get; set; }
+
 
         public ProductDispatchForm() {
             InitializeComponent();
-            this.IsSaved= false;
+            IsSaved = false;
+            IsRemoveBidValue=false;
         }
+
 
         private void ProductDispatchForm_Load(object sender,EventArgs e) {
             LoadSafeData();
-            this.LoadCarrierData();
-            this.LoadCustomerData();
-            this.LoadDispatchData();
-            this.RemoveCarrierButton.Visible= this.IsNewRecord;
+            if(IsNewRecord) {
+                ConvertAuctionIntoOrderDispatch();
+            }
+
+            LoadCarrierData();
+            LoadCustomerData();
+            LoadDispatchData();
+            RemoveCarrierButton.Visible = IsNewRecord;
+            NotifyButton.Visible = IsNewRecord;
         }
+
 
         private void RemoveCarrierButton_Click(object sender,EventArgs e) {
+            if(!RemoveBidValue()) {
+                return;
+            }
 
+            IsRemoveBidValue=true;
+            Close();
         }
+
 
         private void NotifyButton_Click(object sender,EventArgs e) {
             if(!SaveOrderDispatch()) {
                 return;
             }
-            this.IsSaved= true;
-            this.Close();
+
+            IsSaved = true;
+            Close();
         }
+
 
         private void NotifyCloseButton_Click(object sender,EventArgs e) {
-            this.Close();
+            Close();
         }
+
 
         private void LoadSafeData() {
-            this.SafeComboBox.BeginUpdate();
-            SafeUseCase uc = SafeUseCase.CreateUseCase();
-            this.SafeComboBox.DataSource =  uc.FindAll();
-            this.SafeComboBox.ValueMember = "id_seguro";
-            this.SafeComboBox.DisplayMember="nombre_seguro";
-            this.SafeComboBox.EndUpdate();
+            SafeComboBox.BeginUpdate();
+            var uc = SafeUseCase.CreateUseCase();
+            SafeComboBox.DataSource = uc.FindAll();
+            SafeComboBox.ValueMember = "id_seguro";
+            SafeComboBox.DisplayMember = "nombre_seguro";
+            SafeComboBox.EndUpdate();
         }
 
+
+        private void ConvertAuctionIntoOrderDispatch() {
+            CurrentDispatch = OrderDispatch.CreateOrder();
+            CurrentDispatch.OrderId = IdSelected;
+            CurrentDispatch.ClientId = ClientId;
+            CurrentDispatch.ClientName = CustomerName;
+            CurrentDispatch.CarrierId = CurrentAuction.CarrierId;
+            CurrentDispatch.CarrierName = CurrentAuction.CarrierName;
+            CurrentDispatch.DispatchDate = DateTime.Now.Date.ToShortDateString();
+            CurrentDispatch.DispatchValue = CurrentAuction.BidValue;
+            CurrentDispatch.DispatchWeight = CurrentAuction.Weight;
+            CurrentDispatch.Observation = CurrentAuction.DispachObservation;
+            CurrentDispatch.CompanyName = CurrentAuction.CompanyName;
+            CurrentDispatch.Destination = CurrentAuction.Destination;
+            CurrentDispatch.CarrierEmail = CurrentAuction.Email;
+            CurrentDispatch.PhoneNumber = CurrentAuction.PhoneNumber;
+            CurrentDispatch.Status = 1;
+            GetProductList();
+        }
+
+
+        private void GetProductList() {
+            foreach(var p in CurrentAuction.Products) {
+                var odd = OrderDispatchDetail.CreateDetail();
+                odd.Product = p.Product;
+                odd.UnitValue = p.UnitValue;
+                odd.Quantity = p.Quantity;
+                odd.TotalValue = p.TotalValue;
+                CurrentDispatch.Products.Add(odd);
+            }
+        }
+
+
         private void LoadCarrierData() {
-            this.CarrierTextBox.Text = CurrentAuction.CarrierName;
-            this.CarrierValueTextBox.Text = string.Format("${0}",CurrentAuction.BidValue.ToString());
-            BindingList<AuctionProduct> products = new BindingList<AuctionProduct>(CurrentAuction.Products);
-            this.ProductsDataGridView.DataSource = products;
+            CarrierTextBox.Text = CurrentDispatch.CarrierName;
+            CarrierValueTextBox.Text = string.Format("{1}${0}",CurrentDispatch.DispatchValue.ToString(CultureInfo.CurrentCulture),"N");
+            var products = new BindingList<OrderDispatchDetail>(CurrentDispatch.Products);
+            ProductsDataGridView.DataSource = products;
             ConfigureProductGrid();
         }
 
+
         private void ConfigureProductGrid() {
-            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(ProductsDataGridView);
+            var configurator = DataGridViewConfigurator.CreateConfigurator(ProductsDataGridView);
+            IList<string> columns = new List<string> { "DetailId" };
+            configurator.HideColumns(columns);
             configurator.ChangeHeader("Product","Producto");
             configurator.CurrencyColumn("UnitValue","Valor");
             configurator.NumericIntegerColumn("Quantity","Cantidad");
@@ -78,49 +132,78 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
 
 
         private void LoadCustomerData() {
-            this.CustomerTextBox.Text = this.CustomerName;
-            this.CustomerCompanyTextBox.Text = CurrentAuction.CompanyName;
-            this.CustomerAddressTextBox.Text= CurrentAuction.Destination;
-            this.CustomerPhoneTextBox.Text= CurrentAuction.PhoneNumber;
+            CustomerTextBox.Text = CustomerName;
+            CustomerCompanyTextBox.Text = CurrentDispatch.CompanyName;
+            CustomerAddressTextBox.Text = CurrentDispatch.Destination;
+            CustomerPhoneTextBox.Text = CurrentDispatch.PhoneNumber;
         }
+
 
         private void LoadDispatchData() {
-            this.DispatchPreparationDateTextBox.Text = DateTime.Now.Date.ToShortDateString();
-            this.DispatchObservationTextBox.Text = CurrentAuction.DispachObservation;
+            DispatchPreparationDateTextBox.Text = CurrentDispatch.PreparationDate.ToShortDateString();
+            DispatchObservationTextBox.Text = CurrentDispatch.Observation;
             if(CurrentAuction.DispachDate != null) {
-                this.DispatchOkDateTimePicker.MinDate= CurrentAuction.DispachDate.Value;
-                this.DispatchOkDateTimePicker.Value = CurrentAuction.DispachDate.Value;
+                DispatchOkDateTimePicker.MinDate = DateTime.Parse(CurrentDispatch.DispatchDate);
+                DispatchOkDateTimePicker.Value = DateTime.Parse(CurrentDispatch.DispatchDate);
             } else {
-                this.DispatchOkDateTimePicker.MinDate=DateTime.Now.Date.AddDays(1);
-                this.DispatchOkDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
+                DispatchOkDateTimePicker.MinDate = DateTime.Now.Date.AddDays(1);
+                DispatchOkDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
             }
         }
 
+
         private bool SaveOrderDispatch() {
-            bool result = false;
-            string message = string.Empty;
-            PutsDataControlsIntoAuctionObjects();
+            bool result;
+            var message = string.Empty;
+            PutsDataControlsIntoOrderDispatchObjects();
             try {
-                OrderUseCase usecase = OrderUseCase.CreateUseCase();
+                var usecase = OrderDispatchUseCase.CreateUseCase();
                 if(IsNewRecord) {
-                    usecase.CreateOrderDispatch(CurrentAuction,this.IdSelected,this.ClientID,int.Parse( this.SafeComboBox.SelectedValue.ToString()));
-                    message = string.Format( "La orden de despacho se completo correctamente y el correo electrónico de notificación fue enviado {0}.", this.CustomerName) ;
+                    usecase.CreateOrderDispatch(CurrentDispatch);
+                    message =
+                        $"La orden de despacho se completo correctamente y el correo electrónico de notificación fue enviado {CustomerName}.";
                 }
+
                 MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                result= true;
-            } catch (Exception ex) {
-                result= false;
-                MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                result = true;
+            } catch(Exception ex) {
+                result = false;
+                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
+
             return result;
         }
 
-        private void  PutsDataControlsIntoAuctionObjects() {
-            CurrentAuction.DispachObservation = this.DispatchObservationTextBox.Text;
-            CurrentAuction.DispachDate= this.DispatchOkDateTimePicker.Value;
+
+        private void PutsDataControlsIntoOrderDispatchObjects() {
+            CurrentDispatch.Observation = DispatchObservationTextBox.Text;
+            CurrentDispatch.DispatchDate = DispatchOkDateTimePicker.Value.ToShortDateString();
+            CurrentDispatch.Safe.SafeId = int.Parse(SafeComboBox.SelectedValue.ToString());
+            CurrentDispatch.Safe.SafeName = SafeComboBox.Text;
         }
 
 
+        private bool RemoveBidValue() {
+            var message =
+                $"¿Esta seguro(a) de quitar la puja del transportista {CurrentAuction.CarrierName}?, esto eliminará los datos de la subasta y el estado de la orden de compra estará disponible para generar una nueva subasta.";
+            var result = MessageBox.Show(message,"Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if(result.Equals(DialogResult.No)) {
+                return false;
+            }
+
+            try {
+                var usecase = AuctionUseCase.CreateUseCase();
+                usecase.RemoveBidValue(CurrentAuction.AuctionId,IdSelected);
+                message =
+                    "Los datos de la puja de la subasta han sido removidos correctamente, recuerde que esta subasta quedará en las ordenes con subastas publicadas.";
+                MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
 
     }
+
 }
