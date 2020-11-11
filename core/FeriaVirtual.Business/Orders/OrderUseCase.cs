@@ -1,63 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
 
+
 namespace FeriaVirtual.Business.Orders {
 
-    public class OrderUseCase {
+    public class OrderUseCase{
+
         private readonly OrderRepository repository;
 
+
         // Constructor
-        private OrderUseCase() {
-            repository=OrderRepository.OpenRepository();
+        private OrderUseCase(){
+            repository = OrderRepository.OpenRepository();
         }
 
+
         // Named constructor
-        public static OrderUseCase CreateUseCase() {
+        public static OrderUseCase CreateUseCase(){
             return new OrderUseCase();
         }
 
-        public void NewOrder(Order order,string clientID) {
-            try {
-                IValidator validator = OrderValidator.CreateValidator(order,false);
-                validator.Validate();
-                repository.NewOrder(order,clientID);
-            } catch(Exception) {
-                throw;
-            }
-        }
 
-        public void EditOrder(Order order,string clientID) {
-            try {
-                IValidator validator = OrderValidator.CreateValidator(order,true);
-                validator.Validate();
-                repository.EditOrder(order,clientID);
-            } catch(Exception) {
-                throw;
-            }
-        }
-
-        public void DeleteOrder(string orderID) {
-            try {
-                repository.DeleteOrder(orderID);
-            } catch(Exception ex) {
-                throw;
-            }
-        }
-
-        public IList<OrderDto> GetOrderToPublish(int statusID, string customerID) {
-            try {
-                return repository.PublishOrdersToApi(statusID, customerID);
-            }catch (Exception ex) {
-                throw ex;
-            }
+        public DataTable GetOrderByStatus(int statusId, int rolId){
+            repository.GetOrderByStatus(statusId, rolId);
+            return repository.DataSource;
         }
 
 
+        public DataTable GetOrderDetailById(string orderId){
+            repository.GetOrderDetailById(orderId);
+            return repository.DataSource;
+        }
 
 
+        public void NewOrder(Order order, string clientId){
+            IValidator validator = OrderValidator.CreateValidator(order, false);
+            validator.Validate();
+            repository.NewOrder(order, clientId);
+        }
+
+
+        public void EditOrder(Order order, string clientId){
+            IValidator validator = OrderValidator.CreateValidator(order, true);
+            validator.Validate();
+            repository.EditOrder(order, clientId);
+        }
+
+
+        public void DeleteOrder(string orderId){
+            repository.DeleteOrder(orderId);
+        }
+
+
+        public IList<OrderDto> GetOrderToPublish(int statusId, string customerId){
+            return repository.PublishOrdersToApi(statusId, customerId);
+        }
+
+
+        public DataTable GetGenerateProposeProduct(string orderId){
+            repository.GenerateProposeProduct(orderId);
+            repository.GetProposeProduct(orderId);
+            return repository.DataSource;
+        }
+
+
+        public void AceptProposeProducts(string orderId){
+            repository.AceptProposeProducts(orderId);
+        }
 
     }
+
 }

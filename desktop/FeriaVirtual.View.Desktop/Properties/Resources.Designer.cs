@@ -183,6 +183,36 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap form_auction {
+            get {
+                object obj = ResourceManager.GetObject("form-auction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap form_notify {
+            get {
+                object obj = ResourceManager.GetObject("form.notify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap form_ProposeProduct {
+            get {
+                object obj = ResourceManager.GetObject("form-ProposeProduct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login {
             get {
                 object obj = ResourceManager.GetObject("login", resourceCulture);
@@ -226,6 +256,26 @@ namespace FeriaVirtual.View.Desktop.Properties {
         internal static System.Drawing.Bitmap maipogrande_logo3 {
             get {
                 object obj = ResourceManager.GetObject("maipogrande-logo3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_auction {
+            get {
+                object obj = ResourceManager.GetObject("menu-auction", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_auctionView {
+            get {
+                object obj = ResourceManager.GetObject("menu-auctionView", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +333,26 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap menu_externalOrders {
+            get {
+                object obj = ResourceManager.GetObject("menu-externalOrders", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap menu_notify {
+            get {
+                object obj = ResourceManager.GetObject("menu-notify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_refresh {
             get {
                 object obj = ResourceManager.GetObject("menu-refresh", resourceCulture);
@@ -293,9 +363,29 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap menu_toDistribute {
+            get {
+                object obj = ResourceManager.GetObject("menu-toDistribute", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_transportist {
             get {
                 object obj = ResourceManager.GetObject("menu-transportist", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mg_logo {
+            get {
+                object obj = ResourceManager.GetObject("mg-logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

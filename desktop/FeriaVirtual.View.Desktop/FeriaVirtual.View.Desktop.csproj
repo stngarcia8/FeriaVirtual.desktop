@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\LoadProposeProduct.cs" />
     <Compile Include="Forms\Administrator\AdministratorMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,46 +91,76 @@
     <Compile Include="Forms\Login\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\ClientRegisterForm.cs">
+    <Compile Include="Forms\Client\ClientRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\ClientRegisterForm.Designer.cs">
+    <Compile Include="Forms\Client\ClientRegisterForm.Designer.cs">
       <DependentUpon>ClientRegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.cs">
+    <Compile Include="Forms\Client\MaintenanceClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Client\MaintenanceClientForm.Designer.cs">
+    <Compile Include="Forms\Client\MaintenanceClientForm.Designer.cs">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\AssociateClientForm.cs">
+    <Compile Include="Forms\Contracts\AssociateClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\AssociateClientForm.Designer.cs">
+    <Compile Include="Forms\Contracts\AssociateClientForm.Designer.cs">
       <DependentUpon>AssociateClientForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.cs">
+    <Compile Include="Forms\Contracts\ContractMaintenanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\ContractMaintenanceForm.Designer.cs">
+    <Compile Include="Forms\Contracts\ContractMaintenanceForm.Designer.cs">
       <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\ContractRegisterForm.cs">
+    <Compile Include="Forms\Contracts\ContractRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\Contract\ContractRegisterForm.Designer.cs">
+    <Compile Include="Forms\Contracts\ContractRegisterForm.Designer.cs">
       <DependentUpon>ContractRegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\User\MaintenanceUserForm.cs">
+    <Compile Include="Forms\Orders\AuctionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\User\MaintenanceUserForm.Designer.cs">
+    <Compile Include="Forms\Orders\AuctionForm.Designer.cs">
+      <DependentUpon>AuctionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\AuctionResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\AuctionResultForm.Designer.cs">
+      <DependentUpon>AuctionResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\ExternalOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\ExternalOrderForm.Designer.cs">
+      <DependentUpon>ExternalOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\ProductDispatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\ProductDispatchForm.Designer.cs">
+      <DependentUpon>ProductDispatchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Orders\ProposeProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Orders\ProposeProductsForm.Designer.cs">
+      <DependentUpon>ProposeProductsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\User\MaintenanceUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\User\MaintenanceUserForm.Designer.cs">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Maintenance\User\UserRegisterForm.cs">
+    <Compile Include="Forms\User\UserRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Maintenance\User\UserRegisterForm.Designer.cs">
+    <Compile Include="Forms\User\UserRegisterForm.Designer.cs">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Offers\OfferForm.cs">
@@ -155,8 +186,10 @@
     <Compile Include="Helpers\CarrierProfile.cs" />
     <Compile Include="Helpers\ConsultantProfile.cs" />
     <Compile Include="Helpers\DataGridViewConfigurator.cs" />
-    <Compile Include="Helpers\EnumProfileInfo.cs" />
+    <Compile Include="Helpers\FilterNodeConfigurator.cs" />
+    <Compile Include="Helpers\ProfileInfoEnum.cs" />
     <Compile Include="Helpers\ExternalCustomerProfile.cs" />
+    <Compile Include="Helpers\FilterComboConfigurator.cs" />
     <Compile Include="Helpers\InternalCustomerProfile.cs" />
     <Compile Include="Helpers\IProfileInfo.cs" />
     <Compile Include="Helpers\ProducerProfile.cs" />
@@ -172,25 +205,40 @@
     <EmbeddedResource Include="Forms\Login\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Client\ClientRegisterForm.resx">
+    <EmbeddedResource Include="Forms\Client\ClientRegisterForm.resx">
       <DependentUpon>ClientRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Client\MaintenanceClientForm.resx">
+    <EmbeddedResource Include="Forms\Client\MaintenanceClientForm.resx">
       <DependentUpon>MaintenanceClientForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Contract\AssociateClientForm.resx">
+    <EmbeddedResource Include="Forms\Contracts\AssociateClientForm.resx">
       <DependentUpon>AssociateClientForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Contract\ContractMaintenanceForm.resx">
+    <EmbeddedResource Include="Forms\Contracts\ContractMaintenanceForm.resx">
       <DependentUpon>ContractMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\Contract\ContractRegisterForm.resx">
+    <EmbeddedResource Include="Forms\Contracts\ContractRegisterForm.resx">
       <DependentUpon>ContractRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\User\MaintenanceUserForm.resx">
+    <EmbeddedResource Include="Forms\Orders\AuctionForm.resx">
+      <DependentUpon>AuctionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\AuctionResultForm.resx">
+      <DependentUpon>AuctionResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\ExternalOrderForm.resx">
+      <DependentUpon>ExternalOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\ProductDispatchForm.resx">
+      <DependentUpon>ProductDispatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Orders\ProposeProductsForm.resx">
+      <DependentUpon>ProposeProductsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Maintenance\User\UserRegisterForm.resx">
+    <EmbeddedResource Include="Forms\User\UserRegisterForm.resx">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Offers\OfferForm.resx">
@@ -326,6 +374,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Menu-configuraciones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-externalOrders.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-toDistribute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form-ProposeProduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-auction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form-auction.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mg-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-auctionView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-notify.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form.notify.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

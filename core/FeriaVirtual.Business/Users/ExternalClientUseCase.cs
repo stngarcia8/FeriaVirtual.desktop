@@ -1,24 +1,31 @@
 ﻿using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Users;
 
-namespace FeriaVirtual.Business.Users {
 
-    public class ExternalClientUseCase {
+namespace FeriaVirtual.Business.Users{
+
+    public class ExternalClientUseCase{
+
         private readonly ExternalClientRepository repository;
 
+
         // Constructor
-        private ExternalClientUseCase() {
-            repository= ExternalClientRepository.OpenRepository();
+        private ExternalClientUseCase(){
+            repository = ExternalClientRepository.OpenRepository();
         }
 
+
         // Named constructor
-        public static ExternalClientUseCase CreateUseCase() {
+        public static ExternalClientUseCase CreateUseCase(){
             return new ExternalClientUseCase();
         }
 
-        public ExternalClient FindClientById(string clientID) {
-            repository.FindById(clientID);
+
+        public ExternalClient FindClientById(string clientId){
+            repository.FindById(clientId);
             return repository.Client;
         }
+
     }
+
 }

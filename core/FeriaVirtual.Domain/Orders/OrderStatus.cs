@@ -1,33 +1,40 @@
-﻿namespace FeriaVirtual.Domain.Orders {
+﻿namespace FeriaVirtual.Domain.Orders{
 
-    public class OrderStatus {
+    public class OrderStatus{
 
         // Properties
-        public int StatusID { get; set; }
-        public string StatusDescription { get; set; }
+        public int StatusId{ get; set; }
+        public string StatusDescription{ get; set; }
+
 
         // Constructor
-        private OrderStatus() {
-            StatusID= 0;
-            StatusDescription= string.Empty;
+        private OrderStatus(){
+            StatusId = 0;
+            StatusDescription = string.Empty;
         }
 
-        private OrderStatus(int statusID,string statusDescription) {
-            StatusID= statusID;
-            StatusDescription= statusDescription;
+
+        private OrderStatus(int statusId, string statusDescription){
+            StatusId = statusId;
+            StatusDescription = statusDescription;
         }
+
 
         // Named constructors.
-        public static OrderStatus CreateStatus() {
+        public static OrderStatus CreateStatus(){
             return new OrderStatus();
         }
 
-        public static OrderStatus CreateStatus(int statusID,string statusDescription) {
-            return new OrderStatus(statusID,statusDescription);
+
+        public static OrderStatus CreateStatus(int statusId, string statusDescription){
+            return new OrderStatus(statusId, statusDescription);
         }
 
-        public override string ToString() {
+
+        public override string ToString(){
             return StatusDescription;
         }
+
     }
+
 }

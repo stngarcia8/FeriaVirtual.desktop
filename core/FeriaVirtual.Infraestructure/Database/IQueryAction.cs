@@ -1,13 +1,18 @@
 ﻿using System.Data;
 
-namespace FeriaVirtual.Infraestructure.Database {
 
-    public interface IQueryAction {
+namespace FeriaVirtual.Infraestructure.Database{
 
-        void AddParameter(string parameterName,object parameterValue,DbType parameterValueType);
+    public interface IQueryAction{
+
+        void AddParameter(string parameterName, object parameterValue, DbType parameterValueType);
+
 
         void CleanParameters();
 
+
         int ExecuteQuery();
+
     }
+
 }

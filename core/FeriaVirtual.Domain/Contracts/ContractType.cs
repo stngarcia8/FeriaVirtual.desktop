@@ -1,16 +1,16 @@
-﻿namespace FeriaVirtual.Domain.Contracts {
+﻿namespace FeriaVirtual.Domain.Contracts{
 
-    public class ContractType {
+    public class ContractType{
 
-        // Properties
-        public int ContractTypeID { get; set; }
+        public int ContractTypeId{ get; set; }
+        public string ContractTypeName{ get; set; }
 
-        public string ContractTypeName { get; set; }
 
-        // Constructor
-        public ContractType() {
-            ContractTypeID=0;
-            ContractTypeName= string.Empty;
+        public ContractType(){
+            ContractTypeId = 0;
+            ContractTypeName = string.Empty;
         }
+
     }
+
 }

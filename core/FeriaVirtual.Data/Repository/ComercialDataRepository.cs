@@ -1,97 +1,96 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using FeriaVirtual.Data.Exceptions;
-using FeriaVirtual.Infraestructure.Database;
 using FeriaVirtual.Domain.CommercialsData;
+using FeriaVirtual.Infraestructure.Database;
 
 
-namespace FeriaVirtual.Data.Repository {
+namespace FeriaVirtual.Data.Repository{
 
-    public class ComercialDataRepository:Repository {
+    public class ComercialDataRepository : Repository{
 
         // Constructor
-        private ComercialDataRepository() : base() { }
+        private ComercialDataRepository(){ }
+
 
         // Named constructor
-        public static ComercialDataRepository OpenRepository() {
+        public static ComercialDataRepository OpenRepository(){
             return new ComercialDataRepository();
         }
 
-        public void NewComercialData(ComercialData data,string clientID) {
-            try {
-                SearchExistingBusinessData(clientID);
-                IQueryAction query = DefineQueryAction("spAgregarDatosComerciales ");
-                query.AddParameter("pIdComercial",data.ComercialID,DbType.String);
-                query.AddParameter("pIdCliente",clientID,DbType.String);
-                query = DefineParameters(data,query);
-                query.ExecuteQuery();
-            } catch(Exception) {
-                throw;
-            }
+
+        public void NewComercialData(ComercialData data, string clientId){
+            SearchExistingBusinessData(clientId);
+            var query = DefineQueryAction("spAgregarDatosComerciales ");
+            query.AddParameter("pIdComercial", data.CommercialId, DbType.String);
+            query.AddParameter("pIdCliente", clientId, DbType.String);
+            query = DefineParameters(data, query);
+            query.ExecuteQuery();
         }
 
-        private void SearchExistingBusinessData(string clientID) {
-            FindById(clientID);
-            if(dataTable.Rows.Count>=1) {
-                throw new RepeatedBusinessDataException("No esta permitido agregar multiples instancias de un dato comercial de una persona.");
-            }
+
+        private void SearchExistingBusinessData(string clientId){
+            FindById(clientId);
+            if (DataTable.Rows.Count >= 1)
+                throw new RepeatedBusinessDataException(
+                    "No esta permitido agregar multiples instancias de un dato comercial de una persona.");
         }
 
-        private IQueryAction DefineParameters(ComercialData data,IQueryAction query) {
-            query.AddParameter("pRSocial",data.CompanyName,DbType.String);
-            query.AddParameter("pFantasia",data.FantasyName,DbType.String);
-            query.AddParameter("pGiro",data.ComercialBusiness,DbType.String);
-            query.AddParameter("pEmail",data.Email,DbType.String);
-            query.AddParameter("pDNI",data.ComercialDNI,DbType.String);
-            query.AddParameter("pDireccion",data.Address,DbType.String);
-            query.AddParameter("pIdCiudad",data.City.CityID,DbType.Int32);
-            query.AddParameter("pTelefono",data.PhoneNumber,DbType.String);
+
+        private IQueryAction DefineParameters(ComercialData data, IQueryAction query){
+            query.AddParameter("pRSocial", data.CompanyName, DbType.String);
+            query.AddParameter("pFantasia", data.FantasyName, DbType.String);
+            query.AddParameter("pGiro", data.ComercialBusiness, DbType.String);
+            query.AddParameter("pEmail", data.Email, DbType.String);
+            query.AddParameter("pDNI", data.ComercialDni, DbType.String);
+            query.AddParameter("pDireccion", data.Address, DbType.String);
+            query.AddParameter("pIdCiudad", data.City.CityId, DbType.Int32);
+            query.AddParameter("pTelefono", data.PhoneNumber, DbType.String);
             return query;
         }
 
-        public void EditComercialData(ComercialData data,string clientID) {
-            try {
-                IQueryAction query = DefineQueryAction("spActualizarDatosComerciales ");
-                query.AddParameter("pIdComercial",data.ComercialID,DbType.String);
-                query = DefineParameters(data,query);
-                query.ExecuteQuery();
-            } catch(Exception) {
-                throw;
-            }
+
+        public void EditComercialData(ComercialData data, string clientId){
+            var query = DefineQueryAction("spActualizarDatosComerciales ");
+            query.AddParameter("pIdComercial", data.CommercialId, DbType.String);
+            query = DefineParameters(data, query);
+            query.ExecuteQuery();
         }
 
-        public new ComercialData FindById(string id) {
-            sql.Append("select * from fv_user.vwObtenerDatosComerciales where id_cliente=:pId ");
+
+        public new ComercialData FindById(string id){
+            Sql.Append("select * from fv_user.vwObtenerDatosComerciales where id_cliente=:pId ");
             base.FindById(id);
             return GetComercialData();
         }
 
-        public void DeleteComercialData(string comercialID) {
-            IQueryAction query = DefineQueryAction("spEliminarDatosComerciales ");
-            query.AddParameter("pIdComercial",comercialID,DbType.String);
+
+        public void DeleteComercialData(string comercialId){
+            var query = DefineQueryAction("spEliminarDatosComerciales ");
+            query.AddParameter("pIdComercial", comercialId, DbType.String);
             query.ExecuteQuery();
         }
 
-        private ComercialData GetComercialData() {
-            if(dataTable.Rows.Count.Equals(0)) {
-                return null;
-            }
-            DataRow row = dataTable.Rows[0];
-            ComercialData data = ComercialData.CreateComercialData();
-            data.ComercialID= row["id_comercial"].ToString();
-            data.CompanyName= row["Razon social"].ToString();
-            data.FantasyName=row["Nombre de fantasia"].ToString();
-            data.ComercialBusiness= row["Giro comercial"].ToString();
-            data.Email= row["Email"].ToString();
-            data.ComercialDNI= row["DNI"].ToString();
-            data.Address= row["Direccion"].ToString();
-            data.City.CityID = int.Parse(row["id_ciudad"].ToString());
+
+        private ComercialData GetComercialData(){
+            if (DataTable.Rows.Count.Equals(0)) return null;
+            var row = DataTable.Rows[0];
+            var data = ComercialData.CreateComercialData();
+            data.CommercialId = row["id_comercial"].ToString();
+            data.CompanyName = row["Razon social"].ToString();
+            data.FantasyName = row["Nombre de fantasia"].ToString();
+            data.ComercialBusiness = row["Giro comercial"].ToString();
+            data.Email = row["Email"].ToString();
+            data.ComercialDni = row["DNI"].ToString();
+            data.Address = row["Direccion"].ToString();
+            data.City.CityId = int.Parse(row["id_ciudad"].ToString());
             data.City.CityName = row["Ciudad"].ToString();
-            data.Country.CountryID= int.Parse(row["id_pais"].ToString());
+            data.Country.CountryId = int.Parse(row["id_pais"].ToString());
             data.Country.CountryName = row["Pais"].ToString();
-            data.Country.CountryPrefix= row["Prefijo"].ToString();
-            data.PhoneNumber= row["Telefono"].ToString();
+            data.Country.CountryPrefix = row["Prefijo"].ToString();
+            data.PhoneNumber = row["Telefono"].ToString();
             return data;
         }
+
     }
+
 }

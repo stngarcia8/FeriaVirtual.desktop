@@ -1,7 +1,9 @@
-﻿namespace FeriaVirtual.View.Desktop.Commands {
+﻿namespace FeriaVirtual.View.Desktop.Commands{
 
-    public interface ICommand {
+    public interface ICommand{
 
         void Execute();
+
     }
+
 }

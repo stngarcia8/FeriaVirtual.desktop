@@ -12,15 +12,16 @@
 SET ECHO OFF;
 set feedback off;
 
-prompt Ajustando la sesion para feria virtual.;
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
+ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '$' NLS_ISO_CURRENCY= 'AMERICA' NLS_NUMERIC_CHARACTERS= '.,' NLS_CALENDAR= 'GREGORIAN' NLS_DATE_FORMAT= 'DD-MON-RR' NLS_DATE_LANGUAGE= 'SPANISH' NLS_SORT= 'BINARY';
+
 
 prompt Eliminando usuario y tablespace.;
 DROP USER fv_user CASCADE;
 DROP tablespace fv_env INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
 
 prompt Creando tablespace y usuario para feria virtual.;
-CREATE TABLESPACE fv_env DATAFILE 'fv_env.dbf' SIZE 500M autoextend ON;
+CREATE TABLESPACE fv_env DATAFILE 'fv_env.dbf' SIZE 500 M autoextend ON;
 CREATE USER fv_user IDENTIFIED BY fv_pwd DEFAULT TABLESPACE fv_env temporary tablespace temp;
 
 prompt Asignando los privilegios al usuario.;

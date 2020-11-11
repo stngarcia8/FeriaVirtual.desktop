@@ -1,26 +1,31 @@
-﻿namespace FeriaVirtual.API.Models {
+﻿namespace FeriaVirtual.API.Models{
 
-    public class RequestContractModel {
-
-        /// <summary>
-        /// Corresponde al identificador del perfil del contrato.
-        /// </summary>
-        public int ProfileID { get; set; }
+    /// <summary>
+    ///     Representa la respuesta brindada a un contrato estipulado.
+    /// </summary>
+    public class RequestContractModel{
 
         /// <summary>
-        /// Corresponde al identificador del contrato que será aceptado/rechazado.
+        ///     Corresponde al identificador del perfil del contrato.
         /// </summary>
-        public string ContractID { get; set; }
+        public int ProfileId{ get; set; }
 
         /// <summary>
-        /// corresponde al identificador del cliente que acepta/rechaza el contrato.
+        ///     Corresponde al identificador del contrato que será aceptado/rechazado.
         /// </summary>
-        public string ClientID { get; set; }
+        public string ContractId{ get; set; }
 
         /// <summary>
-        /// Corresponde a las observaciones realizadas por el cliente que acepta/rechaza el
-        /// contrato.
+        ///     corresponde al identificador del cliente que acepta/rechaza el contrato.
         /// </summary>
-        public string CustomerObservation { get; set; }
+        public string ClientId{ get; set; }
+
+        /// <summary>
+        ///     Corresponde a las observaciones realizadas por el cliente que acepta/rechaza el
+        ///     contrato.
+        /// </summary>
+        public string CustomerObservation{ get; set; }
+
     }
+
 }

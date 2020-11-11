@@ -1,49 +1,54 @@
-﻿namespace FeriaVirtual.View.Desktop.Helpers {
+﻿namespace FeriaVirtual.View.Desktop.Helpers{
 
-    public class ProfileInfo {
-        private readonly EnumProfileInfo profileInfo;
-        private IProfileInfo profile;
+    public class ProfileInfo{
+
+        private readonly ProfileInfoEnum profileInfo;
 
         // Properties
-        public IProfileInfo Profile => profile;
+        public IProfileInfo Profile{ get; private set; }
 
-        private ProfileInfo(EnumProfileInfo profileInfo) {
-            this.profileInfo= profileInfo;
+
+        private ProfileInfo(ProfileInfoEnum profileInfo){
+            this.profileInfo = profileInfo;
             CheckProfile();
         }
 
+
         // Named constructor
-        public static ProfileInfo CreateProfileInfo(EnumProfileInfo profileInfo) {
+        public static ProfileInfo CreateProfileInfo(ProfileInfoEnum profileInfo){
             return new ProfileInfo(profileInfo);
         }
 
+
         // private methods
-        private void CheckProfile() {
-            switch(profileInfo) {
-                case EnumProfileInfo.Administrator:
-                    profile = AdministratorProfile.CreateProfile();
+        private void CheckProfile(){
+            switch (profileInfo){
+                case ProfileInfoEnum.Administrator:
+                    Profile = AdministratorProfile.CreateProfile();
                     break;
 
-                case EnumProfileInfo.Consultant:
-                    profile= ConsultantProfile.CreateProfile();
+                case ProfileInfoEnum.Consultant:
+                    Profile = ConsultantProfile.CreateProfile();
                     break;
 
-                case EnumProfileInfo.External_customer:
-                    profile = ExternalCustomerProfile.CreateProfile();
+                case ProfileInfoEnum.ExternalCustomer:
+                    Profile = ExternalCustomerProfile.CreateProfile();
                     break;
 
-                case EnumProfileInfo.Internal_customer:
-                    profile = InternalCustomerProfile.CreateProfile();
+                case ProfileInfoEnum.InternalCustomer:
+                    Profile = InternalCustomerProfile.CreateProfile();
                     break;
 
-                case EnumProfileInfo.Producer:
-                    profile= ProducerProfile.CreateProfile();
+                case ProfileInfoEnum.Producer:
+                    Profile = ProducerProfile.CreateProfile();
                     break;
 
-                case EnumProfileInfo.Carrier:
-                    profile = CarrierProfile.CreateProfile();
+                case ProfileInfoEnum.Carrier:
+                    Profile = CarrierProfile.CreateProfile();
                     break;
             }
         }
+
     }
+
 }

@@ -70,7 +70,6 @@
             // 
             this.ListFilterButton.AutoSize = true;
             this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ListFilterButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.ListFilterButton.ForeColor = System.Drawing.Color.Black;
             this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -220,10 +219,9 @@
             // 
             // SearchClientForm
             // 
-            this.AcceptButton = this.SearchAceptButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.CancelButton = this.SearchCancelButton;
             this.ClientSize = new System.Drawing.Size(484, 331);
             this.Controls.Add(this.SearchCancelButton);
@@ -231,10 +229,10 @@
             this.Controls.Add(this.ListTableLayoutPanel);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(500, 370);
             this.Name = "SearchClientForm";
-            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar cliente";

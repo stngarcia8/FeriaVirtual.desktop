@@ -1,131 +1,181 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.Infraestructure.Database;
 
-namespace FeriaVirtual.Data.Repository {
 
-    public class OrderRepository:Repository {
-        private readonly Order order;
+namespace FeriaVirtual.Data.Repository{
+
+    public class OrderRepository : Repository{
 
         // properties
-        public Order Order => order;
+        public Order Order{ get; }
+
 
         // Constructor
-        private OrderRepository() : base() {
-            order = Order.CreateOrder();
+        private OrderRepository(){
+            Order = Order.CreateOrder();
         }
 
+
         // Named constructor
-        public static OrderRepository OpenRepository() {
+        public static OrderRepository OpenRepository(){
             return new OrderRepository();
         }
 
-        public void NewOrder(Order order,string clientID) {
-            IQueryAction query = DefineQueryAction("spAgregarPedido ");
-            query.AddParameter("pIdCliente",clientID,DbType.String);
-            query = DefineParameters(order,query);
-            query.AddParameter("pGuid",Guid.NewGuid().ToString(), DbType.String);
+
+        public void GetOrderByStatus(int statusId, int rolId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwObtenerPedidoToApi where id_estado=:pIdEstado and id_rol=:pIdRol ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pIdEstado", statusId, DbType.Int32);
+            querySelect.AddParameter("pIdRol", rolId, DbType.Int32);
+            DataTable = querySelect.ExecuteQuery();
+        }
+
+
+        public DataTable GetOrderDetailById(string orderId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.detalle_pedido where id_pedido=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", orderId, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
+            return DataSource;
+        }
+
+
+        public void GenerateProposeProduct(string orderId){
+            var queryAction = DefineQueryAction("spGenerarPropuestaProductos  ");
+            queryAction.AddParameter("idped", orderId, DbType.String);
+            queryAction.ExecuteQuery();
+        }
+
+
+        public void GetProposeProduct(string orderId){
+            Sql.Clear();
+            Sql.Append("select * from vwObtenerResultadoPropuesta where id_pedido=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", orderId, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
+        }
+
+
+        public void NewOrder(Order order, string clientId){
+            var query = DefineQueryAction("spAgregarPedido ");
+            query.AddParameter("pIdCliente", clientId, DbType.String);
+            query = DefineParameters(order, query);
+            query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
             OrderDetailSave(order);
         }
 
-        public void EditOrder(Order order,string clientID) {
-            IQueryAction query = DefineQueryAction("spActualizarPedido ");
-            query = DefineParameters(order,query);
+
+        public void EditOrder(Order order, string clientId){
+            var query = DefineQueryAction("spActualizarPedido ");
+            query = DefineParameters(order, query);
             query.ExecuteQuery();
             OrderDetailSave(order);
         }
 
-        private IQueryAction DefineParameters(Order order,IQueryAction query) {
-            query.AddParameter("pIdPedido",order.OrderID,DbType.String);
-            query.AddParameter("pIdCondicion",order.Condition.ConditionID,DbType.Int32);
-            query.AddParameter("pDescuento",order.OrderDiscount,DbType.Double);
-            query.AddParameter("pObservacion",order.Observation,DbType.String);
+
+        private IQueryAction DefineParameters(Order order, IQueryAction query){
+            query.AddParameter("pIdPedido", order.OrderId, DbType.String);
+            query.AddParameter("pIdCondicion", order.Condition.ConditionId, DbType.Int32);
+            query.AddParameter("pDescuento", order.OrderDiscount, DbType.Double);
+            query.AddParameter("pObservacion", order.Observation, DbType.String);
             return query;
         }
 
-        private void OrderDetailSave(Order order) {
-            foreach(OrderDetail d in order.OrderDetailList) {
-                IQueryAction queryDetail = DefineQueryAction("spAgregarDetallePedido ");
-                queryDetail.AddParameter("pGuid",Guid.NewGuid().ToString(),DbType.String);
-                queryDetail.AddParameter("pIdPedido",order.OrderID,DbType.String);
-                queryDetail.AddParameter("pProducto",d.ProductName,DbType.String);
-                queryDetail.AddParameter("pCantidad",d.Quantity,DbType.Double);
+
+        private void OrderDetailSave(Order order){
+            foreach (var d in order.OrderDetailList){
+                var queryDetail = DefineQueryAction("spAgregarDetallePedido ");
+                queryDetail.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
+                queryDetail.AddParameter("pIdPedido", order.OrderId, DbType.String);
+                queryDetail.AddParameter("pProducto", d.ProductName, DbType.String);
+                queryDetail.AddParameter("pCantidad", d.Quantity, DbType.Double);
                 queryDetail.ExecuteQuery();
             }
         }
 
-        public void DeleteOrder(string orderID) {
-            IQueryAction query = DefineQueryAction("spEliminarPedido ");
-            query.AddParameter("pIdPedido",orderID,DbType.String);
+
+        public void DeleteOrder(string orderId){
+            var query = DefineQueryAction("spEliminarPedido ");
+            query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
         }
 
-        public IList<OrderDto> PublishOrdersToApi(int statusID, string customerID) {
-            sql.Clear();
-            sql.Append("select * from fv_user.vwObtenerPedidoToApi where id_cliente=:pId and id_estado=:pIdEstado ");
-                IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-                querySelect.AddParameter("pId",customerID, DbType.String);
-            querySelect.AddParameter("pIdEstado",statusID,DbType.Int32);
+
+        public IList<OrderDto> PublishOrdersToApi(int statusId, string customerId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwObtenerPedidoToApi where id_cliente=:pId and id_estado=:pIdEstado ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", customerId, DbType.String);
+            querySelect.AddParameter("pIdEstado", statusId, DbType.Int32);
             return GetOrderDataToPublish(querySelect.ExecuteQuery());
         }
 
-        private IList<OrderDto> GetOrderDataToPublish(DataTable data) {
-            if(data.Rows.Count.Equals(0)) {
-                return null;
-            }
-            IList<OrderDto> orderList = new List<OrderDto>();
-            foreach(DataRow row in data.Rows) {
-                orderList.Add(GetOrderDataFromDataRow(row));
-            }
-            return orderList;
+
+        private IList<OrderDto> GetOrderDataToPublish(DataTable data){
+            return data.Rows.Count.Equals(0)
+                ? null
+                : (from DataRow row in data.Rows select GetOrderDataFromDataRow(row)).ToList();
         }
 
-        private OrderDto GetOrderDataFromDataRow(DataRow row) {
-            OrderDto o = new OrderDto();
-            o.OrderID = row["id_pedido"].ToString();
-            o.ClientID= row["id_cliente"].ToString();
-            o.Condition.ConditionID = int.Parse(row["id_condicion"].ToString());
-            o.Condition.ConditionDescription= row["Condicion pago"].ToString();
-            o.OrderDate= DateTime.Parse(row["Fecha orden"].ToString()).ToString("YYYY/MM/dd");
-            o.OrderDiscount = float.Parse(row["Descuento"].ToString());
-            o.Observation = row["Observación"].ToString();
-            o.OrderDetailList = SearchDetailsFromOrder(o.OrderID);
+
+        private OrderDto GetOrderDataFromDataRow(DataRow row){
+            var o = new OrderDto{
+                OrderId = row["id_pedido"].ToString(),
+                ClientId = row["id_cliente"].ToString(),
+                Condition = {
+                    ConditionId = int.Parse(row["id_condicion"].ToString()),
+                    ConditionDescription = row["Condicion pago"].ToString()
+                },
+                OrderDate = DateTime.Parse(row["Fecha orden"].ToString()).ToString("YYYY/MM/dd"),
+                OrderDiscount = float.Parse(row["Descuento"].ToString()),
+                Observation = row["Observación"].ToString()
+            };
+            o.OrderDetailList = SearchDetailsFromOrder(o.OrderId);
             return o;
         }
 
-        public IList<OrderDetail> SearchDetailsFromOrder(string orderID) {
-            sql.Clear();
-            sql.Append("select * from fv_user.detalle_pedido where id_pedido=:pId ");
-            IQuerySelect querySelect = DefineQuerySelect(sql.ToString());
-            querySelect.AddParameter("pId",orderID,DbType.String);
+
+        public IList<OrderDetail> SearchDetailsFromOrder(string orderId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.detalle_pedido where id_pedido=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", orderId, DbType.String);
             return GetOrderDetailDataToOrder(querySelect.ExecuteQuery());
         }
 
-        public IList<OrderDetail> GetOrderDetailDataToOrder(DataTable dataDetail) {
+
+        public IList<OrderDetail> GetOrderDetailDataToOrder(DataTable dataDetail){
             IList<OrderDetail> detailList = new List<OrderDetail>();
-            if(dataDetail.Rows.Count.Equals(0)) {
-                return detailList;
-            }
-            foreach(DataRow r in dataDetail.Rows) {
-                detailList.Add(GetDetailDataFromRow(r));
-            }
+            if (dataDetail.Rows.Count.Equals(0)) return detailList;
+            foreach (DataRow r in dataDetail.Rows) detailList.Add(GetDetailDataFromRow(r));
             return detailList;
         }
 
-        private OrderDetail GetDetailDataFromRow(DataRow r) {
-            OrderDetail d = OrderDetail.CreateDetail();
-            d.OrderDetailID = r["id"].ToString();
-            d.OrderID = r["id_pedido"].ToString();
+
+        private OrderDetail GetDetailDataFromRow(DataRow r){
+            var d = OrderDetail.CreateDetail();
+            d.OrderDetailId = r["id"].ToString();
+            d.OrderId = r["id_pedido"].ToString();
             d.ProductName = r["nombre_producto"].ToString();
             d.Quantity = float.Parse(r["cantidad"].ToString());
             return d;
         }
 
 
-
+        public void AceptProposeProducts(string orderId){
+            var query = DefineQueryAction("spAceptarPropuestaProductos ");
+            query.AddParameter("pIdPedido", orderId, DbType.String);
+            query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
+            query.ExecuteQuery();
+        }
 
     }
+
 }

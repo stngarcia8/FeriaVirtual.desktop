@@ -1,7 +1,10 @@
-﻿namespace FeriaVirtual.Data.Enums {
+﻿namespace FeriaVirtual.Data.Enums{
 
-    public enum UserStatus {
+    public enum UserStatus{
+
         Inactive,
         Active
+
     }
+
 }
