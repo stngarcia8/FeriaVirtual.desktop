@@ -128,7 +128,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
         private bool SaveClientData(){
             bool result;
             PutUserDataIntoObject();
-            try{
+            //try{
                 string message;
                 var usecase = ClientUseCase.CreateUseCase(Profile.ProfileId, Profile.SingleProfileName);
                 if (IsNewRecord){
@@ -143,11 +143,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
                 }
 
                 result = true;
-            }
-            catch (Exception ex){
-                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                result = false;
-            }
+            //}
+            //catch (Exception ex){
+                //MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //result = false;
+            //}
 
             return result;
         }

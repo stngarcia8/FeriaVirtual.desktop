@@ -5,7 +5,6 @@ namespace FeriaVirtual.Domain.Users{
 
     public class Employee{
 
-        // properties.
         public string EmployeeId{ get; set; }
 
         public string FirstName{ get; set; }
@@ -14,7 +13,6 @@ namespace FeriaVirtual.Domain.Users{
         public Credential Credentials{ get; set; }
 
 
-        // Constructors
         private Employee(){
             InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty);
         }
@@ -34,7 +32,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static Employee CreateEmployee(){
             return new Employee();
         }

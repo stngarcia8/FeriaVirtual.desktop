@@ -21,7 +21,7 @@ namespace FeriaVirtual.Data.Repository{
         public void NewComercialData(ComercialData data, string clientId){
             SearchExistingBusinessData(clientId);
             var query = DefineQueryAction("spAgregarDatosComerciales ");
-            query.AddParameter("pIdComercial", data.CommercialId, DbType.String);
+            query.AddParameter("pIdComercial", data.ComercialId, DbType.String);
             query.AddParameter("pIdCliente", clientId, DbType.String);
             query = DefineParameters(data, query);
             query.ExecuteQuery();
@@ -51,7 +51,7 @@ namespace FeriaVirtual.Data.Repository{
 
         public void EditComercialData(ComercialData data, string clientId){
             var query = DefineQueryAction("spActualizarDatosComerciales ");
-            query.AddParameter("pIdComercial", data.CommercialId, DbType.String);
+            query.AddParameter("pIdComercial", data.ComercialId, DbType.String);
             query = DefineParameters(data, query);
             query.ExecuteQuery();
         }
@@ -75,7 +75,7 @@ namespace FeriaVirtual.Data.Repository{
             if (DataTable.Rows.Count.Equals(0)) return null;
             var row = DataTable.Rows[0];
             var data = ComercialData.CreateComercialData();
-            data.CommercialId = row["id_comercial"].ToString();
+            data.ComercialId = row["id_comercial"].ToString();
             data.CompanyName = row["Razon social"].ToString();
             data.FantasyName = row["Nombre de fantasia"].ToString();
             data.ComercialBusiness = row["Giro comercial"].ToString();

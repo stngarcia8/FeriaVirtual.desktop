@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Client;
+using FeriaVirtual.View.Desktop.Forms.Offers;
 using FeriaVirtual.View.Desktop.Forms.Contracts;
 using FeriaVirtual.View.Desktop.Forms.Orders;
 using FeriaVirtual.View.Desktop.Forms.User;
@@ -35,6 +36,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
         private void BusinessInternalSalesToolStripMenuItem_Click(object sender, EventArgs e){
             OpenForm(new ExternalOrderForm(ProfileInfo.CreateProfileInfo(ProfileInfoEnum.InternalCustomer).Profile));
         }
+
+        private void BusinessOffersToolStripMenuItem_Click(object sender,EventArgs e) {
+            OpenForm(new OfferForm());
+        }
+
 
 
         private void MaintenanceUserToolStripMenuItem_Click(object sender, EventArgs e){
@@ -71,6 +77,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
         }
 
         #endregion Manejo del formulario
+
 
     }
 

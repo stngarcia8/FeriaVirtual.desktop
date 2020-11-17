@@ -6,9 +6,7 @@ namespace FeriaVirtual.Domain.Users{
 
     public abstract class Person{
 
-        // properties.
         public string Id{ get; set; }
-
         public string FirstName{ get; set; }
         public string LastName{ get; set; }
         public string Dni{ get; set; }
@@ -16,7 +14,6 @@ namespace FeriaVirtual.Domain.Users{
         public ComercialData ComercialInfo{ get; set; }
 
 
-        // Constructors
         protected Person(){
             InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty, string.Empty);
         }

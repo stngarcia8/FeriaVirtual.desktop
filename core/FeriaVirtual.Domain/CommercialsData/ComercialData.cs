@@ -5,7 +5,7 @@ namespace FeriaVirtual.Domain.CommercialsData{
 
     public class ComercialData{
 
-        public string CommercialId{ get; set; }
+        public string ComercialId{ get; set; }
         public string ClientId{ get; set; }
         public string CompanyName{ get; set; }
         public string FantasyName{ get; set; }
@@ -29,7 +29,7 @@ namespace FeriaVirtual.Domain.CommercialsData{
 
 
         private void InitializeObjects(string comercialId, string companyName, string comercialDni){
-            CommercialId = comercialId;
+            ComercialId = comercialId;
             ClientId = string.Empty;
             CompanyName = companyName;
             ComercialDni = comercialDni;

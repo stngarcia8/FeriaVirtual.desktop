@@ -2,13 +2,11 @@
 
     public class UserProfile{
 
-        // properties
         public int ProfileId{ get; set; }
 
         public string ProfileName{ get; set; }
 
 
-        //Constructors.
         private UserProfile(){
             ProfileId = 0;
             ProfileName = string.Empty;
@@ -21,7 +19,6 @@
         }
 
 
-        // named constructors.
         public static UserProfile CreateProfile(){
             return new UserProfile();
         }

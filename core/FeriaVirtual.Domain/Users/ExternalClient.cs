@@ -6,11 +6,9 @@ namespace FeriaVirtual.Domain.Users{
 
     public class ExternalClient : Person{
 
-        // Properties
         public IList<Order> OrderList{ get; set; }
 
 
-        // constructors
         private ExternalClient(){
             OrderList = new List<Order>();
         }
@@ -22,7 +20,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static ExternalClient CreateClient(){
             return new ExternalClient();
         }

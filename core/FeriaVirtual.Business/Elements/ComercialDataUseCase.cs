@@ -47,7 +47,7 @@ namespace FeriaVirtual.Business.Elements{
             if (table.Rows.Count.Equals(0)) return null;
             var data = ComercialData.CreateComercialData();
             var row = table.Rows[0];
-            data.CommercialId = row["id_comercial"].ToString();
+            data.ComercialId = row["id_comercial"].ToString();
             data.ClientId = row["id_cliente"].ToString();
             data.CompanyName = row["Razon social"].ToString();
             data.FantasyName = row["Nombre de fantasia"].ToString();

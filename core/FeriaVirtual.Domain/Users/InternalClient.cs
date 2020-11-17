@@ -6,11 +6,9 @@ namespace FeriaVirtual.Domain.Users{
 
     public class InternalClient : Person{
 
-        // Properties
         public IList<Order> OrderList{ get; set; }
 
 
-        // constructors
         private InternalClient(){
             OrderList = new List<Order>();
         }
@@ -22,7 +20,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static InternalClient CreateClient(){
             return new InternalClient();
         }

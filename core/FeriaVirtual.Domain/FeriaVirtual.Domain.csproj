@@ -51,6 +51,8 @@
     <Compile Include="CommercialsData\Country.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Offers\Offer.cs" />
+    <Compile Include="Offers\OfferDetail.cs" />
     <Compile Include="Orders\Auction.cs" />
     <Compile Include="Orders\AuctionProduct.cs" />
     <Compile Include="Orders\AuctionBidValue.cs" />

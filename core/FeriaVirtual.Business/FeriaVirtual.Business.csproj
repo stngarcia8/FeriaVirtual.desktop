@@ -91,6 +91,7 @@
     <Compile Include="Exceptions\InvalidVehicleException.cs" />
     <Compile Include="HelpersUseCases\ContractTypeUseCase.cs" />
     <Compile Include="HelpersUseCases\SafeUseCase.cs" />
+    <Compile Include="Offers\OfferUseCase.cs" />
     <Compile Include="Orders\AuctionUseCase.cs" />
     <Compile Include="Orders\OrderDispatchUseCase.cs" />
     <Compile Include="Orders\OrderUseCase.cs" />
@@ -129,5 +130,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

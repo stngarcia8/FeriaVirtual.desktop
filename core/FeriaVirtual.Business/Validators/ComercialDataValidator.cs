@@ -18,7 +18,7 @@ namespace FeriaVirtual.Business.Validators{
 
 
         public void Validate(){
-            ValidatingEmptyField(data.CommercialId, "id comercial");
+            ValidatingEmptyField(data.ComercialId, "id comercial");
             ValidatingEmptyField(data.CompanyName, "razón social");
             ValidatingEmptyField(data.ComercialBusiness, "giro comercial");
             ValidatingEmptyField(data.ComercialDni, "DNI");

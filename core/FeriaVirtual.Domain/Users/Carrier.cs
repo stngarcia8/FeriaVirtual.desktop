@@ -6,11 +6,9 @@ namespace FeriaVirtual.Domain.Users{
 
     public class Carrier : Person{
 
-        // Properties
         public IList<Vehicle> VehicleList{ get; set; }
 
 
-        // constructors
         private Carrier(){
             VehicleList = new List<Vehicle>();
         }
@@ -22,7 +20,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static Carrier CreateCarrier(){
             return new Carrier();
         }

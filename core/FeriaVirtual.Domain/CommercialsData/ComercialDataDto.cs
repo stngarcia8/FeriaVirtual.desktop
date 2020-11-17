@@ -3,7 +3,7 @@
     public class ComercialDataDto{
 
         public string ClientId{ get; set; }
-        public string CommercialId{ get; set; }
+        public string ComercialId{ get; set; }
         public string CompanyName{ get; set; }
         public string FantasyName{ get; set; }
         public string ComercialBusiness{ get; set; }

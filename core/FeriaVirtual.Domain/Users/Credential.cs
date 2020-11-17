@@ -7,7 +7,6 @@ namespace FeriaVirtual.Domain.Users{
 
     public class Credential{
 
-        // properties.
         public string UserId{ get; set; }
 
         public string Username{ get; set; }
@@ -17,7 +16,6 @@ namespace FeriaVirtual.Domain.Users{
         public bool IsActive{ get; set; }
 
 
-        // Constructors.
         private Credential(){
             InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty);
         }
@@ -38,7 +36,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static Credential CreateCredential(){
             return new Credential();
         }

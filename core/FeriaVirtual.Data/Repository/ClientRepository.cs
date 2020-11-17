@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using FeriaVirtual.Infraestructure.Queues;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Enums;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
@@ -79,6 +81,7 @@ namespace FeriaVirtual.Data.Repository{
             query = DefineQueryParameters(client, query);
             query.ExecuteQuery();
             SendMailMessage(client, MailTypeMessage.NewClient);
+            PublishNewUserEvent(client);
         }
 
 
@@ -97,6 +100,29 @@ namespace FeriaVirtual.Data.Repository{
         private void SendMailMessage(Client client, MailTypeMessage mailTypeMessage){
             var sender = MailSender.CreateSender(client, mailTypeMessage);
             sender.SendMail();
+        }
+
+
+        private void PublishNewUserEvent(Client client){
+            SessionDto session = CreateSession(client);
+            UserEvent publisher = UserEvent.CreateEvent(session);
+            publisher.PublishEvent();
+        }
+
+
+        private SessionDto CreateSession(Client client){
+            SessionDto session = new SessionDto();
+            session.SessionId = "";
+            session.UserId = client.Credentials.UserId;
+            session.ClientId = client.Id;
+            session.Username = client.Credentials.Username;
+            session.Password = client.Credentials.EncriptedPassword;
+            session.FullName = client.ToString();
+            session.Email = client.Credentials.Email;
+            session.ProfileId = client.Profile.ProfileId;
+            session.ProfileName = client.Profile.ProfileName;
+
+            return session;
         }
 
 

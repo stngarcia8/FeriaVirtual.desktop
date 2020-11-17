@@ -6,11 +6,9 @@ namespace FeriaVirtual.Domain.Users{
 
     public class Producer : Person{
 
-        // Properties
         public IList<Product> ProductList{ get; set; }
 
 
-        // constructors
         private Producer(){
             ProductList = new List<Product>();
         }
@@ -22,7 +20,6 @@ namespace FeriaVirtual.Domain.Users{
         }
 
 
-        // Named constructors.
         public static Producer CreateProducer(){
             return new Producer();
         }

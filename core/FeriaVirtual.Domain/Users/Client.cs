@@ -2,11 +2,9 @@
 
     public class Client : Person{
 
-        // Properties
         public Credential Credentials{ get; set; }
 
 
-        // constructors.
         private Client(){
             Credentials = Credential.CreateCredential();
         }
@@ -18,7 +16,6 @@
         }
 
 
-        // Named constructors.
         public static Client CreateClient(){
             return new Client();
         }

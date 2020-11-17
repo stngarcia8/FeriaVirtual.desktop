@@ -49,6 +49,7 @@
     <Compile Include="HelpersRepository\SafeRepository.cs" />
     <Compile Include="HelpersRepository\VehicleTypeRepository.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
+    <Compile Include="Repository\OfferRepository.cs" />
     <Compile Include="Repository\OrderDispatchRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CarrierRepository.cs" />
@@ -72,6 +73,9 @@
       <Project>{27bc5b12-d811-429c-9c9c-977f879ab8c4}</Project>
       <Name>FeriaVirtual.Infraestructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
