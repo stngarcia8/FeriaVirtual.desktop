@@ -30,6 +30,10 @@
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,19 +84,55 @@
             this.OptionToolStripMenuItem});
             this.FormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.FormMenuStrip.Name = "FormMenuStrip";
-            this.FormMenuStrip.Size = new System.Drawing.Size(709, 24);
+            this.FormMenuStrip.Size = new System.Drawing.Size(809, 24);
             this.FormMenuStrip.TabIndex = 4;
             this.FormMenuStrip.Text = "&Opciones";
             // 
             // OptionToolStripMenuItem
             // 
             this.OptionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OptionNewToolStripMenuItem,
+            this.OptionEditToolStripMenuItem,
+            this.OptionRemoveToolStripMenuItem,
+            this.OptionToolStripSeparator1,
             this.OptionRefreshToolStripMenuItem,
             this.optionToolStripSeparator2,
             this.OptionCloseToolStripMenuItem});
             this.OptionToolStripMenuItem.Name = "OptionToolStripMenuItem";
             this.OptionToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.OptionToolStripMenuItem.Text = "&Opciones";
+            // 
+            // OptionNewToolStripMenuItem
+            // 
+            this.OptionNewToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_new;
+            this.OptionNewToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionNewToolStripMenuItem.Name = "OptionNewToolStripMenuItem";
+            this.OptionNewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionNewToolStripMenuItem.Text = "&Nueva oferta";
+            this.OptionNewToolStripMenuItem.Click += new System.EventHandler(this.OptionNewToolStripMenuItem_Click);
+            // 
+            // OptionEditToolStripMenuItem
+            // 
+            this.OptionEditToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_edit;
+            this.OptionEditToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionEditToolStripMenuItem.Name = "OptionEditToolStripMenuItem";
+            this.OptionEditToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionEditToolStripMenuItem.Text = "&Editar oferta";
+            this.OptionEditToolStripMenuItem.Click += new System.EventHandler(this.OptionEditToolStripMenuItem_Click);
+            // 
+            // OptionRemoveToolStripMenuItem
+            // 
+            this.OptionRemoveToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_remove;
+            this.OptionRemoveToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionRemoveToolStripMenuItem.Name = "OptionRemoveToolStripMenuItem";
+            this.OptionRemoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionRemoveToolStripMenuItem.Text = "Eliminar &oferta";
+            this.OptionRemoveToolStripMenuItem.Click += new System.EventHandler(this.OptionRemoveToolStripMenuItem_Click);
+            // 
+            // OptionToolStripSeparator1
+            // 
+            this.OptionToolStripSeparator1.Name = "OptionToolStripSeparator1";
+            this.OptionToolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // OptionRefreshToolStripMenuItem
             // 
@@ -122,9 +162,9 @@
             // FormTableLayoutPanel
             // 
             this.FormTableLayoutPanel.ColumnCount = 3;
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.FormTableLayoutPanel.Controls.Add(this.ListTitleLabel, 1, 0);
             this.FormTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 2, 1);
             this.FormTableLayoutPanel.Controls.Add(this.ListTableLayoutPanel, 1, 1);
@@ -137,7 +177,7 @@
             this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.562841F));
             this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.43716F));
             this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.FormTableLayoutPanel.Size = new System.Drawing.Size(709, 237);
+            this.FormTableLayoutPanel.Size = new System.Drawing.Size(809, 237);
             this.FormTableLayoutPanel.TabIndex = 5;
             // 
             // ListTitleLabel
@@ -145,9 +185,9 @@
             this.ListTitleLabel.AutoSize = true;
             this.ListTitleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListTitleLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListTitleLabel.Location = new System.Drawing.Point(180, 0);
+            this.ListTitleLabel.Location = new System.Drawing.Point(164, 0);
             this.ListTitleLabel.Name = "ListTitleLabel";
-            this.ListTitleLabel.Size = new System.Drawing.Size(259, 20);
+            this.ListTitleLabel.Size = new System.Drawing.Size(317, 20);
             this.ListTitleLabel.TabIndex = 2;
             this.ListTitleLabel.Text = "Lista de ofertas";
             this.ListTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,13 +199,13 @@
             this.tableLayoutPanel1.Controls.Add(this.PropertiesDataGridView, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ProductDataGridView, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(445, 23);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(487, 23);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(261, 190);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(319, 190);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // PropertiesDataGridView
@@ -196,7 +236,7 @@
             this.PropertiesDataGridView.ShowCellToolTips = false;
             this.PropertiesDataGridView.ShowEditingIcon = false;
             this.PropertiesDataGridView.ShowRowErrors = false;
-            this.PropertiesDataGridView.Size = new System.Drawing.Size(255, 89);
+            this.PropertiesDataGridView.Size = new System.Drawing.Size(313, 89);
             this.PropertiesDataGridView.StandardTab = true;
             this.PropertiesDataGridView.TabIndex = 6;
             // 
@@ -248,7 +288,7 @@
             this.ProductDataGridView.ShowCellToolTips = false;
             this.ProductDataGridView.ShowEditingIcon = false;
             this.ProductDataGridView.ShowRowErrors = false;
-            this.ProductDataGridView.Size = new System.Drawing.Size(255, 89);
+            this.ProductDataGridView.Size = new System.Drawing.Size(313, 89);
             this.ProductDataGridView.StandardTab = true;
             this.ProductDataGridView.TabIndex = 7;
             // 
@@ -259,14 +299,14 @@
             this.ListTableLayoutPanel.Controls.Add(this.ListDataGridView, 0, 0);
             this.ListTableLayoutPanel.Controls.Add(this.ListCountLabel, 0, 1);
             this.ListTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListTableLayoutPanel.Location = new System.Drawing.Point(180, 23);
+            this.ListTableLayoutPanel.Location = new System.Drawing.Point(164, 23);
             this.ListTableLayoutPanel.Name = "ListTableLayoutPanel";
             this.ListTableLayoutPanel.RowCount = 2;
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ListTableLayoutPanel.Size = new System.Drawing.Size(259, 190);
+            this.ListTableLayoutPanel.Size = new System.Drawing.Size(317, 190);
             this.ListTableLayoutPanel.TabIndex = 4;
             // 
             // ListDataGridView
@@ -301,7 +341,7 @@
             this.ListDataGridView.ShowCellToolTips = false;
             this.ListDataGridView.ShowEditingIcon = false;
             this.ListDataGridView.ShowRowErrors = false;
-            this.ListDataGridView.Size = new System.Drawing.Size(253, 168);
+            this.ListDataGridView.Size = new System.Drawing.Size(311, 168);
             this.ListDataGridView.StandardTab = true;
             this.ListDataGridView.TabIndex = 3;
             this.ListDataGridView.SelectionChanged += new System.EventHandler(this.ListDataGridView_SelectionChanged);
@@ -313,7 +353,7 @@
             this.ListCountLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListCountLabel.Location = new System.Drawing.Point(3, 174);
             this.ListCountLabel.Name = "ListCountLabel";
-            this.ListCountLabel.Size = new System.Drawing.Size(253, 16);
+            this.ListCountLabel.Size = new System.Drawing.Size(311, 16);
             this.ListCountLabel.TabIndex = 4;
             this.ListCountLabel.Text = "Ofertas disponibles";
             this.ListCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -327,9 +367,9 @@
             this.PropertiesTitleLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.PropertiesTitleLabel.ImageKey = "properties-button.png";
             this.PropertiesTitleLabel.ImageList = this.FormImageList;
-            this.PropertiesTitleLabel.Location = new System.Drawing.Point(445, 0);
+            this.PropertiesTitleLabel.Location = new System.Drawing.Point(487, 0);
             this.PropertiesTitleLabel.Name = "PropertiesTitleLabel";
-            this.PropertiesTitleLabel.Size = new System.Drawing.Size(261, 20);
+            this.PropertiesTitleLabel.Size = new System.Drawing.Size(319, 20);
             this.PropertiesTitleLabel.TabIndex = 5;
             this.PropertiesTitleLabel.Text = "Información de oferta";
             this.PropertiesTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -346,7 +386,7 @@
             this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
             this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
             this.OptionsFilterTreeView.ShowPlusMinus = false;
-            this.OptionsFilterTreeView.Size = new System.Drawing.Size(171, 210);
+            this.OptionsFilterTreeView.Size = new System.Drawing.Size(155, 210);
             this.OptionsFilterTreeView.TabIndex = 1;
             this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
             // 
@@ -364,7 +404,7 @@
             this.OrderAuctionNotifyToolStripMenuItem,
             this.OrderDispachViewToolStripMenuItem});
             this.OrderContextMenuStrip.Name = "OrderContextMenuStrip";
-            this.OrderContextMenuStrip.Size = new System.Drawing.Size(306, 186);
+            this.OrderContextMenuStrip.Size = new System.Drawing.Size(306, 164);
             this.OrderContextMenuStrip.Text = "Opciones";
             this.OrderContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OrderContextMenuStrip_Opening);
             // 
@@ -432,11 +472,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(709, 261);
+            this.ClientSize = new System.Drawing.Size(809, 261);
             this.Controls.Add(this.FormTableLayoutPanel);
             this.Controls.Add(this.FormMenuStrip);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OfferForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -488,5 +527,9 @@
         private System.Windows.Forms.ToolStripMenuItem OrderAuctionResultToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OrderAuctionNotifyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OrderDispachViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OptionNewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OptionEditToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OptionRemoveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator OptionToolStripSeparator1;
     }
 }

@@ -8,7 +8,6 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
     public partial class ProposeProductsForm : Form{
 
-        // Properties
         public string IdSelected{ get; set; }
 
         public bool IsSaved{ get; set; }
@@ -44,7 +43,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
 
         private void LoadProducts(){
-            var propose = LoadProposeProduct.OpenPropose(ProductDataGridView, IdSelected);
+            var propose = LoadProposeProduct.OpenPropose(ProductDataGridView, IdSelected, false);
             propose.Execute();
         }
 

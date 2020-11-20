@@ -5,7 +5,6 @@ namespace FeriaVirtual.Domain.Orders{
 
     public class OrderDto{
 
-        // Properties
         public string OrderId{ get; set; }
         public string ClientId{ get; set; }
         public PaymentCondition Condition{ get; set; }
@@ -15,7 +14,6 @@ namespace FeriaVirtual.Domain.Orders{
         public IList<OrderDetail> OrderDetailList{ get; set; }
 
 
-        // Constructor
         public OrderDto(){
             Condition = PaymentCondition.CreateCondition();
             OrderDetailList = new List<OrderDetail>();

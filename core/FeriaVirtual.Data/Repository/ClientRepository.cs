@@ -105,22 +105,23 @@ namespace FeriaVirtual.Data.Repository{
 
         private void PublishNewUserEvent(Client client){
             SessionDto session = CreateSession(client);
-            UserEvent publisher = UserEvent.CreateEvent(session);
+            IPublishEvent publisher = UserEvent.CreateEvent(session);
             publisher.PublishEvent();
         }
 
 
         private SessionDto CreateSession(Client client){
-            SessionDto session = new SessionDto();
-            session.SessionId = "";
-            session.UserId = client.Credentials.UserId;
-            session.ClientId = client.Id;
-            session.Username = client.Credentials.Username;
-            session.Password = client.Credentials.EncriptedPassword;
-            session.FullName = client.ToString();
-            session.Email = client.Credentials.Email;
-            session.ProfileId = client.Profile.ProfileId;
-            session.ProfileName = client.Profile.ProfileName;
+            SessionDto session = new SessionDto{
+                SessionId = "",
+                UserId = client.Credentials.UserId,
+                ClientId = client.Id,
+                Username = client.Credentials.Username,
+                Password = client.Credentials.EncriptedPassword,
+                FullName = client.ToString(),
+                Email = client.Credentials.Email,
+                ProfileId = client.Profile.ProfileId,
+                ProfileName = client.Profile.ProfileName
+            };
 
             return session;
         }

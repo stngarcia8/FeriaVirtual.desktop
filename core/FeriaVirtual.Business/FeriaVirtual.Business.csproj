@@ -75,6 +75,7 @@
     <Compile Include="Documents\ContractGenerator.cs" />
     <Compile Include="Documents\IDocumentGenerator.cs" />
     <Compile Include="Elements\ComercialDataUseCase.cs" />
+    <Compile Include="Exceptions\InvalidAuctionException.cs" />
     <Compile Include="Exceptions\InvalidBidValueException.cs" />
     <Compile Include="Exceptions\InvalidChangePasswordException.cs" />
     <Compile Include="Exceptions\InvalidClientException.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Exceptions\InvalidContractException.cs" />
     <Compile Include="Exceptions\InvalidEmployeeException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\InvalidOfferException.cs" />
     <Compile Include="Exceptions\InvalidOrderDetailException.cs" />
     <Compile Include="Exceptions\InvalidOrderException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Users\LoginUseCase.cs" />
     <Compile Include="Users\EmployeeUseCase.cs" />
     <Compile Include="Users\ProducerUseCase.cs" />
+    <Compile Include="Validators\AuctionValidator.cs" />
     <Compile Include="Validators\BidValueValidator.cs" />
     <Compile Include="Validators\ChangePasswordValidator.cs" />
     <Compile Include="Validators\ClientValidator.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Validators\EmployeeValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
+    <Compile Include="Validators\OfferValidator.cs" />
     <Compile Include="Validators\OrderValidator.cs" />
     <Compile Include="Validators\ProductValidator.cs" />
     <Compile Include="Validators\Validator.cs" />

@@ -9,17 +9,14 @@ namespace FeriaVirtual.Data.Repository{
 
     public class ProducerRepository : Repository{
 
-        // Properties
         public Producer Producer{ get; private set; }
 
 
-        // Constructor
         private ProducerRepository(){
             Producer = Producer.CreateProducer();
         }
 
 
-        // Named constructor.
         public static ProducerRepository OpenRepository(){
             return new ProducerRepository();
         }
@@ -140,15 +137,7 @@ namespace FeriaVirtual.Data.Repository{
         }
 
 
-        public IList<ProductDto> FindAllProductByCategory(int categoryId){
-            Sql.Clear();
-            Sql.Append(
-                "select * from fv_user.vwObtenerProductosExportacion where id_categoria=:pIdCategoria order by nombre_producto ");
-            var querySelect = DefineQuerySelect(Sql.ToString());
-            querySelect.AddParameter("pIdCategoria", categoryId, DbType.Int32);
-            DataTable = querySelect.ExecuteQuery();
-            return GetExportProductsData();
-        }
+
 
 
         private IList<ProductDto> GetExportProductsData(){
@@ -157,6 +146,19 @@ namespace FeriaVirtual.Data.Repository{
             foreach (DataRow row in DataTable.Rows) productList.Add(new ProductDto(row["nombre_producto"].ToString()));
             return productList;
         }
+
+
+        public void SearchProductByCategory(int categoryId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwObtenerProductos where id_categoria=:pIdCategoria ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pIdCategoria", categoryId, DbType.Int32);
+            DataTable = querySelect.ExecuteQuery();
+        }
+
+
+
+
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FeriaVirtual.Business.Validators;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -12,7 +13,6 @@ namespace FeriaVirtual.Business.Orders {
         private readonly AuctionRepository repository;
 
 
-        // Constructor
         private AuctionUseCase(){
             repository = AuctionRepository.OpenRepository();
         }
@@ -24,11 +24,15 @@ namespace FeriaVirtual.Business.Orders {
 
 
         public void NewAuction(Auction auction, string orderId){
+            AuctionValidator validator = AuctionValidator.CreateValidator(auction, false);
+            validator.Validate();
             repository.NewAuction(auction, orderId);
         }
 
 
         public void EditAuction(Auction auction, string orderId){
+            AuctionValidator validator = AuctionValidator.CreateValidator(auction, true);
+            validator.Validate();
             repository.EditAuction(auction, orderId);
         }
 

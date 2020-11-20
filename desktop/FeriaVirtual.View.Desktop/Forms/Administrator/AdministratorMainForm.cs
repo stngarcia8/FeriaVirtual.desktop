@@ -72,8 +72,12 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
 
         private void AdministratorMainForm_FormClosing(object sender, FormClosingEventArgs e){
             var result = MessageBox.Show("¿Esta seguro de cerrar la sesión?", "Atención", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            e.Cancel = result != DialogResult.Yes;
+               MessageBoxIcon.Question);
+            if (result.Equals(DialogResult.Yes)){
+                Environment.Exit(0);
+                return;
+            }
+            e.Cancel = true;
         }
 
         #endregion Manejo del formulario

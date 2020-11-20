@@ -75,10 +75,10 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
             try{
                 var usecase = OfferUseCase.CreateUsecase();
                 ListDataGridView.DataSource = null;
-                ListDataGridView.DataSource = usecase.FindOffersByStatus(this.nodeIndex);
+                ListDataGridView.DataSource = usecase.FindOffersByStatus(this.nodeIndex+1);
                 var configurator = DataGridViewConfigurator.CreateConfigurator(ListDataGridView);
                 IList<string> columns = new List<string>{
-                    "id_oferta", "estado_oferta"
+                    "id_oferta", "estado_oferta", "tipo_oferta"
                 };
                 configurator.HideColumns(columns);
                 configurator.ChangeHeader("Descripcion", "Descripción");
@@ -92,12 +92,23 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
             }
         }
 
+        private void OptionRemoveToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        }
 
 
+        private void OpenSimplyOfferForm(bool isNew){
+            SimplyOfferForm form = new SimplyOfferForm{IsNewRecord = isNew};
+            form.ShowDialog();
+        }
 
+        private void OptionNewToolStripMenuItem_Click(object sender,EventArgs e){
+            this.OpenSimplyOfferForm(true);
+        }
 
-
-
+        private void OptionEditToolStripMenuItem_Click(object sender,EventArgs e){
+            OpenSimplyOfferForm(false);
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Products;
@@ -62,9 +63,19 @@ namespace FeriaVirtual.Business.Users{
 
 
         public IList<ProductDto> FindAllProductByCategory(int categoryId){
-            var productList = repository.FindAllProductByCategory(categoryId);
-            return productList;
+            // var productList = repository.(categoryId);
+            // return productList;
+            return null;
         }
+
+
+        public DataTable SearchProductByCategory(int categoryId){
+            repository.SearchProductByCategory(categoryId);
+            return repository.DataSource;
+        }
+
+
+
 
     }
 

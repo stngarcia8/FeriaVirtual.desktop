@@ -53,7 +53,9 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Offers\Offer.cs" />
     <Compile Include="Offers\OfferDetail.cs" />
+    <Compile Include="Offers\OfferDto.cs" />
     <Compile Include="Orders\Auction.cs" />
+    <Compile Include="Orders\AuctionClose.cs" />
     <Compile Include="Orders\AuctionProduct.cs" />
     <Compile Include="Orders\AuctionBidValue.cs" />
     <Compile Include="Orders\OrderDispatch.cs" />

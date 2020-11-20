@@ -26,7 +26,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchClientForm));
             this.ListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ListFilterButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.ListFilterLabel = new System.Windows.Forms.Label();
             this.ListCountLabel = new System.Windows.Forms.Label();
@@ -34,8 +33,9 @@
             this.ListFilterComboBox = new System.Windows.Forms.ComboBox();
             this.ListFilterTextBox = new System.Windows.Forms.TextBox();
             this.ListDataGridView = new System.Windows.Forms.DataGridView();
-            this.SearchAceptButton = new System.Windows.Forms.Button();
             this.SearchCancelButton = new System.Windows.Forms.Button();
+            this.SearchAceptButton = new System.Windows.Forms.Button();
+            this.ListFilterButton = new System.Windows.Forms.Button();
             this.ListTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -65,24 +65,6 @@
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ListTableLayoutPanel.Size = new System.Drawing.Size(484, 331);
             this.ListTableLayoutPanel.TabIndex = 5;
-            // 
-            // ListFilterButton
-            // 
-            this.ListFilterButton.AutoSize = true;
-            this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListFilterButton.ForeColor = System.Drawing.Color.Black;
-            this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ListFilterButton.ImageKey = "button-find.png";
-            this.ListFilterButton.ImageList = this.FormImageList;
-            this.ListFilterButton.Location = new System.Drawing.Point(413, 36);
-            this.ListFilterButton.Name = "ListFilterButton";
-            this.ListFilterButton.Size = new System.Drawing.Size(68, 27);
-            this.ListFilterButton.TabIndex = 7;
-            this.ListFilterButton.Text = "&Buscar";
-            this.ListFilterButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ListFilterButton.UseVisualStyleBackColor = true;
-            this.ListFilterButton.Click += new System.EventHandler(this.ListFilterButton_Click);
             // 
             // FormImageList
             // 
@@ -146,6 +128,8 @@
             // 
             // ListFilterTextBox
             // 
+            this.ListFilterTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ListFilterTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.ListFilterTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListFilterTextBox.Location = new System.Drawing.Point(244, 36);
             this.ListFilterTextBox.Name = "ListFilterTextBox";
@@ -181,24 +165,6 @@
             this.ListDataGridView.SelectionChanged += new System.EventHandler(this.ListDataGridView_SelectionChanged);
             this.ListDataGridView.DoubleClick += new System.EventHandler(this.ListDataGridView_DoubleClick);
             // 
-            // SearchAceptButton
-            // 
-            this.SearchAceptButton.AutoSize = true;
-            this.SearchAceptButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SearchAceptButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.SearchAceptButton.ForeColor = System.Drawing.Color.Black;
-            this.SearchAceptButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SearchAceptButton.ImageKey = "button-acept.png";
-            this.SearchAceptButton.ImageList = this.FormImageList;
-            this.SearchAceptButton.Location = new System.Drawing.Point(275, 300);
-            this.SearchAceptButton.Name = "SearchAceptButton";
-            this.SearchAceptButton.Size = new System.Drawing.Size(90, 27);
-            this.SearchAceptButton.TabIndex = 6;
-            this.SearchAceptButton.Text = "&Aceptar";
-            this.SearchAceptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.SearchAceptButton.UseVisualStyleBackColor = true;
-            this.SearchAceptButton.Click += new System.EventHandler(this.SearchAceptButton_Click);
-            // 
             // SearchCancelButton
             // 
             this.SearchCancelButton.AutoSize = true;
@@ -217,11 +183,47 @@
             this.SearchCancelButton.UseVisualStyleBackColor = true;
             this.SearchCancelButton.Click += new System.EventHandler(this.SearchCancelButton_Click);
             // 
+            // SearchAceptButton
+            // 
+            this.SearchAceptButton.AutoSize = true;
+            this.SearchAceptButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SearchAceptButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.SearchAceptButton.ForeColor = System.Drawing.Color.Black;
+            this.SearchAceptButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SearchAceptButton.ImageKey = "button-acept.png";
+            this.SearchAceptButton.ImageList = this.FormImageList;
+            this.SearchAceptButton.Location = new System.Drawing.Point(275, 300);
+            this.SearchAceptButton.Name = "SearchAceptButton";
+            this.SearchAceptButton.Size = new System.Drawing.Size(90, 27);
+            this.SearchAceptButton.TabIndex = 6;
+            this.SearchAceptButton.Text = "&Aceptar";
+            this.SearchAceptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.SearchAceptButton.UseVisualStyleBackColor = true;
+            this.SearchAceptButton.Click += new System.EventHandler(this.SearchAceptButton_Click);
+            // 
+            // ListFilterButton
+            // 
+            this.ListFilterButton.AutoSize = true;
+            this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ListFilterButton.ForeColor = System.Drawing.Color.Black;
+            this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ListFilterButton.ImageKey = "button-find.png";
+            this.ListFilterButton.ImageList = this.FormImageList;
+            this.ListFilterButton.Location = new System.Drawing.Point(413, 36);
+            this.ListFilterButton.Name = "ListFilterButton";
+            this.ListFilterButton.Size = new System.Drawing.Size(68, 27);
+            this.ListFilterButton.TabIndex = 7;
+            this.ListFilterButton.Text = "&Buscar";
+            this.ListFilterButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ListFilterButton.UseVisualStyleBackColor = true;
+            this.ListFilterButton.Click += new System.EventHandler(this.ListFilterButton_Click);
+            // 
             // SearchClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.Lime;
             this.CancelButton = this.SearchCancelButton;
             this.ClientSize = new System.Drawing.Size(484, 331);
             this.Controls.Add(this.SearchCancelButton);

@@ -15,6 +15,12 @@ namespace FeriaVirtual.API.Models{
         public string DispatchId{ get; set; }
 
         /// <summary>
+        ///  corresponde al identificador de la orden de compra asociada a
+        /// la orden de despacho
+        /// </summary>
+        public string OrderId{get;set;}
+
+        /// <summary>
         ///     Identificador del cliente que se enviará la orden de despacho.
         /// </summary>
         public string ClientId{ get; set; }

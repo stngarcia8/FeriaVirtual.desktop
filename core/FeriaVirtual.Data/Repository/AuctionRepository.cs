@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.Infraestructure.Database;
+using FeriaVirtual.Infraestructure.Queues;
 
 
 namespace FeriaVirtual.Data.Repository{
 
     public class AuctionRepository : Repository{
 
-        // Constructor
         private AuctionRepository(){ }
 
 
-        // Named constructor
         public static AuctionRepository OpenRepository(){
             return new AuctionRepository();
         }
@@ -60,6 +59,14 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
+            PublishCloseAuctionToRabbitMq(auctionId, 3);
+        }
+
+
+        private void PublishCloseAuctionToRabbitMq(string auctionId, int status){
+            AuctionClose auction = AuctionClose.CloseAuction(auctionId, status);
+            IPublishEvent publisher = CloseAuctionEvent.CreateEvent(auction);
+            publisher.PublishEvent();
         }
 
 
@@ -76,6 +83,7 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdSubasta", auctionId, DbType.String);
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
+            PublishCloseAuctionToRabbitMq(auctionId, 1);
         }
 
 

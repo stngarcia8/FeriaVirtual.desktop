@@ -6,7 +6,7 @@ using RabbitMQ.Client;
 
 namespace FeriaVirtual.Infraestructure.Queues{
 
-    public class UserEvent{
+    public class UserEvent:IPublishEvent{
 
         private readonly SessionDto session;
         private readonly QueueConfigurator configurator;
@@ -23,7 +23,7 @@ namespace FeriaVirtual.Infraestructure.Queues{
         }
 
 
-        public static UserEvent CreateEvent(SessionDto sessionDto){
+        public static IPublishEvent CreateEvent(SessionDto sessionDto){
             return new UserEvent(sessionDto);
         }
 

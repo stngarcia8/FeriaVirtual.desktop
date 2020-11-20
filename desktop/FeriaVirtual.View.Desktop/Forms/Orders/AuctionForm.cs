@@ -62,7 +62,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
 
         private void FillInitialControls(){
-            var propose = LoadProposeProduct.OpenPropose(ProductDataGridView, IdSelected);
+            var propose = LoadProposeProduct.OpenPropose(ProductDataGridView, IdSelected, true);
             propose.Execute();
         }
 
@@ -87,8 +87,14 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
 
         private void CalculateTransportPercentValue(){
-            ProposeValueTextBox.Text =
-                (int.Parse(ProductValueTextBox.Text) * ProposeValueNumericUpDown.Value / 100).ToString("N");
+            try{
+                float productValue = float.Parse(ProductValueTextBox.Text);
+                float percent = float.Parse(ProposeValueNumericUpDown.Value.ToString());
+                ProposeValueTextBox.Text = ((productValue * percent)/100 ).ToString();
+            }
+            catch{
+                ProposeValueTextBox.Text = "0";
+            }
         }
 
 

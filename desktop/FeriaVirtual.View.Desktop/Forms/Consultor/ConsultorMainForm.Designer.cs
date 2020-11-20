@@ -173,8 +173,9 @@
             this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
             this.CloseToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CloseToolStripMenuItem.RightToLeftAutoMirrorImage = true;
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
+            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
             // 
             // BusinessToolStripMenuItem
             // 
@@ -276,7 +277,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(612, 244);
+            this.ClientSize = new System.Drawing.Size(628, 283);
             this.Controls.Add(this.FormPanel);
             this.Controls.Add(this.FormStatusStrip);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,6 +287,7 @@
             this.Name = "ConsultorMainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Feria Virtual - Consultor.";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConsultorMainForm_FormClosing);
             this.FormStatusStrip.ResumeLayout(false);
             this.FormStatusStrip.PerformLayout();
             this.FormPanel.ResumeLayout(false);

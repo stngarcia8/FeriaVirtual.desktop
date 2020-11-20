@@ -66,6 +66,10 @@ namespace FeriaVirtual.Business.Orders {
             return repository.DataSource;
         }
 
+        public DataTable GetOnlyGenerateProposeProduct(string orderId){
+            repository.GetProposeProduct(orderId);
+            return repository.DataSource;
+        }
 
         public void AceptProposeProducts(string orderId){
             repository.AceptProposeProducts(orderId);

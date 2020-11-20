@@ -97,6 +97,7 @@ namespace FeriaVirtual.API.Controllers{
         private OrderDispatchModel TransformAuctionToOrdeDispatchModel(OrderDispatch od){
             var odm = new OrderDispatchModel{
                 DispatchId = od.DispatchId,
+                OrderId = od.OrderId,
                 ClientId = od.CarrierId,
                 DispatchDate = od.DispatchDate,
                 DispatchValue = od.DispatchValue,
