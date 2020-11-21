@@ -50,7 +50,7 @@ namespace FeriaVirtual.Business.Offers {
         public void EditOffer(Offer offer){
             OfferValidator validator = OfferValidator.CreateValidator(offer, true);
             validator.Validate();
-            repository.NewOffer(offer);
+            repository.EditOffer(offer);
         }
 
         public void DeleteOffer(string offerId){

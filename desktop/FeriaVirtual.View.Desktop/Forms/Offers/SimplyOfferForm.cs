@@ -1,124 +1,134 @@
 ﻿using System;
-using FeriaVirtual.Domain.Offers;
-using FeriaVirtual.View.Desktop.Forms.UtilForms;
-using FeriaVirtual.Business.Offers;
-using FeriaVirtual.View.Desktop.Helpers;
-using FeriaVirtual.View.Desktop.Commands;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using FeriaVirtual.Business.Offers;
+using FeriaVirtual.Domain.Offers;
+using FeriaVirtual.View.Desktop.Forms.UtilForms;
+using FeriaVirtual.View.Desktop.Helpers;
 
-namespace FeriaVirtual.View.Desktop.Forms.Offers {
-    public partial class SimplyOfferForm:Form {
+
+namespace FeriaVirtual.View.Desktop.Forms.Offers{
+
+    public partial class SimplyOfferForm : Form{
+
+        private OfferDetail currentDetail;
 
         private Offer currentOffer;
-        private OfferDetail currentDetail;
         private BindingList<OfferDetail> source;
 
 
-        public bool IsNewRecord{get;set;}
-        public bool IsSaved{get;set;}
-        public string IdSelected{get;set;}
-        public int OfferType{get;set;}
-        
-        public SimplyOfferForm() {
+        public bool IsNewRecord{ get; set; }
+        public bool IsSaved{ get; set; }
+        public string IdSelected{ get; set; }
+        public int OfferType{ get; set; }
+
+
+        public SimplyOfferForm(){
             InitializeComponent();
-            this.IsSaved= false;
+            IsSaved = false;
         }
 
-        private void SimplyOfferForm_Load(object sender,EventArgs e) {
-            if (this.IsNewRecord){
-                this.currentOffer = Offer.CreateOffer();
-                this.currentDetail = OfferDetail.CreateDetail();
-                this.CloseOfferButton.Visible= false;
-            }
-            this.CloseOfferButton.Visible = !this.IsNewRecord;
+
+        private void SimplyOfferForm_Load(object sender, EventArgs e){
             ConfigureForm();
         }
 
-        private void CloseOfferButton_Click(object sender,EventArgs e) {
 
-        }
-
-        private void SaveOfferButton_Click(object sender,EventArgs e) {
+        private void SaveOfferButton_Click(object sender, EventArgs e){
             if (!SaveOfferData()) return;
+
             IsSaved = true;
             Close();
         }
 
-        private void CancelOfferButton_Click(object sender,EventArgs e){
-            this.IsSaved= false;
-            this.Close();
+
+        private void CancelOfferButton_Click(object sender, EventArgs e){
+            IsSaved = false;
+            Close();
         }
 
-        private void ProductDataGridView_SelectionChanged(object sender,EventArgs e) {
+
+        private void ProductDataGridView_SelectionChanged(object sender, EventArgs e){
             GetCurrentDetail();
         }
 
-        private void ProductListContextMenuStrip_Opening(object sender,CancelEventArgs e){
-            bool thereAreRecords = this.ProductDataGridView.Rows.Count.Equals(0);
-            this.ListRemoveToolStripMenuItem.Enabled = !thereAreRecords;
+
+        private void ProductListContextMenuStrip_Opening(object sender, CancelEventArgs e){
+            var thereAreRecords = ProductDataGridView.Rows.Count.Equals(0);
+            ListRemoveToolStripMenuItem.Enabled = !thereAreRecords;
         }
 
-        private void ListRefreshToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void ListRefreshToolStripMenuItem_Click(object sender, EventArgs e){
             ConfigureProductsList();
             ProductDataGridView.Focus();
         }
 
-        private void ListAddToolStripMenuItem_Click(object sender,EventArgs e) {
+
+        private void ListAddToolStripMenuItem_Click(object sender, EventArgs e){
             OpenSearchProductsForm();
         }
 
-        private void ListRemoveToolStripMenuItem_Click(object sender,EventArgs e) {
-            if (this.ProductDataGridView.Rows.Count.Equals(0)) return;
+
+        private void ListRemoveToolStripMenuItem_Click(object sender, EventArgs e){
+            if (ProductDataGridView.Rows.Count.Equals(0)) return;
+
             if (ProductDataGridView.SelectedRows.Count.Equals(0)) return;
+
             ProductDataGridView.Rows.Remove(ProductDataGridView.SelectedRows[0]);
         }
 
 
         private void ConfigureForm(){
-            this.CloseOfferButton.Visible = !this.IsNewRecord;
-            this.CleanControls();
+            if (IsNewRecord){
+                currentOffer = Offer.CreateOffer();
+                currentDetail = OfferDetail.CreateDetail();
+                CleanControls();
+            }
+            else{
+                LoadOffer();
+                CalculateProductsDiscount();
+            }
             ConfigureBindingList();
             ConfigureProductsList();
         }
 
 
         private void CleanControls(){
-            this.PublishDateTextBox.Text = DateTime.Now.ToShortDateString();
-            this.DiscountNumericUpDown.Value = 0;
-            this.DescriptionTextBox.Text = string.Empty;
-            this.ProductDataGridView.DataSource = null;
+            PublishDateTextBox.Text = DateTime.Now.ToShortDateString();
+            DiscountNumericUpDown.Value = 0;
+            DescriptionTextBox.Text = string.Empty;
+            ProductDataGridView.DataSource = null;
         }
 
+
         private void ConfigureBindingList(){
-            source = new BindingList<OfferDetail>(this.currentOffer.Details){
+            source = new BindingList<OfferDetail>(currentOffer.Details){
                 AllowNew = true,
                 AllowEdit = true,
                 AllowRemove = true
             };
         }
 
+
         private void OpenSearchProductsForm(){
-            var form = new SearchProductForm(); 
+            var form = new SearchProductForm();
             form.ShowDialog();
             if (form.IsFound){
                 currentDetail = OfferDetail.CreateDetail();
                 currentDetail.ProductId = form.ProductFound.ProductId;
                 currentDetail.ProductName = form.ProductFound.ProductName;
                 currentDetail.ActualValue = form.ProductFound.ProductValue;
-                currentDetail.Percent = $"{this.DiscountNumericUpDown.Value.ToString()}%";
-                currentDetail.OfferValue = form.ProductFound.ProductValue - ((form.ProductFound.ProductValue * float.Parse(this.DiscountNumericUpDown.Value.ToString()))/100);
-                this.currentOffer.Details.Add(currentDetail);
+                currentDetail.Percent = $"{DiscountNumericUpDown.Value.ToString()}%";
+                currentDetail.OfferValue = form.ProductFound.ProductValue - form.ProductFound.ProductValue *
+                    float.Parse(DiscountNumericUpDown.Value.ToString()) / 100;
+                currentOffer.Details.Add(currentDetail);
             }
             ConfigureBindingList();
             ConfigureProductsList();
         }
+
 
         private void ConfigureProductsList(){
             ProductDataGridView.SelectionChanged -= ProductDataGridView_SelectionChanged;
@@ -131,28 +141,31 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers {
 
 
         private void ConfigureGrid(){
-            DataGridViewConfigurator configurator =
-                DataGridViewConfigurator.CreateConfigurator(this.ProductDataGridView);
-            IList<string> columns = new List<string>(){"OfferDetailId", "ProductId"};
+            var configurator =
+                DataGridViewConfigurator.CreateConfigurator(ProductDataGridView);
+            IList<string> columns = new List<string>{"OfferDetailId", "ProductId"};
             configurator.HideColumns(columns);
             configurator.ChangeHeader("ProductName", "Producto");
-            configurator.CurrencyColumn("ActualValue", "Valor actual");
-            configurator.CurrencyColumn("OfferValue", "Valor con descuento");
+            configurator.ChangeHeader("Percent", "Porcentaje descuento");
+            configurator.CurrencyColumn("ActualValue", "Precio actual");
+            configurator.CurrencyColumn("OfferValue", "Precio oferta");
         }
+
 
         private void GetCurrentDetail(){
             if (currentOffer.Details.Count.Equals(0)){
-                currentDetail= OfferDetail.CreateDetail();
+                currentDetail = OfferDetail.CreateDetail();
                 return;
             }
             var row = ProductDataGridView.CurrentRow;
             if (row != null) currentDetail = row.DataBoundItem as OfferDetail;
         }
 
+
         private void PutInfoControlsToOffer(){
-            currentOffer.PublishDate = DateTime.Parse(this.PublishDateTextBox.Text);
-            currentOffer.Description = this.DescriptionTextBox.Text;
-            currentOffer.Discount = float.Parse(this.DiscountNumericUpDown.Value.ToString());
+            currentOffer.PublishDate = DateTime.Parse(PublishDateTextBox.Text);
+            currentOffer.Description = DescriptionTextBox.Text;
+            currentOffer.Discount = float.Parse(DiscountNumericUpDown.Value.ToString());
         }
 
 
@@ -161,7 +174,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers {
             PutInfoControlsToOffer();
             try{
                 string message;
-                OfferUseCase usecase = OfferUseCase.CreateUsecase();
+                var usecase = OfferUseCase.CreateUsecase();
                 if (IsNewRecord){
                     usecase.NewOffer(currentOffer);
                     message = "La oferta fue creada correctamente";
@@ -180,13 +193,48 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers {
             return result;
         }
 
-        private void DiscountNumericUpDown_ValueChanged(object sender,EventArgs e) {
-            foreach (OfferDetail d in currentOffer.Details){
-                float percent = ((d.ActualValue * float.Parse(this.DiscountNumericUpDown.Value.ToString())) / 100);
-                d.OfferValue = d.ActualValue - percent;
-                d.Percent = $"{this.DiscountNumericUpDown.Value}%";
-            }
+
+        private void DiscountNumericUpDown_ValueChanged(object sender, EventArgs e){
+            CalculateProductsDiscount();
             ConfigureBindingList();
         }
+
+
+        private void CalculateProductsDiscount(){
+            if (currentOffer.Details.Count.Equals(0)) return;
+
+            foreach (var d in currentOffer.Details){
+                var percent = d.ActualValue * float.Parse(DiscountNumericUpDown.Value.ToString()) / 100;
+                d.OfferValue = d.ActualValue - percent;
+                d.Percent = $"{DiscountNumericUpDown.Value}%";
+            }
+        }
+
+
+        private void LoadOffer(){
+            try{
+                var usecase = OfferUseCase.CreateUsecase();
+                var offer = usecase.GetOfferById(IdSelected);
+                PutOfferDataIntoControls(offer);
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        private void PutOfferDataIntoControls(OfferDto offer){
+            currentOffer = Offer.CreateOffer();
+            currentOffer.OfferId = offer.OfferId;
+            currentOffer.PublishDate = DateTime.Parse(offer.PublishDate);
+            currentOffer.Discount = offer.Discount;
+            currentOffer.Description = offer.Description;
+            currentOffer.Details = offer.Details;
+            PublishDateTextBox.Text = currentOffer.PublishDate.ToShortDateString();
+            DescriptionTextBox.Text = currentOffer.Description;
+            DiscountNumericUpDown.Value = decimal.Parse(currentOffer.Discount.ToString());
+        }
+
     }
+
 }

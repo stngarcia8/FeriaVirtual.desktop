@@ -91,21 +91,21 @@
             this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
             this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
             this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
             this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
             // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
-            this.optionToolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
             // 
             // OptionCloseToolStripMenuItem
             // 
             this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
             this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
             this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
@@ -228,7 +228,7 @@
             this.ProductDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -280,7 +280,7 @@
             this.ListDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;

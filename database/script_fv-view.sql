@@ -127,7 +127,8 @@ SELECT pro.id_producto,
        pro.valor_producto    AS "Valor",
        pro.cantidad_producto AS "Cantidad"
 FROM fv_user.producto pro
-         INNER JOIN categoria_producto cat ON pro.id_categoria = cat.id_categoria;
+         INNER JOIN categoria_producto cat ON pro.id_categoria = cat.id_categoria
+ORDER BY pro.nombre_producto;
 
 
 prompt Creando vista para los productos de exportacion.;
@@ -369,7 +370,7 @@ SELECT sub.id_subasta,
        TRIM(dat.rsocial_comercial)                                                                               AS "empresa",
        TRIM(dat.dir_comercial) || ', ' || TRIM(ciu.nombre_ciudad) || ' - ' || TRIM(pai.nombre_pais)              AS "dir",
        TRIM(pai.prefijo_pais) || '-' || TRIM(dat.fono_comercial)                                                 AS "fono",
-       dat.email_comercial as "email"
+       dat.email_comercial                                                                                       as "email"
 FROM fv_user.subasta sub
          INNER JOIN fv_user.pedido ped ON sub.id_pedido = ped.id_pedido
          INNER JOIN fv_user.dato_comercial dat ON ped.id_cliente = dat.id_cliente
@@ -408,6 +409,39 @@ FROM fv_user.orden_despacho ord
          INNER JOIN fv_user.envio env ON ord.id_pedido = env.id_pedido
          INNER JOIN fv_user.seguro seg ON env.id_seguro = seg.id_seguro;
 
+
+prompt Creando vista de ofertas.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerOfertas AS
+SELECT id_oferta,
+       desc_oferta                         AS "Descripcion",
+       descuento_oferta                    AS "Descuento",
+       to_char(fecha_oferta, 'dd/MM/yyyy') AS "Fecha publicacion",
+       tipo_oferta,
+       CASE tipo_oferta
+           WHEN 1 THEN 'Oferta'
+           WHEN 2 THEN 'Venta de saldos'
+           END AS "Tipo",
+       estado_oferta,
+       CASE estado_oferta
+           WHEN 1 THEN 'Disponible'
+           WHEN 2 THEN 'Cerrada'
+           END                             AS "Estado"
+FROM fv_user.oferta
+ORDER BY fecha_oferta;
+
+
+prompt Creando vista del detalle de oferta.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerDetalleOfertas AS
+SELECT det.id_detalle,
+       det.id_oferta,
+       pro.id_producto,
+       nombre_producto                             AS "Producto",
+       det.valor_original,
+       to_char(ofe.descuento_oferta, '99')        AS "Descuento aplicado",
+       to_char((det.valor_original - ((det.valor_original * ofe.descuento_oferta)/100)), '999999') AS "Valor oferta"
+FROM fv_user.oferta_detalle det
+         INNER JOIN fv_user.oferta ofe ON det.id_oferta = ofe.id_oferta
+         INNER JOIN fv_user.producto pro ON det.id_producto = pro.id_producto;
 
 
 prompt Confirmando cambios.;

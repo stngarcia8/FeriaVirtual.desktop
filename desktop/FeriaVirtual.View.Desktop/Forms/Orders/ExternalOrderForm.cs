@@ -7,17 +7,17 @@ using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.View.Desktop.Helpers;
 
 
-namespace FeriaVirtual.View.Desktop.Forms.Orders {
+namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
     public partial class ExternalOrderForm : Form{
+
+        private readonly IProfileInfo profile;
 
         private Auction currentAuction;
         private OrderDispatch currentOrderDispatch;
         private string idClientSelected;
         private string idSelected;
         private int nodeIndex;
-
-        private readonly IProfileInfo profile;
 
 
         public ExternalOrderForm(IProfileInfo profile){
@@ -159,6 +159,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         private void DisplayCounts(){
             if (ListDataGridView.Rows.Count.Equals(0)){
                 ListCountLabel.Text = "No hay ordenes de compras disponibles.";
+                PropertiesDataGridView.Rows.Clear();
+                ProductDataGridView.DataSource = null;
             }
             else{
                 ListCountLabel.Text = $"{ListDataGridView.Rows.Count.ToString()} ordenes de compras encontradas.";
@@ -173,8 +175,10 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
             idClientSelected = string.Empty;
             currentAuction = Auction.CreateAuction();
             if (ListDataGridView.Rows.Count.Equals(0)) return;
+
             var row = ListDataGridView.CurrentRow;
             if (row == null) return;
+
             idSelected = row.Cells[0].Value.ToString();
             idClientSelected = row.Cells[1].Value.ToString();
             LoadBasicProperties(row);
@@ -290,7 +294,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
             };
             form.ShowDialog();
             if (form.IsRemoveBidValue) currentOrderDispatch = null;
+
             if (form.IsSaved) currentOrderDispatch = form.CurrentDispatch;
+
             LoadOrders(nodeIndex);
         }
 

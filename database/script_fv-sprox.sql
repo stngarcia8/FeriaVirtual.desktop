@@ -771,5 +771,82 @@ END spAceptarRechazarDespacho;
 /
 
 
+prompt Creando procedimientos para las ofertas de productos.;
+CREATE OR REPLACE PROCEDURE
+    fv_user.spCrearofertas(pIdOferta VARCHAR2,
+                           pDescripcion VARCHAR2,
+                           pDescuento NUMBER,
+                           pTipo NUMBER)
+    IS
+BEGIN
+    INSERT INTO fv_user.oferta
+        (id_oferta, desc_oferta, descuento_oferta, estado_oferta)
+    VALUES (pIdOferta, pDescripcion, pDescuento, pTipo);
+    COMMIT;
+END spCrearofertas;
+/
+
+CREATE OR REPLACE PROCEDURE
+    fv_user.spAgregarDetalleOferta(pIdDetalle VARCHAR2,
+                                   pIdOferta VARCHAR2,
+                                   pIdProducto VARCHAR2,
+                                   pValor NUMBER)
+    IS
+BEGIN
+    INSERT INTO fv_user.oferta_detalle
+        (id_detalle, id_oferta, id_producto, valor_original)
+    VALUES (pIdDetalle, pIdOferta, pIdProducto, pValor);
+    COMMIT;
+END spAgregarDetalleOferta;
+/
+CREATE OR REPLACE PROCEDURE
+    fv_user.spActualizarOfertas(pIdOferta VARCHAR2,
+                                pDescripcion VARCHAR2,
+                                pDescuento NUMBER,
+                                pTipo NUMBER)
+    IS
+BEGIN
+    UPDATE fv_user.oferta
+    SET desc_oferta      = pDescripcion,
+        descuento_oferta = pDescuento,
+        estado_oferta    = pTipo,
+        fecha_oferta     = sysdate
+    WHERE id_oferta = pIdOferta;
+    COMMIT;
+END spActualizarOfertas;
+/
+CREATE OR REPLACE PROCEDURE
+    fv_user.spCambiarEstadoOferta(pIdOferta VARCHAR2,
+                                  pEstado NUMBER)
+    IS
+BEGIN
+    UPDATE fv_user.oferta
+    SET estado_oferta = pEstado
+    WHERE id_oferta = pIdOferta;
+    COMMIT;
+END spCambiarEstadoOferta;
+/
+CREATE OR REPLACE PROCEDURE
+    fv_user.spEliminarOferta(pIdOferta VARCHAR2) IS
+BEGIN
+    DELETE
+    FROM fv_user.oferta
+    WHERE id_oferta = pIdOferta;
+    COMMIT;
+END spEliminarOferta;
+/
+CREATE OR REPLACE TRIGGER fv_user.trLimpiarDetalleOferta
+    AFTER UPDATE
+    ON fv_user.oferta
+    FOR EACH ROW
+BEGIN
+    DELETE
+    FROM fv_user.oferta_detalle
+    WHERE id_oferta = :old.id_oferta;
+END;
+/
+
+
+
 prompt Confirmando cambios.;
 commit;

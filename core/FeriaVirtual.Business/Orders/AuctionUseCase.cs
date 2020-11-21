@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using FeriaVirtual.Business.Validators;
 using System.Data;
-using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
 

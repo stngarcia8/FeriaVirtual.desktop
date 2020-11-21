@@ -454,5 +454,11 @@
   <ItemGroup>
     <None Include="Resources\Offer-form.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-close_offer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-reopen-offer.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

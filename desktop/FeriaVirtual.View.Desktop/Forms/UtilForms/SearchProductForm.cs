@@ -82,8 +82,10 @@ namespace FeriaVirtual.View.Desktop.Forms.UtilForms {
 
         private void ConfigureGrid(){
             DataGridViewConfigurator  configurator = DataGridViewConfigurator.CreateConfigurator(this.ListDataGridView);
-            IList<string> columns = new List<string>(){"id_producto", "id_cliente", "id_categoria", "Observacion" };
+            IList<string> columns = new List<string>(){"id_producto", "id_cliente", "id_categoria", "Observacion", "categoria" };
             configurator.HideColumns(columns);
+            configurator.CurrencyColumn("Valor", "Precio por KG");
+            configurator.NumericIntegerColumn("Cantidad", "Stock disponible (en KG)");
         }
 
         private void DisplayCounts(){

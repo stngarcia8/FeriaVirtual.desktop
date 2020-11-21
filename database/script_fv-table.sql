@@ -142,14 +142,14 @@ CREATE TABLE fv_user.empleado
 prompt Creando tabla envio.;
 CREATE TABLE fv_user.envio
 (
-    id_envio       VARCHAR2(40)  NOT NULL,
-    id_pedido      VARCHAR2(40)  NOT NULL,
-    id_seguro      number(2)  NOT NULL,
-    id_cliente     VARCHAR2(40)  NOT NULL,
-    estado_envio   NUMBER(1)     NOT NULL,
-    fecha_envio    DATE          NOT NULL,
-    obs_envio      VARCHAR2(100) NOT NULL,
-    costo_envio    NUMBER(9, 2)  NOT NULL,
+    id_envio     VARCHAR2(40)  NOT NULL,
+    id_pedido    VARCHAR2(40)  NOT NULL,
+    id_seguro    number(2)     NOT NULL,
+    id_cliente   VARCHAR2(40)  NOT NULL,
+    estado_envio NUMBER(1)     NOT NULL,
+    fecha_envio  DATE          NOT NULL,
+    obs_envio    VARCHAR2(100) NOT NULL,
+    costo_envio  NUMBER(9, 2)  NOT NULL,
     CONSTRAINT envio_pk PRIMARY KEY (id_envio)
 ) TABLESPACE fv_env;
 
@@ -170,6 +170,30 @@ CREATE TABLE fv_user.metodo_pago
     desc_metpago VARCHAR2(30) NOT NULL,
     constraint metodo_pago_pk primary key (id_metpago)
 ) tablespace fv_env;
+
+
+prompt Creando tabla de ofertas de productos.;
+CREATE TABLE fv_user.oferta
+(
+    id_oferta        VARCHAR2(40) NOT NULL,
+    desc_oferta      VARCHAR2(100) NOT NULL,
+    descuento_oferta NUMBER(2) DEFAULT 0,
+    fecha_oferta     DATE      DEFAULT sysdate,
+    tipo_oferta      NUMBER(1) DEFAULT 1,
+    estado_oferta    NUMBER(1) DEFAULT 1,
+    CONSTRAINT oferta_pk PRIMARY KEY (id_oferta)
+) TABLESPACE fv_env;
+
+
+prompt Creando tabla detalle_oferta.;
+CREATE TABLE fv_user.oferta_detalle
+(
+    id_detalle     VARCHAR2(40) NOT NULL,
+    id_oferta      VARCHAR2(40) NOT NULL,
+    id_producto    VARCHAR2(40) NOT NULL,
+    valor_original NUMBER(9, 2) DEFAULT 0,
+    CONSTRAINT oferta_detalle_pk PRIMARY KEY (id_detalle)
+) TABLESPACE fv_env;
 
 
 prompt Creando tabla pago.;
@@ -323,10 +347,10 @@ CREATE TABLE fv_user.seguimiento_pedido
 prompt Creando tabla seguro.;
 CREATE TABLE fv_user.seguro
 (
-    id_seguro         number(2) NOT NULL,
-    nombre_seguro     VARCHAR2(50) NOT NULL,
-    compania_seguro   VARCHAR2(50) NOT NULL,
-    primabase_seguro  number(9, 2) not null,
+    id_seguro        number(2)    NOT NULL,
+    nombre_seguro    VARCHAR2(50) NOT NULL,
+    compania_seguro  VARCHAR2(50) NOT NULL,
+    primabase_seguro number(9, 2) not null,
     constraint seguro_pk primary key (id_seguro)
 ) tablespace fv_env;
 
@@ -405,6 +429,7 @@ CREATE TABLE fv_user.vehiculo
     observacion_vehiculo    VARCHAR2(100),
     CONSTRAINT vehiculo_pk PRIMARY KEY (id_vehiculo)
 ) TABLESPACE fv_env;
+
 
 
 prompt Confirmando cambios.;

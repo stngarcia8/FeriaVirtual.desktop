@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimplyOfferForm));
-            this.FormPictureBox = new System.Windows.Forms.PictureBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.PublishDateLabel = new System.Windows.Forms.Label();
             this.PublishDateTextBox = new System.Windows.Forms.TextBox();
@@ -34,31 +34,21 @@
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
             this.ProductTitleLabel = new System.Windows.Forms.Label();
-            this.CloseOfferButton = new System.Windows.Forms.Button();
-            this.SaveOfferButton = new System.Windows.Forms.Button();
-            this.CancelOfferButton = new System.Windows.Forms.Button();
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.ProductListContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ListRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ListAddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.CancelOfferButton = new System.Windows.Forms.Button();
+            this.SaveOfferButton = new System.Windows.Forms.Button();
+            this.ListRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListAddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ListRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
+            this.FormPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.ProductListContextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // FormPictureBox
-            // 
-            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.Offer_form;
-            this.FormPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.FormPictureBox.Name = "FormPictureBox";
-            this.FormPictureBox.Size = new System.Drawing.Size(114, 75);
-            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FormPictureBox.TabIndex = 0;
-            this.FormPictureBox.TabStop = false;
             // 
             // FormImageList
             // 
@@ -137,55 +127,6 @@
             this.ProductTitleLabel.TabIndex = 7;
             this.ProductTitleLabel.Text = "Productos asociados a la oferta:";
             // 
-            // CloseOfferButton
-            // 
-            this.CloseOfferButton.AutoSize = true;
-            this.CloseOfferButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CloseOfferButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CloseOfferButton.ImageKey = "button-close_offer.png";
-            this.CloseOfferButton.ImageList = this.FormImageList;
-            this.CloseOfferButton.Location = new System.Drawing.Point(150, 325);
-            this.CloseOfferButton.Name = "CloseOfferButton";
-            this.CloseOfferButton.Size = new System.Drawing.Size(137, 27);
-            this.CloseOfferButton.TabIndex = 9;
-            this.CloseOfferButton.Text = "Cerrar la oferta";
-            this.CloseOfferButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CloseOfferButton.UseVisualStyleBackColor = true;
-            this.CloseOfferButton.Click += new System.EventHandler(this.CloseOfferButton_Click);
-            // 
-            // SaveOfferButton
-            // 
-            this.SaveOfferButton.AutoSize = true;
-            this.SaveOfferButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.SaveOfferButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SaveOfferButton.ImageKey = "button-save.png";
-            this.SaveOfferButton.ImageList = this.FormImageList;
-            this.SaveOfferButton.Location = new System.Drawing.Point(375, 325);
-            this.SaveOfferButton.Name = "SaveOfferButton";
-            this.SaveOfferButton.Size = new System.Drawing.Size(127, 27);
-            this.SaveOfferButton.TabIndex = 10;
-            this.SaveOfferButton.Text = "Grabar oferta";
-            this.SaveOfferButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.SaveOfferButton.UseVisualStyleBackColor = true;
-            this.SaveOfferButton.Click += new System.EventHandler(this.SaveOfferButton_Click);
-            // 
-            // CancelOfferButton
-            // 
-            this.CancelOfferButton.AutoSize = true;
-            this.CancelOfferButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelOfferButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelOfferButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CancelOfferButton.ImageKey = "button-cancel.png";
-            this.CancelOfferButton.ImageList = this.FormImageList;
-            this.CancelOfferButton.Location = new System.Drawing.Point(525, 325);
-            this.CancelOfferButton.Name = "CancelOfferButton";
-            this.CancelOfferButton.Size = new System.Drawing.Size(98, 27);
-            this.CancelOfferButton.TabIndex = 11;
-            this.CancelOfferButton.Text = "Cancelar";
-            this.CancelOfferButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CancelOfferButton.UseVisualStyleBackColor = true;
-            this.CancelOfferButton.Click += new System.EventHandler(this.CancelOfferButton_Click);
-            // 
             // ProductDataGridView
             // 
             this.ProductDataGridView.AllowUserToAddRows = false;
@@ -194,6 +135,14 @@
             this.ProductDataGridView.AllowUserToResizeRows = false;
             this.ProductDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductDataGridView.ContextMenuStrip = this.ProductListContextMenuStrip;
             this.ProductDataGridView.Location = new System.Drawing.Point(150, 150);
@@ -226,6 +175,49 @@
             this.ProductListContextMenuStrip.Text = "Opciones";
             this.ProductListContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.ProductListContextMenuStrip_Opening);
             // 
+            // ListToolStripSeparator1
+            // 
+            this.ListToolStripSeparator1.Name = "ListToolStripSeparator1";
+            this.ListToolStripSeparator1.Size = new System.Drawing.Size(250, 6);
+            // 
+            // ListToolStripSeparator2
+            // 
+            this.ListToolStripSeparator2.Name = "ListToolStripSeparator2";
+            this.ListToolStripSeparator2.Size = new System.Drawing.Size(250, 6);
+            // 
+            // CancelOfferButton
+            // 
+            this.CancelOfferButton.AutoSize = true;
+            this.CancelOfferButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelOfferButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.CancelOfferButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CancelOfferButton.ImageKey = "button-cancel.png";
+            this.CancelOfferButton.ImageList = this.FormImageList;
+            this.CancelOfferButton.Location = new System.Drawing.Point(525, 325);
+            this.CancelOfferButton.Name = "CancelOfferButton";
+            this.CancelOfferButton.Size = new System.Drawing.Size(98, 27);
+            this.CancelOfferButton.TabIndex = 11;
+            this.CancelOfferButton.Text = "Cancelar";
+            this.CancelOfferButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CancelOfferButton.UseVisualStyleBackColor = true;
+            this.CancelOfferButton.Click += new System.EventHandler(this.CancelOfferButton_Click);
+            // 
+            // SaveOfferButton
+            // 
+            this.SaveOfferButton.AutoSize = true;
+            this.SaveOfferButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.SaveOfferButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SaveOfferButton.ImageKey = "button-save.png";
+            this.SaveOfferButton.ImageList = this.FormImageList;
+            this.SaveOfferButton.Location = new System.Drawing.Point(375, 325);
+            this.SaveOfferButton.Name = "SaveOfferButton";
+            this.SaveOfferButton.Size = new System.Drawing.Size(127, 27);
+            this.SaveOfferButton.TabIndex = 10;
+            this.SaveOfferButton.Text = "Grabar oferta";
+            this.SaveOfferButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.SaveOfferButton.UseVisualStyleBackColor = true;
+            this.SaveOfferButton.Click += new System.EventHandler(this.SaveOfferButton_Click);
+            // 
             // ListRefreshToolStripMenuItem
             // 
             this.ListRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
@@ -234,11 +226,6 @@
             this.ListRefreshToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.ListRefreshToolStripMenuItem.Text = "&Actualizar lista";
             this.ListRefreshToolStripMenuItem.Click += new System.EventHandler(this.ListRefreshToolStripMenuItem_Click);
-            // 
-            // ListToolStripSeparator1
-            // 
-            this.ListToolStripSeparator1.Name = "ListToolStripSeparator1";
-            this.ListToolStripSeparator1.Size = new System.Drawing.Size(250, 6);
             // 
             // ListAddToolStripMenuItem
             // 
@@ -249,11 +236,6 @@
             this.ListAddToolStripMenuItem.Text = "Agregar producto a &oferta";
             this.ListAddToolStripMenuItem.Click += new System.EventHandler(this.ListAddToolStripMenuItem_Click);
             // 
-            // ListToolStripSeparator2
-            // 
-            this.ListToolStripSeparator2.Name = "ListToolStripSeparator2";
-            this.ListToolStripSeparator2.Size = new System.Drawing.Size(250, 6);
-            // 
             // ListRemoveToolStripMenuItem
             // 
             this.ListRemoveToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_remove;
@@ -262,6 +244,16 @@
             this.ListRemoveToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.ListRemoveToolStripMenuItem.Text = "&Quitar de la oferta";
             this.ListRemoveToolStripMenuItem.Click += new System.EventHandler(this.ListRemoveToolStripMenuItem_Click);
+            // 
+            // FormPictureBox
+            // 
+            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.Offer_form;
+            this.FormPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.FormPictureBox.Name = "FormPictureBox";
+            this.FormPictureBox.Size = new System.Drawing.Size(114, 75);
+            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FormPictureBox.TabIndex = 0;
+            this.FormPictureBox.TabStop = false;
             // 
             // SimplyOfferForm
             // 
@@ -273,7 +265,6 @@
             this.ClientSize = new System.Drawing.Size(635, 361);
             this.Controls.Add(this.CancelOfferButton);
             this.Controls.Add(this.SaveOfferButton);
-            this.Controls.Add(this.CloseOfferButton);
             this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.ProductTitleLabel);
             this.Controls.Add(this.DescriptionTextBox);
@@ -293,10 +284,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Publicación de ofertas";
             this.Load += new System.EventHandler(this.SimplyOfferForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiscountNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).EndInit();
             this.ProductListContextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,7 +304,6 @@
         private System.Windows.Forms.Label DescriptionLabel;
         private System.Windows.Forms.TextBox DescriptionTextBox;
         private System.Windows.Forms.Label ProductTitleLabel;
-        private System.Windows.Forms.Button CloseOfferButton;
         private System.Windows.Forms.Button SaveOfferButton;
         private System.Windows.Forms.Button CancelOfferButton;
         private System.Windows.Forms.DataGridView ProductDataGridView;

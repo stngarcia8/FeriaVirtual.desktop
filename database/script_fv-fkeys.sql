@@ -17,7 +17,7 @@ prompt Claves foraneas para tabla cierre_pedido.;
 alter table fv_user.cierre_pedido
     add constraint cierre_pedido_pedido_fk foreign key (id_pedido)
         references fv_user.pedido (id_pedido)
-        ON DELETE CASCADE
+            ON DELETE CASCADE
     add constraint cierre_pedido_tipocierre_fk foreign key (id_tipo_cierre)
         REFERENCES fv_user.tipo_cierre (id_tipo_cierre);
 
@@ -26,7 +26,7 @@ prompt Clave foranea para  ciudad.;
 ALTER TABLE fv_user.ciudad
     ADD CONSTRAINT ciudad_pais_fk FOREIGN KEY (id_pais)
         REFERENCES fv_user.pais (id_pais)
-        ON DELETE CASCADE;
+            ON DELETE CASCADE;
 
 
 prompt Claves foraneas para  tabla cliente.;
@@ -49,7 +49,7 @@ ALTER TABLE fv_user.contrato_cliente
         REFERENCES fv_user.cliente (id_cliente)
     ADD CONSTRAINT contrato_cliente_contrato_fk FOREIGN KEY (id_contrato)
         REFERENCES fv_user.contrato (id_contrato)
-        ON DELETE CASCADE;
+            ON DELETE CASCADE;
 
 
 prompt Clave foranea para  tabla dato_comercial.;
@@ -64,7 +64,8 @@ prompt Clave foranea para  tabla detalle_pedido.
 ALTER TABLE fv_user.detalle_pedido
     ADD CONSTRAINT detalle_pedido_pedido_fk FOREIGN KEY ( id_pedido )
         REFERENCES fv_user.pedido ( id_pedido )
-        ON DELETE CASCADE;
+        ON
+DELETE CASCADE;
 
 
 prompt Claves foraneas para  tabla empleado.;
@@ -81,7 +82,7 @@ ALTER TABLE fv_user.envio
         REFERENCES fv_user.cliente (id_cliente)
     ADD CONSTRAINT envio_pedido_fk FOREIGN KEY (id_pedido)
         REFERENCES fv_user.pedido (id_pedido)
-        on delete  cascade
+            on delete cascade
     ADD CONSTRAINT envio_seguro_fk FOREIGN KEY (id_seguro)
         REFERENCES fv_user.seguro (id_seguro);
 
@@ -92,21 +93,30 @@ ALTER TABLE fv_user.pago
         REFERENCES fv_user.metodo_pago (id_metpago)
     ADD CONSTRAINT pago_pedido_fk FOREIGN KEY (id_pedido)
         REFERENCES fv_user.pedido (id_pedido)
-        on delete  cascade ;
+            on delete cascade;
+
+
+prompt Claves foraneas para tabla de detalle de oferta.;
+ALTER TABLE fv_user.oferta_detalle
+    add constraint detalleoferta_oferta_fk foreign key (id_oferta)
+        references fv_user.oferta (id_oferta)
+            ON delete cascade
+    add constraint detalleoferta_producto_fk foreign key (id_producto)
+        references fv_user.producto (id_producto);
 
 
 prompt Clave foranea para tabla orden_despacho.;
 ALTER TABLE fv_user.orden_despacho
-    ADD CONSTRAINT  orden_despacho_pedido_fk FOREIGN KEY (id_pedido)
-        REFERENCES  fv_user.pedido (id_pedido)
-            ON DELETE  CASCADE;
+    ADD CONSTRAINT orden_despacho_pedido_fk FOREIGN KEY (id_pedido)
+        REFERENCES fv_user.pedido (id_pedido)
+            ON DELETE CASCADE;
 
 
 prompt Clave primaria para tabla de detalle de orden.;
 ALTER TABLE fv_user.orden_detalle
-    ADD CONSTRAINT orden_detalle_orden_fk FOREIGN KEY  (id_orden)
+    ADD CONSTRAINT orden_detalle_orden_fk FOREIGN KEY (id_orden)
         REFERENCES fv_user.orden_despacho (id_orden)
-            ON DELETE  CASCADE ;
+            ON DELETE CASCADE;
 
 
 prompt Claves foraneas para  tabla pedido.;
@@ -128,8 +138,8 @@ ALTER TABLE fv_user.producto
 prompt Claves foraneas para  tabla resultado pedido.;
 Alter table fv_user.resultado_propuesto
     ADD constraint resultado_propuesto_pedido_fk foreign key (id_pedido)
-        references fv_user.pedido (id_pedido) 
-        ON DELETE CASCADE
+        references fv_user.pedido (id_pedido)
+            ON DELETE CASCADE
     ADD constraint resultado_propuesto_producto_fk foreign key (id_producto)
         references fv_user.producto (id_producto);
 
@@ -138,32 +148,32 @@ prompt Clave foranea para  tabla pie de pedido.;
 Alter table fv_user.pie_pedido
     ADD constraint pie_pedido_pedido_fk foreign key (id_pedido)
         references fv_user.pedido (id_pedido)
-        ON DELETE CASCADE;
+            ON DELETE CASCADE;
 
 
 prompt Clave foranea para tabla de resultado de subastas.;
 alter table fv_user.resultado_subasta
-        add constraint resultadosubasta_subasta_fk foreign key (id_subasta)
-            references fv_user.subasta (id_subasta)
-            on delete  cascade
-        add constraint resultadosubasta_cliente_fk foreign key (id_cliente)
-            references fv_user.cliente (id_cliente);
+    add constraint resultadosubasta_subasta_fk foreign key (id_subasta)
+        references fv_user.subasta (id_subasta)
+            on delete cascade
+    add constraint resultadosubasta_cliente_fk foreign key (id_cliente)
+        references fv_user.cliente (id_cliente);
 
 
 prompt Claves foraneas para  tabla seguimiento_pedido.;
 ALTER TABLE fv_user.seguimiento_pedido
     add constraint seguimiento_pedido_seguimiento_fk foreign key (id_pedido)
         references fv_user.pedido (id_pedido)
-        ON DELETE CASCADE
+            ON DELETE CASCADE
     add constraint seguimiento_estado_seguimiento_fk foreign key (id_estado)
         references fv_user.estado_pedido (id_estado);
 
 
 prompt Clave foranea para  tabla subasta.;
 ALTER TABLE fv_user.subasta
-    ADD CONSTRAINT subasta_pedido_fk FOREIGN KEY ( id_pedido )
-        REFERENCES fv_user.pedido ( id_pedido )
-        ON DELETE CASCADE;
+    ADD CONSTRAINT subasta_pedido_fk FOREIGN KEY (id_pedido)
+        REFERENCES fv_user.pedido (id_pedido)
+            ON DELETE CASCADE;
 
 
 prompt Claves foraneas para  tabla vehiculo.;
