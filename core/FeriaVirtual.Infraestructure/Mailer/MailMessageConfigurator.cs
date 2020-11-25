@@ -11,11 +11,9 @@ namespace FeriaVirtual.Infraestructure.Mailer{
         private readonly Client client;
         private readonly MailTypeMessage typeMessage;
 
-        // Properties.
         public MailMessage Message{ get; private set; }
 
 
-        // constructor
         private MailMessageConfigurator(Client client, MailTypeMessage typeMessage){
             this.client = client;
             this.typeMessage = typeMessage;
@@ -23,7 +21,6 @@ namespace FeriaVirtual.Infraestructure.Mailer{
         }
 
 
-        // Named Constructor.
         public static MailMessageConfigurator CreateMessage(Client client, MailTypeMessage typeMessage){
             return new MailMessageConfigurator(client, typeMessage);
         }

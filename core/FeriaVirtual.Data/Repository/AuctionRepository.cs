@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using FeriaVirtual.Data.Notifiers;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.Infraestructure.Database;
-using FeriaVirtual.Infraestructure.Queues;
 
 
 namespace FeriaVirtual.Data.Repository{
 
     public class AuctionRepository : Repository{
 
-        private AuctionRepository(){ }
+        private readonly IQueueNotifier Notifier;
+
+
+        private AuctionRepository(){
+            Notifier = QueueNotifier.CreateNotifier();
+        }
 
 
         public static AuctionRepository OpenRepository(){
@@ -25,6 +31,9 @@ namespace FeriaVirtual.Data.Repository{
             query = DefineAuctionParameters(auction, query);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
+            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
+            AuctionDto xAuction = this.TransformAuctionToAuctionDto(GetAuctionById(orderId));
+            this.Notifier.Notify("Auction", "AuctionWasCreate", xAuction);
         }
 
 
@@ -50,6 +59,7 @@ namespace FeriaVirtual.Data.Repository{
             var query = DefineQueryAction("spEliminarSubasta ");
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
+            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 2));
         }
 
 
@@ -59,14 +69,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
-            PublishCloseAuctionToRabbitMq(auctionId, 3);
-        }
-
-
-        private void PublishCloseAuctionToRabbitMq(string auctionId, int status){
-            AuctionClose auction = AuctionClose.CloseAuction(auctionId, status);
-            IPublishEvent publisher = CloseAuctionEvent.CreateEvent(auction);
-            publisher.PublishEvent();
+            Notifier.Notify("Auction", "AuctionWasClose", ChangeMessageStatus.Create(auctionId, 3));
+            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 4));
         }
 
 
@@ -83,7 +87,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdSubasta", auctionId, DbType.String);
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
-            PublishCloseAuctionToRabbitMq(auctionId, 1);
+            Notifier.Notify("Auction", "AuctionWasPublish", ChangeMessageStatus.Create(auctionId, 1));
+            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
         }
 
 
@@ -200,6 +205,28 @@ namespace FeriaVirtual.Data.Repository{
             querySelect.AddParameter("pIdSubasta", auctionId, DbType.String);
             DataTable = querySelect.ExecuteQuery();
         }
+
+        private AuctionDto TransformAuctionToAuctionDto(Auction a){
+            var am = new AuctionDto{
+                AuctionId = a.AuctionId,
+                AuctionDate = a.AuctionDate.ToString("yyyy-MM-dd"),
+                Percent = a.Percent,
+                Value = a.Value,
+                Weight = a.Weight,
+                LimitDate = a.LimitDate.ToString("yyyy-MM-dd"),
+                Observation = a.Observation,
+                CompanyName = a.CompanyName,
+                Destination = a.Destination,
+                PhoneNumber = a.PhoneNumber,
+                Status = a.Status,
+                Products = a.Products
+            };
+            return am;
+        }
+
+
+
+
 
     }
 

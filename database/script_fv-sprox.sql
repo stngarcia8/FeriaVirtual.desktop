@@ -491,6 +491,19 @@ BEGIN
     COMMIT;
 END spActualizarEstadoPedido;
 /
+CREATE OR REPLACE PROCEDURE
+    fv_user.spRechazarPedido(pIdCierre VARCHAR2,
+                             pIdPedido VARCHAR2,
+                             pTipo NUMBER,
+                             pObservacion VARCHAR2) IS
+BEGIN
+    INSERT INTO fv_user.cierre_pedido
+        (id_cierre, id_pedido, id_tipo_cierre, fecha_cierre, obs_cierre)
+    VALUES (pIdCierre, pIdPedido, pTipo, sysdate, pObservacion);
+    COMMIT;
+END spRechazarPedido;
+/
+
 
 
 prompt Creando procedimiento para ejecucion de paquete de productos.;
@@ -753,7 +766,6 @@ CREATE OR REPLACE PROCEDURE
 AS
     vIdPedido fv_user.pedido.id_pedido%TYPE;
 BEGIN
-
     SELECT id_pedido
     INTO vIdPedido
     FROM fv_user.orden_despacho
@@ -844,6 +856,27 @@ BEGIN
     FROM fv_user.oferta_detalle
     WHERE id_oferta = :old.id_oferta;
 END;
+/
+
+
+
+prompt Creando procedimientos almacenados para pagos.;
+CREATE OR REPLACE PROCEDURE
+    fv_user.spRegistrarPago(pIdPago VARCHAR2,
+                            pIdMetodoPago NUMBER,
+                            pIdPedido VARCHAR2,
+                            pMonto NUMBER,
+                            pObsPago VARCHAR2) IS
+BEGIN
+    INSERT INTO fv_user.pago
+        (id_pago, id_metpago, id_pedido, fecha_pago, monto_pago, obs_pago)
+    VALUES (pIdPago, pIdMetodoPago, pIdPedido, sysdate, pMonto, pObsPago);
+
+    INSERT INTO fv_user.cierre_pedido
+        (id_cierre, id_pedido, id_tipo_cierre, fecha_cierre, obs_cierre)
+    VALUES (pIdPago, pIdPedido, 7, sysdate, pObsPago);
+    COMMIT;
+END spRegistrarPago;
 /
 
 

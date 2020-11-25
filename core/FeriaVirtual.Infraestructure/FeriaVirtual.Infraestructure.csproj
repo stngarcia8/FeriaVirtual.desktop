@@ -88,19 +88,18 @@
     <Compile Include="Database\QueryAction.cs" />
     <Compile Include="Database\QuerySelect.cs" />
     <Compile Include="Exceptions\ConnectionFailedException.cs" />
+    <Compile Include="Exceptions\InvalidEmailParameterException.cs" />
     <Compile Include="Mailer\MailConfigurator.cs" />
     <Compile Include="Mailer\MailContractMessageConfigurator.cs" />
     <Compile Include="Mailer\MailContractSender.cs" />
+    <Compile Include="Mailer\MailerClientSender.cs" />
     <Compile Include="Mailer\MailMessageConfigurator.cs" />
-    <Compile Include="Mailer\MailOrderDispatchConfigurator.cs" />
-    <Compile Include="Mailer\MailOrderDispatchSender.cs" />
     <Compile Include="Mailer\MailSender.cs" />
+    <Compile Include="Mailer\MailerClientConfigurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queues\CloseAuctionEvent.cs" />
-    <Compile Include="Queues\ContractEvent.cs" />
     <Compile Include="Queues\IPublishEvent.cs" />
     <Compile Include="Queues\QueueConfigurator.cs" />
-    <Compile Include="Queues\UserEvent.cs" />
+    <Compile Include="Queues\QueuePublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FeriaVirtual.Domain\FeriaVirtual.Domain.csproj">

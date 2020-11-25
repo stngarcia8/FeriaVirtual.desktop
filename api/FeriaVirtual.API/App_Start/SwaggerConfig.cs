@@ -61,16 +61,16 @@ namespace FeriaVirtual.API
                         // according to your specific authorization implementation
                         //
                         //c.BasicAuth("basic")
-                        //    .Description("Basic HTTP Authentication");
+                        //    .MethodDescription("Basic HTTP Authentication");
                         //
                         // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
-                        //    .Description("API Key Authentication")
+                        //    .MethodDescription("API Key Authentication")
                         //    .Name("apiKey")
                         //    .In("header");
                         //
                         //c.OAuth2("oauth2")
-                        //    .Description("OAuth2 Implicit Grant")
+                        //    .MethodDescription("OAuth2 Implicit Grant")
                         //    .Flow("implicit")
                         //    .AuthorizationUrl("http://petstore.swagger.wordnik.com/api/oauth/dialog")
                         //    //.TokenUrl("https://tempuri.org/token")

@@ -54,7 +54,7 @@ INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
 VALUES (4, 'SUBASTADO');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
 VALUES (5, 'DESPACHADO');
-insert into fv_user.estado_pedido 
+insert into fv_user.estado_pedido
 values (6, 'ENTREGADO');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
 VALUES (7, 'ACEPTADO');
@@ -62,6 +62,28 @@ INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
 VALUES (8, 'RECHAZADO');
 INSERT INTO fv_user.estado_pedido (id_estado, desc_estado)
 VALUES (9, 'CANCELADO');
+
+
+prompt Insertando tipos de cierre de pedido.;
+INSERT INTO fv_user.tipo_cierre (id_tipo_cierre, desc_tipo_cierre)
+VALUES (7, 'ACEPTADO');
+INSERT INTO fv_user.tipo_cierre (id_tipo_cierre, desc_tipo_cierre)
+VALUES (8, 'RECHAZADO');
+INSERT INTO fv_user.tipo_cierre (id_tipo_cierre, desc_tipo_cierre)
+VALUES (9, 'CANCELADO');
+
+
+prompt  Insertando metodos de pago.;
+INSERT INTO fv_user.metodo_pago (id_metpago, desc_metpago)
+VALUES (1, 'VISA');
+INSERT INTO fv_user.metodo_pago (id_metpago, desc_metpago)
+VALUES (2, 'MASTERCARD');
+INSERT INTO fv_user.metodo_pago (id_metpago, desc_metpago)
+VALUES (3, 'TRANSFERENCIA BANCARIA');
+INSERT INTO fv_user.metodo_pago (id_metpago, desc_metpago)
+VALUES (4, 'WEBPAY');
+INSERT INTO fv_user.metodo_pago (id_metpago, desc_metpago)
+VALUES (5, 'PAYPAL');
 
 
 prompt Insertando paises.;

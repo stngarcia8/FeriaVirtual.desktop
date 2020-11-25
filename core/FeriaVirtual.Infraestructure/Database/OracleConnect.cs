@@ -8,10 +8,9 @@ namespace FeriaVirtual.Infraestructure.Database{
 
     public class OracleConnect : IOracleConnect, IDisposable{
 
-        private string host;
-        private int port;
-        private string username;
-        private string password;
+        private readonly string host;
+        private readonly string username;
+        private readonly string password;
 
 
         private readonly string conecctionString;
@@ -22,7 +21,6 @@ namespace FeriaVirtual.Infraestructure.Database{
 
         private OracleConnect(){
             this.host = "maipogrande-fv.duckdns.org";
-            this.port = 1521;
             this.username = "fv_user";
             this.password = "fv_pwd";
             conecctionString = GenerateConnectionString();

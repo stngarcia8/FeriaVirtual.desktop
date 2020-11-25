@@ -87,6 +87,7 @@
     <Compile Include="Exceptions\InvalidOrderDetailException.cs" />
     <Compile Include="Exceptions\InvalidOrderException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
+    <Compile Include="Exceptions\InvalidPaymentException.cs" />
     <Compile Include="Exceptions\InvalidProductException.cs" />
     <Compile Include="Exceptions\InvalidUsernameException.cs" />
     <Compile Include="Exceptions\InvalidUserRegisterException.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Orders\AuctionUseCase.cs" />
     <Compile Include="Orders\OrderDispatchUseCase.cs" />
     <Compile Include="Orders\OrderUseCase.cs" />
+    <Compile Include="Orders\PaymentUsecase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\CarrierUseCase.cs" />
     <Compile Include="Users\ClientUseCase.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Validators\LoginValidator.cs" />
     <Compile Include="Validators\OfferValidator.cs" />
     <Compile Include="Validators\OrderValidator.cs" />
+    <Compile Include="Validators\PaymentValidator.cs" />
     <Compile Include="Validators\ProductValidator.cs" />
     <Compile Include="Validators\Validator.cs" />
     <Compile Include="Validators\VehicleValidator.cs" />

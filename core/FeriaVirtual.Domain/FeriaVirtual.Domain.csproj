@@ -49,6 +49,7 @@
     <Compile Include="CommercialsData\ComercialDataDto.cs" />
     <Compile Include="Contracts\ContractType.cs" />
     <Compile Include="CommercialsData\Country.cs" />
+    <Compile Include="Dto\ChangeMessageStatus.cs" />
     <Compile Include="Dto\LoginDto.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Offers\Offer.cs" />
@@ -56,11 +57,17 @@
     <Compile Include="Offers\OfferDto.cs" />
     <Compile Include="Orders\Auction.cs" />
     <Compile Include="Orders\AuctionClose.cs" />
+    <Compile Include="Orders\AuctionDto.cs" />
     <Compile Include="Orders\AuctionProduct.cs" />
     <Compile Include="Orders\AuctionBidValue.cs" />
     <Compile Include="Orders\OrderDispatch.cs" />
     <Compile Include="Orders\OrderDispatchDetail.cs" />
     <Compile Include="Orders\OrderDto.cs" />
+    <Compile Include="Orders\OrderRefuse.cs" />
+    <Compile Include="Orders\OrderResult.cs" />
+    <Compile Include="Orders\Payment.cs" />
+    <Compile Include="Orders\PaymentContactMethod.cs" />
+    <Compile Include="Orders\PaymentMethod.cs" />
     <Compile Include="Orders\PaymentCondition.cs" />
     <Compile Include="Orders\Safe.cs" />
     <Compile Include="Products\ProductCategory.cs" />

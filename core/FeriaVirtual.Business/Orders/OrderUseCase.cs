@@ -5,7 +5,7 @@ using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
 
 
-namespace FeriaVirtual.Business.Orders {
+namespace FeriaVirtual.Business.Orders{
 
     public class OrderUseCase{
 
@@ -55,6 +55,11 @@ namespace FeriaVirtual.Business.Orders {
         }
 
 
+        public void RefuseOrder(OrderRefuse orderRefused){
+            repository.RefuseOrder(orderRefused);
+        }
+
+
         public IList<OrderDto> GetOrderToPublish(int statusId, string customerId){
             return repository.PublishOrdersToApi(statusId, customerId);
         }
@@ -66,10 +71,12 @@ namespace FeriaVirtual.Business.Orders {
             return repository.DataSource;
         }
 
+
         public DataTable GetOnlyGenerateProposeProduct(string orderId){
             repository.GetProposeProduct(orderId);
             return repository.DataSource;
         }
+
 
         public void AceptProposeProducts(string orderId){
             repository.AceptProposeProducts(orderId);

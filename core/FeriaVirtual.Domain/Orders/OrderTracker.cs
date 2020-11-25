@@ -5,7 +5,6 @@ namespace FeriaVirtual.Domain.Orders{
 
     public class OrderTracker{
 
-        // Properties
         public string TrackerId{ get; set; }
         public string OrderId{ get; set; }
         public OrderStatus Status{ get; set; }
@@ -30,7 +29,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructor.
         public static OrderTracker CreateTracker(){
             return new OrderTracker();
         }

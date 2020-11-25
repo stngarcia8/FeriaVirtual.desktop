@@ -10,14 +10,12 @@ namespace FeriaVirtual.Infraestructure.Mailer{
         private readonly MailTypeMessage typeMessage;
 
 
-        // constructor
         private MailSender(Client client, MailTypeMessage typeMessage){
             this.client = client;
             this.typeMessage = typeMessage;
         }
 
 
-        // Named Constructor.
         public static MailSender CreateSender(Client client, MailTypeMessage typeMessage){
             return new MailSender(client, typeMessage);
         }

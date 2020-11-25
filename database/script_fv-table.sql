@@ -175,7 +175,7 @@ CREATE TABLE fv_user.metodo_pago
 prompt Creando tabla de ofertas de productos.;
 CREATE TABLE fv_user.oferta
 (
-    id_oferta        VARCHAR2(40) NOT NULL,
+    id_oferta        VARCHAR2(40)  NOT NULL,
     desc_oferta      VARCHAR2(100) NOT NULL,
     descuento_oferta NUMBER(2) DEFAULT 0,
     fecha_oferta     DATE      DEFAULT sysdate,
@@ -199,13 +199,13 @@ CREATE TABLE fv_user.oferta_detalle
 prompt Creando tabla pago.;
 CREATE TABLE fv_user.pago
 (
-    id_pago        VARCHAR2(40)  NOT NULL,
-    id_metpago     NUMBER(2)     NOT NULL,
-    id_pedido      VARCHAR2(40)  NOT NULL,
-    fecha_pago     DATE          NOT NULL,
-    monto_pago     NUMBER(9, 2)  NOT NULL,
-    descuento_pago number(4, 2)  not null,
-    obs_pago       VARCHAR2(100) NOT NULL,
+    id_pago         VARCHAR2(40)  NOT NULL,
+    id_metpago      NUMBER(2)     NOT NULL,
+    id_pedido       VARCHAR2(40)  NOT NULL,
+    fecha_pago      DATE          NOT NULL,
+    monto_pago      NUMBER(9, 2)  NOT NULL,
+    obs_pago        VARCHAR2(100) NOT NULL,
+    pago_notificado number(1) default 0,
     constraint pago_pk primary key (id_pago)
 ) tablespace fv_env;
 

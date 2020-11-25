@@ -1,10 +1,9 @@
 ﻿using System.Data;
-using FeriaVirtual.Infraestructure.Queues;
+using FeriaVirtual.Data.Notifiers;
 using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Enums;
 using FeriaVirtual.Domain.Users;
 using FeriaVirtual.Infraestructure.Database;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
 namespace FeriaVirtual.Data.Repository{
@@ -12,15 +11,17 @@ namespace FeriaVirtual.Data.Repository{
     public class ClientRepository : Repository{
 
         private readonly int profileId;
+        private readonly IQueueNotifier queueNotifier;
+        private readonly EmailUserNotifier mailNotifier;
 
 
-        // Constructor
         private ClientRepository(int profileId){
             this.profileId = profileId;
+            queueNotifier = QueueNotifier.CreateNotifier();
+            mailNotifier = EmailUserNotifier.CreateNotifier();
         }
 
 
-        // Named constructor.
         public static ClientRepository OpenRepository(int profileId){
             return new ClientRepository(profileId);
         }
@@ -80,8 +81,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pUserName", client.Credentials.Username, DbType.String);
             query = DefineQueryParameters(client, query);
             query.ExecuteQuery();
-            SendMailMessage(client, MailTypeMessage.NewClient);
-            PublishNewUserEvent(client);
+            mailNotifier.Notify(client, MailTypeMessage.NewClient);
+            queueNotifier.Notify("User", "UserWasCreate", CreateSession(client));
         }
 
 
@@ -97,21 +98,8 @@ namespace FeriaVirtual.Data.Repository{
         }
 
 
-        private void SendMailMessage(Client client, MailTypeMessage mailTypeMessage){
-            var sender = MailSender.CreateSender(client, mailTypeMessage);
-            sender.SendMail();
-        }
-
-
-        private void PublishNewUserEvent(Client client){
-            SessionDto session = CreateSession(client);
-            IPublishEvent publisher = UserEvent.CreateEvent(session);
-            publisher.PublishEvent();
-        }
-
-
         private SessionDto CreateSession(Client client){
-            SessionDto session = new SessionDto{
+            var session = new SessionDto{
                 SessionId = "",
                 UserId = client.Credentials.UserId,
                 ClientId = client.Id,
@@ -122,7 +110,6 @@ namespace FeriaVirtual.Data.Repository{
                 ProfileId = client.Profile.ProfileId,
                 ProfileName = client.Profile.ProfileName
             };
-
             return session;
         }
 
@@ -132,7 +119,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdUsuario", client.Credentials.UserId, DbType.String);
             query = DefineQueryParameters(client, query);
             query.ExecuteQuery();
-            SendMailMessage(client, MailTypeMessage.EditClient);
+            mailNotifier.Notify(client, MailTypeMessage.EditClient);
+            queueNotifier.Notify("User", "UserWasModify", CreateSession(client));
         }
 
 
@@ -141,6 +129,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdUsuario", id, DbType.String);
             query.AddParameter("pTipoAccion", typeAction, DbType.Int32);
             query.ExecuteQuery();
+            queueNotifier.Notify("User", typeAction.Equals(0) ? "UserWasDisable" : "UserWasEnable",
+                ChangeMessageStatus.Create(id, typeAction));
         }
 
     }

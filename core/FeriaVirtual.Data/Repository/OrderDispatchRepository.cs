@@ -1,4 +1,8 @@
 ﻿using System;
+using FeriaVirtual.Data.Notifiers;
+using FeriaVirtual.Infraestructure.Queues;
+using FeriaVirtual.Domain.Dto;
+
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,11 +16,16 @@ namespace FeriaVirtual.Data.Repository{
 
     public class OrderDispatchRepository : Repository{
 
-        // Constructor
-        private OrderDispatchRepository(){ }
+        private IQueueNotifier queueNotifier;
+        private EmailOrderDispatchNotifier emailNotifier;
 
 
-        // Named constructor
+        private OrderDispatchRepository(){
+            this.queueNotifier = QueueNotifier.CreateNotifier();
+            emailNotifier = EmailOrderDispatchNotifier.CreateNotifier();
+        }
+
+
         public static OrderDispatchRepository OpenRepository(){
             return new OrderDispatchRepository();
         }
@@ -35,6 +44,7 @@ namespace FeriaVirtual.Data.Repository{
             query.ExecuteQuery();
             OrderDispatchDetailSave(orderDispatch);
             SendNotificationMail(orderDispatch);
+            this.queueNotifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderDispatch.OrderId, 5) );
         }
 
 
@@ -58,10 +68,8 @@ namespace FeriaVirtual.Data.Repository{
                     $"El transportista {orderDispatch.CarrierName} no tiene configurada su cuenta de correo electrónico, por lo tanto no fue posible notificar por este medio la orden de despacho, de igual manera esta quedo asignada en su perfil de usuario.";
                 throw new InvalidEmailException(message);
             }
-
-            var sender = MailOrderDispatchSender.CreateSender(orderDispatch, MailTypeMessage.NewOrderDispatch);
-            sender.SendMail();
-        }
+            this.emailNotifier.Notify(orderDispatch);
+            }
 
 
         public void AcceptOrderDispatch(string orderId, string observation){

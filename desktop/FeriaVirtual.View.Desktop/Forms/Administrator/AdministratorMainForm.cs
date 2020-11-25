@@ -4,6 +4,7 @@ using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Client;
 using FeriaVirtual.View.Desktop.Forms.Offers;
 using FeriaVirtual.View.Desktop.Forms.Contracts;
+using FeriaVirtual.View.Desktop.Forms.Payments;
 using FeriaVirtual.View.Desktop.Forms.Orders;
 using FeriaVirtual.View.Desktop.Forms.User;
 using FeriaVirtual.View.Desktop.Helpers;
@@ -41,6 +42,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
             OpenForm(new OfferForm());
         }
 
+        private void BusinessPaymentsReceptionToolStripMenuItem_Click(object sender,EventArgs e) {
+            OpenForm(new PaymentForm());
+        }
 
 
         private void MaintenanceUserToolStripMenuItem_Click(object sender, EventArgs e){
@@ -79,6 +83,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
             }
             e.Cancel = true;
         }
+
 
         #endregion Manejo del formulario
 

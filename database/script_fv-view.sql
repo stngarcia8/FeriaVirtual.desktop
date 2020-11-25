@@ -420,7 +420,7 @@ SELECT id_oferta,
        CASE tipo_oferta
            WHEN 1 THEN 'Oferta'
            WHEN 2 THEN 'Venta de saldos'
-           END AS "Tipo",
+           END                             AS "Tipo",
        estado_oferta,
        CASE estado_oferta
            WHEN 1 THEN 'Disponible'
@@ -435,13 +435,59 @@ CREATE OR REPLACE VIEW fv_user.vwObtenerDetalleOfertas AS
 SELECT det.id_detalle,
        det.id_oferta,
        pro.id_producto,
-       nombre_producto                             AS "Producto",
+       nombre_producto                                                                               AS "Producto",
        det.valor_original,
-       to_char(ofe.descuento_oferta, '99')        AS "Descuento aplicado",
-       to_char((det.valor_original - ((det.valor_original * ofe.descuento_oferta)/100)), '999999') AS "Valor oferta"
+       to_char(ofe.descuento_oferta, '99')                                                           AS "Descuento aplicado",
+       to_char((det.valor_original - ((det.valor_original * ofe.descuento_oferta) / 100)), '999999') AS "Valor oferta"
 FROM fv_user.oferta_detalle det
          INNER JOIN fv_user.oferta ofe ON det.id_oferta = ofe.id_oferta
          INNER JOIN fv_user.producto pro ON det.id_producto = pro.id_producto;
+
+
+prompt Creando vista de pagos.;
+CREATE OR REPLACE VIEW fv_user.vwObtenerPagos AS
+SELECT pag.id_pago,
+       ped.id_pedido,
+       cli.id_cliente,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
+       rol.id_rol,
+       rol.nombre_rol                                    AS "tipo usuario",
+       con.id_condicion,
+       con.desc_condicion                                AS "Condicion pago",
+       met.id_metpago,
+       met.desc_metpago,
+       to_char(pag.fecha_pago, 'dd-MM-yyyy')             AS "Fecha pago",
+       to_char(pag.fecha_pago, 'HH24:Mi:ss')             AS "Hora pago",
+       to_char(pie.valor_neto, '999999999')              AS "Neto",
+       to_char(pie.valor_iva, '999999999')               AS "IVA",
+       to_char(ped.descuento_solicitado, '99')           AS "Porcentaje descuento",
+       to_char(pie.valor_descuento, '999999999')         AS "Descuento",
+       to_char(pie.valor_total_descuento, '999999999')   AS "Total a pagar",
+       pag.obs_pago                                      AS "Observacion",
+       pag.pago_notificado,
+       CASE pag.pago_notificado
+           WHEN 0 THEN 'Por notificar'
+           WHEN 1 THEN 'Enviada'
+           END                                           AS "Notificacion"
+FROM fv_user.pago pag
+         INNER JOIN fv_user.metodo_pago met ON pag.id_metpago = met.id_metpago
+         INNER JOIN fv_user.pedido ped ON pag.id_pedido = ped.id_pedido
+         INNER JOIN fv_user.condicion_pago con ON ped.id_condicion = con.id_condicion
+         INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
+         INNER JOIN fv_user.rol_usuario rol ON cli.id_rol = rol.id_rol
+         INNER JOIN fv_user.pie_pedido pie ON pag.id_pedido = pie.id_pedido
+ORDER BY pag.fecha_pago;
+
+
+prompt Creando vista para busqueda de email de clientes.;
+CREATE OR REPLACE VIEW fv_user.vwBuscarMailCliente AS
+SELECT pag.id_pago,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
+       dat.email_comercial as "email"
+FROM fv_user.pago pag
+         INNER JOIN fv_user.pedido ped ON pag.id_pedido = ped.id_pedido
+         INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
+         INNER JOIN fv_user.dato_comercial dat ON cli.id_cliente = dat.id_cliente;
 
 
 prompt Confirmando cambios.;

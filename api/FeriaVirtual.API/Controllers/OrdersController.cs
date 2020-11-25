@@ -122,6 +122,36 @@ namespace FeriaVirtual.API.Controllers{
         }
 
 
+        /// <summary>
+        /// Rechaza una orden de compra por parte del cliente.
+        /// </summary>
+        /// <param name="orderRefused">
+        ///Corresponde a l ainformación de la orden de compra a rechazar.
+        /// </param>
+        /// <returns>
+        ///Ok si la orden fue rechazada correctamente,
+        /// badrequest en caso contrario.
+        /// </returns>
+        [Route("api/v1/customers/orders/refuse")]
+        [HttpPatch]
+        public IHttpActionResult PatchOrderRefuse(OrderRefuse orderRefused){
+            if (orderRefused == null){
+                return BadRequest("Parámetros inválidos, los la información de la orden es incorrecta.");
+            }
+            try{
+                usecase.RefuseOrder(orderRefused);
+                return Ok("Orden de compra rechazada.");
+            }
+            catch (Exception ex){
+                return BadRequest(ex.Message.ToString());
+            }
+        }
+
+
+
+
+
+
         private Order PutOrderModelIntoOrder(OrderModel orderModel){
             var o = Order.CreateOrder();
             o.OrderId = orderModel.OrderId;

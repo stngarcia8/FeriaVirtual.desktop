@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using FeriaVirtual.Data.Notifiers;
 using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.Infraestructure.Database;
 
@@ -10,17 +11,17 @@ namespace FeriaVirtual.Data.Repository{
 
     public class OrderRepository : Repository{
 
-        // properties
+        private readonly IQueueNotifier notifier;
+
         public Order Order{ get; }
 
 
-        // Constructor
         private OrderRepository(){
             Order = Order.CreateOrder();
+            notifier = QueueNotifier.CreateNotifier();
         }
 
 
-        // Named constructor
         public static OrderRepository OpenRepository(){
             return new OrderRepository();
         }
@@ -59,6 +60,31 @@ namespace FeriaVirtual.Data.Repository{
             var querySelect = DefineQuerySelect(Sql.ToString());
             querySelect.AddParameter("pId", orderId, DbType.String);
             DataTable = querySelect.ExecuteQuery();
+        }
+
+
+        public OrderResult GetResultsFromPropose(string orderId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.pie_pedido where id_pedido=:pId ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pId", orderId, DbType.String);
+            DataTable = querySelect.ExecuteQuery();
+            return ExtractResultFromDataTable(DataTable);
+        }
+
+
+        private OrderResult ExtractResultFromDataTable(DataTable data){
+            var results = OrderResult.CreateResults();
+            if (data.Rows.Count.Equals(0)) return results;
+
+            var row = data.Rows[0];
+            results.OrderId = row["id_pedido"].ToString();
+            results.NetValue = float.Parse(row["valor_neto"].ToString());
+            results.Iva = float.Parse(row["valor_iva"].ToString());
+            results.TotalValue = float.Parse(row["valor_total"].ToString());
+            results.DiscountValue = float.Parse(row["valor_descuento"].ToString());
+            results.Amount = float.Parse(row["valor_total_descuento"].ToString());
+            return results;
         }
 
 
@@ -104,6 +130,16 @@ namespace FeriaVirtual.Data.Repository{
         public void DeleteOrder(string orderId){
             var query = DefineQueryAction("spEliminarPedido ");
             query.AddParameter("pIdPedido", orderId, DbType.String);
+            query.ExecuteQuery();
+        }
+
+
+        public void RefuseOrder(OrderRefuse orderRefused){
+            var query = DefineQueryAction("spRechazarPedido");
+            query.AddParameter("pIdCierre", orderRefused.RefuseId, DbType.String);
+            query.AddParameter("pIdPedido", orderRefused.OrderId, DbType.String);
+            query.AddParameter("pTipo", orderRefused.RefuseType, DbType.Int32);
+            query.AddParameter("pObservacion", orderRefused.Observation, DbType.String);
             query.ExecuteQuery();
         }
 
@@ -154,7 +190,9 @@ namespace FeriaVirtual.Data.Repository{
         public IList<OrderDetail> GetOrderDetailDataToOrder(DataTable dataDetail){
             IList<OrderDetail> detailList = new List<OrderDetail>();
             if (dataDetail.Rows.Count.Equals(0)) return detailList;
+
             foreach (DataRow r in dataDetail.Rows) detailList.Add(GetDetailDataFromRow(r));
+
             return detailList;
         }
 
@@ -174,6 +212,7 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
+            notifier.Notify("Order", "ProductsProposed", GetResultsFromPropose(orderId));
         }
 
     }

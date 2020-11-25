@@ -6,18 +6,15 @@ namespace FeriaVirtual.Infraestructure.Mailer{
 
     public class MailConfigurator{
 
-        // Properties.
         public SmtpClient Smtp{ get; }
 
 
-        // Constructor
         private MailConfigurator(){
             Smtp = new SmtpClient();
             ConfigureSmtpClient();
         }
 
 
-        // Named constructor
         public static MailConfigurator CreateConfigurator(){
             return new MailConfigurator();
         }

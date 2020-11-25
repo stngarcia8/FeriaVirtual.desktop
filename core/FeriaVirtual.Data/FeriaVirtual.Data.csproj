@@ -48,6 +48,11 @@
     <Compile Include="HelpersRepository\HelperRepository.cs" />
     <Compile Include="HelpersRepository\SafeRepository.cs" />
     <Compile Include="HelpersRepository\VehicleTypeRepository.cs" />
+    <Compile Include="Notifiers\EmailOrderDispatchNotifier.cs" />
+    <Compile Include="Notifiers\IQueueNotifier.cs" />
+    <Compile Include="Notifiers\EmailPaymentNotifier.cs" />
+    <Compile Include="Notifiers\QueueNotifier.cs" />
+    <Compile Include="Notifiers\EmailUserNotifier.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
     <Compile Include="Repository\OfferRepository.cs" />
     <Compile Include="Repository\OrderDispatchRepository.cs" />
@@ -60,6 +65,7 @@
     <Compile Include="Repository\InternalClientRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\PaymentRepository.cs" />
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
@@ -77,5 +83,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

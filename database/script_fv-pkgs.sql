@@ -107,7 +107,7 @@ PROCEDURE sp_nombre_producto(
                     INTO valorproducto,cantidadproducto,idproducto
                     FROM (SELECT MIN(valor_producto), cantidad_producto, id_producto
                           FROM fv_user.producto_temp
-                          WHERE nombre_producto = l_names(indx).nombre_producto
+                          WHERE upper(nombre_producto) = upper(l_names(indx).nombre_producto)
                             AND cantidad_producto > 0
                             AND id_categoria = 1
                           GROUP BY valor_producto, cantidad_producto, id_producto
@@ -115,7 +115,7 @@ PROCEDURE sp_nombre_producto(
                     WHERE ROWNUM = 1;
 
                     
-            cantidad_solicitado:=fn_cantidad_solicitado(idpedido,l_names(indx).nombre_producto);   
+            cantidad_solicitado:=fn_cantidad_solicitado(idpedido,upper(l_names(indx).nombre_producto));
                     
 
                     indice_estado := cantidadproducto - cantidad_solicitado;
@@ -140,7 +140,7 @@ PROCEDURE sp_nombre_producto(
                                 INTO valorproducto,cantidadproducto,idproducto
                                 FROM (SELECT MIN(valor_producto), cantidad_producto, id_producto
                                       FROM fv_user.producto_temp
-                                      WHERE nombre_producto = l_names(indx).nombre_producto
+                                      WHERE upper(nombre_producto) = upper(l_names(indx).nombre_producto)
                                         AND cantidad_producto != 0
                                         AND id_categoria = 1
                                       GROUP BY valor_producto, cantidad_producto, id_producto
@@ -178,7 +178,7 @@ PROCEDURE sp_nombre_producto(
                     INTO valorproducto,cantidadproducto,idproducto
                     FROM (SELECT MIN(valor_producto), cantidad_producto, id_producto
                           FROM fv_user.producto_temp
-                          WHERE nombre_producto = l_names(indx).nombre_producto
+                          WHERE upper(nombre_producto) = upper(l_names(indx).nombre_producto)
                             AND cantidad_producto > 0
                             AND id_categoria = 2
                           GROUP BY valor_producto, cantidad_producto, id_producto
@@ -186,7 +186,7 @@ PROCEDURE sp_nombre_producto(
                     WHERE ROWNUM = 1;
 
 --Datos del detalle
-            cantidad_solicitado:=fn_cantidad_solicitado(idpedido,l_names(indx).nombre_producto);
+            cantidad_solicitado:=fn_cantidad_solicitado(idpedido,upper(l_names(indx).nombre_producto));
 
                     indice_estado := cantidadproducto - cantidad_solicitado;
 
@@ -210,7 +210,7 @@ PROCEDURE sp_nombre_producto(
                                 INTO valorproducto,cantidadproducto,idproducto
                                 FROM (SELECT MIN(valor_producto), cantidad_producto, id_producto
                                       FROM fv_user.producto_temp
-                                      WHERE nombre_producto = l_names(indx).nombre_producto
+                                      WHERE upper(nombre_producto) = upper(l_names(indx).nombre_producto)
                                         AND cantidad_producto != 0
                                         AND id_categoria = 2
                                       GROUP BY valor_producto, cantidad_producto, id_producto

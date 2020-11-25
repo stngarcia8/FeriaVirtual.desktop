@@ -185,6 +185,18 @@
     <Compile Include="Forms\Orders\ProposeProductsForm.Designer.cs">
       <DependentUpon>ProposeProductsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Payments\PaymentDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payments\PaymentDetailsForm.Designer.cs">
+      <DependentUpon>PaymentDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Payments\PaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Payments\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\User\MaintenanceUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders\ProposeProductsForm.resx">
       <DependentUpon>ProposeProductsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payments\PaymentDetailsForm.resx">
+      <DependentUpon>PaymentDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Payments\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
@@ -459,6 +477,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\menu-reopen-offer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-payments.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-payments1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-paymentShowDetails.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
