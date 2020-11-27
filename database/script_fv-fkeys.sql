@@ -87,6 +87,13 @@ ALTER TABLE fv_user.envio
         REFERENCES fv_user.seguro (id_seguro);
 
 
+prompt Clave foranea para tabla notificacion_pago.;
+ALTER TABLE fv_user.notificacion_pago
+    ADD CONSTRAINT  notificacion_pago_pago_fk FOREIGN KEY (id_pago)
+        REFERENCES fv_user.pago (id_pago)
+            ON DELETE CASCADE;
+
+
 prompt Claves foraneas para  tabla pago.;
 ALTER TABLE fv_user.pago
     ADD CONSTRAINT pago_metodo_pago_fk FOREIGN KEY (id_metpago)

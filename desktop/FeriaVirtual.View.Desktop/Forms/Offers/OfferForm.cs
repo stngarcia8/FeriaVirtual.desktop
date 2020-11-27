@@ -112,7 +112,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
             OptionsFilterTreeView.BeginUpdate();
             OptionsFilterTreeView.Nodes.Clear();
             IList<string> filterOptions = new List<string>{
-                "Ofertas publicadas", "Ofertas cerradas", "Oferta de saldos"
+                "Ofertas publicadas", "Ofertas cerradas"
             };
             var configurator =
                 FilterNodeConfigurator.CreateConfigurator("Ofertas", filterOptions);

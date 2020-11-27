@@ -1,20 +1,12 @@
 ﻿using System.Text;
 using FeriaVirtual.Domain.Orders;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
 namespace FeriaVirtual.Data.Notifiers{
 
-    public class EmailPaymentNotifier{
+    public class EmailPaymentNotifier : EmailNotifier{
 
-        private PaymentContactMethod contactMethod;
-        private Payment payment;
-        private readonly MailerClientSender sender;
-
-
-        private EmailPaymentNotifier(){
-            sender = MailerClientSender.CreateSender();
-        }
+        private EmailPaymentNotifier(){ }
 
 
         public static EmailPaymentNotifier CreateNotifier(){
@@ -23,22 +15,27 @@ namespace FeriaVirtual.Data.Notifiers{
 
 
         public void Notify(Payment payment, PaymentContactMethod contactMethod){
-            this.payment = payment;
-            this.contactMethod = contactMethod;
-            GenerateBody();
-            SendAnEmail();
+            CreateBodyNewPayment(payment, contactMethod);
+            SendAnEmail(contactMethod.CustomerEmail, contactMethod.CustomerName);
         }
 
 
-        private void SendAnEmail(){
-            sender.Email = contactMethod.CustomerEmail;
-            sender.UserEmail = contactMethod.CustomerName;
-            sender.SendMail();
+        public void Notify(PaymentResult paymentResult){
+            CreateBodyNotifyPayment(paymentResult);
+            SendAnEmail(paymentResult.ProducerEmail, paymentResult.ProducerName);
         }
 
 
-        private void GenerateBody(){
-            sender.Subject= "Su pago fue realizado correctamente.";
+        private void SendAnEmail(string email, string username){
+            sender.Email = email;
+            sender.UserEmail = username;
+            SendTheEmail();
+            //DisposeNotifier();
+        }
+
+
+        private void CreateBodyNewPayment(Payment payment, PaymentContactMethod contactMethod){
+            sender.Subject = "Su pago fue realizado correctamente.";
             var body = new StringBuilder();
             body.Append($"Estimado(a) {contactMethod.CustomerName}:<br>");
             body.Append(
@@ -50,7 +47,29 @@ namespace FeriaVirtual.Data.Notifiers{
             body.Append($"Observación: {payment.Observation}<br>");
             body.Append($"Metodo de pago: {payment.PaymentMethod.MethodDescription}<br><br><br>");
             body.Append("Gracias por su preferencia.");
-            sender.MessageBody= body.ToString();
+            sender.MessageBody = body.ToString();
+        }
+
+
+        private void CreateBodyNotifyPayment(PaymentResult result){
+            sender.Subject = "Notificación de venta de productos.";
+            var body = new StringBuilder();
+            body.Append($"<p>Estimado(a) {result.ProducerName}:</p>");
+            body.Append(
+                "<p>Se ha realizado una venta, en la cual, hay productos de su pertenencia involucrados, el detalle lo puede encontrar en nuestro sitio web, el resumen es el siguiente:</p>");
+            body.Append("<table>");
+            body.Append(
+                $"<tr><td>Fecha de venta</td><td>{result.SalesDate.ToShortDateString()}</td></tr>");
+            body.Append($"<tr><td>Producto</td><td>{result.ProductName}</td></tr>");
+            body.Append($"<tr><td>Cantidad vendida</td><td>{result.Quantity}</td></tr>");
+            body.Append($"<tr><td>Precio unitario</td><td>${result.UnitPrice}</td></tr>");
+            body.Append($"<tr><td>Total a pagar</td><td>${result.ProductPrice}</td></tr>");
+            body.Append("</table>");
+            
+            body.Append(
+                $"<p>El valor de la venta (${result.ProductPrice}), será agregado a su cuenta, en el momento que nuestro cliente haga efectivo el pago del servicio, su estado de cuenta será actualizado, puede revisar sus ventas  en la página web, en el apartado historial de ventas, en caso de dudas o consultas, no olvide indicarlas por nuestros medios oficiales o puede también comunicarse con su ejecutivo.</p>");
+            body.Append("<p>Muchas gracias por su atención, hasta pronto.</p>");
+            sender.MessageBody = body.ToString();
         }
 
     }

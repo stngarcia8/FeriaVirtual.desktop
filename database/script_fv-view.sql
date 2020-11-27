@@ -450,6 +450,7 @@ SELECT pag.id_pago,
        ped.id_pedido,
        cli.id_cliente,
        cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
+       dat.email_comercial                               AS "email",
        rol.id_rol,
        rol.nombre_rol                                    AS "tipo usuario",
        con.id_condicion,
@@ -474,6 +475,7 @@ FROM fv_user.pago pag
          INNER JOIN fv_user.pedido ped ON pag.id_pedido = ped.id_pedido
          INNER JOIN fv_user.condicion_pago con ON ped.id_condicion = con.id_condicion
          INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
+         INNER JOIN fv_user.dato_comercial dat ON cli.id_cliente = dat.id_cliente
          INNER JOIN fv_user.rol_usuario rol ON cli.id_rol = rol.id_rol
          INNER JOIN fv_user.pie_pedido pie ON pag.id_pedido = pie.id_pedido
 ORDER BY pag.fecha_pago;
@@ -483,11 +485,31 @@ prompt Creando vista para busqueda de email de clientes.;
 CREATE OR REPLACE VIEW fv_user.vwBuscarMailCliente AS
 SELECT pag.id_pago,
        cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Cliente",
-       dat.email_comercial as "email"
+       dat.email_comercial                               as "email"
 FROM fv_user.pago pag
          INNER JOIN fv_user.pedido ped ON pag.id_pedido = ped.id_pedido
          INNER JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
          INNER JOIN fv_user.dato_comercial dat ON cli.id_cliente = dat.id_cliente;
+
+prompt Creando vista de involucrados en el pago.;
+CREATE OR REPLACE VIEW fv_user.vwInvolucradosPago AS
+SELECT pag.id_pago,
+       rpro.id_pedido,
+       to_char(pag.fecha_pago, 'dd-MM-yyyy')             AS "Fecha venta",
+       rpro.cantidad                                     AS "Cantidad",
+       pro.nombre_producto                               AS "Producto",
+       rpro.costo_unitario                               AS "Valor unitario",
+       (rpro.costo_unitario * rpro.cantidad)             AS "Valor productos",
+       cli.id_cliente,
+       cli.nombre_cliente || ' ' || cli.apellido_cliente AS "Productor",
+       dat.email_comercial                               AS "email"
+FROM fv_user.resultado_propuesto rpro
+         INNER JOIN fv_user.producto pro ON rpro.id_producto = pro.id_producto
+         INNER JOIN fv_user.pedido ped ON rpro.id_pedido = ped.id_pedido
+         INNER JOIN fv_user.cliente cli ON pro.id_cliente = cli.id_cliente
+         INNER JOIN fv_user.dato_comercial dat ON cli.id_cliente = dat.id_cliente
+         INNER JOIN fv_user.pago pag ON ped.id_pedido = pag.id_pedido;
+
 
 
 prompt Confirmando cambios.;

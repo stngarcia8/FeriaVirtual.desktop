@@ -1,21 +1,16 @@
 ﻿using System.Text;
 using FeriaVirtual.Domain.Enums;
 using FeriaVirtual.Domain.Users;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
 namespace FeriaVirtual.Data.Notifiers{
 
-    public class EmailUserNotifier{
+    public class EmailUserNotifier : EmailNotifier{
 
         private Client client;
-        private readonly MailerClientSender sender;
-        private MailTypeMessage typeMessage;
 
 
-        private EmailUserNotifier(){
-            sender = MailerClientSender.CreateSender();
-        }
+        private EmailUserNotifier(){ }
 
 
         public static EmailUserNotifier CreateNotifier(){
@@ -29,7 +24,8 @@ namespace FeriaVirtual.Data.Notifiers{
             GenerateBody();
             sender.Email = this.client.Credentials.Email;
             sender.UserEmail = this.client.ToString();
-            sender.SendMail();
+            SendTheEmail();
+            DisposeNotifier();
         }
 
 

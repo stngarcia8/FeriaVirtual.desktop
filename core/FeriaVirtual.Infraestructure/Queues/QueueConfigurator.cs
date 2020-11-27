@@ -9,7 +9,6 @@ namespace FeriaVirtual.Infraestructure.Queues{
         private readonly string _password = "fv_pwd";
         private readonly string _userName = "fv_user";
         private readonly IConnection queueConnection;
-
         public string QueueName{ get; }
 
 

@@ -9,8 +9,9 @@ using System.Text;
 
 namespace FeriaVirtual.Infraestructure.Mailer{
 
-    public class MailerClientConfigurator{
+    public class MailerClientConfigurator: IDisposable{
 
+        private bool disposed = false;
         private string emailFrom;
         private string userFrom;
         private IList<string> pathFiles;
@@ -42,6 +43,7 @@ namespace FeriaVirtual.Infraestructure.Mailer{
             ClientSmtp.Host = "smtp.gmail.com";
             ClientSmtp.Port = 587;
             ClientSmtp.EnableSsl = true;
+            ClientSmtp.Timeout = 20000;
             ClientSmtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             ClientSmtp.UseDefaultCredentials = false;
             ClientSmtp.Credentials = new NetworkCredential("maipogrande.fv@gmail.com", "avaras08");
@@ -106,6 +108,27 @@ namespace FeriaVirtual.Infraestructure.Mailer{
         }
 
 
+
+
+
+
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if(disposed) {
+                return;
+            }
+            disposed = true;
+        }
+
+        ~MailerClientConfigurator()
+        {
+            Dispose(false);
+        }
 
 
 

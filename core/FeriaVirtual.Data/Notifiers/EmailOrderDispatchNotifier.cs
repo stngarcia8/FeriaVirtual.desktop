@@ -1,43 +1,40 @@
 ﻿using System.Text;
 using FeriaVirtual.Domain.Orders;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
-namespace FeriaVirtual.Data.Notifiers{
+namespace FeriaVirtual.Data.Notifiers {
 
-    public class EmailOrderDispatchNotifier{
+    public class EmailOrderDispatchNotifier:EmailNotifier {
 
-        private readonly MailerClientSender sender;
         private OrderDispatch orderDispatch;
 
 
-        private EmailOrderDispatchNotifier(){
-            sender = MailerClientSender.CreateSender();
-        }
+        private EmailOrderDispatchNotifier() { }
 
 
-        public static EmailOrderDispatchNotifier CreateNotifier(){
+        public static EmailOrderDispatchNotifier CreateNotifier() {
             return new EmailOrderDispatchNotifier();
         }
 
 
-        public void Notify(OrderDispatch orderDispatch){
+        public void Notify(OrderDispatch orderDispatch) {
             this.orderDispatch = orderDispatch;
             GenerateBody();
             SendAnEmail();
         }
 
 
-        private void SendAnEmail(){
+        private void SendAnEmail() {
             sender.Email = orderDispatch.CarrierEmail;
             sender.UserEmail = orderDispatch.CarrierName;
-            sender.SendMail();
+            SendTheEmail();
+            DisposeNotifier();
         }
 
 
-        private void GenerateBody(){
+        private void GenerateBody() {
             sender.Subject = "Nueva orden de despacho asignada.";
-            var body = new StringBuilder();
+            StringBuilder body = new StringBuilder();
             body.Append($"<p>Estimado(a) Sr(a). <b>{orderDispatch.CarrierName}</b></p>");
             body.Append(
                 "<p>Según nuestros registros, usted se adjudicó el transporte de los productos que detallamos a continuación en la siguiente orden de despacho:</p>");
@@ -53,7 +50,7 @@ namespace FeriaVirtual.Data.Notifiers{
             body.Append("<th>Cantidad</th>");
             body.Append("</theader>");
             body.Append("<tbody>");
-            foreach (var p in orderDispatch.Products){
+            foreach(OrderDispatchDetail p in orderDispatch.Products) {
                 body.Append("<tr>");
                 body.Append($"<td>{p.Product}</td>");
                 body.Append($"<td>{p.Quantity}(KG)</td>");

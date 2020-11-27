@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FeriaVirtual.Business.Documents;
 using System.Data;
 using FeriaVirtual.Business.Validators;
 using FeriaVirtual.Data.Repository;
@@ -87,14 +88,16 @@ namespace FeriaVirtual.Business.Contracts {
 
         public void AcceptContract(string contractId, string clientId, string observation){
             var contract = repository.FindOneContractAceptedById(contractId);
-            foreach (var d in contract.Details) if (d.Customer.Id != clientId)
+            foreach (ContractDetail d in contract.Details){
+                if (d.Customer.Id != clientId)
                     contract.RemoveDetail(d);
                 else
                     d.ClientObservation = observation;
-            //ContractGenerator generator = ContractGenerator.CreateContract(contract, singleProfileName, profileName);
-            //generator.Generate();
-            //string filePath = generator.PdfFilePath;
-            //generator= null;
+            }
+            // ContractGenerator generator = ContractGenerator.CreateContract(contract, this.singleProfileName, d.Customer.Profile.ProfileName);
+            // generator.Generate();
+            // string filePath = generator.PdfFilePath;
+            // generator= null;
             repository.AcceptContract(contract);
         }
 

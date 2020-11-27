@@ -43,7 +43,7 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
             OrderDispatchDetailSave(orderDispatch);
-            SendNotificationMail(orderDispatch);
+             SendNotificationMail(orderDispatch);
             this.queueNotifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderDispatch.OrderId, 5) );
         }
 

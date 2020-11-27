@@ -85,6 +85,7 @@
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\InvalidOfferException.cs" />
     <Compile Include="Exceptions\InvalidOrderDetailException.cs" />
+    <Compile Include="Exceptions\InvalidOrderDispatchException.cs" />
     <Compile Include="Exceptions\InvalidOrderException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Exceptions\InvalidPaymentException.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Validators\IValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
     <Compile Include="Validators\OfferValidator.cs" />
+    <Compile Include="Validators\OrderDispatchValidator.cs" />
     <Compile Include="Validators\OrderValidator.cs" />
     <Compile Include="Validators\PaymentValidator.cs" />
     <Compile Include="Validators\ProductValidator.cs" />

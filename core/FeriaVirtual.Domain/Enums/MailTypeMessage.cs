@@ -8,8 +8,9 @@
         ContractAccepted,
         ContractRefused,
         NewOrderDispatch,
-        EditOrderDispatch
-
+        EditOrderDispatch,
+        NewPayment, 
+        NotifyPayment
     }
 
 }

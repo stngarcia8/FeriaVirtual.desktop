@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
+using FeriaVirtual.Business.Validators;
 
 
 namespace FeriaVirtual.Business.Orders {
@@ -21,6 +22,8 @@ namespace FeriaVirtual.Business.Orders {
 
 
         public void CreateOrderDispatch(OrderDispatch orderDispatch){
+            IValidator validator = OrderDispatchValidator.CreateValidator(orderDispatch, false);
+            validator.Validate();
             repository.NewOrderDispatch(orderDispatch);
         }
 

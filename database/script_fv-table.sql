@@ -171,6 +171,20 @@ CREATE TABLE fv_user.metodo_pago
     constraint metodo_pago_pk primary key (id_metpago)
 ) tablespace fv_env;
 
+prompt Creando tabla notificacion de pago.;
+CREATE TABLE fv_user.notificacion_pago
+(
+    id_notificacion VARCHAR2(40) NOT NULL,
+    id_pago       VARCHAR2(40) NOT NULL,
+    id_cliente      VARCHAR2(40) NOT NULL,
+    fecha_venta     DATE,
+    cantidad        NUMBER(9, 2) DEFAULT 0,
+    producto        VARCHAR2(50) NOT NULL,
+    precio_unitario NUMBER(9, 2) DEFAULT 0,
+    total_productos NUMBER(9, 2) DEFAULT 0,
+    CONSTRAINT notificacion_pago_pk PRIMARY KEY (id_notificacion)
+) TABLESPACE fv_env;
+
 
 prompt Creando tabla de ofertas de productos.;
 CREATE TABLE fv_user.oferta

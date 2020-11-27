@@ -69,6 +69,8 @@
     <Compile Include="Orders\PaymentContactMethod.cs" />
     <Compile Include="Orders\PaymentMethod.cs" />
     <Compile Include="Orders\PaymentCondition.cs" />
+    <Compile Include="Orders\PaymentResult.cs" />
+    <Compile Include="Orders\PaymentResultDto.cs" />
     <Compile Include="Orders\Safe.cs" />
     <Compile Include="Products\ProductCategory.cs" />
     <Compile Include="Products\ProductDto.cs" />

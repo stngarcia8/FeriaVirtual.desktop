@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentDetailsForm));
             this.FormPictureBox = new System.Windows.Forms.PictureBox();
             this.CustomerTitleLabel = new System.Windows.Forms.Label();
@@ -32,10 +31,10 @@
             this.CustomerNameTextBox = new System.Windows.Forms.TextBox();
             this.CustomerTypeLabel = new System.Windows.Forms.Label();
             this.CustomerTypeTextBox = new System.Windows.Forms.TextBox();
+            this.CustomerEmailLabel = new System.Windows.Forms.Label();
+            this.CustomerEmailTextBox = new System.Windows.Forms.TextBox();
             this.PaymentDateLabel = new System.Windows.Forms.Label();
             this.PaymentDateTextBox = new System.Windows.Forms.TextBox();
-            this.PaymentHourLabel = new System.Windows.Forms.Label();
-            this.PaymentHourTextBox = new System.Windows.Forms.TextBox();
             this.PaymentTitleLabel = new System.Windows.Forms.Label();
             this.PaymentConditionLabel = new System.Windows.Forms.Label();
             this.PaymentConditionTextBox = new System.Windows.Forms.TextBox();
@@ -44,12 +43,13 @@
             this.AmountLabel = new System.Windows.Forms.Label();
             this.AmountTextBox = new System.Windows.Forms.TextBox();
             this.ObservationLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ObservationTextBox = new System.Windows.Forms.TextBox();
             this.ProductTitleLabel = new System.Windows.Forms.Label();
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.NotifyButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.CloseShowButton = new System.Windows.Forms.Button();
+            this.RefreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductDataGridView)).BeginInit();
             this.SuspendLayout();
@@ -115,13 +115,33 @@
             this.CustomerTypeTextBox.Size = new System.Drawing.Size(225, 16);
             this.CustomerTypeTextBox.TabIndex = 5;
             // 
+            // CustomerEmailLabel
+            // 
+            this.CustomerEmailLabel.AutoSize = true;
+            this.CustomerEmailLabel.Location = new System.Drawing.Point(125, 75);
+            this.CustomerEmailLabel.Name = "CustomerEmailLabel";
+            this.CustomerEmailLabel.Size = new System.Drawing.Size(47, 17);
+            this.CustomerEmailLabel.TabIndex = 6;
+            this.CustomerEmailLabel.Text = "Email:";
+            // 
+            // CustomerEmailTextBox
+            // 
+            this.CustomerEmailTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.CustomerEmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CustomerEmailTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.CustomerEmailTextBox.Location = new System.Drawing.Point(225, 75);
+            this.CustomerEmailTextBox.Name = "CustomerEmailTextBox";
+            this.CustomerEmailTextBox.ReadOnly = true;
+            this.CustomerEmailTextBox.Size = new System.Drawing.Size(225, 16);
+            this.CustomerEmailTextBox.TabIndex = 7;
+            // 
             // PaymentDateLabel
             // 
             this.PaymentDateLabel.AutoSize = true;
-            this.PaymentDateLabel.Location = new System.Drawing.Point(125, 75);
+            this.PaymentDateLabel.Location = new System.Drawing.Point(125, 100);
             this.PaymentDateLabel.Name = "PaymentDateLabel";
             this.PaymentDateLabel.Size = new System.Drawing.Size(91, 17);
-            this.PaymentDateLabel.TabIndex = 6;
+            this.PaymentDateLabel.TabIndex = 8;
             this.PaymentDateLabel.Text = "Fecha pago:";
             // 
             // PaymentDateTextBox
@@ -129,31 +149,11 @@
             this.PaymentDateTextBox.BackColor = System.Drawing.Color.LightGray;
             this.PaymentDateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PaymentDateTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.PaymentDateTextBox.Location = new System.Drawing.Point(225, 75);
+            this.PaymentDateTextBox.Location = new System.Drawing.Point(225, 100);
             this.PaymentDateTextBox.Name = "PaymentDateTextBox";
             this.PaymentDateTextBox.ReadOnly = true;
             this.PaymentDateTextBox.Size = new System.Drawing.Size(225, 16);
-            this.PaymentDateTextBox.TabIndex = 7;
-            // 
-            // PaymentHourLabel
-            // 
-            this.PaymentHourLabel.AutoSize = true;
-            this.PaymentHourLabel.Location = new System.Drawing.Point(125, 100);
-            this.PaymentHourLabel.Name = "PaymentHourLabel";
-            this.PaymentHourLabel.Size = new System.Drawing.Size(83, 17);
-            this.PaymentHourLabel.TabIndex = 8;
-            this.PaymentHourLabel.Text = "Hora pago:";
-            // 
-            // PaymentHourTextBox
-            // 
-            this.PaymentHourTextBox.BackColor = System.Drawing.Color.LightGray;
-            this.PaymentHourTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.PaymentHourTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.PaymentHourTextBox.Location = new System.Drawing.Point(225, 100);
-            this.PaymentHourTextBox.Name = "PaymentHourTextBox";
-            this.PaymentHourTextBox.ReadOnly = true;
-            this.PaymentHourTextBox.Size = new System.Drawing.Size(225, 16);
-            this.PaymentHourTextBox.TabIndex = 9;
+            this.PaymentDateTextBox.TabIndex = 9;
             // 
             // PaymentTitleLabel
             // 
@@ -220,6 +220,7 @@
             this.AmountTextBox.BackColor = System.Drawing.Color.Yellow;
             this.AmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.AmountTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.AmountTextBox.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AmountTextBox.Location = new System.Drawing.Point(625, 75);
             this.AmountTextBox.Name = "AmountTextBox";
             this.AmountTextBox.ReadOnly = true;
@@ -235,18 +236,18 @@
             this.ObservationLabel.TabIndex = 17;
             this.ObservationLabel.Text = "Observación:";
             // 
-            // textBox1
+            // ObservationTextBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.LightGray;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Location = new System.Drawing.Point(625, 100);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(225, 50);
-            this.textBox1.TabIndex = 18;
+            this.ObservationTextBox.BackColor = System.Drawing.Color.LightGray;
+            this.ObservationTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ObservationTextBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.ObservationTextBox.Location = new System.Drawing.Point(625, 100);
+            this.ObservationTextBox.Multiline = true;
+            this.ObservationTextBox.Name = "ObservationTextBox";
+            this.ObservationTextBox.ReadOnly = true;
+            this.ObservationTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ObservationTextBox.Size = new System.Drawing.Size(225, 50);
+            this.ObservationTextBox.TabIndex = 18;
             // 
             // ProductTitleLabel
             // 
@@ -265,17 +266,9 @@
             this.ProductDataGridView.AllowUserToDeleteRows = false;
             this.ProductDataGridView.AllowUserToResizeColumns = false;
             this.ProductDataGridView.AllowUserToResizeRows = false;
-            this.ProductDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.ProductDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ProductDataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ProductDataGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductDataGridView.GridColor = System.Drawing.SystemColors.Window;
             this.ProductDataGridView.Location = new System.Drawing.Point(125, 175);
@@ -300,11 +293,11 @@
             this.NotifyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.NotifyButton.ImageKey = "button-emailNotify.jpg";
             this.NotifyButton.ImageList = this.FormImageList;
-            this.NotifyButton.Location = new System.Drawing.Point(125, 400);
+            this.NotifyButton.Location = new System.Drawing.Point(525, 400);
             this.NotifyButton.Name = "NotifyButton";
             this.NotifyButton.Size = new System.Drawing.Size(196, 27);
-            this.NotifyButton.TabIndex = 21;
-            this.NotifyButton.Text = "Notificar y distribuir pago";
+            this.NotifyButton.TabIndex = 22;
+            this.NotifyButton.Text = "&Notificar y distribuir pago";
             this.NotifyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.NotifyButton.UseVisualStyleBackColor = true;
             this.NotifyButton.Click += new System.EventHandler(this.NotifyButton_Click);
@@ -315,6 +308,7 @@
             this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.FormImageList.Images.SetKeyName(0, "button-emailNotify.jpg");
             this.FormImageList.Images.SetKeyName(1, "menu-exit.png");
+            this.FormImageList.Images.SetKeyName(2, "menu-refresh.png");
             // 
             // CloseShowButton
             // 
@@ -327,11 +321,27 @@
             this.CloseShowButton.Location = new System.Drawing.Point(750, 400);
             this.CloseShowButton.Name = "CloseShowButton";
             this.CloseShowButton.Size = new System.Drawing.Size(74, 27);
-            this.CloseShowButton.TabIndex = 22;
+            this.CloseShowButton.TabIndex = 23;
             this.CloseShowButton.Text = "Cerrar";
             this.CloseShowButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.CloseShowButton.UseVisualStyleBackColor = true;
             this.CloseShowButton.Click += new System.EventHandler(this.CloseShowButton_Click);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.AutoSize = true;
+            this.RefreshButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RefreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.RefreshButton.ImageKey = "menu-refresh.png";
+            this.RefreshButton.ImageList = this.FormImageList;
+            this.RefreshButton.Location = new System.Drawing.Point(125, 400);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(127, 27);
+            this.RefreshButton.TabIndex = 21;
+            this.RefreshButton.Text = "&Actualizar lista";
+            this.RefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // PaymentDetailsForm
             // 
@@ -340,11 +350,12 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.CancelButton = this.CloseShowButton;
             this.ClientSize = new System.Drawing.Size(914, 433);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.CloseShowButton);
             this.Controls.Add(this.NotifyButton);
             this.Controls.Add(this.ProductDataGridView);
             this.Controls.Add(this.ProductTitleLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ObservationTextBox);
             this.Controls.Add(this.ObservationLabel);
             this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.AmountLabel);
@@ -353,10 +364,10 @@
             this.Controls.Add(this.PaymentConditionTextBox);
             this.Controls.Add(this.PaymentConditionLabel);
             this.Controls.Add(this.PaymentTitleLabel);
-            this.Controls.Add(this.PaymentHourTextBox);
-            this.Controls.Add(this.PaymentHourLabel);
             this.Controls.Add(this.PaymentDateTextBox);
             this.Controls.Add(this.PaymentDateLabel);
+            this.Controls.Add(this.CustomerEmailTextBox);
+            this.Controls.Add(this.CustomerEmailLabel);
             this.Controls.Add(this.CustomerTypeTextBox);
             this.Controls.Add(this.CustomerTypeLabel);
             this.Controls.Add(this.CustomerNameTextBox);
@@ -387,10 +398,10 @@
         private System.Windows.Forms.TextBox CustomerNameTextBox;
         private System.Windows.Forms.Label CustomerTypeLabel;
         private System.Windows.Forms.TextBox CustomerTypeTextBox;
+        private System.Windows.Forms.Label CustomerEmailLabel;
+        private System.Windows.Forms.TextBox CustomerEmailTextBox;
         private System.Windows.Forms.Label PaymentDateLabel;
         private System.Windows.Forms.TextBox PaymentDateTextBox;
-        private System.Windows.Forms.Label PaymentHourLabel;
-        private System.Windows.Forms.TextBox PaymentHourTextBox;
         private System.Windows.Forms.Label PaymentTitleLabel;
         private System.Windows.Forms.Label PaymentConditionLabel;
         private System.Windows.Forms.TextBox PaymentConditionTextBox;
@@ -399,11 +410,12 @@
         private System.Windows.Forms.Label AmountLabel;
         private System.Windows.Forms.TextBox AmountTextBox;
         private System.Windows.Forms.Label ObservationLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ObservationTextBox;
         private System.Windows.Forms.Label ProductTitleLabel;
         private System.Windows.Forms.DataGridView ProductDataGridView;
         private System.Windows.Forms.Button NotifyButton;
         private System.Windows.Forms.ImageList FormImageList;
         private System.Windows.Forms.Button CloseShowButton;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }

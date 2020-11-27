@@ -881,5 +881,33 @@ END spRegistrarPago;
 
 
 
+prompt Procedimientos almacenados para notificacion de pagos.;
+CREATE OR REPLACE PROCEDURE
+    fv_user.spNotificarPago(pIdNotificacion VARCHAR2,
+                            pIdPago VARCHAR2,
+                            pIdCliente VARCHAR2,
+                            pFecha DATE,
+                            pCantidad NUMBER,
+                            pProducto VARCHAR2,
+                            pUnitario NUMBER,
+                            pTotal NUMBER)
+    IS
+BEGIN
+    INSERT INTO fv_user.notificacion_pago
+    (id_notificacion, id_pago, id_cliente,
+     fecha_venta, cantidad, producto,
+     precio_unitario, total_productos)
+    VALUES (pIdNotificacion, pIdPago, pIdCliente,
+            pFecha, pCantidad, pProducto,
+            pUnitario, pTotal);
+    update fv_user.pago
+        set pago_notificado =1
+    where id_pago = pIdPago;
+    COMMIT;
+END spNotificarPago;
+/
+
+
+
 prompt Confirmando cambios.;
 commit;

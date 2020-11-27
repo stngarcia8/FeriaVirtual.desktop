@@ -48,6 +48,8 @@
     <Compile Include="HelpersRepository\HelperRepository.cs" />
     <Compile Include="HelpersRepository\SafeRepository.cs" />
     <Compile Include="HelpersRepository\VehicleTypeRepository.cs" />
+    <Compile Include="Notifiers\EmailContractNotifier.cs" />
+    <Compile Include="Notifiers\EmailNotifier.cs" />
     <Compile Include="Notifiers\EmailOrderDispatchNotifier.cs" />
     <Compile Include="Notifiers\IQueueNotifier.cs" />
     <Compile Include="Notifiers\EmailPaymentNotifier.cs" />

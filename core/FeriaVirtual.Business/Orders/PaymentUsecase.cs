@@ -1,4 +1,5 @@
 ﻿using FeriaVirtual.Business.Validators;
+using System.Collections.Generic;
 using System.Data;
 using FeriaVirtual.Data.Repository;
 using FeriaVirtual.Domain.Orders;
@@ -53,6 +54,26 @@ namespace FeriaVirtual.Business.Orders {
             repository.GetPaymentByStatus(status, profileId);
             return repository.DataSource;
         }
+
+
+        public DataTable GetPaymentById(string paymentId){
+            repository.GetPaymentById(paymentId);
+            return repository.DataSource;
+        }
+
+        public DataTable GetProducerIntoPayment(string orderId){
+            repository.GetProducerIntoPayment(orderId);
+            return repository.DataSource;
+        }
+
+
+        public void NotifyProducer(IList<PaymentResult> paymentResults){
+            foreach (PaymentResult result in paymentResults){
+                repository.NewNotificationPayment(result);
+            }
+        }
+
+
 
 
     }

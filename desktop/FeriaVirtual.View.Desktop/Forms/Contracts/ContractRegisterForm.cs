@@ -137,7 +137,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Contracts{
         private void CleanControls(){
             StartDateTimePicker.Value = DateTime.Now.Date;
             EndDateTimePicker.Value = DateTime.Now.AddMonths(6);
-            CommissionNumericUpDown.Value = 0;
+            CommissionNumericUpDown.Value = 20;
             DescriptionContractTextBox.Text = string.Empty;
             ContractValidCheckBox.Checked = true;
             contract = Contract.CreateContract();
