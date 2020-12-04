@@ -3,15 +3,20 @@ cls
 
 @echo Iniciando servicios para feria virtual.
 
-@echo Iniciando oracle
+@echo Iniciando Oracle
 docker start oraclexe
 
-echo Iniciando postgresql
+echo Iniciando Postgresql
 docker start pgsql
 
-echo Iniciando servicio de mensajeria
+echo Iniciando RabbitMQ
 docker start rabbitmq
 
+echo Iniciando Grafana
+docker start grafana
+
+echo Iniciando SqlServer
+docker start sqlserver
 
 echo servicios iniciados
 pause

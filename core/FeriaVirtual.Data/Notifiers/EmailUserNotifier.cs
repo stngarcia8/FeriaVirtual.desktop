@@ -22,10 +22,9 @@ namespace FeriaVirtual.Data.Notifiers{
             this.client = client;
             this.typeMessage = typeMessage;
             GenerateBody();
-            sender.Email = this.client.Credentials.Email;
-            sender.UserEmail = this.client.ToString();
-            SendTheEmail();
-            DisposeNotifier();
+            email.EmailTo = this.client.Credentials.Email;
+            email.UserTo = this.client.ToString();
+            SendTheEmailToQueue();
         }
 
 
@@ -42,7 +41,7 @@ namespace FeriaVirtual.Data.Notifiers{
 
 
         private void CreateBodyNewClient(){
-            sender.Subject = "Solicitud de registro a Feria Virtual aceptada.";
+            email.Subject = "Solicitud de registro a Feria Virtual aceptada.";
             var body = new StringBuilder();
             body.Append($"<p>Estimado(a) Sr(a). <b>{client}</b></p>");
             body.Append(
@@ -54,12 +53,12 @@ namespace FeriaVirtual.Data.Notifiers{
             body.Append($"Contraseña: <b>{client.Credentials.Password}</b><br>");
             body.Append($"Rol aprobado: <b>{client.Profile.ProfileName}</b></p>");
             body.Append("<p>Gracias por su preferencia, saludos cordiales.</p><br><br> ");
-            sender.MessageBody = body.ToString();
+            email.Body = body.ToString();
         }
 
 
         private void CreateBodyEditClient(){
-            sender.Subject = "Cambios en información de cuenta de usuario en feria virtual realizados.";
+            email.Subject = "Cambios en información de cuenta de usuario en feria virtual realizados.";
             var body = new StringBuilder();
             body.Append($"<p>Estimado(a) Sr(a). <b>{client}</b></p>");
             body.Append(
@@ -73,7 +72,7 @@ namespace FeriaVirtual.Data.Notifiers{
             body.Append($"DNI: <b>{client.Dni}</b><br>");
             body.Append($"Rol aprobado: <b>{client.Profile.ProfileName}</b></p>");
             body.Append("<p>Gracias por su preferencia, saludos cordiales.</p><br><br> ");
-            sender.MessageBody = body.ToString();
+            email.Body = body.ToString();
         }
 
     }

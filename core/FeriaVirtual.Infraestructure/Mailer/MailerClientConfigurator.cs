@@ -1,34 +1,41 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mime;
 using System.Collections.Generic;
-using FeriaVirtual.Infraestructure.Exceptions;
+using System.Net;
 using System.Net.Mail;
-using System.Text;
+using System.Net.Mime;
+using FeriaVirtual.Infraestructure.Exceptions;
 
 
 namespace FeriaVirtual.Infraestructure.Mailer{
 
-    public class MailerClientConfigurator: IDisposable{
+    public class MailerClientConfigurator : IDisposable{
 
-        private bool disposed = false;
-        private string emailFrom;
-        private string userFrom;
-        private IList<string> pathFiles;
+        private readonly string emailFrom;
+        private readonly string userFrom;
+
+        private bool disposed;
+        private readonly IList<string> pathFiles;
 
         public SmtpClient ClientSmtp{ get; }
-        public MailMessage Message{get; set;}
+        public MailMessage Message{ get; set; }
 
-        public string EmailTo{get;set;}
-        public string UserTo{get;set;}
-        public string Subject{get;set;}
-        public string Body{get;set;}
+        public string EmailTo{ get; set; }
+        public string UserTo{ get; set; }
+        public string Subject{ get; set; }
+        public string Body{ get; set; }
+
+
+        public void Dispose(){
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
 
         private MailerClientConfigurator(){
-            this.emailFrom = "maipogrande.fv@gmail.com";
-            this.userFrom = "Lucas Claudio Avalos Asathor";
-            this.pathFiles = new List<string>();
-            this.Body = string.Empty;
+            emailFrom = "maipogrande.fv@gmail.com";
+            userFrom = "Lucas Claudio Avalos Asathor";
+            pathFiles = new List<string>();
+            Body = string.Empty;
             ClientSmtp = new SmtpClient();
             ConfigureSmtpClient();
         }
@@ -52,85 +59,66 @@ namespace FeriaVirtual.Infraestructure.Mailer{
 
         public MailMessage GetMessage(string body){
             try{
-                this.Body = body;
-                this.ParametersValidator();
-                this.ConfigureMessage();
+                Body = body;
+                ParametersValidator();
+                ConfigureMessage();
             }
             catch (Exception ex){
                 throw ex;
             }
-            return this.Message;
+            return Message;
         }
 
 
         private void ParametersValidator(){
-            if (string.IsNullOrEmpty(this.EmailTo)){
+            if (string.IsNullOrEmpty(EmailTo))
                 throw new InvalidEmailParameterException(
                     "No ha definido una dirección de correo electrónico de destino");
-            }
-            if (string.IsNullOrEmpty(this.UserTo)){
+            if (string.IsNullOrEmpty(UserTo))
                 throw new InvalidEmailParameterException(
                     "No ha definido un nombre de usuario destino para el mensaje");
-            }
-            if (string.IsNullOrEmpty(this.Subject)){
+            if (string.IsNullOrEmpty(Subject))
                 throw new InvalidEmailParameterException(
                     "No ha definido un asunto para el correo electrónico.");
-            }
         }
 
 
-
         private void ConfigureMessage(){
-            var addressTo = new MailAddress(this.EmailTo, this.UserTo);
-            var addressFrom = new MailAddress(this.emailFrom, this.userFrom);
+            var addressTo = new MailAddress(EmailTo, UserTo);
+            var addressFrom = new MailAddress(emailFrom, userFrom);
             Message = new MailMessage(addressFrom, addressTo){
                 IsBodyHtml = true,
                 Priority = MailPriority.High
             };
-            if (this.pathFiles.Count > 0){
-                foreach (string file in this.pathFiles){
+            if (pathFiles.Count > 0)
+                foreach (var file in pathFiles){
                     var atch = new Attachment(file, MediaTypeNames.Application.Octet);
                     Message.Attachments.Add(atch);
                 }
-            }
-            Message.Subject = this.Subject;
-            Message.Body = this.Body;
+            Message.Subject = Subject;
+            Message.Body = Body;
         }
 
 
         public void AddAttachFile(string filePath){
-            this.pathFiles.Add(filePath);
+            pathFiles.Add(filePath);
         }
 
 
         public void RemoveAttachFile(string filePath){
-            this.pathFiles.Remove(filePath);
+            pathFiles.Remove(filePath);
         }
 
 
-
-
-
-
-
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing) {
-            if(disposed) {
-                return;
-            }
+        protected virtual void Dispose(bool disposing){
+            if (disposed) return;
             disposed = true;
         }
 
-        ~MailerClientConfigurator()
-        {
+
+        ~MailerClientConfigurator(){
             Dispose(false);
         }
-
-
 
     }
 

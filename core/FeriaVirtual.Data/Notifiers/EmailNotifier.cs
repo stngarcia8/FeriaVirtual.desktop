@@ -1,39 +1,24 @@
-﻿using System;
-using System.Threading;
+﻿using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Enums;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
 namespace FeriaVirtual.Data.Notifiers{
 
     public abstract class EmailNotifier{
 
-        protected readonly MailerClientSender sender;
+        protected EmailDto email;
         protected MailTypeMessage typeMessage;
 
 
         protected EmailNotifier(){
-            sender = MailerClientSender.CreateSender();
+            email = EmailDto.CreateModel();
         }
 
 
-        protected void SendTheEmail(){
-            //new Thread(() => {
-                try{
-                    sender.SendMail();
-                }
-                catch (Exception ex){
-                    Console.Write("Aqui esta el error.");
-                    Console.Write(ex.Message);
-                }
-            //}).Start();
+        protected void SendTheEmailToQueue(){
+            var notifyToQueue = QueueNotifier.CreateNotifier();
+            notifyToQueue.Notify("Email", "Mailer", "SendAnEmail", email);
         }
-
-
-        protected void DisposeNotifier(){
-            sender.Dispose();
-        }
-
 
     }
 

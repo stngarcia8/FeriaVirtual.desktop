@@ -31,9 +31,9 @@ namespace FeriaVirtual.Data.Repository{
             query = DefineAuctionParameters(auction, query);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
-            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
-            AuctionDto xAuction = this.TransformAuctionToAuctionDto(GetAuctionById(orderId));
-            this.Notifier.Notify("Auction", "AuctionWasCreate", xAuction);
+            Notifier.Notify("maipogrande", "Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
+            var xAuction = TransformAuctionToAuctionDto(GetAuctionById(orderId));
+            Notifier.Notify("maipogrande", "Auction", "AuctionWasCreate", xAuction);
         }
 
 
@@ -59,7 +59,7 @@ namespace FeriaVirtual.Data.Repository{
             var query = DefineQueryAction("spEliminarSubasta ");
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
-            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 2));
+            Notifier.Notify("maipogrande", "Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 2));
         }
 
 
@@ -69,8 +69,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
-            Notifier.Notify("Auction", "AuctionWasClose", ChangeMessageStatus.Create(auctionId, 3));
-            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 4));
+            Notifier.Notify("maipogrande", "Auction", "AuctionWasClose", ChangeMessageStatus.Create(auctionId, 3));
+            Notifier.Notify("maipogrande", "Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 4));
         }
 
 
@@ -87,8 +87,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdSubasta", auctionId, DbType.String);
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.ExecuteQuery();
-            Notifier.Notify("Auction", "AuctionWasPublish", ChangeMessageStatus.Create(auctionId, 1));
-            Notifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
+            Notifier.Notify("maipogrande", "Auction", "AuctionWasPublish", ChangeMessageStatus.Create(auctionId, 1));
+            Notifier.Notify("maipogrande", "Order", "ChangeStatus", ChangeMessageStatus.Create(orderId, 3));
         }
 
 
@@ -206,6 +206,7 @@ namespace FeriaVirtual.Data.Repository{
             DataTable = querySelect.ExecuteQuery();
         }
 
+
         private AuctionDto TransformAuctionToAuctionDto(Auction a){
             var am = new AuctionDto{
                 AuctionId = a.AuctionId,
@@ -223,10 +224,6 @@ namespace FeriaVirtual.Data.Repository{
             };
             return am;
         }
-
-
-
-
 
     }
 

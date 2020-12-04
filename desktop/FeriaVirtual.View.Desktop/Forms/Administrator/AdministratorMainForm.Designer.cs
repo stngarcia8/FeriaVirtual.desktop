@@ -23,7 +23,23 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdministratorMainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.FormStatusStrip = new System.Windows.Forms.StatusStrip();
             this.FormStatusActiveUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormPanel = new System.Windows.Forms.Panel();
@@ -41,6 +57,21 @@
             this.ReportsExternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsInternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormTitleLabel = new System.Windows.Forms.Label();
+            this.NavFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.ResumeTitleLabel = new System.Windows.Forms.Label();
+            this.FormImageList = new System.Windows.Forms.ImageList(this.components);
+            this.UserTypeTitleLabel = new System.Windows.Forms.Label();
+            this.UserTypeDataGridView = new System.Windows.Forms.DataGridView();
+            this.UserTypeChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.OrderTypeTitleLabel = new System.Windows.Forms.Label();
+            this.ExternalCustomerOrderDataGridView = new System.Windows.Forms.DataGridView();
+            this.ExternalCustomerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ExternalCustomerTitleLabel = new System.Windows.Forms.Label();
+            this.InternalCustomerOrderDataGridView = new System.Windows.Forms.DataGridView();
+            this.InternalCustomerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.InternalCustomerTitleLabel = new System.Windows.Forms.Label();
+            this.DashboardFormPictureBox = new System.Windows.Forms.PictureBox();
+            this.ResumeRefreshButton = new System.Windows.Forms.Button();
             this.FormPictureBox = new System.Windows.Forms.PictureBox();
             this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceCarrierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +86,14 @@
             this.FormTableLayoutPanel.SuspendLayout();
             this.MenuTableLayoutPanel.SuspendLayout();
             this.FormMenuStrip.SuspendLayout();
+            this.NavFlowLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserTypeDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserTypeChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExternalCustomerOrderDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExternalCustomerChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerOrderDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DashboardFormPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,17 +103,17 @@
             this.FormStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FormStatusActiveUserToolStripStatusLabel,
             this.FormStatusCompanyToolStripStatusLabel1});
-            this.FormStatusStrip.Location = new System.Drawing.Point(0, 261);
+            this.FormStatusStrip.Location = new System.Drawing.Point(0, 539);
             this.FormStatusStrip.Name = "FormStatusStrip";
             this.FormStatusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.FormStatusStrip.Size = new System.Drawing.Size(652, 22);
+            this.FormStatusStrip.Size = new System.Drawing.Size(1184, 22);
             this.FormStatusStrip.TabIndex = 2;
             this.FormStatusStrip.Text = "statusStrip1";
             // 
             // FormStatusActiveUserToolStripStatusLabel
             // 
             this.FormStatusActiveUserToolStripStatusLabel.Name = "FormStatusActiveUserToolStripStatusLabel";
-            this.FormStatusActiveUserToolStripStatusLabel.Size = new System.Drawing.Size(517, 17);
+            this.FormStatusActiveUserToolStripStatusLabel.Size = new System.Drawing.Size(1049, 17);
             this.FormStatusActiveUserToolStripStatusLabel.Spring = true;
             this.FormStatusActiveUserToolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
@@ -87,7 +126,7 @@
             this.FormPanel.Location = new System.Drawing.Point(0, 0);
             this.FormPanel.Margin = new System.Windows.Forms.Padding(0);
             this.FormPanel.Name = "FormPanel";
-            this.FormPanel.Size = new System.Drawing.Size(652, 100);
+            this.FormPanel.Size = new System.Drawing.Size(1184, 100);
             this.FormPanel.TabIndex = 4;
             // 
             // FormTableLayoutPanel
@@ -103,7 +142,8 @@
             this.FormTableLayoutPanel.Name = "FormTableLayoutPanel";
             this.FormTableLayoutPanel.RowCount = 1;
             this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.FormTableLayoutPanel.Size = new System.Drawing.Size(652, 100);
+            this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.FormTableLayoutPanel.Size = new System.Drawing.Size(1184, 100);
             this.FormTableLayoutPanel.TabIndex = 0;
             // 
             // MenuTableLayoutPanel
@@ -113,13 +153,14 @@
             this.MenuTableLayoutPanel.Controls.Add(this.FormMenuStrip, 1, 1);
             this.MenuTableLayoutPanel.Controls.Add(this.FormTitleLabel, 0, 2);
             this.MenuTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MenuTableLayoutPanel.Location = new System.Drawing.Point(100, 3);
+            this.MenuTableLayoutPanel.Location = new System.Drawing.Point(180, 3);
             this.MenuTableLayoutPanel.Name = "MenuTableLayoutPanel";
             this.MenuTableLayoutPanel.RowCount = 3;
             this.MenuTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.MenuTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.MenuTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.MenuTableLayoutPanel.Size = new System.Drawing.Size(549, 94);
+            this.MenuTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MenuTableLayoutPanel.Size = new System.Drawing.Size(1001, 94);
             this.MenuTableLayoutPanel.TabIndex = 7;
             // 
             // FormMenuStrip
@@ -138,7 +179,7 @@
             this.FormMenuStrip.Name = "FormMenuStrip";
             this.FormMenuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.FormMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.FormMenuStrip.Size = new System.Drawing.Size(549, 28);
+            this.FormMenuStrip.Size = new System.Drawing.Size(1001, 28);
             this.FormMenuStrip.TabIndex = 9;
             // 
             // FileToolStripMenuItem
@@ -229,10 +270,314 @@
             this.FormTitleLabel.ForeColor = System.Drawing.Color.White;
             this.FormTitleLabel.Location = new System.Drawing.Point(3, 60);
             this.FormTitleLabel.Name = "FormTitleLabel";
-            this.FormTitleLabel.Size = new System.Drawing.Size(543, 34);
+            this.FormTitleLabel.Size = new System.Drawing.Size(995, 34);
             this.FormTitleLabel.TabIndex = 10;
             this.FormTitleLabel.Text = "Zona de usuario Administrador";
             this.FormTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NavFlowLayoutPanel
+            // 
+            this.NavFlowLayoutPanel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.NavFlowLayoutPanel.Controls.Add(this.ResumeTitleLabel);
+            this.NavFlowLayoutPanel.Controls.Add(this.ResumeRefreshButton);
+            this.NavFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.NavFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.NavFlowLayoutPanel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NavFlowLayoutPanel.Location = new System.Drawing.Point(0, 100);
+            this.NavFlowLayoutPanel.Name = "NavFlowLayoutPanel";
+            this.NavFlowLayoutPanel.Padding = new System.Windows.Forms.Padding(3);
+            this.NavFlowLayoutPanel.Size = new System.Drawing.Size(200, 439);
+            this.NavFlowLayoutPanel.TabIndex = 5;
+            this.NavFlowLayoutPanel.WrapContents = false;
+            // 
+            // ResumeTitleLabel
+            // 
+            this.ResumeTitleLabel.AutoSize = true;
+            this.ResumeTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ResumeTitleLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResumeTitleLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResumeTitleLabel.ForeColor = System.Drawing.SystemColors.Window;
+            this.ResumeTitleLabel.Location = new System.Drawing.Point(6, 3);
+            this.ResumeTitleLabel.Name = "ResumeTitleLabel";
+            this.ResumeTitleLabel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.ResumeTitleLabel.Size = new System.Drawing.Size(194, 60);
+            this.ResumeTitleLabel.TabIndex = 0;
+            this.ResumeTitleLabel.Text = "Resumen del sistema";
+            this.ResumeTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // FormImageList
+            // 
+            this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
+            this.FormImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.FormImageList.Images.SetKeyName(0, "login.png");
+            this.FormImageList.Images.SetKeyName(1, "menu-refresh.png");
+            // 
+            // UserTypeTitleLabel
+            // 
+            this.UserTypeTitleLabel.AutoSize = true;
+            this.UserTypeTitleLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserTypeTitleLabel.Location = new System.Drawing.Point(225, 125);
+            this.UserTypeTitleLabel.Name = "UserTypeTitleLabel";
+            this.UserTypeTitleLabel.Size = new System.Drawing.Size(193, 23);
+            this.UserTypeTitleLabel.TabIndex = 6;
+            this.UserTypeTitleLabel.Text = "Usuarios registrados";
+            // 
+            // UserTypeDataGridView
+            // 
+            this.UserTypeDataGridView.AllowUserToAddRows = false;
+            this.UserTypeDataGridView.AllowUserToDeleteRows = false;
+            this.UserTypeDataGridView.AllowUserToResizeColumns = false;
+            this.UserTypeDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.UserTypeDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.UserTypeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.UserTypeDataGridView.BackgroundColor = System.Drawing.Color.LightGray;
+            this.UserTypeDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UserTypeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UserTypeDataGridView.ColumnHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.UserTypeDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.UserTypeDataGridView.GridColor = System.Drawing.SystemColors.Window;
+            this.UserTypeDataGridView.Location = new System.Drawing.Point(225, 175);
+            this.UserTypeDataGridView.MultiSelect = false;
+            this.UserTypeDataGridView.Name = "UserTypeDataGridView";
+            this.UserTypeDataGridView.ReadOnly = true;
+            this.UserTypeDataGridView.RowHeadersVisible = false;
+            this.UserTypeDataGridView.RowTemplate.Height = 23;
+            this.UserTypeDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.UserTypeDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UserTypeDataGridView.ShowCellErrors = false;
+            this.UserTypeDataGridView.ShowCellToolTips = false;
+            this.UserTypeDataGridView.ShowEditingIcon = false;
+            this.UserTypeDataGridView.ShowRowErrors = false;
+            this.UserTypeDataGridView.Size = new System.Drawing.Size(125, 100);
+            this.UserTypeDataGridView.StandardTab = true;
+            this.UserTypeDataGridView.TabIndex = 7;
+            // 
+            // UserTypeChart
+            // 
+            this.UserTypeChart.BackColor = System.Drawing.Color.LightGray;
+            chartArea1.BackColor = System.Drawing.Color.LightGray;
+            chartArea1.Name = "ChartArea1";
+            this.UserTypeChart.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.LightGray;
+            legend1.Name = "Legend1";
+            this.UserTypeChart.Legends.Add(legend1);
+            this.UserTypeChart.Location = new System.Drawing.Point(350, 175);
+            this.UserTypeChart.Name = "UserTypeChart";
+            series1.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series1.BorderWidth = 0;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Font = new System.Drawing.Font("SimSun", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.UserTypeChart.Series.Add(series1);
+            this.UserTypeChart.Size = new System.Drawing.Size(250, 100);
+            this.UserTypeChart.TabIndex = 8;
+            this.UserTypeChart.Text = "chart1";
+            // 
+            // OrderTypeTitleLabel
+            // 
+            this.OrderTypeTitleLabel.AutoSize = true;
+            this.OrderTypeTitleLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OrderTypeTitleLabel.Location = new System.Drawing.Point(225, 300);
+            this.OrderTypeTitleLabel.Name = "OrderTypeTitleLabel";
+            this.OrderTypeTitleLabel.Size = new System.Drawing.Size(312, 23);
+            this.OrderTypeTitleLabel.TabIndex = 9;
+            this.OrderTypeTitleLabel.Text = "Ordenes de compra procesadas";
+            // 
+            // ExternalCustomerOrderDataGridView
+            // 
+            this.ExternalCustomerOrderDataGridView.AllowUserToAddRows = false;
+            this.ExternalCustomerOrderDataGridView.AllowUserToDeleteRows = false;
+            this.ExternalCustomerOrderDataGridView.AllowUserToResizeColumns = false;
+            this.ExternalCustomerOrderDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.ExternalCustomerOrderDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.ExternalCustomerOrderDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.ExternalCustomerOrderDataGridView.BackgroundColor = System.Drawing.Color.LightGray;
+            this.ExternalCustomerOrderDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ExternalCustomerOrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ExternalCustomerOrderDataGridView.ColumnHeadersVisible = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ExternalCustomerOrderDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ExternalCustomerOrderDataGridView.GridColor = System.Drawing.SystemColors.Window;
+            this.ExternalCustomerOrderDataGridView.Location = new System.Drawing.Point(225, 375);
+            this.ExternalCustomerOrderDataGridView.MultiSelect = false;
+            this.ExternalCustomerOrderDataGridView.Name = "ExternalCustomerOrderDataGridView";
+            this.ExternalCustomerOrderDataGridView.ReadOnly = true;
+            this.ExternalCustomerOrderDataGridView.RowHeadersVisible = false;
+            this.ExternalCustomerOrderDataGridView.RowTemplate.Height = 23;
+            this.ExternalCustomerOrderDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.ExternalCustomerOrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ExternalCustomerOrderDataGridView.ShowCellErrors = false;
+            this.ExternalCustomerOrderDataGridView.ShowCellToolTips = false;
+            this.ExternalCustomerOrderDataGridView.ShowEditingIcon = false;
+            this.ExternalCustomerOrderDataGridView.ShowRowErrors = false;
+            this.ExternalCustomerOrderDataGridView.Size = new System.Drawing.Size(200, 200);
+            this.ExternalCustomerOrderDataGridView.StandardTab = true;
+            this.ExternalCustomerOrderDataGridView.TabIndex = 10;
+            // 
+            // ExternalCustomerChart
+            // 
+            this.ExternalCustomerChart.BackColor = System.Drawing.Color.LightGray;
+            this.ExternalCustomerChart.BorderlineColor = System.Drawing.Color.Black;
+            chartArea2.BackColor = System.Drawing.Color.LightGray;
+            chartArea2.Name = "ChartArea1";
+            this.ExternalCustomerChart.ChartAreas.Add(chartArea2);
+            legend2.BackColor = System.Drawing.Color.LightGray;
+            legend2.Name = "Legend1";
+            this.ExternalCustomerChart.Legends.Add(legend2);
+            this.ExternalCustomerChart.Location = new System.Drawing.Point(450, 375);
+            this.ExternalCustomerChart.Name = "ExternalCustomerChart";
+            this.ExternalCustomerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series2.BorderWidth = 0;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Font = new System.Drawing.Font("SimSun", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.ExternalCustomerChart.Series.Add(series2);
+            this.ExternalCustomerChart.Size = new System.Drawing.Size(250, 175);
+            this.ExternalCustomerChart.TabIndex = 11;
+            this.ExternalCustomerChart.Text = "chart1";
+            // 
+            // ExternalCustomerTitleLabel
+            // 
+            this.ExternalCustomerTitleLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExternalCustomerTitleLabel.Location = new System.Drawing.Point(225, 350);
+            this.ExternalCustomerTitleLabel.Name = "ExternalCustomerTitleLabel";
+            this.ExternalCustomerTitleLabel.Size = new System.Drawing.Size(400, 23);
+            this.ExternalCustomerTitleLabel.TabIndex = 12;
+            this.ExternalCustomerTitleLabel.Text = "Clientes externos";
+            this.ExternalCustomerTitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // InternalCustomerOrderDataGridView
+            // 
+            this.InternalCustomerOrderDataGridView.AllowUserToAddRows = false;
+            this.InternalCustomerOrderDataGridView.AllowUserToDeleteRows = false;
+            this.InternalCustomerOrderDataGridView.AllowUserToResizeColumns = false;
+            this.InternalCustomerOrderDataGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.InternalCustomerOrderDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.InternalCustomerOrderDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.InternalCustomerOrderDataGridView.BackgroundColor = System.Drawing.Color.LightGray;
+            this.InternalCustomerOrderDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.InternalCustomerOrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InternalCustomerOrderDataGridView.ColumnHeadersVisible = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.InternalCustomerOrderDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            this.InternalCustomerOrderDataGridView.GridColor = System.Drawing.SystemColors.Window;
+            this.InternalCustomerOrderDataGridView.Location = new System.Drawing.Point(775, 375);
+            this.InternalCustomerOrderDataGridView.MultiSelect = false;
+            this.InternalCustomerOrderDataGridView.Name = "InternalCustomerOrderDataGridView";
+            this.InternalCustomerOrderDataGridView.ReadOnly = true;
+            this.InternalCustomerOrderDataGridView.RowHeadersVisible = false;
+            this.InternalCustomerOrderDataGridView.RowTemplate.Height = 23;
+            this.InternalCustomerOrderDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.InternalCustomerOrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.InternalCustomerOrderDataGridView.ShowCellErrors = false;
+            this.InternalCustomerOrderDataGridView.ShowCellToolTips = false;
+            this.InternalCustomerOrderDataGridView.ShowEditingIcon = false;
+            this.InternalCustomerOrderDataGridView.ShowRowErrors = false;
+            this.InternalCustomerOrderDataGridView.Size = new System.Drawing.Size(225, 200);
+            this.InternalCustomerOrderDataGridView.StandardTab = true;
+            this.InternalCustomerOrderDataGridView.TabIndex = 13;
+            // 
+            // InternalCustomerChart
+            // 
+            this.InternalCustomerChart.BackColor = System.Drawing.Color.LightGray;
+            chartArea3.BackColor = System.Drawing.Color.LightGray;
+            chartArea3.Name = "ChartArea1";
+            this.InternalCustomerChart.ChartAreas.Add(chartArea3);
+            legend3.BackColor = System.Drawing.Color.LightGray;
+            legend3.Name = "Legend1";
+            this.InternalCustomerChart.Legends.Add(legend3);
+            this.InternalCustomerChart.Location = new System.Drawing.Point(1025, 375);
+            this.InternalCustomerChart.Name = "InternalCustomerChart";
+            this.InternalCustomerChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            series3.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
+            series3.BorderWidth = 0;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Font = new System.Drawing.Font("SimSun", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            series3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            this.InternalCustomerChart.Series.Add(series3);
+            this.InternalCustomerChart.Size = new System.Drawing.Size(250, 175);
+            this.InternalCustomerChart.TabIndex = 14;
+            this.InternalCustomerChart.Text = "chart1";
+            // 
+            // InternalCustomerTitleLabel
+            // 
+            this.InternalCustomerTitleLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InternalCustomerTitleLabel.Location = new System.Drawing.Point(775, 350);
+            this.InternalCustomerTitleLabel.Name = "InternalCustomerTitleLabel";
+            this.InternalCustomerTitleLabel.Size = new System.Drawing.Size(400, 23);
+            this.InternalCustomerTitleLabel.TabIndex = 15;
+            this.InternalCustomerTitleLabel.Text = "Clientes internos";
+            this.InternalCustomerTitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // DashboardFormPictureBox
+            // 
+            this.DashboardFormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.dashboard;
+            this.DashboardFormPictureBox.Location = new System.Drawing.Point(825, 125);
+            this.DashboardFormPictureBox.Name = "DashboardFormPictureBox";
+            this.DashboardFormPictureBox.Size = new System.Drawing.Size(300, 175);
+            this.DashboardFormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.DashboardFormPictureBox.TabIndex = 16;
+            this.DashboardFormPictureBox.TabStop = false;
+            // 
+            // ResumeRefreshButton
+            // 
+            this.ResumeRefreshButton.BackColor = System.Drawing.Color.DarkGray;
+            this.NavFlowLayoutPanel.SetFlowBreak(this.ResumeRefreshButton, true);
+            this.ResumeRefreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ResumeRefreshButton.ImageKey = "menu-refresh.png";
+            this.ResumeRefreshButton.ImageList = this.FormImageList;
+            this.ResumeRefreshButton.Location = new System.Drawing.Point(6, 66);
+            this.ResumeRefreshButton.Name = "ResumeRefreshButton";
+            this.ResumeRefreshButton.Size = new System.Drawing.Size(194, 59);
+            this.ResumeRefreshButton.TabIndex = 1;
+            this.ResumeRefreshButton.Text = "Actualizar datos del resumen";
+            this.ResumeRefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ResumeRefreshButton.UseVisualStyleBackColor = false;
+            this.ResumeRefreshButton.Click += new System.EventHandler(this.ResumeRefreshButton_Click);
             // 
             // FormPictureBox
             // 
@@ -328,7 +673,19 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.LightGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(652, 283);
+            this.ClientSize = new System.Drawing.Size(1184, 561);
+            this.Controls.Add(this.DashboardFormPictureBox);
+            this.Controls.Add(this.InternalCustomerTitleLabel);
+            this.Controls.Add(this.InternalCustomerChart);
+            this.Controls.Add(this.InternalCustomerOrderDataGridView);
+            this.Controls.Add(this.ExternalCustomerTitleLabel);
+            this.Controls.Add(this.ExternalCustomerChart);
+            this.Controls.Add(this.ExternalCustomerOrderDataGridView);
+            this.Controls.Add(this.OrderTypeTitleLabel);
+            this.Controls.Add(this.UserTypeChart);
+            this.Controls.Add(this.UserTypeDataGridView);
+            this.Controls.Add(this.UserTypeTitleLabel);
+            this.Controls.Add(this.NavFlowLayoutPanel);
             this.Controls.Add(this.FormPanel);
             this.Controls.Add(this.FormStatusStrip);
             this.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -337,6 +694,7 @@
             this.Name = "AdministratorMainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Feria Virtual - Administrador.";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdministratorMainForm_FormClosing);
             this.Load += new System.EventHandler(this.AdministratorMainForm_Load);
             this.FormStatusStrip.ResumeLayout(false);
@@ -347,6 +705,15 @@
             this.MenuTableLayoutPanel.PerformLayout();
             this.FormMenuStrip.ResumeLayout(false);
             this.FormMenuStrip.PerformLayout();
+            this.NavFlowLayoutPanel.ResumeLayout(false);
+            this.NavFlowLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserTypeDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserTypeChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExternalCustomerOrderDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExternalCustomerChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerOrderDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DashboardFormPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -380,5 +747,20 @@
         private System.Windows.Forms.ToolStripMenuItem ReportsInternalSalesToolStripMenuItem;
         private System.Windows.Forms.Label FormTitleLabel;
         private System.Windows.Forms.ToolStripMenuItem BusinessOffersToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel NavFlowLayoutPanel;
+        private System.Windows.Forms.Label ResumeTitleLabel;
+        private System.Windows.Forms.ImageList FormImageList;
+        private System.Windows.Forms.Label UserTypeTitleLabel;
+        private System.Windows.Forms.DataGridView UserTypeDataGridView;
+        private System.Windows.Forms.DataVisualization.Charting.Chart UserTypeChart;
+        private System.Windows.Forms.Label OrderTypeTitleLabel;
+        private System.Windows.Forms.DataGridView ExternalCustomerOrderDataGridView;
+        private System.Windows.Forms.DataVisualization.Charting.Chart ExternalCustomerChart;
+        private System.Windows.Forms.Label ExternalCustomerTitleLabel;
+        private System.Windows.Forms.DataGridView InternalCustomerOrderDataGridView;
+        private System.Windows.Forms.DataVisualization.Charting.Chart InternalCustomerChart;
+        private System.Windows.Forms.Label InternalCustomerTitleLabel;
+        private System.Windows.Forms.Button ResumeRefreshButton;
+        private System.Windows.Forms.PictureBox DashboardFormPictureBox;
     }
 }

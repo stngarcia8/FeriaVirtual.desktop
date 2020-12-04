@@ -70,6 +70,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
 
         private void SaveButton_Click(object sender, EventArgs e){
             if (!SaveClientData()) return;
+
             IsSaved = true;
             Close();
         }
@@ -88,6 +89,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
             var result = MessageBox.Show(message.ToString(), "Atención", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
+
             var oldStatus = client.Credentials.IsActive;
             try{
                 var usecase = ClientUseCase.CreateUseCase(Profile.ProfileId, Profile.SingleProfileName);
@@ -128,7 +130,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
         private bool SaveClientData(){
             bool result;
             PutUserDataIntoObject();
-            //try{
+            try{
                 string message;
                 var usecase = ClientUseCase.CreateUseCase(Profile.ProfileId, Profile.SingleProfileName);
                 if (IsNewRecord){
@@ -143,12 +145,11 @@ namespace FeriaVirtual.View.Desktop.Forms.Client{
                 }
 
                 result = true;
-            //}
-            //catch (Exception ex){
-                //MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //result = false;
-            //}
-
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                result = false;
+            }
             return result;
         }
 

@@ -51,6 +51,7 @@
     <Compile Include="Notifiers\EmailContractNotifier.cs" />
     <Compile Include="Notifiers\EmailNotifier.cs" />
     <Compile Include="Notifiers\EmailOrderDispatchNotifier.cs" />
+    <Compile Include="Notifiers\EmailPendingNotifier.cs" />
     <Compile Include="Notifiers\IQueueNotifier.cs" />
     <Compile Include="Notifiers\EmailPaymentNotifier.cs" />
     <Compile Include="Notifiers\QueueNotifier.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Stats\StatRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FeriaVirtual.Domain\FeriaVirtual.Domain.csproj">

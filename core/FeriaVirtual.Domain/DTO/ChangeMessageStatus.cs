@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FeriaVirtual.Domain.Dto{
 
-namespace FeriaVirtual.Domain.Dto {
-    public class ChangeMessageStatus {
+    public class ChangeMessageStatus{
 
-        public string Id{get;set;}
-        public int Status{get;set;}
+        public string Id{ get; set; }
+        public int Status{ get; set; }
 
 
         private ChangeMessageStatus(string id, int status){
-            this.Id= id;
-            this.Status= status;
+            Id = id;
+            Status = status;
         }
 
 
@@ -21,6 +16,6 @@ namespace FeriaVirtual.Domain.Dto {
             return new ChangeMessageStatus(id, status);
         }
 
-
     }
+
 }

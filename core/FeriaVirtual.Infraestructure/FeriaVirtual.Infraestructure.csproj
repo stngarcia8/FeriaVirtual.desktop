@@ -89,11 +89,14 @@
     <Compile Include="Database\QuerySelect.cs" />
     <Compile Include="Exceptions\ConnectionFailedException.cs" />
     <Compile Include="Exceptions\InvalidEmailParameterException.cs" />
+    <Compile Include="Mailer\IMailerSender.cs" />
     <Compile Include="Mailer\MailerClientSender.cs" />
     <Compile Include="Mailer\MailerClientConfigurator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queues\IConsumerEvent.cs" />
     <Compile Include="Queues\IPublishEvent.cs" />
     <Compile Include="Queues\QueueConfigurator.cs" />
+    <Compile Include="Queues\QueueConsumer.cs" />
     <Compile Include="Queues\QueuePublisher.cs" />
   </ItemGroup>
   <ItemGroup>

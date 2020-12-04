@@ -2,9 +2,9 @@
 // * Author: Daniel García Asathor
 // *******************************************************/
 
-namespace FeriaVirtual.Infraestructure.Queues{
+namespace FeriaVirtual.Infraestructure.Queues {
 
-    public interface IPublishEvent{
+    public interface IPublishEvent {
 
         void PublishEvent();
 

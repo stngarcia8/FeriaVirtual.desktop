@@ -80,6 +80,7 @@ namespace FeriaVirtual.Business.Orders{
 
         public void AceptProposeProducts(string orderId){
             repository.AceptProposeProducts(orderId);
+            repository.UpdateStock(orderId);
         }
 
     }

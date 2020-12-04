@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using FeriaVirtual.Data.Notifiers;
 using FeriaVirtual.Domain.Orders;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Infraestructure.Database;
 
 
@@ -212,8 +213,32 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
-            notifier.Notify("Order", "ProductsProposed", GetResultsFromPropose(orderId));
+            notifier.Notify("maipogrande", "Order", "ProductsProposed", GetResultsFromPropose(orderId));
         }
+
+
+        public void UpdateStock(string orderId){
+            Sql.Clear();
+            Sql.Append("select * from fv_user.vwDescontarStock where id_pedido=:pIdPedido ");
+            var querySelect = DefineQuerySelect(Sql.ToString());
+            querySelect.AddParameter("pIdPedido", orderId, DbType.String);
+            SendStockToWeb(querySelect.ExecuteQuery());
+        }
+
+
+        private void SendStockToWeb(DataTable data){
+            if (data.Rows.Count.Equals(0)) return;
+            foreach (DataRow row in data.Rows){
+                StockDto dto = new StockDto();
+                dto.ProductId = row["id_producto"].ToString();
+                dto.Stock = int.Parse(row["diferencia"].ToString());
+                notifier.Notify("maipogrande", "Product", "UpdateStock", dto);
+            }
+        }
+
+
+
+
 
     }
 

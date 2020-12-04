@@ -12,8 +12,8 @@ namespace FeriaVirtual.Data.Repository{
     public class ContractRepository : Repository{
 
         private readonly int profileId;
+        private readonly EmailContractNotifier emailNotifier;
         private readonly IQueueNotifier queueNotifier;
-        private EmailContractNotifier emailNotifier;
 
 
         private ContractRepository(int profileId){
@@ -100,7 +100,7 @@ namespace FeriaVirtual.Data.Repository{
                 queryDetail.AddParameter("pAdicional", detail.AdditionalValue, DbType.Decimal);
                 queryDetail.AddParameter("pMulta", detail.FineValue, DbType.Decimal);
                 queryDetail.ExecuteQuery();
-                queueNotifier.Notify("Contract", "ContractWasCreate",
+                queueNotifier.Notify("maipogrande", "Contract", "ContractWasCreate",
                     FindContractToPublishById(contractId, detail.Customer.Id));
             }
         }

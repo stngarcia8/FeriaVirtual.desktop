@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Oracle Connection Manager"
+  DTS:DTSID="{779FD735-0FE4-45C1-9F9D-F786CBBF2E69}"
+  DTS:Description="conectar a feria virtual oracle"
+  DTS:CreationName="ORACLE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager>
+      <OraConnectionString>Data Source=localhost:1521/xe;User ID=fv_user;WINAUTH=0;</OraConnectionString>
+      <OraPassword
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWhmISRivn0avYb7HtAV0yAAAAAACAAAAAAAQZgAAAAEAACAAAABMkQdtekkalWGQlcag6u2AlfZ3bBOYxabdc7+8ZN2NDgAAAAAOgAAAAAIAACAAAADJGnc3cvaMX/x6hzVXQ1m9bjP7iJeOMwfB9APcmORqazAAAACy4m5aWZ4NdOl+iC9tWRbJC9Fia9Gg4RDiBx3zKXocvkR541rzW1fRfsw5H5Iw7mhAAAAAsxSGh6ZvbUOZYBOmu2LMoSpmDcSjlCnq21J+Q1WjWwJI72pfMU/Pc2qHA5QbuzHo17iTsPng29sbJIIE9h0enQ==</OraPassword>
+      <OraRetain>False</OraRetain>
+      <OraInitialCatalog></OraInitialCatalog>
+      <OraServerName>localhost:1521/xe</OraServerName>
+      <OraUserName>fv_user</OraUserName>
+      <OraOracleHome></OraOracleHome>
+      <OraOracleHome64></OraOracleHome64>
+      <OraWinAuthentication>False</OraWinAuthentication>
+      <OraEnableDetailedTracing>False</OraEnableDetailedTracing>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

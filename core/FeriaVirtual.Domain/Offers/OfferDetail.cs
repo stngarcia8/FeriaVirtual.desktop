@@ -1,19 +1,19 @@
 ﻿using System;
 
 
-namespace FeriaVirtual.Domain.Offers{
+namespace FeriaVirtual.Domain.Offers {
 
-    public class OfferDetail{
+    public class OfferDetail {
 
-        public string OfferDetailId{ get; set; }
-        public string ProductId{ get; set; }
-        public string ProductName{ get; set; }
-        public float ActualValue{ get; set; }
-        public string Percent{ get; set; }
-        public float OfferValue{ get; set; }
+        public string OfferDetailId { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public float ActualValue { get; set; }
+        public string Percent { get; set; }
+        public float OfferValue { get; set; }
 
 
-        private OfferDetail(){
+        private OfferDetail() {
             OfferDetailId = Guid.NewGuid().ToString();
             ProductId = string.Empty;
             ProductName = string.Empty;
@@ -23,7 +23,7 @@ namespace FeriaVirtual.Domain.Offers{
         }
 
 
-        public static OfferDetail CreateDetail(){
+        public static OfferDetail CreateDetail() {
             return new OfferDetail();
         }
 

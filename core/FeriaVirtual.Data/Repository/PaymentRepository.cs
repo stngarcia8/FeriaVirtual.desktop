@@ -1,26 +1,21 @@
-﻿using System;
-using FeriaVirtual.Data.Notifiers;
+﻿using System.Collections.Generic;
 using System.Data;
-using FeriaVirtual.Domain.Enums;
+using FeriaVirtual.Data.Notifiers;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Orders;
-using FeriaVirtual.Infraestructure.Database;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace FeriaVirtual.Data.Repository {
 
-    
-    public class PaymentRepository: Repository {
+namespace FeriaVirtual.Data.Repository{
+
+    public class PaymentRepository : Repository{
 
         private readonly EmailPaymentNotifier emailNotifier;
-      private readonly IQueueNotifier queueNotifier;
+        private readonly IQueueNotifier queueNotifier;
+
 
         private PaymentRepository(){
-            this.emailNotifier = EmailPaymentNotifier.CreateNotifier();
+            emailNotifier = EmailPaymentNotifier.CreateNotifier();
             queueNotifier = QueueNotifier.CreateNotifier();
-
         }
 
 
@@ -37,12 +32,8 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter("pMonto", payment.Amount, DbType.Double);
             query.AddParameter("pObsPago", payment.Observation, DbType.String);
             query.ExecuteQuery();
-            // this.emailNotifier.Notify(payment,GetCustomerContactsMethod(payment.PaymentId));
+            emailNotifier.Notify(payment, GetCustomerContactsMethod(payment.PaymentId));
         }
-
-
-
-
 
 
         public void GetPaymentByStatus(int statusId, int rolId){
@@ -54,6 +45,7 @@ namespace FeriaVirtual.Data.Repository {
             DataTable = querySelect.ExecuteQuery();
         }
 
+
         public void GetPaymentById(string paymentId){
             Sql.Clear();
             Sql.Append("select * from fv_user.vwObtenerPagos where id_pago=:pIdPago ");
@@ -61,6 +53,7 @@ namespace FeriaVirtual.Data.Repository {
             querySelect.AddParameter("pIdPago", paymentId, DbType.String);
             DataTable = querySelect.ExecuteQuery();
         }
+
 
         public void GetProducerIntoPayment(string orderId){
             Sql.Clear();
@@ -71,27 +64,25 @@ namespace FeriaVirtual.Data.Repository {
         }
 
 
-
-
-
-
         public PaymentContactMethod GetCustomerContactsMethod(string paymentId){
             Sql.Clear();
             Sql.Append("select * from fv_user.vwBuscarMailCliente where id_pago=:pIdPago  ");
             var querySelect = DefineQuerySelect(Sql.ToString());
             querySelect.AddParameter("pIdPago", paymentId, DbType.String);
-            return ExtractContactMethodFromDataTable( querySelect.ExecuteQuery());
+            return ExtractContactMethodFromDataTable(querySelect.ExecuteQuery());
         }
 
 
         private PaymentContactMethod ExtractContactMethodFromDataTable(DataTable data){
-            PaymentContactMethod pcm = PaymentContactMethod.Create();
-            if(data.Rows.Count.Equals(0)) return pcm;
-            DataRow row = data.Rows[0];
+            var pcm = PaymentContactMethod.Create();
+            if (data.Rows.Count.Equals(0)) return pcm;
+
+            var row = data.Rows[0];
             pcm.CustomerName = row["Cliente"].ToString();
             pcm.CustomerEmail = row["email"].ToString();
             return pcm;
         }
+
 
         public void NewNotificationPayment(PaymentResult result){
             var query = DefineQueryAction("spNotificarPago ");
@@ -104,29 +95,59 @@ namespace FeriaVirtual.Data.Repository {
             query.AddParameter("pUnitario", result.UnitPrice, DbType.Double);
             query.AddParameter("pTotal", result.ProductPrice, DbType.Double);
             query.ExecuteQuery();
-            queueNotifier.Notify("Payment", "ProductsPayment", ConvertPaymentResultInDto(result));
-            this.emailNotifier.Notify(result);
+            queueNotifier.Notify("maipogrande", "Payment", "ProductsPayment", ConvertPaymentResultInDto(result));
+            //this.emailNotifier.Notify(result);
         }
 
 
         private PaymentResultDto ConvertPaymentResultInDto(PaymentResult result){
-            PaymentResultDto dto = new PaymentResultDto();
-            dto.PaymentId = result.PaymentId;
-            dto.ClientId = result.ClientId;
-            dto.SalesDate = result.SalesDate.ToString("yyyy-MM-dd");
-            dto.Quantity = result.Quantity;
-            dto.ProductName = result.ProductName;
-            dto.UnitPrice = result.UnitPrice;
-            dto.ProductPrice = result.ProductPrice;
+            var dto = new PaymentResultDto{
+                PaymentId = result.PaymentId,
+                ClientId = result.ClientId,
+                SalesDate = result.SalesDate.ToString("yyyy-MM-dd"),
+                Quantity = result.Quantity,
+                ProductName = result.ProductName,
+                UnitPrice = result.UnitPrice,
+                ProductPrice = result.ProductPrice
+            };
             return dto;
         }
 
 
+        public void NotifySalesByEmail(IList<PaymentResult> results){
+            var clientId = string.Empty;
+            var paymentId = string.Empty;
+            foreach (var r in results)
+                if (!clientId.Equals(r.ClientId)){
+                    clientId = r.ClientId;
+                    paymentId = r.PaymentId;
+                    var salesDto = new SalesDto{
+                        ProducerName = r.ProducerName,
+                        ProducerEmail = r.ProducerEmail,
+                        SalesDate = r.SalesDate,
+                        Products = GetSalesProductoFromResultsList(clientId, results)
+                    };
+                    emailNotifier.Notify(salesDto);
+                }
+        }
 
 
-
-
-
+        private IList<SalesProductDto> GetSalesProductoFromResultsList(string clientId,
+            IEnumerable<PaymentResult> results){
+            IList<SalesProductDto> productList = new List<SalesProductDto>();
+            foreach (var r in results)
+                if (clientId.Equals(r.ClientId)){
+                    var p = new SalesProductDto{
+                        ProductName = r.ProductName,
+                        Quantity = r.Quantity,
+                        UnitPrice = r.UnitPrice,
+                        ProductPrice = r.ProductPrice
+                    };
+                    productList.Add(p);
+                }
+            return productList;
+        }
 
     }
+
 }

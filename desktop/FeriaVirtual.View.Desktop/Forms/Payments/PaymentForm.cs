@@ -10,8 +10,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
 
     public partial class PaymentForm : Form{
 
-        private string idSelected;
         private string IdOrderSelected;
+
+        private string idSelected;
         private int nodeIndex;
 
 
@@ -66,7 +67,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
 
 
         private void PaymentShowDetailsToolStripMenuItem_Click(object sender, EventArgs e){
-            OpenPaymentShowDetail(nodeIndex.Equals(0) || nodeIndex.Equals(2) ? true : false);
+            OpenPaymentShowDetail(nodeIndex.Equals(0) || nodeIndex.Equals(2));
         }
 
 
@@ -84,7 +85,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
                 "Pagos notificados clientes externos", "Pagos notificados clientes internos"
             };
             var configurator =
-                FilterNodeConfigurator.CreateConfigurator("Ofertas", filterOptions);
+                FilterNodeConfigurator.CreateConfigurator("Pagos", filterOptions);
             OptionsFilterTreeView.Nodes.Add(configurator.GetNodes());
             OptionsFilterTreeView.ExpandAll();
             OptionsFilterTreeView.SelectedNode = OptionsFilterTreeView.Nodes[0];
@@ -144,7 +145,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
             if (row == null) return;
 
             idSelected = row.Cells[0].Value.ToString();
-            IdOrderSelected= row.Cells[1].Value.ToString();
+            IdOrderSelected = row.Cells[1].Value.ToString();
             LoadBasicProperties(row);
         }
 
@@ -171,9 +172,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
 
         private void OpenPaymentShowDetail(bool isNew){
             var form = new PaymentDetailsForm{
-                IsNew = isNew, 
+                IsNew = isNew,
                 IdSelected = idSelected,
-                IdOrderSelected= this.IdOrderSelected
+                IdOrderSelected = IdOrderSelected
             };
             form.ShowDialog();
             if (form.IsSaved){

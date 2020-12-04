@@ -3,14 +3,20 @@ cls
 
 @echo Deteniendo servicios para feria virtual.
 
-echo deteniendo oracle
+echo deteniendo Oracle
 docker stop oraclexe
 
-echo deteniendo postgresql
+echo deteniendo Postgresql
 docker stop pgsql
 
-echo Deteniendo servicio de mensajeria
+echo Deteniendo RabbitMQ
 docker stop rabbitmq
+
+echo Deteniendo Grafana.
+docker stop grafana
+
+echo Deteniendo SqlServer
+docker stop sqlserver
 
 
 echo servicios detenidos

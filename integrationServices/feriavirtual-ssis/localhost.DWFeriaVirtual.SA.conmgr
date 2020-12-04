@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.DWFeriaVirtual.SA"
+  DTS:DTSID="{6591517B-6321-4A16-94C7-5BF7CFC6EEB3}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;User ID=SA;Initial Catalog=DWFeriaVirtual;Provider=MSOLEDBSQL.1;Persist Security Info=True;Application Name=SSIS-feriavirtual-ssis-{6591517B-6321-4A16-94C7-5BF7CFC6EEB3}localhost.DWFeriaVirtual.SA;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWhmISRivn0avYb7HtAV0yAAAAAACAAAAAAAQZgAAAAEAACAAAADseHJlNsHQKfO6M1Tj5Rdqt0Jp2CG6I9cKTszjieaxegAAAAAOgAAAAAIAACAAAAByTB4pISsKDmBIROQnLHBqwf9XPTAfH2wu5RQbI1aXaYAAAABZvJFpA05QQkySEt+6v18aVD2AqLwgvmV4rcJNSrvgYpH1j2W1tdb4NqpxjEJXA07XIgezUCzIniky6FR1nSG37ugJ1r24xoywF7eJScclZFiKNNzqmg0w4rpz/9QWq61PiamIFw+m2tFcIUnna8Bs8ZmVJXw9Hr9cz5NUby4mREAAAADIdToHY3M4Ls81xI5r23zywE/HFRsLUmKt22bY+ArrwBCJuiYaD3IrL6Xr7lS84AzmfPJNKRKwKvy6E2HgDXF5</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

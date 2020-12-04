@@ -71,6 +71,9 @@ namespace FeriaVirtual.Business.Orders {
             foreach (PaymentResult result in paymentResults){
                 repository.NewNotificationPayment(result);
             }
+            if (paymentResults.Count > 0){
+                repository.NotifySalesByEmail(paymentResults);
+            }
         }
 
 

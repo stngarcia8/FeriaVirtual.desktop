@@ -1,71 +1,71 @@
 ﻿using System;
 
-namespace FeriaVirtual.Infraestructure.Mailer {
-    public class MailerClientSender:IDisposable {
 
-        private bool disposed = false;
-        private MailerClientConfigurator configurator;
+namespace FeriaVirtual.Infraestructure.Mailer{
 
+    public class MailerClientSender : IDisposable, IMailerSender{
 
-        public string Email { get; set; }
-        public string UserEmail { get; set; }
-        public string Subject { get; set; }
+        private bool disposed;
+        private  MailerClientConfigurator configurator;
         public string MessageBody;
 
 
-        private MailerClientSender() {
-            //configurator = MailerClientConfigurator.CreateSmtp();
+
+        public void Dispose(){
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
 
-        public static MailerClientSender CreateSender() {
-            return new MailerClientSender();
-        }
+        public string Email{ get; set; }
+        public string UserEmail{ get; set; }
+        public string Subject{ get; set; }
 
-        public void SendMail() {
-            using (var configurator = MailerClientConfigurator.CreateSmtp()){
+
+        public void SendMail(){
+            using ( configurator = MailerClientConfigurator.CreateSmtp()){
                 ConfigureEmail(configurator);
                 configurator.ClientSmtp.SendMailAsync(configurator.GetMessage(MessageBody));
-                //configurator.ClientSmtp.Send(configurator.GetMessage(MessageBody));
             }
         }
 
 
-        private void ConfigureEmail(MailerClientConfigurator configurator) {
+        public void AddAttach(string filePath){
+            configurator.AddAttachFile(filePath);
+        }
+
+
+        public void RemoveAttach(string filePath){
+            configurator.RemoveAttachFile(filePath);
+        }
+
+
+        private MailerClientSender(){ }
+
+
+        public static MailerClientSender CreateSender(){
+            return new MailerClientSender();
+        }
+
+
+        private void ConfigureEmail(MailerClientConfigurator configurator){
             configurator.EmailTo = Email;
             configurator.UserTo = UserEmail;
             configurator.Subject = Subject;
         }
 
 
-        public void AddAttach(string filePath) {
-            configurator.AddAttachFile(filePath);
-        }
+        protected virtual void Dispose(bool disposing){
+            if (disposed) return;
 
-
-        public void RemoveAttach(string filePath) {
-            configurator.RemoveAttachFile(filePath);
-        }
-
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing) {
-            if(disposed) {
-                return;
-            }
             disposed = true;
         }
 
-        ~MailerClientSender()
-        {
+
+        ~MailerClientSender(){
             Dispose(false);
         }
 
-
-
-
     }
+
 }

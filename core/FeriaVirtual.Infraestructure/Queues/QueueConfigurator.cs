@@ -5,20 +5,26 @@ namespace FeriaVirtual.Infraestructure.Queues{
 
     public class QueueConfigurator{
 
-        private readonly string _hostName = "localhost";
-        private readonly string _password = "fv_pwd";
-        private readonly string _userName = "fv_user";
-        private readonly IConnection queueConnection;
+        const string _hostName = "localhost";
+        const string _password = "fv_pwd";
+        const string _userName = "fv_user";
+
+        public string ExchangeName{ get; }
+        public string RoutingKey{ get; set; }
+        public string TopicName{ get; }
         public string QueueName{ get; }
 
 
-        private QueueConfigurator(string queueName){
-            this.QueueName = queueName;
+        private QueueConfigurator(string exchangeName, string topicName, string queueName){
+            ExchangeName = exchangeName;
+            TopicName = topicName;
+            RoutingKey = $"{exchangeName}.{topicName}.{queueName}";
+            QueueName = queueName;
         }
 
 
-        public static QueueConfigurator CreateQueue(string queueName){
-            return new QueueConfigurator(queueName);
+        public static QueueConfigurator CreateQueue(string exchangeName, string topicName, string queueName){
+            return new QueueConfigurator(exchangeName, topicName, queueName);
         }
 
 

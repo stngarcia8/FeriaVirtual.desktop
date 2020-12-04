@@ -82,7 +82,7 @@ namespace FeriaVirtual.Data.Repository{
             query = DefineQueryParameters(client, query);
             query.ExecuteQuery();
             mailNotifier.Notify(client, MailTypeMessage.NewClient);
-            queueNotifier.Notify("User", "UserWasCreate", CreateSession(client));
+            queueNotifier.Notify("maipogrande", "User", "UserWasCreate", CreateSession(client));
         }
 
 
@@ -120,7 +120,7 @@ namespace FeriaVirtual.Data.Repository{
             query = DefineQueryParameters(client, query);
             query.ExecuteQuery();
             mailNotifier.Notify(client, MailTypeMessage.EditClient);
-            queueNotifier.Notify("User", "UserWasModify", CreateSession(client));
+            queueNotifier.Notify("maipogrande", "User", "UserWasModify", CreateSession(client));
         }
 
 
@@ -129,7 +129,7 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdUsuario", id, DbType.String);
             query.AddParameter("pTipoAccion", typeAction, DbType.Int32);
             query.ExecuteQuery();
-            queueNotifier.Notify("User", typeAction.Equals(0) ? "UserWasDisable" : "UserWasEnable",
+            queueNotifier.Notify("maipogrande", "User", typeAction.Equals(0) ? "UserWasDisable" : "UserWasEnable",
                 ChangeMessageStatus.Create(id, typeAction));
         }
 

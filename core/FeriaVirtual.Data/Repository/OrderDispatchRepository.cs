@@ -1,27 +1,24 @@
 ﻿using System;
-using FeriaVirtual.Data.Notifiers;
-using FeriaVirtual.Infraestructure.Queues;
-using FeriaVirtual.Domain.Dto;
-
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using FeriaVirtual.Data.Exceptions;
-using FeriaVirtual.Domain.Enums;
+using FeriaVirtual.Data.Notifiers;
+using FeriaVirtual.Domain.Dto;
 using FeriaVirtual.Domain.Orders;
-using FeriaVirtual.Infraestructure.Mailer;
 
 
 namespace FeriaVirtual.Data.Repository{
 
     public class OrderDispatchRepository : Repository{
 
-        private IQueueNotifier queueNotifier;
-        private EmailOrderDispatchNotifier emailNotifier;
+        private readonly EmailOrderDispatchNotifier emailNotifier;
+
+        private readonly IQueueNotifier queueNotifier;
 
 
         private OrderDispatchRepository(){
-            this.queueNotifier = QueueNotifier.CreateNotifier();
+            queueNotifier = QueueNotifier.CreateNotifier();
             emailNotifier = EmailOrderDispatchNotifier.CreateNotifier();
         }
 
@@ -43,8 +40,9 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
             OrderDispatchDetailSave(orderDispatch);
-             SendNotificationMail(orderDispatch);
-            this.queueNotifier.Notify("Order", "ChangeStatus", ChangeMessageStatus.Create(orderDispatch.OrderId, 5) );
+            SendNotificationMail(orderDispatch);
+            queueNotifier.Notify("maipogrande", "Order", "ChangeStatus",
+                ChangeMessageStatus.Create(orderDispatch.OrderId, 5));
         }
 
 
@@ -68,8 +66,8 @@ namespace FeriaVirtual.Data.Repository{
                     $"El transportista {orderDispatch.CarrierName} no tiene configurada su cuenta de correo electrónico, por lo tanto no fue posible notificar por este medio la orden de despacho, de igual manera esta quedo asignada en su perfil de usuario.";
                 throw new InvalidEmailException(message);
             }
-            this.emailNotifier.Notify(orderDispatch);
-            }
+            emailNotifier.Notify(orderDispatch);
+        }
 
 
         public void AcceptOrderDispatch(string orderId, string observation){

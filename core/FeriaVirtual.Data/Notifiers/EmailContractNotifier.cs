@@ -1,21 +1,25 @@
-﻿using FeriaVirtual.Domain.Contracts;
-using System.Text;
+﻿using System.Text;
+using FeriaVirtual.Domain.Contracts;
 using FeriaVirtual.Domain.Enums;
 
-namespace FeriaVirtual.Data.Notifiers {
-    public class EmailContractNotifier:EmailNotifier {
+
+namespace FeriaVirtual.Data.Notifiers{
+
+    public class EmailContractNotifier : EmailNotifier{
 
         private ContractDetail detail;
         private string pdfFilePath;
 
-        private EmailContractNotifier() : base() { }
+
+        private EmailContractNotifier(){ }
 
 
-        public static EmailContractNotifier CreateNotifier() {
+        public static EmailContractNotifier CreateNotifier(){
             return new EmailContractNotifier();
         }
 
-        public void Notify(Contract contract,string pdfFilePath,MailTypeMessage typeMessage) {
+
+        public void Notify(Contract contract, string pdfFilePath, MailTypeMessage typeMessage){
             detail = contract.Details[0];
             this.pdfFilePath = pdfFilePath;
             this.typeMessage = typeMessage;
@@ -23,17 +27,17 @@ namespace FeriaVirtual.Data.Notifiers {
             SendAnEmail();
         }
 
-        private void SendAnEmail() {
-            sender.Email = detail.Customer.Credentials.Email;
-            sender.UserEmail = detail.Customer.ToString();
-            sender.AddAttach(this.pdfFilePath);
-            SendTheEmail();
-            DisposeNotifier();
+
+        private void SendAnEmail(){
+            email.EmailTo = detail.Customer.Credentials.Email;
+            email.UserTo = detail.Customer.ToString();
+            email.AddAttachment(pdfFilePath);
+            SendTheEmailToQueue();
         }
 
 
-        private void GenerateBody() {
-            switch(typeMessage) {
+        private void GenerateBody(){
+            switch (typeMessage){
                 case MailTypeMessage.ContractAccepted:
                     CreateBodyContractAccepted();
                     break;
@@ -43,8 +47,9 @@ namespace FeriaVirtual.Data.Notifiers {
             }
         }
 
+
         private void CreateBodyContractAccepted(){
-            sender.Subject = "Copia de contrato aceptado.";
+            email.Subject = "Copia de contrato aceptado.";
             var body = new StringBuilder();
             body.Append($"<p>Estimado(a) Sr(a). <b>{detail.Customer}</b></p>");
             body.Append(
@@ -52,24 +57,22 @@ namespace FeriaVirtual.Data.Notifiers {
             body.Append(
                 "<p>Cualquier duda o consulta puede realizarlas por nuestros metodos de contactos oficiales.</p>");
             body.Append("<p>Gracias por su preferencia, saludos cordiales.</p><br><br> ");
-            sender.MessageBody = body.ToString();
+            email.Body = body.ToString();
         }
 
 
         private void CreateBodyContractRefused(){
-            sender.Subject = "Contrato rechazado.";
-            StringBuilder body = new StringBuilder();
+            email.Subject = "Contrato rechazado.";
+            var body = new StringBuilder();
             body.Append($"<p>Estimado(a) Sr(a). <b>{detail.Customer}</b></p>");
             body.Append(
                 "<p>Lamentamos el rechazo del contrato, este contrato fue realizado por las conversaciones realizadas entre usted y su ejecutivo, favor comuniquese con su ejecutivo para poder generar un contrato en que ambas partes este conforme.</p>");
             body.Append(
                 "<p>Cualquier duda o consulta puede realizarlas por nuestros metodos de contacto oficiales.</p>");
             body.Append("<p>Gracias por su preferencia, saludos cordiales.</p><br><br> ");
-            sender.MessageBody = body.ToString();
+            email.Body = body.ToString();
         }
 
-
-
-
     }
+
 }

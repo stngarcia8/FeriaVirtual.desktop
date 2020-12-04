@@ -34,7 +34,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Login{
 
 
         private void StartSession(){
-            //try{
+            try{
                 var user = Credential.CreateCredential();
                 user.Username = UsernameTextBox.Text;
                 user.Password = PasswordTextBox.Text;
@@ -43,16 +43,15 @@ namespace FeriaVirtual.View.Desktop.Forms.Login{
                 login.StartSession();
                 ActualUser.ActualEmployee = login.EmployeeLogged;
                 OpenForm();
-            //}
-            //catch (Exception ex){
-                //MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //PasswordTextBox.Text = string.Empty;
-                //UsernameTextBox.Focus();
-            //}
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                PasswordTextBox.Text = string.Empty;
+                UsernameTextBox.Focus();
+            }
         }
 
 
-        // Open form method.
         private void OpenForm(){
             Form form = null;
             switch (ActualUser.ActualEmployee.Profile.ProfileId){

@@ -10,20 +10,19 @@ namespace FeriaVirtual.View.Desktop.Commands{
     public class LoadProposeProduct : ICommand{
 
         private readonly string idSelected;
-        private bool onlyLoad;
+        private readonly bool onlyLoad;
         public DataGridView Data{ get; }
 
+
+        public void Execute(){
+            LoadProducts();
+        }
 
 
         private LoadProposeProduct(DataGridView datagrid, string idSelected, bool onlyLoad){
             Data = datagrid;
             this.idSelected = idSelected;
-            this.onlyLoad=onlyLoad;
-        }
-
-
-        public void Execute(){
-            LoadProducts();
+            this.onlyLoad = onlyLoad;
         }
 
 
@@ -32,16 +31,13 @@ namespace FeriaVirtual.View.Desktop.Commands{
         }
 
 
-        private void LoadProducts() {
+        private void LoadProducts(){
             try{
                 var usecase = OrderUseCase.CreateUseCase();
                 Data.DataSource = null;
-                if (this.onlyLoad){
-                    Data.DataSource = usecase.GetOnlyGenerateProposeProduct(idSelected);
-                }
-                else{
-                    Data.DataSource = usecase.GetGenerateProposeProduct(idSelected);
-                }
+                Data.DataSource = onlyLoad
+                    ? usecase.GetOnlyGenerateProposeProduct(idSelected)
+                    : usecase.GetGenerateProposeProduct(idSelected);
                 ConfigureProductGrid();
             }
             catch (Exception ex){

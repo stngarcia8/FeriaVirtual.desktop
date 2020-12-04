@@ -94,6 +94,7 @@
     <Compile Include="Exceptions\InvalidUserRegisterException.cs" />
     <Compile Include="Exceptions\InvalidVehicleException.cs" />
     <Compile Include="HelpersUseCases\ContractTypeUseCase.cs" />
+    <Compile Include="HelpersUseCases\EmailUsecase.cs" />
     <Compile Include="HelpersUseCases\SafeUseCase.cs" />
     <Compile Include="Offers\OfferUseCase.cs" />
     <Compile Include="Orders\AuctionUseCase.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Orders\OrderUseCase.cs" />
     <Compile Include="Orders\PaymentUsecase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stats\StatsUsecase.cs" />
     <Compile Include="Users\CarrierUseCase.cs" />
     <Compile Include="Users\ClientUseCase.cs" />
     <Compile Include="Users\ExternalClientUseCase.cs" />

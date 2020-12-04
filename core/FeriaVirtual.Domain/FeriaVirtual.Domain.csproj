@@ -50,7 +50,11 @@
     <Compile Include="Contracts\ContractType.cs" />
     <Compile Include="CommercialsData\Country.cs" />
     <Compile Include="Dto\ChangeMessageStatus.cs" />
+    <Compile Include="Dto\EmailDto.cs" />
     <Compile Include="Dto\LoginDto.cs" />
+    <Compile Include="Dto\SalesDto.cs" />
+    <Compile Include="Dto\SalesProductDto.cs" />
+    <Compile Include="Dto\StockDto.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Offers\Offer.cs" />
     <Compile Include="Offers\OfferDetail.cs" />
