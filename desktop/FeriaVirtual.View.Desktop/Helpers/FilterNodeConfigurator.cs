@@ -2,21 +2,21 @@
 using System.Windows.Forms;
 
 
-namespace FeriaVirtual.View.Desktop.Helpers {
+namespace FeriaVirtual.View.Desktop.Helpers{
 
-    public class FilterNodeConfigurator {
+    public class FilterNodeConfigurator{
 
         private TreeNode rootNode;
 
 
-        private FilterNodeConfigurator(string rootText,IEnumerable<string> optionList) {
+        private FilterNodeConfigurator(string rootText, IEnumerable<string> optionList){
             ConfigureRootNode(rootText);
             ConfigureChildNodes(optionList);
         }
 
 
-        private void ConfigureRootNode(string rootText) {
-            rootNode = new TreeNode {
+        private void ConfigureRootNode(string rootText){
+            rootNode = new TreeNode{
                 Text = rootText,
                 Tag = 0
             };
@@ -24,20 +24,20 @@ namespace FeriaVirtual.View.Desktop.Helpers {
         }
 
 
-        private void ConfigureChildNodes(IEnumerable<string> optionList) {
-            foreach(var option in optionList) {
-                var childNode = new TreeNode { Text = option };
+        private void ConfigureChildNodes(IEnumerable<string> optionList){
+            foreach (var option in optionList){
+                var childNode = new TreeNode{Text = option};
                 rootNode.Nodes.Add(childNode);
             }
         }
 
 
-        public static FilterNodeConfigurator CreateConfigurator(string rootText,IList<string> optionList) {
-            return new FilterNodeConfigurator(rootText,optionList);
+        public static FilterNodeConfigurator CreateConfigurator(string rootText, IList<string> optionList){
+            return new FilterNodeConfigurator(rootText, optionList);
         }
 
 
-        public TreeNode GetNodes() {
+        public TreeNode GetNodes(){
             return rootNode;
         }
 

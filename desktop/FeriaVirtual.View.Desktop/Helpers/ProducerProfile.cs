@@ -2,15 +2,15 @@
 
     public class ProducerProfile : IProfileInfo{
 
-        // Constructor
-        private ProducerProfile(){ }
-
-
         // Properties
         public int ProfileId => (int) ProfileInfoEnum.Producer;
 
         public string ProfileName => "Productores";
         public string SingleProfileName => "Productor";
+
+
+        // Constructor
+        private ProducerProfile(){ }
 
 
         // Named constructor

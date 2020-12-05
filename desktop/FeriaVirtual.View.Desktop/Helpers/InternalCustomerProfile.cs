@@ -2,13 +2,13 @@
 
     public class InternalCustomerProfile : IProfileInfo{
 
-        // Constructor
-        private InternalCustomerProfile(){ }
-
-
         public int ProfileId => (int) ProfileInfoEnum.InternalCustomer;
         public string ProfileName => "Clientes internos";
         public string SingleProfileName => "cliente interno";
+
+
+        // Constructor
+        private InternalCustomerProfile(){ }
 
 
         // Named constructor

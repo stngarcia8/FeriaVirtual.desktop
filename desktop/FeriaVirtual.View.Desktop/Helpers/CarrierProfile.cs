@@ -2,15 +2,15 @@
 
     public class CarrierProfile : IProfileInfo{
 
-        // Constructor
-        private CarrierProfile(){ }
-
-
         //Properties
         public int ProfileId => (int) ProfileInfoEnum.Carrier;
 
         public string ProfileName => "Transportistas";
         public string SingleProfileName => "Transportista";
+
+
+        // Constructor
+        private CarrierProfile(){ }
 
 
         // Named constructor

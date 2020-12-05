@@ -67,7 +67,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
 
 
         private void PaymentShowDetailsToolStripMenuItem_Click(object sender, EventArgs e){
-            OpenPaymentShowDetail(nodeIndex.Equals(0) || nodeIndex.Equals(2));
+            OpenPaymentShowDetail(nodeIndex.Equals(0) || nodeIndex.Equals(1));
         }
 
 

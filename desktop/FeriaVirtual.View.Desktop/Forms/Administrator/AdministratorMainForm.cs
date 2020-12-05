@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
-using System.Windows.Forms.DataVisualization;
-using System.Windows.Forms.DataVisualization.Charting;
-using FeriaVirtual.Business.Stats;
 using System.Windows.Forms;
 using FeriaVirtual.Business.HelpersUseCases;
+using FeriaVirtual.Business.Stats;
 using FeriaVirtual.View.Desktop.Commands;
 using FeriaVirtual.View.Desktop.Forms.Client;
 using FeriaVirtual.View.Desktop.Forms.Contracts;
@@ -99,7 +96,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
 
 
         private void ShowResume(){
-            StatsUsecase usecase = StatsUsecase.CreateUsecase();
+            var usecase = StatsUsecase.CreateUsecase();
             UserStats(usecase);
             ExternalCustomerOrderStats(usecase);
             InternalCustomerOrderStats(usecase);
@@ -107,37 +104,41 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
 
 
         private void UserStats(StatsUsecase usecase){
-            DataTable source = usecase.GetUserStats();
-            this.UserTypeDataGridView.DataSource = source;
-            this.UserTypeChart.DataSource = source;
-            this.UserTypeChart.Series[0].XValueMember = "Tipo usuario";
-            this.UserTypeChart.Series[0].YValueMembers = "Cantidad";
-            this.UserTypeChart.Series[0]["PieLabelStyle"] = "Disabled";
+            var source = usecase.GetUserStats();
+            UserTypeDataGridView.DataSource = source;
+            UserTypeChart.DataSource = source;
+            UserTypeChart.Series[0].XValueMember = "Tipo usuario";
+            UserTypeChart.Series[0].YValueMembers = "Cantidad";
+            UserTypeChart.Series[0]["PieLabelStyle"] = "Disabled";
         }
+
 
         private void ExternalCustomerOrderStats(StatsUsecase usecase){
-            DataTable source = usecase.GetExternalCustomerOrderStats();
-            this.ExternalCustomerOrderDataGridView.DataSource = source;
-            this.ExternalCustomerOrderDataGridView.Columns["id_estado"].Visible = false;
-            this.ExternalCustomerChart.DataSource = source;
-            this.ExternalCustomerChart.Series[0].XValueMember = "Estado orden";
-            this.ExternalCustomerChart.Series[0].YValueMembers = "Cantidad";
-            this.ExternalCustomerChart.Series[0]["PieLabelStyle"] = "Disabled";
+            var source = usecase.GetExternalCustomerOrderStats();
+            ExternalCustomerOrderDataGridView.DataSource = source;
+            ExternalCustomerOrderDataGridView.Columns["id_estado"].Visible = false;
+            ExternalCustomerChart.DataSource = source;
+            ExternalCustomerChart.Series[0].XValueMember = "Estado orden";
+            ExternalCustomerChart.Series[0].YValueMembers = "Cantidad";
+            ExternalCustomerChart.Series[0]["PieLabelStyle"] = "Disabled";
         }
+
 
         private void InternalCustomerOrderStats(StatsUsecase usecase){
-            DataTable source = usecase.GetInternalCustomerOrderStats();
-            this.InternalCustomerOrderDataGridView.DataSource = source;
-            this.InternalCustomerOrderDataGridView.Columns["id_estado"].Visible = false;
-            this.InternalCustomerChart.DataSource = source;
-            this.InternalCustomerChart.Series[0].XValueMember = "Estado orden";
-            this.InternalCustomerChart.Series[0].YValueMembers = "Cantidad";
-            this.InternalCustomerChart.Series[0]["PieLabelStyle"] = "Disabled";
+            var source = usecase.GetInternalCustomerOrderStats();
+            InternalCustomerOrderDataGridView.DataSource = source;
+            InternalCustomerOrderDataGridView.Columns["id_estado"].Visible = false;
+            InternalCustomerChart.DataSource = source;
+            InternalCustomerChart.Series[0].XValueMember = "Estado orden";
+            InternalCustomerChart.Series[0].YValueMembers = "Cantidad";
+            InternalCustomerChart.Series[0]["PieLabelStyle"] = "Disabled";
         }
 
-        private void ResumeRefreshButton_Click(object sender,EventArgs e) {
+
+        private void ResumeRefreshButton_Click(object sender, EventArgs e){
             ShowResume();
         }
+
     }
 
 }

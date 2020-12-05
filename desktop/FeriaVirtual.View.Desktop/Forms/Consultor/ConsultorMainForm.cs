@@ -10,11 +10,13 @@ namespace FeriaVirtual.View.Desktop.Forms.Consultor{
             InitializeComponent();
         }
 
-        private void CloseToolStripMenuItem_Click(object sender,System.EventArgs e){
+
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e){
             Application.Exit();
         }
 
-        private void ConsultorMainForm_FormClosing(object sender,FormClosingEventArgs e) {
+
+        private void ConsultorMainForm_FormClosing(object sender, FormClosingEventArgs e){
             var result = MessageBox.Show("¿Esta seguro de cerrar la sesión?", "Atención", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result.Equals(DialogResult.Yes)){
@@ -23,6 +25,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Consultor{
             }
             e.Cancel = false;
         }
+
     }
 
 }

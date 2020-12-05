@@ -9,32 +9,30 @@ using FeriaVirtual.Domain.Orders;
 using FeriaVirtual.View.Desktop.Helpers;
 
 
-namespace FeriaVirtual.View.Desktop.Forms.Orders {
+namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
-    public partial class ProductDispatchForm:Form {
+    public partial class ProductDispatchForm : Form{
 
-        public string IdSelected { get; set; }
-        public string ClientId { get; set; }
-        public string CustomerName { get; set; }
-        public bool IsNewRecord { get; set; }
-        public Auction CurrentAuction { get; set; }
-        public OrderDispatch CurrentDispatch { get; set; }
-        public bool IsSaved { get; set; }
-        public bool IsRemoveBidValue { get; set; }
+        public string IdSelected{ get; set; }
+        public string ClientId{ get; set; }
+        public string CustomerName{ get; set; }
+        public bool IsNewRecord{ get; set; }
+        public Auction CurrentAuction{ get; set; }
+        public OrderDispatch CurrentDispatch{ get; set; }
+        public bool IsSaved{ get; set; }
+        public bool IsRemoveBidValue{ get; set; }
 
 
-        public ProductDispatchForm() {
+        public ProductDispatchForm(){
             InitializeComponent();
             IsSaved = false;
-            IsRemoveBidValue=false;
+            IsRemoveBidValue = false;
         }
 
 
-        private void ProductDispatchForm_Load(object sender,EventArgs e) {
+        private void ProductDispatchForm_Load(object sender, EventArgs e){
             LoadSafeData();
-            if(IsNewRecord) {
-                ConvertAuctionIntoOrderDispatch();
-            }
+            if (IsNewRecord) ConvertAuctionIntoOrderDispatch();
 
             LoadCarrierData();
             LoadCustomerData();
@@ -44,32 +42,28 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private void RemoveCarrierButton_Click(object sender,EventArgs e) {
-            if(!RemoveBidValue()) {
-                return;
-            }
+        private void RemoveCarrierButton_Click(object sender, EventArgs e){
+            if (!RemoveBidValue()) return;
 
-            IsRemoveBidValue=true;
+            IsRemoveBidValue = true;
             Close();
         }
 
 
-        private void NotifyButton_Click(object sender,EventArgs e) {
-            if(!SaveOrderDispatch()) {
-                return;
-            }
+        private void NotifyButton_Click(object sender, EventArgs e){
+            if (!SaveOrderDispatch()) return;
 
             IsSaved = true;
             Close();
         }
 
 
-        private void NotifyCloseButton_Click(object sender,EventArgs e) {
+        private void NotifyCloseButton_Click(object sender, EventArgs e){
             Close();
         }
 
 
-        private void LoadSafeData() {
+        private void LoadSafeData(){
             SafeComboBox.BeginUpdate();
             var uc = SafeUseCase.CreateUseCase();
             SafeComboBox.DataSource = uc.FindAll();
@@ -79,7 +73,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private void ConvertAuctionIntoOrderDispatch() {
+        private void ConvertAuctionIntoOrderDispatch(){
             CurrentDispatch = OrderDispatch.CreateOrder();
             CurrentDispatch.OrderId = IdSelected;
             CurrentDispatch.ClientId = ClientId;
@@ -99,8 +93,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private void GetProductList() {
-            foreach(var p in CurrentAuction.Products) {
+        private void GetProductList(){
+            foreach (var p in CurrentAuction.Products){
                 var odd = OrderDispatchDetail.CreateDetail();
                 odd.Product = p.Product;
                 odd.UnitValue = p.UnitValue;
@@ -111,27 +105,28 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private void LoadCarrierData() {
+        private void LoadCarrierData(){
             CarrierTextBox.Text = CurrentDispatch.CarrierName;
-            CarrierValueTextBox.Text = string.Format("{1}${0}",CurrentDispatch.DispatchValue.ToString(CultureInfo.CurrentCulture),"N");
+            CarrierValueTextBox.Text = string.Format("{1}${0}",
+                CurrentDispatch.DispatchValue.ToString(CultureInfo.CurrentCulture), "N");
             var products = new BindingList<OrderDispatchDetail>(CurrentDispatch.Products);
             ProductsDataGridView.DataSource = products;
             ConfigureProductGrid();
         }
 
 
-        private void ConfigureProductGrid() {
+        private void ConfigureProductGrid(){
             var configurator = DataGridViewConfigurator.CreateConfigurator(ProductsDataGridView);
-            IList<string> columns = new List<string> { "DetailId" };
+            IList<string> columns = new List<string>{"DetailId"};
             configurator.HideColumns(columns);
-            configurator.ChangeHeader("Product","Producto");
-            configurator.CurrencyColumn("UnitValue","Valor");
-            configurator.NumericIntegerColumn("Quantity","Cantidad");
-            configurator.CurrencyColumn("TotalValue","Total");
+            configurator.ChangeHeader("Product", "Producto");
+            configurator.CurrencyColumn("UnitValue", "Valor");
+            configurator.NumericIntegerColumn("Quantity", "Cantidad");
+            configurator.CurrencyColumn("TotalValue", "Total");
         }
 
 
-        private void LoadCustomerData() {
+        private void LoadCustomerData(){
             CustomerTextBox.Text = CustomerName;
             CustomerCompanyTextBox.Text = CurrentDispatch.CompanyName;
             CustomerAddressTextBox.Text = CurrentDispatch.Destination;
@@ -139,43 +134,45 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private void LoadDispatchData() {
+        private void LoadDispatchData(){
             DispatchPreparationDateTextBox.Text = CurrentDispatch.PreparationDate.ToShortDateString();
             DispatchObservationTextBox.Text = CurrentDispatch.Observation;
-            if(CurrentAuction.DispachDate != null) {
+            if (CurrentAuction.DispachDate != null){
                 DispatchOkDateTimePicker.MinDate = DateTime.Parse(CurrentDispatch.DispatchDate);
                 DispatchOkDateTimePicker.Value = DateTime.Parse(CurrentDispatch.DispatchDate);
-            } else {
+            }
+            else{
                 DispatchOkDateTimePicker.MinDate = DateTime.Now.Date.AddDays(1);
                 DispatchOkDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
             }
         }
 
 
-        private bool SaveOrderDispatch() {
+        private bool SaveOrderDispatch(){
             bool result;
             var message = string.Empty;
             PutsDataControlsIntoOrderDispatchObjects();
-            try {
+            try{
                 var usecase = OrderDispatchUseCase.CreateUseCase();
-                if(IsNewRecord) {
+                if (IsNewRecord){
                     usecase.CreateOrderDispatch(CurrentDispatch);
                     message =
                         $"La orden de despacho se completo correctamente y el correo electrónico de notificación fue enviado {CustomerName}.";
                 }
 
-                MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show(message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 result = true;
-            } catch(Exception ex) {
+            }
+            catch (Exception ex){
                 result = false;
-                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             return result;
         }
 
 
-        private void PutsDataControlsIntoOrderDispatchObjects() {
+        private void PutsDataControlsIntoOrderDispatchObjects(){
             CurrentDispatch.Observation = DispatchObservationTextBox.Text;
             CurrentDispatch.DispatchDate = DispatchOkDateTimePicker.Value.ToShortDateString();
             CurrentDispatch.Safe.SafeId = int.Parse(SafeComboBox.SelectedValue.ToString());
@@ -183,22 +180,21 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders {
         }
 
 
-        private bool RemoveBidValue() {
+        private bool RemoveBidValue(){
             var message =
                 $"¿Esta seguro(a) de quitar la puja del transportista {CurrentAuction.CarrierName}?, esto eliminará los datos de la subasta y el estado de la orden de compra estará disponible para generar una nueva subasta.";
-            var result = MessageBox.Show(message,"Atención",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-            if(result.Equals(DialogResult.No)) {
-                return false;
-            }
+            var result = MessageBox.Show(message, "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result.Equals(DialogResult.No)) return false;
 
-            try {
+            try{
                 var usecase = AuctionUseCase.CreateUseCase();
-                usecase.RemoveBidValue(CurrentAuction.AuctionId,IdSelected);
+                usecase.RemoveBidValue(CurrentAuction.AuctionId, IdSelected);
                 message =
                     "Los datos de la puja de la subasta han sido removidos correctamente, recuerde que esta subasta quedará en las ordenes con subastas publicadas.";
-                MessageBox.Show(message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            } catch(Exception ex) {
-                MessageBox.Show(ex.Message,"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show(message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             return true;

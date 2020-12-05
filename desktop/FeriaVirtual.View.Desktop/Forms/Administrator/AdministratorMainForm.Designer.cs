@@ -42,23 +42,33 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.FormStatusStrip = new System.Windows.Forms.StatusStrip();
             this.FormStatusActiveUserToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.FormStatusCompanyToolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormPanel = new System.Windows.Forms.Panel();
             this.FormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.FormPictureBox = new System.Windows.Forms.PictureBox();
             this.MenuTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MaintenanceCarrierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaintenanceToolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.MaintenanceUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BusinessContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BusinessExternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessInternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BusinessOffersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BusinessToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.BusinessPaymentsReceptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsExternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReportsInternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormTitleLabel = new System.Windows.Forms.Label();
             this.NavFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ResumeTitleLabel = new System.Windows.Forms.Label();
+            this.ResumeRefreshButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.UserTypeTitleLabel = new System.Windows.Forms.Label();
             this.UserTypeDataGridView = new System.Windows.Forms.DataGridView();
@@ -71,19 +81,10 @@
             this.InternalCustomerChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.InternalCustomerTitleLabel = new System.Windows.Forms.Label();
             this.DashboardFormPictureBox = new System.Windows.Forms.PictureBox();
-            this.ResumeRefreshButton = new System.Windows.Forms.Button();
-            this.FormPictureBox = new System.Windows.Forms.PictureBox();
-            this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceCarrierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MaintenanceUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BusinessContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BusinessExternalSalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BusinessOffersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BusinessPaymentsReceptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FormStatusCompanyToolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.FormStatusStrip.SuspendLayout();
             this.FormPanel.SuspendLayout();
             this.FormTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.MenuTableLayoutPanel.SuspendLayout();
             this.FormMenuStrip.SuspendLayout();
             this.NavFlowLayoutPanel.SuspendLayout();
@@ -94,7 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerOrderDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardFormPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // FormStatusStrip
@@ -116,6 +116,14 @@
             this.FormStatusActiveUserToolStripStatusLabel.Size = new System.Drawing.Size(1049, 17);
             this.FormStatusActiveUserToolStripStatusLabel.Spring = true;
             this.FormStatusActiveUserToolStripStatusLabel.Text = "toolStripStatusLabel1";
+            // 
+            // FormStatusCompanyToolStripStatusLabel1
+            // 
+            this.FormStatusCompanyToolStripStatusLabel1.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.mg_logo;
+            this.FormStatusCompanyToolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.FormStatusCompanyToolStripStatusLabel1.Name = "FormStatusCompanyToolStripStatusLabel1";
+            this.FormStatusCompanyToolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.FormStatusCompanyToolStripStatusLabel1.Text = "Maipo Grande";
             // 
             // FormPanel
             // 
@@ -145,6 +153,20 @@
             this.FormTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.FormTableLayoutPanel.Size = new System.Drawing.Size(1184, 100);
             this.FormTableLayoutPanel.TabIndex = 0;
+            // 
+            // FormPictureBox
+            // 
+            this.FormPictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.FormPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.mg_logo;
+            this.FormPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.FormPictureBox.MaximumSize = new System.Drawing.Size(91, 94);
+            this.FormPictureBox.MinimumSize = new System.Drawing.Size(91, 94);
+            this.FormPictureBox.Name = "FormPictureBox";
+            this.FormPictureBox.Size = new System.Drawing.Size(91, 94);
+            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FormPictureBox.TabIndex = 6;
+            this.FormPictureBox.TabStop = false;
             // 
             // MenuTableLayoutPanel
             // 
@@ -192,6 +214,17 @@
             this.FileToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.FileToolStripMenuItem.Text = "&Archivo";
             // 
+            // CloseToolStripMenuItem
+            // 
+            this.CloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
+            this.CloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
+            this.CloseToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.CloseToolStripMenuItem.RightToLeftAutoMirrorImage = true;
+            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
+            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
+            // 
             // MaintenanceToolStripMenuItem
             // 
             this.MaintenanceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -203,10 +236,28 @@
             this.MaintenanceToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
             this.MaintenanceToolStripMenuItem.Text = "&Mantenimiento";
             // 
+            // MaintenanceCarrierToolStripMenuItem
+            // 
+            this.MaintenanceCarrierToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_customer;
+            this.MaintenanceCarrierToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaintenanceCarrierToolStripMenuItem.Name = "MaintenanceCarrierToolStripMenuItem";
+            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &clientes";
+            this.MaintenanceCarrierToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceCarrierToolStripMenuItem_Click);
+            // 
             // MaintenanceToolStripSeparator
             // 
             this.MaintenanceToolStripSeparator.Name = "MaintenanceToolStripSeparator";
             this.MaintenanceToolStripSeparator.Size = new System.Drawing.Size(204, 6);
+            // 
+            // MaintenanceUserToolStripMenuItem
+            // 
+            this.MaintenanceUserToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.login;
+            this.MaintenanceUserToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MaintenanceUserToolStripMenuItem.Name = "MaintenanceUserToolStripMenuItem";
+            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.MaintenanceUserToolStripMenuItem.Text = "Usuarios del sistema";
+            this.MaintenanceUserToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceUserToolStripMenuItem_Click);
             // 
             // BusinessToolStripMenuItem
             // 
@@ -223,10 +274,28 @@
             this.BusinessToolStripMenuItem.Size = new System.Drawing.Size(155, 24);
             this.BusinessToolStripMenuItem.Text = "&Procesos de negocio";
             // 
+            // BusinessContractToolStripMenuItem
+            // 
+            this.BusinessContractToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_contract;
+            this.BusinessContractToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BusinessContractToolStripMenuItem.Name = "BusinessContractToolStripMenuItem";
+            this.BusinessContractToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
+            this.BusinessContractToolStripMenuItem.Text = "&Control de contratos";
+            this.BusinessContractToolStripMenuItem.Click += new System.EventHandler(this.BusinessContractToolStripMenuItem_Click);
+            // 
             // BusinessToolStripSeparator1
             // 
             this.BusinessToolStripSeparator1.Name = "BusinessToolStripSeparator1";
             this.BusinessToolStripSeparator1.Size = new System.Drawing.Size(268, 6);
+            // 
+            // BusinessExternalSalesToolStripMenuItem
+            // 
+            this.BusinessExternalSalesToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_externalOrders;
+            this.BusinessExternalSalesToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BusinessExternalSalesToolStripMenuItem.Name = "BusinessExternalSalesToolStripMenuItem";
+            this.BusinessExternalSalesToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
+            this.BusinessExternalSalesToolStripMenuItem.Text = "Proceso de ventas &externas";
+            this.BusinessExternalSalesToolStripMenuItem.Click += new System.EventHandler(this.BusinessExternalSalesToolStripMenuItem_Click);
             // 
             // BusinessInternalSalesToolStripMenuItem
             // 
@@ -235,10 +304,28 @@
             this.BusinessInternalSalesToolStripMenuItem.Text = "Procesos de ventas &internas";
             this.BusinessInternalSalesToolStripMenuItem.Click += new System.EventHandler(this.BusinessInternalSalesToolStripMenuItem_Click);
             // 
+            // BusinessOffersToolStripMenuItem
+            // 
+            this.BusinessOffersToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.offer_menu;
+            this.BusinessOffersToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BusinessOffersToolStripMenuItem.Name = "BusinessOffersToolStripMenuItem";
+            this.BusinessOffersToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
+            this.BusinessOffersToolStripMenuItem.Text = "Publicación de ofertas/saldos";
+            this.BusinessOffersToolStripMenuItem.Click += new System.EventHandler(this.BusinessOffersToolStripMenuItem_Click);
+            // 
             // BusinessToolStripSeparator2
             // 
             this.BusinessToolStripSeparator2.Name = "BusinessToolStripSeparator2";
             this.BusinessToolStripSeparator2.Size = new System.Drawing.Size(268, 6);
+            // 
+            // BusinessPaymentsReceptionToolStripMenuItem
+            // 
+            this.BusinessPaymentsReceptionToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_payments;
+            this.BusinessPaymentsReceptionToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BusinessPaymentsReceptionToolStripMenuItem.Name = "BusinessPaymentsReceptionToolStripMenuItem";
+            this.BusinessPaymentsReceptionToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
+            this.BusinessPaymentsReceptionToolStripMenuItem.Text = "Control de pagos";
+            this.BusinessPaymentsReceptionToolStripMenuItem.Click += new System.EventHandler(this.BusinessPaymentsReceptionToolStripMenuItem_Click);
             // 
             // ReportsToolStripMenuItem
             // 
@@ -304,6 +391,22 @@
             this.ResumeTitleLabel.TabIndex = 0;
             this.ResumeTitleLabel.Text = "Resumen del sistema";
             this.ResumeTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ResumeRefreshButton
+            // 
+            this.ResumeRefreshButton.BackColor = System.Drawing.Color.DarkGray;
+            this.NavFlowLayoutPanel.SetFlowBreak(this.ResumeRefreshButton, true);
+            this.ResumeRefreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ResumeRefreshButton.ImageKey = "menu-refresh.png";
+            this.ResumeRefreshButton.ImageList = this.FormImageList;
+            this.ResumeRefreshButton.Location = new System.Drawing.Point(6, 66);
+            this.ResumeRefreshButton.Name = "ResumeRefreshButton";
+            this.ResumeRefreshButton.Size = new System.Drawing.Size(194, 59);
+            this.ResumeRefreshButton.TabIndex = 1;
+            this.ResumeRefreshButton.Text = "Actualizar datos del resumen";
+            this.ResumeRefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ResumeRefreshButton.UseVisualStyleBackColor = false;
+            this.ResumeRefreshButton.Click += new System.EventHandler(this.ResumeRefreshButton_Click);
             // 
             // FormImageList
             // 
@@ -563,109 +666,6 @@
             this.DashboardFormPictureBox.TabIndex = 16;
             this.DashboardFormPictureBox.TabStop = false;
             // 
-            // ResumeRefreshButton
-            // 
-            this.ResumeRefreshButton.BackColor = System.Drawing.Color.DarkGray;
-            this.NavFlowLayoutPanel.SetFlowBreak(this.ResumeRefreshButton, true);
-            this.ResumeRefreshButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ResumeRefreshButton.ImageKey = "menu-refresh.png";
-            this.ResumeRefreshButton.ImageList = this.FormImageList;
-            this.ResumeRefreshButton.Location = new System.Drawing.Point(6, 66);
-            this.ResumeRefreshButton.Name = "ResumeRefreshButton";
-            this.ResumeRefreshButton.Size = new System.Drawing.Size(194, 59);
-            this.ResumeRefreshButton.TabIndex = 1;
-            this.ResumeRefreshButton.Text = "Actualizar datos del resumen";
-            this.ResumeRefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ResumeRefreshButton.UseVisualStyleBackColor = false;
-            this.ResumeRefreshButton.Click += new System.EventHandler(this.ResumeRefreshButton_Click);
-            // 
-            // FormPictureBox
-            // 
-            this.FormPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.FormPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.mg_logo;
-            this.FormPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.FormPictureBox.MaximumSize = new System.Drawing.Size(91, 94);
-            this.FormPictureBox.MinimumSize = new System.Drawing.Size(91, 94);
-            this.FormPictureBox.Name = "FormPictureBox";
-            this.FormPictureBox.Size = new System.Drawing.Size(91, 94);
-            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FormPictureBox.TabIndex = 6;
-            this.FormPictureBox.TabStop = false;
-            // 
-            // CloseToolStripMenuItem
-            // 
-            this.CloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
-            this.CloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
-            this.CloseToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CloseToolStripMenuItem.RightToLeftAutoMirrorImage = true;
-            this.CloseToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
-            this.CloseToolStripMenuItem.Text = "&Cerrar sesión";
-            this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
-            // 
-            // MaintenanceCarrierToolStripMenuItem
-            // 
-            this.MaintenanceCarrierToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_customer;
-            this.MaintenanceCarrierToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MaintenanceCarrierToolStripMenuItem.Name = "MaintenanceCarrierToolStripMenuItem";
-            this.MaintenanceCarrierToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.MaintenanceCarrierToolStripMenuItem.Text = "Datos de &clientes";
-            this.MaintenanceCarrierToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceCarrierToolStripMenuItem_Click);
-            // 
-            // MaintenanceUserToolStripMenuItem
-            // 
-            this.MaintenanceUserToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.login;
-            this.MaintenanceUserToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.MaintenanceUserToolStripMenuItem.Name = "MaintenanceUserToolStripMenuItem";
-            this.MaintenanceUserToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.MaintenanceUserToolStripMenuItem.Text = "Usuarios del sistema";
-            this.MaintenanceUserToolStripMenuItem.Click += new System.EventHandler(this.MaintenanceUserToolStripMenuItem_Click);
-            // 
-            // BusinessContractToolStripMenuItem
-            // 
-            this.BusinessContractToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_contract;
-            this.BusinessContractToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BusinessContractToolStripMenuItem.Name = "BusinessContractToolStripMenuItem";
-            this.BusinessContractToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
-            this.BusinessContractToolStripMenuItem.Text = "&Control de contratos";
-            this.BusinessContractToolStripMenuItem.Click += new System.EventHandler(this.BusinessContractToolStripMenuItem_Click);
-            // 
-            // BusinessExternalSalesToolStripMenuItem
-            // 
-            this.BusinessExternalSalesToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_externalOrders;
-            this.BusinessExternalSalesToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BusinessExternalSalesToolStripMenuItem.Name = "BusinessExternalSalesToolStripMenuItem";
-            this.BusinessExternalSalesToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
-            this.BusinessExternalSalesToolStripMenuItem.Text = "Proceso de ventas &externas";
-            this.BusinessExternalSalesToolStripMenuItem.Click += new System.EventHandler(this.BusinessExternalSalesToolStripMenuItem_Click);
-            // 
-            // BusinessOffersToolStripMenuItem
-            // 
-            this.BusinessOffersToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.offer_menu;
-            this.BusinessOffersToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BusinessOffersToolStripMenuItem.Name = "BusinessOffersToolStripMenuItem";
-            this.BusinessOffersToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
-            this.BusinessOffersToolStripMenuItem.Text = "Publicación de ofertas/saldos";
-            this.BusinessOffersToolStripMenuItem.Click += new System.EventHandler(this.BusinessOffersToolStripMenuItem_Click);
-            // 
-            // BusinessPaymentsReceptionToolStripMenuItem
-            // 
-            this.BusinessPaymentsReceptionToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_payments;
-            this.BusinessPaymentsReceptionToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BusinessPaymentsReceptionToolStripMenuItem.Name = "BusinessPaymentsReceptionToolStripMenuItem";
-            this.BusinessPaymentsReceptionToolStripMenuItem.Size = new System.Drawing.Size(271, 26);
-            this.BusinessPaymentsReceptionToolStripMenuItem.Text = "Control de pagos";
-            this.BusinessPaymentsReceptionToolStripMenuItem.Click += new System.EventHandler(this.BusinessPaymentsReceptionToolStripMenuItem_Click);
-            // 
-            // FormStatusCompanyToolStripStatusLabel1
-            // 
-            this.FormStatusCompanyToolStripStatusLabel1.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.mg_logo;
-            this.FormStatusCompanyToolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.FormStatusCompanyToolStripStatusLabel1.Name = "FormStatusCompanyToolStripStatusLabel1";
-            this.FormStatusCompanyToolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.FormStatusCompanyToolStripStatusLabel1.Text = "Maipo Grande";
-            // 
             // AdministratorMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -701,6 +701,7 @@
             this.FormStatusStrip.PerformLayout();
             this.FormPanel.ResumeLayout(false);
             this.FormTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.MenuTableLayoutPanel.ResumeLayout(false);
             this.MenuTableLayoutPanel.PerformLayout();
             this.FormMenuStrip.ResumeLayout(false);
@@ -714,7 +715,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerOrderDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InternalCustomerChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardFormPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

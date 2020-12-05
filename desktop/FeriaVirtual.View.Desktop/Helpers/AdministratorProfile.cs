@@ -2,15 +2,15 @@
 
     public class AdministratorProfile : IProfileInfo{
 
-        // Constructor
-        private AdministratorProfile(){ }
-
-
         //Properties
         public int ProfileId => (int) ProfileInfoEnum.Administrator;
 
         public string ProfileName => "Administradores";
         public string SingleProfileName => "Administrador";
+
+
+        // Constructor
+        private AdministratorProfile(){ }
 
 
         // Named constructor

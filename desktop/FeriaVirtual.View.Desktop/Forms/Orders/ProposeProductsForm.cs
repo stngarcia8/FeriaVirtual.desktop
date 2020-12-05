@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 using FeriaVirtual.Business.Orders;
 using FeriaVirtual.View.Desktop.Commands;
@@ -26,6 +28,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
         private void GenerateProposeButton_Click(object sender, EventArgs e){
             LoadProducts();
+            if (!VerifyStock()) AceptProposeButton.Visible = false;
         }
 
 
@@ -33,6 +36,28 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
             if (!AceptPropose()) return;
             IsSaved = true;
             Close();
+        }
+
+
+        private bool VerifyStock(){
+            var verifyResult = true;
+            IList<string> fallProducts = new List<string>();
+            foreach (DataGridViewRow row in ProductDataGridView.Rows)
+                if (int.Parse(row.Cells["Cantidad solicitada"].Value.ToString()).Equals(0)){
+                    fallProducts.Add(row.Cells["Producto"].Value.ToString());
+                    verifyResult = false;
+                }
+            if (fallProducts.Count > 0){
+                var message = new StringBuilder();
+                message.Append(
+                    $"El stock del o los siguientes productos no satisfacen la cantidad solicitada por el cliente, favor verificar existencias {Environment.NewLine}");
+                foreach (var p in fallProducts) message.Append($"Producto(s) : {p} {Environment.NewLine}");
+                message.Append(
+                    "Favor comunicar situación al cliente que solicito el producto(s).");
+                MessageBox.Show(message.ToString(), "Atención",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            return verifyResult;
         }
 
 

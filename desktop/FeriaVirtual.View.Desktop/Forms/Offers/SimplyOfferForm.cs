@@ -97,8 +97,8 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
 
 
         private void LoadOffersType(){
-            FilterComboConfigurator configurator = FilterComboConfigurator.CreateConfigurator(this.OfferTypeComboBox);
-            IList<string> filterOptions = new List<string>(){"Oferta", "Venta de saldos"};
+            var configurator = FilterComboConfigurator.CreateConfigurator(OfferTypeComboBox);
+            IList<string> filterOptions = new List<string>{"Oferta", "Venta de saldos"};
             configurator.ClearFilters();
             configurator.LoadFilters(filterOptions);
         }
@@ -175,7 +175,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
         private void PutInfoControlsToOffer(){
             currentOffer.PublishDate = DateTime.Parse(PublishDateTextBox.Text);
             currentOffer.Description = DescriptionTextBox.Text;
-            currentOffer.OfferType = ( this.OfferTypeComboBox.SelectedIndex+1);
+            currentOffer.OfferType = OfferTypeComboBox.SelectedIndex + 1;
             currentOffer.Discount = float.Parse(DiscountNumericUpDown.Value.ToString());
         }
 
@@ -243,7 +243,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Offers{
             currentOffer.Details = offer.Details;
             PublishDateTextBox.Text = currentOffer.PublishDate.ToShortDateString();
             DescriptionTextBox.Text = currentOffer.Description;
-            OfferTypeComboBox.SelectedIndex = (currentOffer.OfferType - 1);
+            OfferTypeComboBox.SelectedIndex = currentOffer.OfferType - 1;
             DiscountNumericUpDown.Value = decimal.Parse(currentOffer.Discount.ToString());
         }
 

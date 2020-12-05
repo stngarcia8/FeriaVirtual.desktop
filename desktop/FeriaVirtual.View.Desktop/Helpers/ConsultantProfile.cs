@@ -2,15 +2,15 @@
 
     public class ConsultantProfile : IProfileInfo{
 
-        // constructor
-        private ConsultantProfile(){ }
-
-
         //Properties
         public int ProfileId => (int) ProfileInfoEnum.Consultant;
 
         public string ProfileName => "Consultores";
         public string SingleProfileName => "Consultor";
+
+
+        // constructor
+        private ConsultantProfile(){ }
 
 
         // Named constructor

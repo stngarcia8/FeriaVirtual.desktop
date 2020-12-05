@@ -88,9 +88,9 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
         private void CalculateTransportPercentValue(){
             try{
-                float productValue = float.Parse(ProductValueTextBox.Text);
-                float percent = float.Parse(ProposeValueNumericUpDown.Value.ToString(CultureInfo.CurrentCulture));
-                ProposeValueTextBox.Text = ((productValue * percent)/100 ).ToString(CultureInfo.CurrentCulture);
+                var productValue = float.Parse(ProductValueTextBox.Text);
+                var percent = float.Parse(ProposeValueNumericUpDown.Value.ToString(CultureInfo.CurrentCulture));
+                ProposeValueTextBox.Text = (productValue * percent / 100).ToString(CultureInfo.CurrentCulture);
             }
             catch{
                 ProposeValueTextBox.Text = "0";

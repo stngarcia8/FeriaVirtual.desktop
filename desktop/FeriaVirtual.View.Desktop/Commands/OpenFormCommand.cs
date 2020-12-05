@@ -8,6 +8,13 @@ namespace FeriaVirtual.View.Desktop.Commands{
         private readonly Form form;
 
 
+        public void Execute(){
+            if (form == null) return;
+            ScreenResolutionAdjust();
+            form.ShowDialog();
+        }
+
+
         // Constructor
         private OpenFormCommand(Form form){
             if (form == null){
@@ -16,13 +23,6 @@ namespace FeriaVirtual.View.Desktop.Commands{
             }
 
             this.form = form;
-        }
-
-
-        public void Execute(){
-            if (form == null) return;
-            ScreenResolutionAdjust();
-            form.ShowDialog();
         }
 
 

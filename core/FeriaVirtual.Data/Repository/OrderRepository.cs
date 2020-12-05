@@ -213,7 +213,8 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", orderId, DbType.String);
             query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String);
             query.ExecuteQuery();
-            notifier.Notify("maipogrande", "Order", "ProductsProposed", GetResultsFromPropose(orderId));
+            OrderResult obj = GetResultsFromPropose(orderId);
+            notifier.Notify("maipogrande", "Order", "ProductsProposed", obj);
         }
 
 
