@@ -91,21 +91,21 @@
             this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
             this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
             this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
             this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
             // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
-            this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
+            this.optionToolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // OptionCloseToolStripMenuItem
             // 
             this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
             this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
             this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
@@ -122,9 +122,9 @@
             // FormTableLayoutPanel
             // 
             this.FormTableLayoutPanel.ColumnCount = 3;
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
-            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.FormTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.FormTableLayoutPanel.Controls.Add(this.ListTitleLabel, 1, 0);
             this.FormTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 2, 1);
             this.FormTableLayoutPanel.Controls.Add(this.ListTableLayoutPanel, 1, 1);
@@ -145,9 +145,9 @@
             this.ListTitleLabel.AutoSize = true;
             this.ListTitleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListTitleLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListTitleLabel.Location = new System.Drawing.Point(249, 0);
+            this.ListTitleLabel.Location = new System.Drawing.Point(199, 0);
             this.ListTitleLabel.Name = "ListTitleLabel";
-            this.ListTitleLabel.Size = new System.Drawing.Size(363, 35);
+            this.ListTitleLabel.Size = new System.Drawing.Size(486, 35);
             this.ListTitleLabel.TabIndex = 2;
             this.ListTitleLabel.Text = "Lista de ordenes de compras.";
             this.ListTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,13 +159,13 @@
             this.tableLayoutPanel1.Controls.Add(this.PropertiesDataGridView, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ProductDataGridView, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(618, 38);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(691, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(363, 325);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(290, 325);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // PropertiesDataGridView
@@ -196,7 +196,7 @@
             this.PropertiesDataGridView.ShowCellToolTips = false;
             this.PropertiesDataGridView.ShowEditingIcon = false;
             this.PropertiesDataGridView.ShowRowErrors = false;
-            this.PropertiesDataGridView.Size = new System.Drawing.Size(357, 156);
+            this.PropertiesDataGridView.Size = new System.Drawing.Size(284, 156);
             this.PropertiesDataGridView.StandardTab = true;
             this.PropertiesDataGridView.TabIndex = 6;
             // 
@@ -228,7 +228,7 @@
             this.ProductDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -248,7 +248,7 @@
             this.ProductDataGridView.ShowCellToolTips = false;
             this.ProductDataGridView.ShowEditingIcon = false;
             this.ProductDataGridView.ShowRowErrors = false;
-            this.ProductDataGridView.Size = new System.Drawing.Size(357, 157);
+            this.ProductDataGridView.Size = new System.Drawing.Size(284, 157);
             this.ProductDataGridView.StandardTab = true;
             this.ProductDataGridView.TabIndex = 7;
             // 
@@ -259,14 +259,14 @@
             this.ListTableLayoutPanel.Controls.Add(this.ListDataGridView, 0, 0);
             this.ListTableLayoutPanel.Controls.Add(this.ListCountLabel, 0, 1);
             this.ListTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListTableLayoutPanel.Location = new System.Drawing.Point(249, 38);
+            this.ListTableLayoutPanel.Location = new System.Drawing.Point(199, 38);
             this.ListTableLayoutPanel.Name = "ListTableLayoutPanel";
             this.ListTableLayoutPanel.RowCount = 2;
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ListTableLayoutPanel.Size = new System.Drawing.Size(363, 325);
+            this.ListTableLayoutPanel.Size = new System.Drawing.Size(486, 325);
             this.ListTableLayoutPanel.TabIndex = 4;
             // 
             // ListDataGridView
@@ -280,7 +280,7 @@
             this.ListDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -302,7 +302,7 @@
             this.ListDataGridView.ShowCellToolTips = false;
             this.ListDataGridView.ShowEditingIcon = false;
             this.ListDataGridView.ShowRowErrors = false;
-            this.ListDataGridView.Size = new System.Drawing.Size(357, 293);
+            this.ListDataGridView.Size = new System.Drawing.Size(480, 293);
             this.ListDataGridView.StandardTab = true;
             this.ListDataGridView.TabIndex = 3;
             this.ListDataGridView.SelectionChanged += new System.EventHandler(this.ListDataGridView_SelectionChanged);
@@ -398,7 +398,7 @@
             this.ListCountLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListCountLabel.Location = new System.Drawing.Point(3, 299);
             this.ListCountLabel.Name = "ListCountLabel";
-            this.ListCountLabel.Size = new System.Drawing.Size(357, 26);
+            this.ListCountLabel.Size = new System.Drawing.Size(480, 26);
             this.ListCountLabel.TabIndex = 4;
             this.ListCountLabel.Text = "Ordenes disponibles";
             this.ListCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -412,9 +412,9 @@
             this.PropertiesTitleLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.PropertiesTitleLabel.ImageKey = "properties-button.png";
             this.PropertiesTitleLabel.ImageList = this.FormImageList;
-            this.PropertiesTitleLabel.Location = new System.Drawing.Point(618, 0);
+            this.PropertiesTitleLabel.Location = new System.Drawing.Point(691, 0);
             this.PropertiesTitleLabel.Name = "PropertiesTitleLabel";
-            this.PropertiesTitleLabel.Size = new System.Drawing.Size(363, 35);
+            this.PropertiesTitleLabel.Size = new System.Drawing.Size(290, 35);
             this.PropertiesTitleLabel.TabIndex = 5;
             this.PropertiesTitleLabel.Text = "Propiedades de orden de compra";
             this.PropertiesTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -431,7 +431,7 @@
             this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
             this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
             this.OptionsFilterTreeView.ShowPlusMinus = false;
-            this.OptionsFilterTreeView.Size = new System.Drawing.Size(240, 360);
+            this.OptionsFilterTreeView.Size = new System.Drawing.Size(190, 360);
             this.OptionsFilterTreeView.TabIndex = 1;
             this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
             // 
@@ -450,6 +450,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Control de ordenes de compra.";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ExternalOrderForm_Load);
             this.FormMenuStrip.ResumeLayout(false);
             this.FormMenuStrip.PerformLayout();

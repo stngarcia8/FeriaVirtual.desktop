@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.Data;
 using FeriaVirtual.Data.Notifiers;
 using FeriaVirtual.Domain.Dto;
@@ -31,6 +32,7 @@ namespace FeriaVirtual.Data.Repository{
             query.AddParameter("pIdPedido", payment.OrderId, DbType.String);
             query.AddParameter("pMonto", payment.Amount, DbType.Double);
             query.AddParameter("pObsPago", payment.Observation, DbType.String);
+            query.AddParameter("pGuid", Guid.NewGuid().ToString(), DbType.String); 
             query.ExecuteQuery();
             emailNotifier.Notify(payment, GetCustomerContactsMethod(payment.PaymentId));
         }

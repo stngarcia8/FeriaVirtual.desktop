@@ -72,6 +72,7 @@
     <Compile Include="Repository\ProducerRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Stats\ReportRepository.cs" />
     <Compile Include="Stats\StatRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -30,7 +30,9 @@
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ListTitleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,21 +42,19 @@
             this.ProductDataGridView = new System.Windows.Forms.DataGridView();
             this.ListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ListDataGridView = new System.Windows.Forms.DataGridView();
-            this.ListCountLabel = new System.Windows.Forms.Label();
-            this.OptionsFilterTreeView = new System.Windows.Forms.TreeView();
             this.OrderContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.OfferToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.OfferToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.OfferToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.OfferRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OfferToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.OfferNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OfferEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OfferToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.OfferCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OfferReopenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OfferToolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.OfferDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListCountLabel = new System.Windows.Forms.Label();
             this.PropertiesTitleLabel = new System.Windows.Forms.Label();
-            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionsFilterTreeView = new System.Windows.Forms.TreeView();
             this.FormMenuStrip.SuspendLayout();
             this.FormTableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -95,10 +95,30 @@
             this.OptionToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.OptionToolStripMenuItem.Text = "&Opciones";
             // 
+            // OptionRefreshToolStripMenuItem
+            // 
+            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
+            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
+            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
+            // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
             this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
+            // 
+            // OptionCloseToolStripMenuItem
+            // 
+            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
+            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
+            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
             // FormTableLayoutPanel
             // 
@@ -209,7 +229,7 @@
             this.ProductDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -261,7 +281,7 @@
             this.ListDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -288,34 +308,6 @@
             this.ListDataGridView.TabIndex = 3;
             this.ListDataGridView.SelectionChanged += new System.EventHandler(this.ListDataGridView_SelectionChanged);
             // 
-            // ListCountLabel
-            // 
-            this.ListCountLabel.AutoSize = true;
-            this.ListCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListCountLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListCountLabel.Location = new System.Drawing.Point(3, 174);
-            this.ListCountLabel.Name = "ListCountLabel";
-            this.ListCountLabel.Size = new System.Drawing.Size(311, 16);
-            this.ListCountLabel.TabIndex = 4;
-            this.ListCountLabel.Text = "Ofertas disponibles";
-            this.ListCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // OptionsFilterTreeView
-            // 
-            this.OptionsFilterTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OptionsFilterTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OptionsFilterTreeView.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsFilterTreeView.ForeColor = System.Drawing.Color.Black;
-            this.OptionsFilterTreeView.HideSelection = false;
-            this.OptionsFilterTreeView.Indent = 5;
-            this.OptionsFilterTreeView.Location = new System.Drawing.Point(3, 3);
-            this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
-            this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
-            this.OptionsFilterTreeView.ShowPlusMinus = false;
-            this.OptionsFilterTreeView.Size = new System.Drawing.Size(155, 210);
-            this.OptionsFilterTreeView.TabIndex = 1;
-            this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
-            // 
             // OrderContextMenuStrip
             // 
             this.OrderContextMenuStrip.BackColor = System.Drawing.Color.LightGray;
@@ -335,21 +327,6 @@
             this.OrderContextMenuStrip.Text = "Opciones";
             this.OrderContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.OrderContextMenuStrip_Opening);
             // 
-            // OfferToolStripSeparator1
-            // 
-            this.OfferToolStripSeparator1.Name = "OfferToolStripSeparator1";
-            this.OfferToolStripSeparator1.Size = new System.Drawing.Size(195, 6);
-            // 
-            // OfferToolStripSeparator2
-            // 
-            this.OfferToolStripSeparator2.Name = "OfferToolStripSeparator2";
-            this.OfferToolStripSeparator2.Size = new System.Drawing.Size(195, 6);
-            // 
-            // OfferToolStripSeparator3
-            // 
-            this.OfferToolStripSeparator3.Name = "OfferToolStripSeparator3";
-            this.OfferToolStripSeparator3.Size = new System.Drawing.Size(195, 6);
-            // 
             // OfferRefreshToolStripMenuItem
             // 
             this.OfferRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
@@ -358,6 +335,11 @@
             this.OfferRefreshToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.OfferRefreshToolStripMenuItem.Text = "Actualizar lista";
             this.OfferRefreshToolStripMenuItem.Click += new System.EventHandler(this.OfferRefreshToolStripMenuItem_Click);
+            // 
+            // OfferToolStripSeparator1
+            // 
+            this.OfferToolStripSeparator1.Name = "OfferToolStripSeparator1";
+            this.OfferToolStripSeparator1.Size = new System.Drawing.Size(195, 6);
             // 
             // OfferNewToolStripMenuItem
             // 
@@ -377,6 +359,11 @@
             this.OfferEditToolStripMenuItem.Text = "&Editar oferta";
             this.OfferEditToolStripMenuItem.Click += new System.EventHandler(this.OfferEditToolStripMenuItem_Click);
             // 
+            // OfferToolStripSeparator2
+            // 
+            this.OfferToolStripSeparator2.Name = "OfferToolStripSeparator2";
+            this.OfferToolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            // 
             // OfferCloseToolStripMenuItem
             // 
             this.OfferCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_close_offer;
@@ -395,6 +382,11 @@
             this.OfferReopenToolStripMenuItem.Text = "&Habilitar oferta";
             this.OfferReopenToolStripMenuItem.Click += new System.EventHandler(this.OfferReopenToolStripMenuItem_Click);
             // 
+            // OfferToolStripSeparator3
+            // 
+            this.OfferToolStripSeparator3.Name = "OfferToolStripSeparator3";
+            this.OfferToolStripSeparator3.Size = new System.Drawing.Size(195, 6);
+            // 
             // OfferDeleteToolStripMenuItem
             // 
             this.OfferDeleteToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_remove;
@@ -403,6 +395,18 @@
             this.OfferDeleteToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.OfferDeleteToolStripMenuItem.Text = "E&liminar oferta";
             this.OfferDeleteToolStripMenuItem.Click += new System.EventHandler(this.OfferDeleteToolStripMenuItem_Click);
+            // 
+            // ListCountLabel
+            // 
+            this.ListCountLabel.AutoSize = true;
+            this.ListCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListCountLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListCountLabel.Location = new System.Drawing.Point(3, 174);
+            this.ListCountLabel.Name = "ListCountLabel";
+            this.ListCountLabel.Size = new System.Drawing.Size(311, 16);
+            this.ListCountLabel.TabIndex = 4;
+            this.ListCountLabel.Text = "Ofertas disponibles";
+            this.ListCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // PropertiesTitleLabel
             // 
@@ -420,25 +424,21 @@
             this.PropertiesTitleLabel.Text = "Información de oferta";
             this.PropertiesTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // OptionRefreshToolStripMenuItem
+            // OptionsFilterTreeView
             // 
-            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
-            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
-            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
-            // 
-            // OptionCloseToolStripMenuItem
-            // 
-            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
-            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
-            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
+            this.OptionsFilterTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.OptionsFilterTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OptionsFilterTreeView.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsFilterTreeView.ForeColor = System.Drawing.Color.Black;
+            this.OptionsFilterTreeView.HideSelection = false;
+            this.OptionsFilterTreeView.Indent = 5;
+            this.OptionsFilterTreeView.Location = new System.Drawing.Point(3, 3);
+            this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
+            this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
+            this.OptionsFilterTreeView.ShowPlusMinus = false;
+            this.OptionsFilterTreeView.Size = new System.Drawing.Size(155, 210);
+            this.OptionsFilterTreeView.TabIndex = 1;
+            this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
             // 
             // OfferForm
             // 
@@ -454,6 +454,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Publicación de ofertas.";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OfferForm_Load);
             this.FormMenuStrip.ResumeLayout(false);
             this.FormMenuStrip.PerformLayout();

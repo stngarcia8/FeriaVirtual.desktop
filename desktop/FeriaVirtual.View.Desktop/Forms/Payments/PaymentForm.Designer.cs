@@ -28,9 +28,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PaymentContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.PaymentRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PaymentToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.PaymentShowDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
             this.FormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ListTitleLabel = new System.Windows.Forms.Label();
@@ -41,12 +45,8 @@
             this.ListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ListDataGridView = new System.Windows.Forms.DataGridView();
             this.ListCountLabel = new System.Windows.Forms.Label();
-            this.OptionsFilterTreeView = new System.Windows.Forms.TreeView();
-            this.PaymentRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PaymentShowDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PropertiesTitleLabel = new System.Windows.Forms.Label();
-            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionsFilterTreeView = new System.Windows.Forms.TreeView();
             this.FormMenuStrip.SuspendLayout();
             this.PaymentContextMenuStrip.SuspendLayout();
             this.FormTableLayoutPanel.SuspendLayout();
@@ -76,10 +76,30 @@
             this.OptionToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.OptionToolStripMenuItem.Text = "&Opciones";
             // 
+            // OptionRefreshToolStripMenuItem
+            // 
+            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
+            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
+            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
+            // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
             this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
+            // 
+            // OptionCloseToolStripMenuItem
+            // 
+            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
+            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
+            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
             // PaymentContextMenuStrip
             // 
@@ -94,10 +114,28 @@
             this.PaymentContextMenuStrip.Text = "Opciones";
             this.PaymentContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.PaymentContextMenuStrip_Opening);
             // 
+            // PaymentRefreshToolStripMenuItem
+            // 
+            this.PaymentRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
+            this.PaymentRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PaymentRefreshToolStripMenuItem.Name = "PaymentRefreshToolStripMenuItem";
+            this.PaymentRefreshToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.PaymentRefreshToolStripMenuItem.Text = "Actualizar lista";
+            this.PaymentRefreshToolStripMenuItem.Click += new System.EventHandler(this.PaymentRefreshToolStripMenuItem_Click);
+            // 
             // PaymentToolStripSeparator1
             // 
             this.PaymentToolStripSeparator1.Name = "PaymentToolStripSeparator1";
             this.PaymentToolStripSeparator1.Size = new System.Drawing.Size(245, 6);
+            // 
+            // PaymentShowDetailsToolStripMenuItem
+            // 
+            this.PaymentShowDetailsToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_payments1;
+            this.PaymentShowDetailsToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.PaymentShowDetailsToolStripMenuItem.Name = "PaymentShowDetailsToolStripMenuItem";
+            this.PaymentShowDetailsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.PaymentShowDetailsToolStripMenuItem.Text = "&Visualizar detalle del pago";
+            this.PaymentShowDetailsToolStripMenuItem.Click += new System.EventHandler(this.PaymentShowDetailsToolStripMenuItem_Click);
             // 
             // FormImageList
             // 
@@ -274,40 +312,6 @@
             this.ListCountLabel.Text = "Pagos disponibles";
             this.ListCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // OptionsFilterTreeView
-            // 
-            this.OptionsFilterTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.OptionsFilterTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OptionsFilterTreeView.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsFilterTreeView.ForeColor = System.Drawing.Color.Black;
-            this.OptionsFilterTreeView.HideSelection = false;
-            this.OptionsFilterTreeView.Indent = 5;
-            this.OptionsFilterTreeView.Location = new System.Drawing.Point(3, 3);
-            this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
-            this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
-            this.OptionsFilterTreeView.ShowPlusMinus = false;
-            this.OptionsFilterTreeView.Size = new System.Drawing.Size(150, 360);
-            this.OptionsFilterTreeView.TabIndex = 1;
-            this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
-            // 
-            // PaymentRefreshToolStripMenuItem
-            // 
-            this.PaymentRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
-            this.PaymentRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PaymentRefreshToolStripMenuItem.Name = "PaymentRefreshToolStripMenuItem";
-            this.PaymentRefreshToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.PaymentRefreshToolStripMenuItem.Text = "Actualizar lista";
-            this.PaymentRefreshToolStripMenuItem.Click += new System.EventHandler(this.PaymentRefreshToolStripMenuItem_Click);
-            // 
-            // PaymentShowDetailsToolStripMenuItem
-            // 
-            this.PaymentShowDetailsToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_payments1;
-            this.PaymentShowDetailsToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.PaymentShowDetailsToolStripMenuItem.Name = "PaymentShowDetailsToolStripMenuItem";
-            this.PaymentShowDetailsToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.PaymentShowDetailsToolStripMenuItem.Text = "&Visualizar detalle del pago";
-            this.PaymentShowDetailsToolStripMenuItem.Click += new System.EventHandler(this.PaymentShowDetailsToolStripMenuItem_Click);
-            // 
             // PropertiesTitleLabel
             // 
             this.PropertiesTitleLabel.AutoSize = true;
@@ -324,25 +328,21 @@
             this.PropertiesTitleLabel.Text = "Información del pago";
             this.PropertiesTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // OptionRefreshToolStripMenuItem
+            // OptionsFilterTreeView
             // 
-            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
-            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
-            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
-            // 
-            // OptionCloseToolStripMenuItem
-            // 
-            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
-            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
-            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
+            this.OptionsFilterTreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.OptionsFilterTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OptionsFilterTreeView.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsFilterTreeView.ForeColor = System.Drawing.Color.Black;
+            this.OptionsFilterTreeView.HideSelection = false;
+            this.OptionsFilterTreeView.Indent = 5;
+            this.OptionsFilterTreeView.Location = new System.Drawing.Point(3, 3);
+            this.OptionsFilterTreeView.Name = "OptionsFilterTreeView";
+            this.FormTableLayoutPanel.SetRowSpan(this.OptionsFilterTreeView, 2);
+            this.OptionsFilterTreeView.ShowPlusMinus = false;
+            this.OptionsFilterTreeView.Size = new System.Drawing.Size(150, 360);
+            this.OptionsFilterTreeView.TabIndex = 1;
+            this.OptionsFilterTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OptionsFilterTreeView_AfterSelect);
             // 
             // PaymentForm
             // 
@@ -357,6 +357,7 @@
             this.Name = "PaymentForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Control de pagos";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PaymentForm_Load);
             this.FormMenuStrip.ResumeLayout(false);
             this.FormMenuStrip.PerformLayout();

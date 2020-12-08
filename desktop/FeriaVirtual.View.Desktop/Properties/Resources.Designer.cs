@@ -93,9 +93,39 @@ namespace FeriaVirtual.View.Desktop.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap button_emailNotify {
+            get {
+                object obj = ResourceManager.GetObject("button-emailNotify", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_find {
+            get {
+                object obj = ResourceManager.GetObject("button-find", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button_new {
             get {
                 object obj = ResourceManager.GetObject("button-new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_new1 {
+            get {
+                object obj = ResourceManager.GetObject("button-new1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

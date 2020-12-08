@@ -460,5 +460,14 @@
   <ItemGroup>
     <None Include="Resources\dashboard.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-emailNotify.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-new1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

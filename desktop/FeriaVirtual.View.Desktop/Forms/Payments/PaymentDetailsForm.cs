@@ -26,13 +26,13 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
         private void PaymentDetailsForm_Load(object sender, EventArgs e){
             NotifyButton.Visible = IsNew;
             LoadPaymentData();
-            LoadProducerIntoPaymentData();
+            LoadProductsIntoPaymentData();
         }
 
 
         private void RefreshButton_Click(object sender, EventArgs e){
             LoadPaymentData();
-            LoadProducerIntoPaymentData();
+            LoadProductsIntoPaymentData();
             ProductDataGridView.Focus();
         }
 
@@ -87,7 +87,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Payments{
         }
 
 
-        private void LoadProducerIntoPaymentData(){
+        private void LoadProductsIntoPaymentData(){
             try{
                 var usecase = PaymentUsecase.CreateUsecase();
                 ProductDataGridView.DataSource = null;

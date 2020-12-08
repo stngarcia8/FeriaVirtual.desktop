@@ -15,7 +15,6 @@ namespace FeriaVirtual.View.Desktop.Commands{
         }
 
 
-        // Constructor
         private OpenFormCommand(Form form){
             if (form == null){
                 this.form = null;
@@ -26,13 +25,11 @@ namespace FeriaVirtual.View.Desktop.Commands{
         }
 
 
-        // Named constructor.
         public static OpenFormCommand Open(Form form){
             return new OpenFormCommand(form);
         }
 
 
-        // Adjust form into screen resolution.
         private void ScreenResolutionAdjust(){
             var screen = Screen.PrimaryScreen;
             form.Height = form.Height > screen.Bounds.Height - 50 ? screen.Bounds.Height - 50 : form.Height;

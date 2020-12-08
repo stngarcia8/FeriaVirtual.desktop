@@ -7,6 +7,7 @@ using FeriaVirtual.View.Desktop.Forms.Client;
 using FeriaVirtual.View.Desktop.Forms.Contracts;
 using FeriaVirtual.View.Desktop.Forms.Offers;
 using FeriaVirtual.View.Desktop.Forms.Orders;
+using FeriaVirtual.View.Desktop.Forms.Reports;
 using FeriaVirtual.View.Desktop.Forms.Payments;
 using FeriaVirtual.View.Desktop.Forms.User;
 using FeriaVirtual.View.Desktop.Helpers;
@@ -139,6 +140,13 @@ namespace FeriaVirtual.View.Desktop.Forms.Administrator{
             ShowResume();
         }
 
+        private void ReportsExternalSalesToolStripMenuItem_Click(object sender,EventArgs e) {
+            OpenForm(new ExternalSalesForm(3));           
+        }
+
+        private void ReportsInternalSalesToolStripMenuItem_Click(object sender,EventArgs e) {
+            OpenForm(new ExternalSalesForm(4));           
+        }
     }
 
 }

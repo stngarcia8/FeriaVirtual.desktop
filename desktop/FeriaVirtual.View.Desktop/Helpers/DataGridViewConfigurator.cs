@@ -57,6 +57,20 @@ namespace FeriaVirtual.View.Desktop.Helpers{
             datagrid.Columns[colName].HeaderText = headerText;
         }
 
+
+        public void AdjustHeight(){
+            int colHeaderHeight = this.datagrid.ColumnHeadersHeight;
+            int rowHeaderHeight = 0;
+            foreach (DataGridViewRow row in this.datagrid.Rows){
+                rowHeaderHeight += row.Height;
+            }
+            this.datagrid.Height = (colHeaderHeight + rowHeaderHeight) + 25;
+        }
+
+
+
+
+
     }
 
 }

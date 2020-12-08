@@ -28,12 +28,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.FormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OptionNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OptionEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionToolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClientProducerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClientToolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -41,26 +37,30 @@
             this.FormTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.FormLabel = new System.Windows.Forms.Label();
             this.OptionsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.FormPictureBox = new System.Windows.Forms.PictureBox();
-            this.OptionCloseButton = new System.Windows.Forms.Button();
             this.FormImageList = new System.Windows.Forms.ImageList(this.components);
-            this.OptionEditButton = new System.Windows.Forms.Button();
             this.OptionLabel = new System.Windows.Forms.Label();
-            this.OptionNewButton = new System.Windows.Forms.Button();
             this.ListTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ListFilterButton = new System.Windows.Forms.Button();
             this.ListFilterLabel = new System.Windows.Forms.Label();
             this.ListCountLabel = new System.Windows.Forms.Label();
             this.ListTitleLabel = new System.Windows.Forms.Label();
             this.ListFilterComboBox = new System.Windows.Forms.ComboBox();
             this.ListFilterTextBox = new System.Windows.Forms.TextBox();
             this.ListDataGridView = new System.Windows.Forms.DataGridView();
+            this.FormPictureBox = new System.Windows.Forms.PictureBox();
+            this.OptionCloseButton = new System.Windows.Forms.Button();
+            this.OptionEditButton = new System.Windows.Forms.Button();
+            this.OptionNewButton = new System.Windows.Forms.Button();
+            this.ListFilterButton = new System.Windows.Forms.Button();
+            this.OptionNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionEditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FormMenuStrip.SuspendLayout();
             this.FormTableLayoutPanel.SuspendLayout();
             this.OptionsTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.ListTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // FormMenuStrip
@@ -87,53 +87,15 @@
             this.OptionToolStripMenuItem.Size = new System.Drawing.Size(69, 21);
             this.OptionToolStripMenuItem.Text = "&Opciones";
             // 
-            // OptionNewToolStripMenuItem
-            // 
-            this.OptionNewToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_new;
-            this.OptionNewToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionNewToolStripMenuItem.Name = "OptionNewToolStripMenuItem";
-            this.OptionNewToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionNewToolStripMenuItem.Text = "&Nuevo contrato";
-            this.OptionNewToolStripMenuItem.Click += new System.EventHandler(this.OptionNewToolStripMenuItem_Click);
-            // 
-            // OptionEditToolStripMenuItem
-            // 
-            this.OptionEditToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_edit;
-            this.OptionEditToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionEditToolStripMenuItem.Name = "OptionEditToolStripMenuItem";
-            this.OptionEditToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionEditToolStripMenuItem.Text = "&Editar contrato";
-            this.OptionEditToolStripMenuItem.Click += new System.EventHandler(this.OptionEditToolStripMenuItem_Click);
-            // 
             // OptionToolStripSeparator1
             // 
             this.OptionToolStripSeparator1.Name = "OptionToolStripSeparator1";
             this.OptionToolStripSeparator1.Size = new System.Drawing.Size(166, 6);
             // 
-            // OptionRefreshToolStripMenuItem
-            // 
-            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
-            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
-            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
-            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
-            // 
             // optionToolStripSeparator2
             // 
             this.optionToolStripSeparator2.Name = "optionToolStripSeparator2";
             this.optionToolStripSeparator2.Size = new System.Drawing.Size(166, 6);
-            // 
-            // OptionCloseToolStripMenuItem
-            // 
-            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
-            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
-            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
-            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
             // 
             // ClientToolStripMenuItem
             // 
@@ -217,34 +179,6 @@
             this.OptionsTableLayoutPanel.Size = new System.Drawing.Size(103, 245);
             this.OptionsTableLayoutPanel.TabIndex = 3;
             // 
-            // FormPictureBox
-            // 
-            this.FormPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.contract_asociation;
-            this.FormPictureBox.Location = new System.Drawing.Point(3, 172);
-            this.FormPictureBox.Name = "FormPictureBox";
-            this.FormPictureBox.Size = new System.Drawing.Size(97, 70);
-            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FormPictureBox.TabIndex = 6;
-            this.FormPictureBox.TabStop = false;
-            // 
-            // OptionCloseButton
-            // 
-            this.OptionCloseButton.AutoSize = true;
-            this.OptionCloseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.OptionCloseButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OptionCloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionCloseButton.ImageKey = "menu-exit.png";
-            this.OptionCloseButton.ImageList = this.FormImageList;
-            this.OptionCloseButton.Location = new System.Drawing.Point(3, 99);
-            this.OptionCloseButton.Name = "OptionCloseButton";
-            this.OptionCloseButton.Size = new System.Drawing.Size(97, 27);
-            this.OptionCloseButton.TabIndex = 4;
-            this.OptionCloseButton.Text = "&Cerrar";
-            this.OptionCloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.OptionCloseButton.UseVisualStyleBackColor = true;
-            this.OptionCloseButton.Click += new System.EventHandler(this.OptionCloseButton_Click);
-            // 
             // FormImageList
             // 
             this.FormImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("FormImageList.ImageStream")));
@@ -253,23 +187,6 @@
             this.FormImageList.Images.SetKeyName(1, "button-edit.png");
             this.FormImageList.Images.SetKeyName(2, "button-find.png");
             this.FormImageList.Images.SetKeyName(3, "menu-exit.png");
-            // 
-            // OptionEditButton
-            // 
-            this.OptionEditButton.AutoSize = true;
-            this.OptionEditButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.OptionEditButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OptionEditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionEditButton.ImageKey = "button-edit.png";
-            this.OptionEditButton.ImageList = this.FormImageList;
-            this.OptionEditButton.Location = new System.Drawing.Point(3, 51);
-            this.OptionEditButton.Name = "OptionEditButton";
-            this.OptionEditButton.Size = new System.Drawing.Size(97, 18);
-            this.OptionEditButton.TabIndex = 2;
-            this.OptionEditButton.Text = "&Editar";
-            this.OptionEditButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.OptionEditButton.UseVisualStyleBackColor = true;
-            this.OptionEditButton.Click += new System.EventHandler(this.OptionEditButton_Click);
             // 
             // OptionLabel
             // 
@@ -282,23 +199,6 @@
             this.OptionLabel.TabIndex = 0;
             this.OptionLabel.Text = "Opciones";
             this.OptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // OptionNewButton
-            // 
-            this.OptionNewButton.AutoSize = true;
-            this.OptionNewButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.OptionNewButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OptionNewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OptionNewButton.ImageKey = "button-new.png";
-            this.OptionNewButton.ImageList = this.FormImageList;
-            this.OptionNewButton.Location = new System.Drawing.Point(3, 27);
-            this.OptionNewButton.Name = "OptionNewButton";
-            this.OptionNewButton.Size = new System.Drawing.Size(97, 18);
-            this.OptionNewButton.TabIndex = 1;
-            this.OptionNewButton.Text = "&Nuevo";
-            this.OptionNewButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.OptionNewButton.UseVisualStyleBackColor = true;
-            this.OptionNewButton.Click += new System.EventHandler(this.OptionNewButton_Click);
             // 
             // ListTableLayoutPanel
             // 
@@ -324,23 +224,6 @@
             this.ListTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.ListTableLayoutPanel.Size = new System.Drawing.Size(615, 245);
             this.ListTableLayoutPanel.TabIndex = 4;
-            // 
-            // ListFilterButton
-            // 
-            this.ListFilterButton.AutoSize = true;
-            this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ListFilterButton.ImageKey = "button-find.png";
-            this.ListFilterButton.ImageList = this.FormImageList;
-            this.ListFilterButton.Location = new System.Drawing.Point(525, 27);
-            this.ListFilterButton.Name = "ListFilterButton";
-            this.ListFilterButton.Size = new System.Drawing.Size(87, 18);
-            this.ListFilterButton.TabIndex = 7;
-            this.ListFilterButton.Text = "&Buscar";
-            this.ListFilterButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ListFilterButton.UseVisualStyleBackColor = true;
-            this.ListFilterButton.Click += new System.EventHandler(this.ListFilterButton_Click);
             // 
             // ListFilterLabel
             // 
@@ -435,6 +318,123 @@
             this.ListDataGridView.SelectionChanged += new System.EventHandler(this.ListDataGridView_SelectionChanged);
             this.ListDataGridView.DoubleClick += new System.EventHandler(this.ListDataGridView_DoubleClick);
             // 
+            // FormPictureBox
+            // 
+            this.FormPictureBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FormPictureBox.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.contract_asociation;
+            this.FormPictureBox.Location = new System.Drawing.Point(3, 172);
+            this.FormPictureBox.Name = "FormPictureBox";
+            this.FormPictureBox.Size = new System.Drawing.Size(97, 70);
+            this.FormPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FormPictureBox.TabIndex = 6;
+            this.FormPictureBox.TabStop = false;
+            // 
+            // OptionCloseButton
+            // 
+            this.OptionCloseButton.AutoSize = true;
+            this.OptionCloseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OptionCloseButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OptionCloseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionCloseButton.ImageKey = "menu-exit.png";
+            this.OptionCloseButton.ImageList = this.FormImageList;
+            this.OptionCloseButton.Location = new System.Drawing.Point(3, 99);
+            this.OptionCloseButton.Name = "OptionCloseButton";
+            this.OptionCloseButton.Size = new System.Drawing.Size(97, 27);
+            this.OptionCloseButton.TabIndex = 4;
+            this.OptionCloseButton.Text = "&Cerrar";
+            this.OptionCloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.OptionCloseButton.UseVisualStyleBackColor = true;
+            this.OptionCloseButton.Click += new System.EventHandler(this.OptionCloseButton_Click);
+            // 
+            // OptionEditButton
+            // 
+            this.OptionEditButton.AutoSize = true;
+            this.OptionEditButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OptionEditButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OptionEditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionEditButton.ImageKey = "button-edit.png";
+            this.OptionEditButton.ImageList = this.FormImageList;
+            this.OptionEditButton.Location = new System.Drawing.Point(3, 51);
+            this.OptionEditButton.Name = "OptionEditButton";
+            this.OptionEditButton.Size = new System.Drawing.Size(97, 18);
+            this.OptionEditButton.TabIndex = 2;
+            this.OptionEditButton.Text = "&Editar";
+            this.OptionEditButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.OptionEditButton.UseVisualStyleBackColor = true;
+            this.OptionEditButton.Click += new System.EventHandler(this.OptionEditButton_Click);
+            // 
+            // OptionNewButton
+            // 
+            this.OptionNewButton.AutoSize = true;
+            this.OptionNewButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.OptionNewButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OptionNewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionNewButton.ImageKey = "button-new.png";
+            this.OptionNewButton.ImageList = this.FormImageList;
+            this.OptionNewButton.Location = new System.Drawing.Point(3, 27);
+            this.OptionNewButton.Name = "OptionNewButton";
+            this.OptionNewButton.Size = new System.Drawing.Size(97, 18);
+            this.OptionNewButton.TabIndex = 1;
+            this.OptionNewButton.Text = "&Nuevo";
+            this.OptionNewButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.OptionNewButton.UseVisualStyleBackColor = true;
+            this.OptionNewButton.Click += new System.EventHandler(this.OptionNewButton_Click);
+            // 
+            // ListFilterButton
+            // 
+            this.ListFilterButton.AutoSize = true;
+            this.ListFilterButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ListFilterButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ListFilterButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ListFilterButton.ImageKey = "button-find.png";
+            this.ListFilterButton.ImageList = this.FormImageList;
+            this.ListFilterButton.Location = new System.Drawing.Point(525, 27);
+            this.ListFilterButton.Name = "ListFilterButton";
+            this.ListFilterButton.Size = new System.Drawing.Size(87, 18);
+            this.ListFilterButton.TabIndex = 7;
+            this.ListFilterButton.Text = "&Buscar";
+            this.ListFilterButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ListFilterButton.UseVisualStyleBackColor = true;
+            this.ListFilterButton.Click += new System.EventHandler(this.ListFilterButton_Click);
+            // 
+            // OptionNewToolStripMenuItem
+            // 
+            this.OptionNewToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_new;
+            this.OptionNewToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionNewToolStripMenuItem.Name = "OptionNewToolStripMenuItem";
+            this.OptionNewToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionNewToolStripMenuItem.Text = "&Nuevo contrato";
+            this.OptionNewToolStripMenuItem.Click += new System.EventHandler(this.OptionNewToolStripMenuItem_Click);
+            // 
+            // OptionEditToolStripMenuItem
+            // 
+            this.OptionEditToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.button_edit;
+            this.OptionEditToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionEditToolStripMenuItem.Name = "OptionEditToolStripMenuItem";
+            this.OptionEditToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionEditToolStripMenuItem.Text = "&Editar contrato";
+            this.OptionEditToolStripMenuItem.Click += new System.EventHandler(this.OptionEditToolStripMenuItem_Click);
+            // 
+            // OptionRefreshToolStripMenuItem
+            // 
+            this.OptionRefreshToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_refresh;
+            this.OptionRefreshToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionRefreshToolStripMenuItem.Name = "OptionRefreshToolStripMenuItem";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeyDisplayString = "F5";
+            this.OptionRefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.OptionRefreshToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionRefreshToolStripMenuItem.Text = "&Actualizar lista";
+            this.OptionRefreshToolStripMenuItem.Click += new System.EventHandler(this.OptionRefreshToolStripMenuItem_Click);
+            // 
+            // OptionCloseToolStripMenuItem
+            // 
+            this.OptionCloseToolStripMenuItem.Image = global::FeriaVirtual.View.Desktop.Properties.Resources.menu_exit;
+            this.OptionCloseToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OptionCloseToolStripMenuItem.Name = "OptionCloseToolStripMenuItem";
+            this.OptionCloseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.OptionCloseToolStripMenuItem.Text = "&Cerrar formulario";
+            this.OptionCloseToolStripMenuItem.Click += new System.EventHandler(this.OptionCloseToolStripMenuItem_Click);
+            // 
             // ContractMaintenanceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -450,6 +450,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Maestro de contratos.";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ContractMaintenanceForm_Load);
             this.FormMenuStrip.ResumeLayout(false);
             this.FormMenuStrip.PerformLayout();
@@ -457,10 +458,10 @@
             this.FormTableLayoutPanel.PerformLayout();
             this.OptionsTableLayoutPanel.ResumeLayout(false);
             this.OptionsTableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.ListTableLayoutPanel.ResumeLayout(false);
             this.ListTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
