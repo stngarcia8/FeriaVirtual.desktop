@@ -1,11 +1,18 @@
 ﻿using System.Data;
+using System.Collections.Generic;
+using FeriaVirtual.Domain.Dto;
+using FeriaVirtual.Data.Notifiers;
 using System;
 using FeriaVirtual.Infraestructure.Database;
 
 namespace FeriaVirtual.Data.Stats {
     public class ReportRepository:Data.Repository.Repository{
 
-        private ReportRepository() {
+        private EmailReportNotifier notifier;
+
+
+        private ReportRepository(){
+            notifier = EmailReportNotifier.CreateNotifier();
         }
 
 
@@ -287,6 +294,13 @@ namespace FeriaVirtual.Data.Stats {
             querySelect.AddParameter("pFechaDesde", dateFrom, DbType.Date);
             querySelect.AddParameter("pFechahasta", dateTo, DbType.Date);
             return querySelect.ExecuteQuery();
+        }
+
+
+        public void NotifyReportByEmail(IList<ReportRecipientsDto> recipients){
+            foreach (ReportRecipientsDto recipient in recipients){
+                this.notifier.Notify(recipient);
+            }
         }
 
 

@@ -56,6 +56,7 @@
     <Compile Include="Notifiers\EmailPaymentNotifier.cs" />
     <Compile Include="Notifiers\QueueNotifier.cs" />
     <Compile Include="Notifiers\EmailUserNotifier.cs" />
+    <Compile Include="Notifiers\EmailReportNotifier.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
     <Compile Include="Repository\OfferRepository.cs" />
     <Compile Include="Repository\OrderDispatchRepository.cs" />

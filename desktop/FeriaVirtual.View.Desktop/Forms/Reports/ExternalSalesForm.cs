@@ -1,29 +1,40 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
-using FeriaVirtual.View.Desktop.Helpers;
-using FeriaVirtual.Business.Stats;
+using FeriaVirtual.Domain.Dto;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Windows.Forms;
+using FeriaVirtual.Business.Stats;
+using FeriaVirtual.View.Desktop.Helpers;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 
-namespace FeriaVirtual.View.Desktop.Forms.Reports{
+namespace FeriaVirtual.View.Desktop.Forms.Reports {
 
-    public partial class ExternalSalesForm : Form{
+    public partial class ExternalSalesForm:Form {
 
         private readonly int rolId;
+        private string pdfFileName;
+        private string reportTitle;
+        private IList<ReportRecipientsDto> recipients;
 
 
-        public ExternalSalesForm(int rolId){
+        public ExternalSalesForm(int rolId) {
             InitializeComponent();
             this.rolId = rolId;
         }
 
-        private void ExternalSalesForm_Load(object sender,System.EventArgs e){
+        private void ExternalSalesForm_Load(object sender,System.EventArgs e) {
             ConfigureForm();
+            pdfFileName = string.Empty;
+            this.recipients = new List<ReportRecipientsDto>();
+            reportTitle = "Informe de ventas";
         }
 
 
-        private void YearRadioButton_CheckedChanged(object sender,EventArgs e){
+        private void YearRadioButton_CheckedChanged(object sender,EventArgs e) {
             EnableOrDisableControls(0);
         }
 
@@ -43,173 +54,347 @@ namespace FeriaVirtual.View.Desktop.Forms.Reports{
             EnableOrDisableControls(4);
         }
 
-        private void OptionExecuteToolStripMenuItem_Click(object sender,EventArgs e){
-            this.ExecuteReport();
+        private void RangeFromDateTimePicker_ValueChanged(object sender,EventArgs e) {
+            RangeToDateTimePicker.MinDate = RangeFromDateTimePicker.Value.AddDays(1);
+        }
+
+
+
+        private void OptionExecuteToolStripMenuItem_Click(object sender,EventArgs e) {
+            ExecuteReport();
         }
 
         private void OptionSendMailToolStripMenuItem_Click(object sender,EventArgs e) {
-
+            GeneratePDF();
+            SendReport();
         }
 
         private void OptionCleanToolStripMenuItem_Click(object sender,EventArgs e){
-            this.ClearResults();
-            this.ConfigureForm();
-            this.YearComboBox.Focus();
+            this.pdfFileName = string.Empty;
+            ClearResults();
+            ConfigureForm();
+            YearComboBox.Focus();
         }
 
-        private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e){
-            this.Close();
+        private void OptionCloseToolStripMenuItem_Click(object sender,EventArgs e) {
+            Close();
         }
 
 
 
 
-        private void ConfigureForm(){
-            this.Text = (rolId == 3 ? "Informe de ventas clientes externos" : "Informe de ");
-            this.FilterGroupBox.Width = this.Width;
-            this.YearComboBox.SelectedIndex = 0;
-            this.YearRadioButton.Checked = true;
-            this.MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
-            this.SemesterComboBox.SelectedIndex = (DateTime.Now.Month > 6 ? 1 : 0);
-            this.DateDateTimePicker.Value = DateTime.Now.Date;
-            this.RangeFromDateTimePicker.Value = DateTime.Now.Date;
-            this.RangeToDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
+        private void ConfigureForm() {
+            Text = (rolId == 3 ? "Informe de ventas clientes externos" : "Informe de ");
+            FilterGroupBox.Width = Width;
+            YearComboBox.SelectedIndex = 0;
+            YearRadioButton.Checked = true;
+            MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
+            SemesterComboBox.SelectedIndex = (DateTime.Now.Month > 6 ? 1 : 0);
+            DateDateTimePicker.Value = DateTime.Now.Date;
+            RangeFromDateTimePicker.Value = DateTime.Now.Date;
+            RangeToDateTimePicker.Value = DateTime.Now.Date.AddDays(1);
             EnableOrDisableControls(0);
             ClearResults();
-            this.YearComboBox.Focus();
+            YearComboBox.Focus();
         }
 
 
-        private void EnableOrDisableControls(int optionSelected){
-            this.MonthComboBox.Enabled = optionSelected.Equals(1);
-            this.SemesterComboBox.Enabled = optionSelected.Equals(2);
-            this.DateDateTimePicker.Enabled = optionSelected.Equals(3);
-            this.RangeFromDateTimePicker.Enabled = optionSelected.Equals(4);
-            this.RangeToDateTimePicker.Enabled = optionSelected.Equals(4);
+        private void EnableOrDisableControls(int optionSelected) {
+            MonthComboBox.Enabled = optionSelected.Equals(1);
+            SemesterComboBox.Enabled = optionSelected.Equals(2);
+            DateDateTimePicker.Enabled = optionSelected.Equals(3);
+            RangeFromDateTimePicker.Enabled = optionSelected.Equals(4);
+            RangeToDateTimePicker.Enabled = optionSelected.Equals(4);
         }
 
 
-        private void ClearResults(){
-            this.SalesDataGridView.DataSource= null;
-            this.ResumeSalesDataGridView.DataSource= null;
-            this.LossesDataGridView.DataSource=null;
-            this.ResumeLossesDataGridView.DataSource= null;
+        private void ClearResults() {
+            this.recipients = new List<ReportRecipientsDto>();
+            SalesDataGridView.DataSource= null;
+            ResumeSalesDataGridView.DataSource= null;
+            LossesDataGridView.DataSource=null;
+            ResumeLossesDataGridView.DataSource= null;
+            this.pdfFileName = string.Empty;
+            this.LossesChart.Visible = false;
+            this.OptionSendMailToolStripMenuItem.Enabled = false;
         }
 
 
-        private void ExecuteReport(){
-            try{
+        private void ExecuteReport() {
+            try {
                 ReportUsecase usecase = ReportUsecase.CreateUsecase();
                 DataSet results = new DataSet();
-                if (this.YearRadioButton.Checked)usecase.GetReportByYear(rolId, int.Parse(this.YearComboBox.Text));
-                if (this.MonthRadioButton.Checked)usecase.GetReportByMonthAndYear(rolId, this.MonthComboBox.SelectedIndex+1,   int.Parse(this.YearComboBox.Text));
-                if (this.SemesterRadioButton.Checked)usecase.GetReportBySemesterAndYear(rolId, this.SemesterComboBox.SelectedIndex,   int.Parse(this.YearComboBox.Text));
-                if (this.DateRadioButton.Checked)usecase.GetReportByDate(rolId, this.DateDateTimePicker.Value);
-                if (this.RangeRadioButton.Checked)usecase.GetReportByRange(rolId, this.RangeFromDateTimePicker.Value, this.RangeToDateTimePicker.Value);
+                if(YearRadioButton.Checked) {
+                    usecase.GetReportByYear(rolId,int.Parse(YearComboBox.Text));
+                    this.reportTitle = $"Reporte de ventas año {this.YearComboBox.Text}";
+                }
+
+                if(MonthRadioButton.Checked) {
+                    usecase.GetReportByMonthAndYear(rolId,MonthComboBox.SelectedIndex+1,int.Parse(YearComboBox.Text));
+                    this.reportTitle = $"Reporte de ventas de {this.MonthComboBox.Text} de {this.YearComboBox.Text}";
+                }
+
+                if(SemesterRadioButton.Checked) {
+                    usecase.GetReportBySemesterAndYear(rolId,SemesterComboBox.SelectedIndex,int.Parse(YearComboBox.Text));
+                    this.reportTitle = $"Reporte de ventas {this.SemesterComboBox.Text} año {this.YearComboBox.Text}";
+                }
+
+                if(DateRadioButton.Checked) {
+                    usecase.GetReportByDate(rolId,DateDateTimePicker.Value);
+                    this.reportTitle = $"Reporte de ventas del {this.DateDateTimePicker.Value.ToLongDateString()}";
+                }
+
+                if(RangeRadioButton.Checked) {
+                    usecase.GetReportByRange(rolId,RangeFromDateTimePicker.Value,RangeToDateTimePicker.Value);
+                    this.reportTitle = $"Reporte de ventas entre {this.RangeFromDateTimePicker.Value.ToShortDateString()} y {this.RangeToDateTimePicker.Value.ToShortDateString()}";
+                }
+
                 results = usecase.SourceDataSet;
                 ConfigureResumeSalesGrid(results.Tables["ResumeSales"]);
                 ConfigureSalesGrid(results.Tables["Sales"]);
                 ConfigureResumeLossesGrid(results.Tables["ResumeLosses"]);
                 ConfigureLossesSalesGrid(results.Tables["Losses"]);
-            }
-            catch (Exception ex){
-                MessageBox.Show(ex.Message.ToString(), "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                VerifySendEmail();
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
         }
 
-        private void ConfigureResumeSalesGrid(DataTable data){
-            if (data.Rows.Count.Equals(0)){
-                this.ResumeSalesLabel.Text = "No hay ventas registradas en el periodo.";
-                this.ResumeSalesDataGridView.Height = 50;
-                this.ResumeSalesDataGridView.DataSource=null;
+
+        private void VerifySendEmail(){
+            if (this.SalesDataGridView.Rows.Count > 0){
+                this.OptionSendMailToolStripMenuItem.Enabled = true;
                 return;
             }
-            this.ResumeSalesLabel.Text = "Resumen de ventas";
-            this.ResumeSalesDataGridView.DataSource=data;
-            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(this.ResumeSalesDataGridView);
-            configurator.ChangeHeader("fecha_compra", "Fecha");
-            configurator.CurrencyColumn("monto", "Venta diaria");
+            if (this.ResumeSalesDataGridView.Rows.Count > 0){
+                this.OptionSendMailToolStripMenuItem.Enabled = true;
+                return;
+            }
+            if (this.LossesDataGridView.Rows.Count > 0){
+                this.OptionSendMailToolStripMenuItem.Enabled = true;
+                return;
+            }
+            if (this.ResumeLossesDataGridView.Rows.Count > 0){
+                this.OptionSendMailToolStripMenuItem.Enabled = true;
+                return;
+            }
+            this.OptionSendMailToolStripMenuItem.Enabled = false;
+        }
+
+
+
+
+        private void ConfigureResumeSalesGrid(DataTable data) {
+            if(data.Rows.Count.Equals(0)) {
+                ResumeSalesLabel.Text = "No hay ventas registradas en el periodo.";
+                ResumeSalesDataGridView.Height = 50;
+                ResumeSalesDataGridView.DataSource=null;
+                return;
+            }
+            ResumeSalesLabel.Text = "Resumen de ventas";
+            ResumeSalesDataGridView.DataSource=data;
+            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(ResumeSalesDataGridView);
+            configurator.ChangeHeader("fecha_compra","Fecha");
+            configurator.CurrencyColumn("monto","Venta diaria");
             configurator.AdjustHeight();
         }
 
-        private void ConfigureSalesGrid(DataTable data){
-            if (data.Rows.Count.Equals(0)){
-                this.SalesDataGridView.Height = 50;
-                this.SalesDataGridView.DataSource=null;
-                this.SalesTitleLabel.Text = string.Empty;
+        private void ConfigureSalesGrid(DataTable data) {
+            if(data.Rows.Count.Equals(0)) {
+                SalesDataGridView.Height = 50;
+                SalesDataGridView.DataSource=null;
+                SalesTitleLabel.Text = string.Empty;
                 return;
             }
-            this.SalesTitleLabel.Location = new System.Drawing.Point(0,
-                this.ResumeSalesDataGridView.Height + this.ResumeSalesDataGridView.Location.Y + 25);
-            this.SalesDataGridView.Location = new System.Drawing.Point(0, this.SalesTitleLabel.Location.Y + 25);
-            this.SalesTitleLabel.Text = "Detalle de ventas.";
-            this.SalesDataGridView.DataSource=data;
-            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(this.SalesDataGridView);
-            IList<string> columns = new List<string>(){"id_rol", "estado_orden"};
+            SalesTitleLabel.Location = new System.Drawing.Point(0,
+                ResumeSalesDataGridView.Height + ResumeSalesDataGridView.Location.Y + 25);
+            SalesDataGridView.Location = new System.Drawing.Point(0,SalesTitleLabel.Location.Y + 25);
+            SalesTitleLabel.Text = "Detalle de ventas.";
+            SalesDataGridView.DataSource=data;
+            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(SalesDataGridView);
+            IList<string> columns = new List<string>() { "id_rol","estado_orden" };
             configurator.HideColumns(columns);
-            configurator.ChangeHeader("fecha_orden", "Fecha de compra");
-            configurator.ChangeHeader("fecha_pago", "Fecha de pago");
-            configurator.ChangeHeader("condicion_pago", "Condición de pago");
-            configurator.ChangeHeader("metodo_pago", "Metodo pago");
-            configurator.CurrencyColumn("monto_pagado", "Monto");
+            configurator.ChangeHeader("fecha_orden","Fecha de compra");
+            configurator.ChangeHeader("fecha_pago","Fecha de pago");
+            configurator.ChangeHeader("condicion_pago","Condición de pago");
+            configurator.ChangeHeader("metodo_pago","Metodo pago");
+            configurator.CurrencyColumn("monto_pagado","Monto");
             configurator.AdjustHeight();
         }
 
-        private void ConfigureResumeLossesGrid(DataTable data){
-            if (data.Rows.Count.Equals(0)){
-                this.ResumeLossesDataGridView.Height = 50;
-                this.ResumeLossesDataGridView.DataSource=null;
-                this.ResumeLossesLabel.Text = "No se registran mermas en el periodo seleccionado.";
+        private void ConfigureResumeLossesGrid(DataTable data) {
+            if(data.Rows.Count.Equals(0)) {
+                ResumeLossesDataGridView.Height = 50;
+                ResumeLossesDataGridView.DataSource=null;
+                ResumeLossesLabel.Text = "No se registran mermas en el periodo seleccionado.";
                 return;
             }
-            this.ResumeLossesLabel.Text = "Resumen de mermas";
-            this.ResumeLossesDataGridView.DataSource=data;
-            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(this.ResumeLossesDataGridView);
-            IList<string> columns = new List<string>(){"id_rol"};
+            ResumeLossesLabel.Text = "Resumen de mermas";
+            ResumeLossesDataGridView.DataSource=data;
+            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(ResumeLossesDataGridView);
+            IList<string> columns = new List<string>() { "id_rol" };
             configurator.HideColumns(columns);
-            configurator.ChangeHeader("fecha_orden", "Fecha");
-            configurator.ChangeHeader("productor", "Productor");
-            configurator.CurrencyColumn("total_mermas", "Total mermas");
+            configurator.ChangeHeader("fecha_orden","Fecha");
+            configurator.ChangeHeader("productor","Productor");
+            configurator.CurrencyColumn("total_mermas","Total mermas");
             configurator.AdjustHeight();
         }
 
-        private void ConfigureLossesSalesGrid(DataTable data){
-            if (data.Rows.Count.Equals(0)){
-                this.LossesDataGridView.Height = 50;
-                this.LossesChart.Visible = false;
-                this.LossesDataGridView.DataSource=null;
-                this.LossesLabel.Text = string.Empty;
+        private void ConfigureLossesSalesGrid(DataTable data) {
+            if(data.Rows.Count.Equals(0)) {
+                LossesDataGridView.Height = 50;
+                LossesChart.Visible = false;
+                LossesDataGridView.DataSource=null;
+                LossesLabel.Text = string.Empty;
                 return;
             }
-            this.LossesLabel.Location = new System.Drawing.Point(675,
-                this.ResumeLossesDataGridView.Height + this.ResumeLossesDataGridView.Location.Y + 25);
-            this.LossesDataGridView.Location = new System.Drawing.Point(675, this.LossesLabel.Location.Y + 25);
-            this.LossesLabel.Text = "Detalle de mermas registradas.";
-            this.LossesDataGridView.DataSource = data;
-            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(this.LossesDataGridView);
-            IList<string> columns = new List<string>(){"id_rol"};
+            LossesLabel.Location = new System.Drawing.Point(675,
+                ResumeLossesDataGridView.Height + ResumeLossesDataGridView.Location.Y + 25);
+            LossesDataGridView.Location = new System.Drawing.Point(675,LossesLabel.Location.Y + 25);
+            LossesLabel.Text = "Detalle de mermas registradas.";
+            LossesDataGridView.DataSource = data;
+            DataGridViewConfigurator configurator = DataGridViewConfigurator.CreateConfigurator(LossesDataGridView);
+            IList<string> columns = new List<string>() { "id_rol" };
             configurator.HideColumns(columns);
-            configurator.ChangeHeader("fecha_orden", "Fecha");
-            configurator.ChangeHeader("producto", "Producto");
-            configurator.NumericIntegerColumn("cantidad_merma", "Cantidad");
-            configurator.CurrencyColumn("precio_kg", "Precio (KG)");
-            configurator.CurrencyColumn("precio_productos", "Total");
-            configurator.ChangeHeader("productor", "Productor");
+            configurator.ChangeHeader("fecha_orden","Fecha");
+            configurator.ChangeHeader("producto","Producto");
+            configurator.NumericIntegerColumn("cantidad_merma","Cantidad");
+            configurator.CurrencyColumn("precio_kg","Precio (KG)");
+            configurator.CurrencyColumn("precio_productos","Total");
+            configurator.ChangeHeader("productor","Productor");
             configurator.AdjustHeight();
-            this.LossesChart.Location = new System.Drawing.Point(675,
-                this.LossesDataGridView.Height + this.LossesDataGridView.Location.Y + 25);
-            this.LossesChart.DataSource= data;
-            this.LossesChart.Series[0].XValueMember = "producto";
-            this.LossesChart.Series[0].YValueMembers = "cantidad_merma";
-            this.LossesChart.Series[0]["PieLabelStyle"] = "Disabled";
-            this.LossesChart.Titles.Clear();
-            this.LossesChart.Titles.Add("Distribución de mermas por producto vs cantidad");
-            this.LossesChart.Visible = true;
+            LossesChart.Location = new System.Drawing.Point(675,
+                LossesDataGridView.Height + LossesDataGridView.Location.Y + 25);
+            LossesChart.DataSource= data;
+            LossesChart.Series[0].XValueMember = "producto";
+            LossesChart.Series[0].YValueMembers = "cantidad_merma";
+            LossesChart.Series[0]["PieLabelStyle"] = "Disabled";
+            LossesChart.Titles.Clear();
+            LossesChart.Titles.Add("Distribución de mermas por producto vs cantidad");
+            LossesChart.Visible = true;
         }
 
-        private void RangeFromDateTimePicker_ValueChanged(object sender,EventArgs e){
-            this.RangeToDateTimePicker.MinDate = this.RangeFromDateTimePicker.Value.AddDays(1);
+
+        private void GeneratePDF() {
+            string filename =
+                $"ventas_clientes{(rolId.Equals(3) ? "externos" : "internos")}_{DateTime.Now.ToFileTimeUtc()}.pdf";
+            string filePath = $"{Environment.CurrentDirectory}\\reportes";
+            pdfFileName = Path.Combine(filePath,filename);
+            try {
+                using(FileStream stream = new FileStream(pdfFileName,FileMode.Create)) {
+                    Document doc = new Document(PageSize.LETTER,10,10,10,10);
+                    PdfWriter.GetInstance(doc,stream);
+                    doc.Open();
+                    GenerateTable(doc,SalesDataGridView,SalesTitleLabel);
+                    GenerateTable(doc,LossesDataGridView,LossesLabel);
+                    GenerateTable(doc,ResumeSalesDataGridView,ResumeSalesLabel);
+                    GenerateTable(doc,ResumeLossesDataGridView,ResumeLossesLabel);
+                    doc.Close();
+                }
+            } catch(Exception ex) {
+                MessageBox.Show(ex.Message.ToString(),"Atención",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
         }
+
+
+        private void GenerateTitle(Document doc) {
+            doc.NewPage();
+            iTextSharp.text.Image img = Image.GetInstance(Path.Combine(Environment.CurrentDirectory, "mg-logo.png"));
+            img.ScaleToFit(125f,60F);
+            doc.Add(img);
+            Font font = FontFactory.GetFont(FontFactory.COURIER_BOLD, 14);
+            Paragraph p = new Paragraph(this.reportTitle, font) {
+                SpacingBefore = -35,
+                SpacingAfter = 0,
+                Alignment = 1
+            };
+            doc.Add(p);
+            doc.Add(Chunk.NEWLINE);
+
+            Font font1 = FontFactory.GetFont(FontFactory.COURIER_BOLD, 12);
+            Paragraph p1 = new Paragraph((this.rolId.Equals(3)?"Clientes externos":"Clientes internos"), font1) {
+                SpacingBefore = -25,
+                SpacingAfter = 3,
+                Alignment = 1
+            };
+            doc.Add(p1);
+            doc.Add(Chunk.NEWLINE);
+
+
+        }
+
+
+
+        private void GenerateTable(Document document,DataGridView dgv,Label lbl) {
+            if(dgv.Rows.Count.Equals(0)) {
+                return;
+            }
+            GenerateTitle(document);
+            int cols = 0;
+            foreach(DataGridViewColumn column in dgv.Columns) {
+                if(column.Visible) {
+                    cols++;
+                }
+            }
+            PdfPTable pdfTable = new PdfPTable(cols);
+            pdfTable.DefaultCell.Padding=3;
+            pdfTable.WidthPercentage=100;
+            pdfTable.DefaultCell.BorderWidth = 1;
+            pdfTable.HorizontalAlignment=Element.ALIGN_LEFT;
+            pdfTable.DefaultCell.BackgroundColor = new BaseColor(0,150,0);
+            PdfPCell cell = new PdfPCell(new Phrase(lbl.Text)) {
+                Colspan = cols,
+                HorizontalAlignment = 1,
+                BackgroundColor = new BaseColor(0,155,0)
+            };
+            pdfTable.AddCell(cell);
+            foreach(DataGridViewColumn column in dgv.Columns) {
+                if(column.Visible) {
+                    PdfPCell cell1 = new PdfPCell(new Phrase(column.HeaderText));
+                    pdfTable.AddCell(cell1);
+                }
+            }
+            pdfTable.HeaderRows = 1;
+            pdfTable.DefaultCell.BackgroundColor = new BaseColor(255,255,255);
+            pdfTable.DefaultCell.BorderWidth = 1;
+            foreach(DataGridViewRow row in dgv.Rows) {
+                foreach(DataGridViewCell cell2 in row.Cells) {
+                    if(cell2.Visible) {
+                        pdfTable.AddCell(cell2.Value.ToString());
+                    }
+                }
+                pdfTable.CompleteRow();
+            }
+            document.Add(pdfTable);
+        }
+
+
+        private void SendReport(){
+            ReportRecipientsDto rr = new ReportRecipientsDto();
+            rr.Name = "Claudio Arenas";
+            rr.Email = "cl.arenasc@alumnos.duoc.cl";
+            rr.Subject = this.reportTitle;
+            rr.Filename = this.pdfFileName;
+            this.recipients.Add(rr);
+
+            rr = new ReportRecipientsDto();
+            rr.Name = "Daniel Garcia Asathor";
+            rr.Email = "stngarcia8@gmail.com";
+            rr.Subject = this.reportTitle;
+            rr.Filename = this.pdfFileName;
+            this.recipients.Add(rr);
+            ReportUsecase usecase = ReportUsecase.CreateUsecase();
+            usecase.SendReportToEmail(this.recipients);
+            MessageBox.Show("Reporte enviado a los destinatarios.", "Atención", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            this.ClearResults();
+        }
+
+
+
+
+
+
     }
 
 }

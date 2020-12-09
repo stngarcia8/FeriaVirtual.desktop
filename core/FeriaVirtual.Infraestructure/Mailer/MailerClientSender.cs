@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 
 namespace FeriaVirtual.Infraestructure.Mailer{
@@ -20,10 +21,16 @@ namespace FeriaVirtual.Infraestructure.Mailer{
         public string Email{ get; set; }
         public string UserEmail{ get; set; }
         public string Subject{ get; set; }
+        public IList<string> AttachFiles;
 
 
         public void SendMail(){
             using ( configurator = MailerClientConfigurator.CreateSmtp()){
+                if (this.AttachFiles.Count > 0){
+                    foreach (string file in this.AttachFiles){
+                        configurator.AddAttachFile(file);
+                    }
+                }
                 ConfigureEmail(configurator);
                 configurator.ClientSmtp.SendMailAsync(configurator.GetMessage(MessageBody));
             }
@@ -31,16 +38,18 @@ namespace FeriaVirtual.Infraestructure.Mailer{
 
 
         public void AddAttach(string filePath){
-            configurator.AddAttachFile(filePath);
+            this.AttachFiles.Add(filePath);
         }
 
 
         public void RemoveAttach(string filePath){
-            configurator.RemoveAttachFile(filePath);
+            this.AttachFiles.Remove(filePath);
         }
 
 
-        private MailerClientSender(){ }
+        private MailerClientSender(){
+            this.AttachFiles = new List<string>();
+        }
 
 
         public static MailerClientSender CreateSender(){

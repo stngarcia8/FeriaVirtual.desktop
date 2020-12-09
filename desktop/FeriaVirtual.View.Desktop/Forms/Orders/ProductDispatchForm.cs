@@ -107,8 +107,7 @@ namespace FeriaVirtual.View.Desktop.Forms.Orders{
 
         private void LoadCarrierData(){
             CarrierTextBox.Text = CurrentDispatch.CarrierName;
-            CarrierValueTextBox.Text = string.Format("{1}${0}",
-                CurrentDispatch.DispatchValue.ToString(CultureInfo.CurrentCulture), "N");
+            CarrierValueTextBox.Text = $"${CurrentDispatch.DispatchValue.ToString(CultureInfo.CurrentCulture)}";
             var products = new BindingList<OrderDispatchDetail>(CurrentDispatch.Products);
             ProductsDataGridView.DataSource = products;
             ConfigureProductGrid();
