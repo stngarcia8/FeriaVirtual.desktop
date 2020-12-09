@@ -168,11 +168,11 @@
     <Compile Include="Forms\Reports\ExternalSalesForm.Designer.cs">
       <DependentUpon>ExternalSalesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Reports\RecipientForm1.cs">
+    <Compile Include="Forms\Reports\RecipientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Reports\RecipientForm1.Designer.cs">
-      <DependentUpon>RecipientForm1.cs</DependentUpon>
+    <Compile Include="Forms\Reports\RecipientForm.Designer.cs">
+      <DependentUpon>RecipientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\User\MaintenanceUserForm.cs">
       <SubType>Form</SubType>
@@ -276,8 +276,8 @@
     <EmbeddedResource Include="Forms\Reports\ExternalSalesForm.resx">
       <DependentUpon>ExternalSalesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Reports\RecipientForm1.resx">
-      <DependentUpon>RecipientForm1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Reports\RecipientForm.resx">
+      <DependentUpon>RecipientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\User\MaintenanceUserForm.resx">
       <DependentUpon>MaintenanceUserForm.cs</DependentUpon>
@@ -481,6 +481,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\button-new1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form-sendReport.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-externalReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-internalReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-internalSales.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-refresh1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
