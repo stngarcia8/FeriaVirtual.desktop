@@ -385,7 +385,7 @@ SELECT ord.id_orden,
        ped.id_cliente,
        ord.fecha_preparacion,
        sub.id_cliente                                                                               AS id_transportista,
-       sub.valor_propuesto,
+       sub.valor_puja as valor_propuesto,
        sub.peso_comprometido,
        sub.observacion_subasta,
        dat.rsocial_comercial,
@@ -408,6 +408,7 @@ FROM fv_user.orden_despacho ord
          INNER JOIN fv_user.pais pai ON ciu.id_pais = pai.id_pais
          INNER JOIN fv_user.envio env ON ord.id_pedido = env.id_pedido
          INNER JOIN fv_user.seguro seg ON env.id_seguro = seg.id_seguro;
+
 
 
 prompt Creando vista de ofertas.;
@@ -509,6 +510,124 @@ FROM fv_user.resultado_propuesto rpro
          INNER JOIN fv_user.cliente cli ON pro.id_cliente = cli.id_cliente
          INNER JOIN fv_user.dato_comercial dat ON cli.id_cliente = dat.id_cliente
          INNER JOIN fv_user.pago pag ON ped.id_pedido = pag.id_pedido;
+
+
+prompt Creando vista de cuenta de usuarios.;
+CREATE OR REPLACE VIEW fv_user.stats_usuarios AS
+SELECT rol.nombre_rol    AS "Tipo usuario",
+       COUNT(cli.id_rol) AS "Cantidad"
+FROM fv_user.cliente cli
+         INNER JOIN fv_user.rol_usuario rol ON cli.id_rol = rol.id_rol
+GROUP BY rol.nombre_rol
+ORDER BY rol.nombre_rol;
+
+
+prompt Creando vista para disminucion de stock en la web.;
+CREATE OR REPLACE VIEW fv_user.vwDescontarStock AS
+SELECT res.id_pedido,
+       pro.id_producto,
+       (pro.cantidad_producto) AS "diferencia"
+FROM fv_user.resultado_propuesto res
+         INNER JOIN fv_user.producto pro ON res.id_producto = pro.id_producto;
+
+
+prompt Creando vista de ordenes por su estado para clientes internos.;
+create or replace view fv_user.vwOrdenesPorEstado_ClienteExterno as
+select ped.id_pedido,
+       (SELECT est.id_estado
+        FROM fv_user.seguimiento_pedido spe
+                 INNER JOIN fv_user.estado_pedido est ON spe.id_estado = est.id_estado
+        WHERE spe.id_pedido = ped.id_pedido
+        ORDER BY spe.id_estado DESC FETCH FIRST ROW ONLY) AS id_estado,
+       (SELECT est.desc_estado
+        FROM fv_user.seguimiento_pedido spe
+                 INNER JOIN fv_user.estado_pedido est ON spe.id_estado = est.id_estado
+        WHERE spe.id_pedido = ped.id_pedido
+        ORDER BY spe.id_estado DESC FETCH FIRST ROW ONLY) AS estado
+from fv_user.pedido ped
+         inner join fv_user.cliente cli on ped.id_cliente = cli.id_cliente
+where cli.id_rol = 3;
+
+
+prompt Creando vista de ordenes por su estado para clientes internos.;
+create or replace view fv_user.vwOrdenesPorEstado_ClienteInterno as
+select ped.id_pedido,
+       (SELECT est.id_estado
+        FROM fv_user.seguimiento_pedido spe
+                 INNER JOIN fv_user.estado_pedido est ON spe.id_estado = est.id_estado
+        WHERE spe.id_pedido = ped.id_pedido
+        ORDER BY spe.id_estado DESC FETCH FIRST ROW ONLY) AS id_estado,
+       (SELECT est.desc_estado
+        FROM fv_user.seguimiento_pedido spe
+                 INNER JOIN fv_user.estado_pedido est ON spe.id_estado = est.id_estado
+        WHERE spe.id_pedido = ped.id_pedido
+        ORDER BY spe.id_estado DESC FETCH FIRST ROW ONLY) AS estado
+from fv_user.pedido ped
+         inner join fv_user.cliente cli on ped.id_cliente = cli.id_cliente
+where cli.id_rol = 4;
+
+
+prompt Creando vista de cuentas de ordenes de compra para clientes externos.;
+CREATE OR REPLACE VIEW fv_user.stats_ordenes_clientesexternos AS
+SELECT id_estado,
+       estado           AS "Estado orden",
+       COUNT(id_pedido) AS "Cantidad"
+FROM fv_user.vwOrdenesPorEstado_ClienteExterno
+WHERE estado IS NOT NULL
+GROUP BY id_estado, estado
+ORDER BY id_estado;
+
+
+prompt Creando vista de cuenta de ordenes de compra cliente interno.;
+CREATE OR REPLACE VIEW fv_user.stats_ordenes_clientesinternos AS
+SELECT id_estado,
+       estado           AS "Estado orden",
+       COUNT(id_pedido) AS "Cantidad"
+FROM fv_user.vwOrdenesPorEstado_ClienteInterno
+WHERE estado IS NOT NULL
+GROUP BY id_estado, estado
+ORDER BY id_estado;
+
+
+prompt  Creando bista para ventas.;
+CREATE OR REPLACE VIEW fv_user.vwVentas AS
+SELECT cli.id_rol,
+       ped.fecha_pedido                                   AS fecha_orden,
+       (SELECT est.desc_estado
+        FROM fv_user.seguimiento_pedido spe
+                 INNER JOIN fv_user.estado_pedido est ON spe.id_estado = est.id_estado
+        WHERE spe.id_pedido = ped.id_pedido
+        ORDER BY spe.id_estado DESC FETCH FIRST ROW ONLY) AS estado_orden,
+       con.desc_condicion                                 AS condicion_pago,
+       pag.fecha_pago                                     AS fecha_pago,
+       nvl(pag.monto_pago, 0)                             AS monto_pagado,
+       nvl(met.desc_metpago, '')                          AS metodo_pago
+FROM fv_user.pedido ped
+         INNER JOIN fv_user.condicion_pago con ON ped.id_condicion = con.id_condicion
+         LEFT JOIN fv_user.pago pag ON ped.id_pedido = pag.id_pedido
+         LEFT JOIN fv_user.metodo_pago met ON pag.id_metpago = met.id_metpago
+         LEFT JOIN fv_user.cliente cli ON ped.id_cliente = cli.id_cliente
+WHERE (SELECT id_estado
+       FROM fv_user.seguimiento_pedido
+       WHERE id_pedido = ped.id_pedido
+       ORDER BY id_estado DESC FETCH FIRST ROW ONLY) = 7
+ORDER BY ped.fecha_pedido;
+
+
+prompt  Creando vista para las mermas.;
+CREATE OR REPLACE VIEW fv_user.vwMermas AS
+SELECT ftb."tipo_cliente"                                                                                                   AS id_rol,
+       to_date((ftb."id_fecha" + to_number(to_char(TO_DATE('1900-01-01', 'yyyy-MM-dd'), 'j'))), 'j') AS fecha_orden,
+       pro."producto"                                                                                                       AS producto,
+       ftb."cantidad_productos_solicitados"                                                                                 AS cantidad_merma,
+       ftb."precio_por_kg_ofrecido"                                                                                         AS precio_kg,
+       ftb."precio_productos"                                                                                               AS precio_productos,
+       pdt."nombre_completo"                                                                                                AS productor
+FROM fv_user.vwETL_fact_table ftb
+         INNER JOIN fv_user.vwETL_productos pro ON ftb."id_producto" = pro."id_producto"
+         INNER JOIN fv_user.vwETL_productores pdt ON ftb."id_productor" = pdt."id_productor"
+WHERE ftb."estado_producto" = 4
+ORDER BY fecha_orden;
 
 
 

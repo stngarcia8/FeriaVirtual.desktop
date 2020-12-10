@@ -13,6 +13,13 @@ prompt;
 prompt Ajustando registros iniciales.;
 prompt ----------------------------------------;
 
+
+prompt Actualizando giro comercial de transportistas.;
+UPDATE fv_user.dato_comercial
+SET giro_comercial = 'Transportes y fletes'
+WHERE id_cliente IN (SELECT id_cliente FROM fv_user.cliente WHERE id_rol = 6);
+
+
 prompt Normalizando nombres de productos y observacion a mayusculas.;
 UPDATE fv_user.producto
 SET nombre_producto = TRIM(upper(nombre_producto)),
@@ -25,6 +32,6 @@ set patente_vehiculo     = upper(patente_vehiculo),
     modelo_vehiculo      = upper(modelo_vehiculo),
     observacion_vehiculo = upper(observacion_vehiculo);
 
-
 prompt Aceptando cambios.;
 commit;
+

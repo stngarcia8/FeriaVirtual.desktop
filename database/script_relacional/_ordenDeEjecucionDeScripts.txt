@@ -1,0 +1,18 @@
+orden de ejecución de los script:
+
+01. script_fv-user.sql;
+02. script_fv-table.sql;
+03. script_fv-fkeys.sql;
+04. script_fv-pkgs.sql;
+05. script_fv-sprox.sql;
+06. script_fv-view-etl.sql;
+07. script_fv-view.sql;
+08. script_fv-popul.sql;
+09. script_fv-norm.sql;
+
+Alternativamente, si se desea ejecutar los scripts desde sqlplus,
+estos pueden ser ejecutados de la siguiente forma:
+@<ruta>/script_fv-main.sql
+
+ejemplo:
+@/script_files/script_fv-main.sql;

@@ -622,7 +622,7 @@ BEGIN
     GROUP BY id_cliente, fecha_propuesta, valor_propuest
     HAVING valor_propuest =
            (SELECT MIN(valor_propuest) FROM fv_user.resultado_subasta WHERE id_subasta = pIdSubasta)
-    order by fecha_propuesta FETCH FIRST ROW ONLY;
+    ORDER BY valor_propuest DESC FETCH FIRST ROW ONLY;
 
     UPDATE fv_user.subasta
     SET estado_subasta = 3,
@@ -792,7 +792,7 @@ CREATE OR REPLACE PROCEDURE
     IS
 BEGIN
     INSERT INTO fv_user.oferta
-        (id_oferta, desc_oferta, descuento_oferta, estado_oferta)
+    (id_oferta, desc_oferta, descuento_oferta, tipo_oferta)
     VALUES (pIdOferta, pDescripcion, pDescuento, pTipo);
     COMMIT;
 END spCrearofertas;
@@ -806,7 +806,7 @@ CREATE OR REPLACE PROCEDURE
     IS
 BEGIN
     INSERT INTO fv_user.oferta_detalle
-        (id_detalle, id_oferta, id_producto, valor_original)
+    (id_detalle, id_oferta, id_producto, valor_original)
     VALUES (pIdDetalle, pIdOferta, pIdProducto, pValor);
     COMMIT;
 END spAgregarDetalleOferta;
@@ -821,7 +821,7 @@ BEGIN
     UPDATE fv_user.oferta
     SET desc_oferta      = pDescripcion,
         descuento_oferta = pDescuento,
-        estado_oferta    = pTipo,
+        tipo_oferta    = pTipo,
         fecha_oferta     = sysdate
     WHERE id_oferta = pIdOferta;
     COMMIT;
@@ -866,15 +866,18 @@ CREATE OR REPLACE PROCEDURE
                             pIdMetodoPago NUMBER,
                             pIdPedido VARCHAR2,
                             pMonto NUMBER,
-                            pObsPago VARCHAR2) IS
+                            pObsPago VARCHAR2,
+                            pGuid VARCHAR2) IS
 BEGIN
     INSERT INTO fv_user.pago
-        (id_pago, id_metpago, id_pedido, fecha_pago, monto_pago, obs_pago)
+    (id_pago, id_metpago, id_pedido, fecha_pago, monto_pago, obs_pago)
     VALUES (pIdPago, pIdMetodoPago, pIdPedido, sysdate, pMonto, pObsPago);
 
     INSERT INTO fv_user.cierre_pedido
-        (id_cierre, id_pedido, id_tipo_cierre, fecha_cierre, obs_cierre)
+    (id_cierre, id_pedido, id_tipo_cierre, fecha_cierre, obs_cierre)
     VALUES (pIdPago, pIdPedido, 7, sysdate, pObsPago);
+    fv_user.spActualizarEstadoPedido(
+            pIdPedido, 7, pGuid);
     COMMIT;
 END spRegistrarPago;
 /

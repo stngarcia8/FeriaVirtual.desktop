@@ -1,0 +1,5 @@
+para ejecutar el script realizar lo siguiente:
+1. abrir sql managment.
+2. abrir nueva hoja de trabajo.
+3. copiar el contenido dentro de la hoja de trabajo.
+4. presionar tecla "f5" y esperar los resultados.

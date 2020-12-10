@@ -16,18 +16,18 @@ prompt ----------------------------------------;
 
 prompt Insertando categorias de productos.;
 INSERT INTO fv_user.categoria_producto
-VALUES (1, 'Exportación');
+VALUES (1, 'VENTA INTERNACIONAL');
 INSERT INTO fv_user.categoria_producto
-VALUES (2, 'Venta nacional');
+VALUES (2, 'VENTA NACIONAL');
 
 
 prompt Insertando medios de transportes.;
 INSERT INTO fv_user.tipo_transporte
-VALUES (1, 'Aereo');
+VALUES (1, 'AEREO');
 INSERT INTO fv_user.tipo_transporte
-VALUES (2, 'Terrestre');
+VALUES (2, 'TERRESTRE');
 INSERT INTO fv_user.tipo_transporte
-VALUES (3, 'Maritimo');
+VALUES (3, 'MARITIMO');
 
 
 prompt Insertando condiciones de pago.;
@@ -288,9 +288,9 @@ VALUES (61, 36, 'Hanoi');
 
 prompt Insertando tipos de contratos.;
 INSERT INTO fv_user.tipo_contrato (id_tipo_contrato, desc_tipo_contrato)
-VALUES (1, 'Externo');
+VALUES (1, 'EXTERNO');
 INSERT INTO fv_user.tipo_contrato (id_tipo_contrato, desc_tipo_contrato)
-VALUES (2, 'Interno');
+VALUES (2, 'INTERNO');
 
 
 prompt Insertando roles de usuario.;
@@ -361,7 +361,7 @@ values ('08daae9c-d977-4234-a054-0b83918ed3e7', 'a3220c48-ddb2-4fe8-8e80-8bc832f
 prompt Insertando datos comerciales de clientes conocidos.;
 INSERT INTO FV_USER.DATO_COMERCIAL (ID_COMERCIAL, ID_CLIENTE, ID_CIUDAD, RSOCIAL_COMERCIAL, FANTASIA_COMERCIAL, GIRO_COMERCIAL, EMAIL_COMERCIAL,
                                     DNI_COMERCIAL, DIR_COMERCIAL, FONO_COMERCIAL)
-VALUES ('f3a97648-7fe8-40a7-afce-007aed69dcb8', 'aa3ed254-ff6d-4c3c-97b6-048efdedaf69', 29, 'Frutos de Exportación Ltda.', 'Frutas El Torero',
+VALUES ('f3a97648-7fe8-40a7-afce-007aed69dcb8', 'aa3ed254-ff6d-4c3c-97b6-048efdedaf69', 60, 'Frutos de Exportacion Ltda.', 'Frutas El Torero',
         'Venta de Frutas', 'cl.arenasc@alumnos.duoc.cl', '9477546-4', 'Calle Betis 8900', '720761221');
 INSERT INTO FV_USER.DATO_COMERCIAL (ID_COMERCIAL, ID_CLIENTE, ID_CIUDAD, RSOCIAL_COMERCIAL, FANTASIA_COMERCIAL, GIRO_COMERCIAL, EMAIL_COMERCIAL,
                                     DNI_COMERCIAL, DIR_COMERCIAL, FONO_COMERCIAL)
@@ -373,7 +373,7 @@ VALUES ('ea5713da-7421-467c-b5b4-b39cf219a844', '5f950227-a59a-48ec-a358-a403ede
         'SERVICIO DE TRANSPORTE', 'cl.arenasc@alumnos.duoc.cl', '17374955-0', 'AV JOSE PEDRO ALESSANDRI 2784', '6678332');
 INSERT INTO FV_USER.DATO_COMERCIAL (ID_COMERCIAL, ID_CLIENTE, ID_CIUDAD, RSOCIAL_COMERCIAL, FANTASIA_COMERCIAL, GIRO_COMERCIAL, EMAIL_COMERCIAL,
                                     DNI_COMERCIAL, DIR_COMERCIAL, FONO_COMERCIAL)
-VALUES ('6a0f6a1e-f661-4400-b039-13a5a59c3446', '729d6773-a60c-4dd5-9e39-9629e44c98b2', 20, 'La Canastita S.A', 'La Canastita Económica',
+VALUES ('6a0f6a1e-f661-4400-b039-13a5a59c3446', '729d6773-a60c-4dd5-9e39-9629e44c98b2', 20, 'La Canastita S.A', 'La Canastita Baratita',
         'Venta de frutas', 'cl.arenasc@alumnos.duoc.cl', '17846733-5', 'Los Aromos 987', '8872993');
 
 prompt  Insertando productos de ejemplo.;

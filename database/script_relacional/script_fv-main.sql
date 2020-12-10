@@ -28,6 +28,7 @@ ALTER SESSION SET NLS_LANGUAGE= 'SPANISH' NLS_TERRITORY= 'Spain' NLS_CURRENCY= '
 @/script_files/script_fv-fkeys.sql;
 @/script_files/script_fv-pkgs.sql;
 @/script_files/script_fv-sprox.sql;
+@/script_files/script_fv-view-etl.sql;
 @/script_files/script_fv-view.sql;
 @/script_files/script_fv-popul.sql;
 @/script_files/script_fv-norm.sql;
