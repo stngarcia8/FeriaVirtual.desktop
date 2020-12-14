@@ -8,7 +8,6 @@
         public float SafeValue{ get; set; }
 
 
-        // Constructor
         private Safe(){
             SafeId = 0;
             SafeName = string.Empty;
@@ -17,7 +16,6 @@
         }
 
 
-        // named constructor
         public static Safe CreateSafe(){
             return new Safe();
         }

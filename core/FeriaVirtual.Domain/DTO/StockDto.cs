@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FeriaVirtual.Domain.Dto{
 
-namespace FeriaVirtual.Domain.Dto {
-    public class StockDto {
+    public class StockDto{
 
-        public string ProductId{get;set;}
-        public int Stock{get;set;}
+        public string ProductId{ get; set; }
+        public int Stock{ get; set; }
 
 
         public StockDto(){
@@ -17,4 +12,5 @@ namespace FeriaVirtual.Domain.Dto {
         }
 
     }
+
 }

@@ -11,7 +11,6 @@ namespace FeriaVirtual.Domain.Orders{
         public int Value{ get; set; }
 
 
-        // Constructor
         private AuctionBidValue(){
             ValueId = Guid.NewGuid().ToString();
             AuctionId = string.Empty;
@@ -20,7 +19,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructor
         public static AuctionBidValue CreateBidValue(){
             return new AuctionBidValue();
         }

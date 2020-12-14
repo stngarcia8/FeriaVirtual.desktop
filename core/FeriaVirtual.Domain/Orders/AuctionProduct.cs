@@ -8,7 +8,6 @@
         public float TotalValue{ get; set; }
 
 
-        // Constructor
         private AuctionProduct(){
             Product = string.Empty;
             UnitValue = 0;
@@ -17,7 +16,6 @@
         }
 
 
-        // Named constructor.
         public static AuctionProduct CreateAuctionProduct(){
             return new AuctionProduct();
         }

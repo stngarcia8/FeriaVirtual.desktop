@@ -6,7 +6,6 @@ namespace FeriaVirtual.Domain.Orders{
 
     public class Order{
 
-        // Properties
         public string OrderId{ get; set; }
         public string ClientId{ get; set; }
         public PaymentCondition Condition{ get; set; }
@@ -17,7 +16,6 @@ namespace FeriaVirtual.Domain.Orders{
         public IList<OrderDetail> OrderDetailList{ get; set; }
 
 
-        // Constructors
         private Order(){
             InitializeObjects(Guid.NewGuid().ToString(), string.Empty, DateTime.Now, 0);
         }
@@ -40,7 +38,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructors
         public static Order CreateOrder(){
             return new Order();
         }

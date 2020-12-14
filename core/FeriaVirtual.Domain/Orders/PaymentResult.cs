@@ -7,7 +7,7 @@ namespace FeriaVirtual.Domain.Orders{
 
         public string PaymentResultId{ get; set; }
         public string PaymentId{ get; set; }
-        public string ClientId{get;set;}
+        public string ClientId{ get; set; }
         public DateTime SalesDate{ get; set; }
         public int Quantity{ get; set; }
         public string ProductName{ get; set; }

@@ -9,8 +9,9 @@
         ContractRefused,
         NewOrderDispatch,
         EditOrderDispatch,
-        NewPayment, 
+        NewPayment,
         NotifyPayment
+
     }
 
 }

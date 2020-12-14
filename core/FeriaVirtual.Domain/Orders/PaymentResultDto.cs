@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FeriaVirtual.Domain.Orders{
 
-namespace FeriaVirtual.Domain.Orders {
-    public class PaymentResultDto {
+    public class PaymentResultDto{
 
         public string PaymentId{ get; set; }
-        public string ClientId{get;set;}
+        public string ClientId{ get; set; }
         public string SalesDate{ get; set; }
         public int Quantity{ get; set; }
         public string ProductName{ get; set; }
@@ -26,7 +21,6 @@ namespace FeriaVirtual.Domain.Orders {
             ProductPrice = 0;
         }
 
-
-
     }
+
 }

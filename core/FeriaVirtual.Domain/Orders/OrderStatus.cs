@@ -2,12 +2,10 @@
 
     public class OrderStatus{
 
-        // Properties
         public int StatusId{ get; set; }
         public string StatusDescription{ get; set; }
 
 
-        // Constructor
         private OrderStatus(){
             StatusId = 0;
             StatusDescription = string.Empty;
@@ -20,7 +18,6 @@
         }
 
 
-        // Named constructors.
         public static OrderStatus CreateStatus(){
             return new OrderStatus();
         }

@@ -12,7 +12,6 @@ namespace FeriaVirtual.Domain.Orders{
         public float TotalValue{ get; set; }
 
 
-        // Constructor.
         private OrderDispatchDetail(){
             DetailId = Guid.NewGuid().ToString();
             Product = string.Empty;
@@ -22,7 +21,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructor.
         public static OrderDispatchDetail CreateDetail(){
             return new OrderDispatchDetail();
         }

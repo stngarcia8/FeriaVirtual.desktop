@@ -27,7 +27,6 @@ namespace FeriaVirtual.Domain.Orders{
         public IList<AuctionProduct> Products{ get; set; }
 
 
-        // Constructor
         private Auction(){
             InitializeObjects(Guid.NewGuid().ToString(), 0, 0, 0);
         }
@@ -60,7 +59,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructors
         public static Auction CreateAuction(){
             return new Auction();
         }

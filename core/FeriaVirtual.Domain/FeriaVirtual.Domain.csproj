@@ -33,12 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\Contract.cs" />
@@ -99,10 +93,6 @@
     <Compile Include="Users\Credential.cs" />
     <Compile Include="Users\Producer.cs" />
     <Compile Include="Users\UserProfile.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DiagramaDeClases-feriaVirtual-v2.cd" />
-    <None Include="DiagramaDeClases-feriaVirtual-domain.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

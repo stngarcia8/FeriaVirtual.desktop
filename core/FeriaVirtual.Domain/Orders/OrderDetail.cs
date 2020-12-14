@@ -11,7 +11,6 @@ namespace FeriaVirtual.Domain.Orders{
         public float Quantity{ get; set; }
 
 
-        // Constructors.
         private OrderDetail(){
             InitializeObjects(Guid.NewGuid().ToString(), string.Empty, string.Empty, 0);
         }
@@ -30,7 +29,6 @@ namespace FeriaVirtual.Domain.Orders{
         }
 
 
-        // Named constructors.
         public static OrderDetail CreateDetail(){
             return new OrderDetail();
         }

@@ -11,8 +11,8 @@
   DTS:LocaleID="3082"
   DTS:ObjectName="EtlFeriaVirtual"
   DTS:PackageType="5"
-  DTS:VersionBuild="44"
-  DTS:VersionGUID="{71817D51-4613-4FFB-B64D-AA944A86B64C}">
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{0BC88EBF-0D91-4C47-A952-73EA2F61A452}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -4768,13 +4768,13 @@ where [refTable].[id_cliente] = ? and [refTable].[nombre_cliente] = ? and [refTa
                   name="Entrada de comando de OLE DB">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[ASEGURADORA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="aseguradora"
+                      cachedName="ASEGURADORA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_0]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[x_condicion_pago]"
                       cachedDataType="ui1"
@@ -4788,29 +4788,29 @@ where [refTable].[id_cliente] = ? and [refTable].[nombre_cliente] = ? and [refTa
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_2]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_costo_envio]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[DESCRIPCION_CONDICION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="25"
-                      cachedName="descripcion_condicion"
+                      cachedName="DESCRIPCION_CONDICION"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_3]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[DESCRIPCION_ESTADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_estado"
+                      cachedName="DESCRIPCION_ESTADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_4]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[DESCRIPCION_METODO_PAGO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_metodo_pago"
+                      cachedName="DESCRIPCION_METODO_PAGO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_5]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[x_estado_orden]"
                       cachedDataType="ui1"
@@ -4868,21 +4868,21 @@ where [refTable].[id_cliente] = ? and [refTable].[nombre_cliente] = ? and [refTa
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_13]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_prima_seguro]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[SEGURO_ASOCIADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="seguro_asociado"
+                      cachedName="SEGURO_ASOCIADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_14]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].Columns[TRANSPORTISTA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="101"
-                      cachedName="transportista"
+                      cachedName="TRANSPORTISTA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Actualizar orden de compra.Inputs[Entrada de comando de OLE DB].ExternalColumns[Param_15]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -5179,7 +5179,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                   containsID="true"
                   dataType="System.String"
                   description="Especifica la lista de identificadores de linaje que están asignados a los parámetros que usa la instrucción SQL de la propiedad SQLCommand. Las entradas de la lista están separadas por puntos y comas."
-                  name="ParameterMap">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[id_orden]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]};#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_orden]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_estado_orden]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_condicion_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_porcentaje_descuento]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_monto_pagado]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_metodo_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_envio]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_costo_envio]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_prima_seguro]};</property>
+                  name="ParameterMap">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[id_orden]};#{Package\Traspasar ordenes de compra\147:invalid};#{Package\Traspasar ordenes de compra\149:invalid};#{Package\Traspasar ordenes de compra\154:invalid};#{Package\Traspasar ordenes de compra\156:invalid};#{Package\Traspasar ordenes de compra\158:invalid};#{Package\Traspasar ordenes de compra\159:invalid};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_orden]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_estado_orden]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_condicion_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_porcentaje_descuento]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_monto_pagado]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_metodo_pago]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_envio]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_costo_envio]};#{Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_prima_seguro]};</property>
                 <property
                   dataType="System.Int32"
                   description="Especifica la página de códigos de columna para utilizar cuando la información de página de códigos no está disponible en el origen de datos."
@@ -5253,12 +5253,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[DESCRIPCION_ESTADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_estado"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]">
+                      cachedName="DESCRIPCION_ESTADO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5287,12 +5287,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[DESCRIPCION_CONDICION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="25"
-                      cachedName="descripcion_condicion"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]">
+                      cachedName="DESCRIPCION_CONDICION"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5369,12 +5369,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[DESCRIPCION_METODO_PAGO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_metodo_pago"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]">
+                      cachedName="DESCRIPCION_METODO_PAGO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5403,12 +5403,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[TRANSPORTISTA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="101"
-                      cachedName="transportista"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]">
+                      cachedName="TRANSPORTISTA"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5437,12 +5437,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[SEGURO_ASOCIADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="seguro_asociado"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]">
+                      cachedName="SEGURO_ASOCIADO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5455,12 +5455,12 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Buscar ordenes de compra.Inputs[Entrada de búsqueda].Columns[ASEGURADORA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="aseguradora"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]">
+                      cachedName="ASEGURADORA"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -5603,113 +5603,113 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[id_orden]"
                       name="id_orden" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ORDEN]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_orden]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_orden]"
-                      name="fecha_orden" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ORDEN]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ORDEN]"
+                      name="FECHA_ORDEN" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[estado_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ESTADO_ORDEN]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[estado_orden]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[estado_orden]"
-                      name="estado_orden" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ESTADO_ORDEN]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ESTADO_ORDEN]"
+                      name="ESTADO_ORDEN" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_estado]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_ESTADO]"
                       length="30"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]"
-                      name="descripcion_estado" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]"
+                      name="DESCRIPCION_ESTADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[condicion_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[CONDICION_PAGO]"
                       dataType="i1"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[condicion_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[condicion_pago]"
-                      name="condicion_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[CONDICION_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[CONDICION_PAGO]"
+                      name="CONDICION_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_condicion]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_CONDICION]"
                       length="25"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]"
-                      name="descripcion_condicion" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]"
+                      name="DESCRIPCION_CONDICION" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[porcentaje_descuento]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]"
                       dataType="i1"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[porcentaje_descuento]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[porcentaje_descuento]"
-                      name="porcentaje_descuento" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PORCENTAJE_DESCUENTO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]"
+                      name="PORCENTAJE_DESCUENTO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_PAGO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_pago]"
-                      name="fecha_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_PAGO]"
+                      name="FECHA_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[monto_pagado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[MONTO_PAGADO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[monto_pagado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[monto_pagado]"
-                      name="monto_pagado" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[MONTO_PAGADO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[MONTO_PAGADO]"
+                      name="MONTO_PAGADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[METODO_PAGO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[metodo_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[metodo_pago]"
-                      name="metodo_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[METODO_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[METODO_PAGO]"
+                      name="METODO_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_metodo_pago]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_METODO_PAGO]"
                       length="30"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]"
-                      name="descripcion_metodo_pago" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]"
+                      name="DESCRIPCION_METODO_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ENVIO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_envio]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_envio]"
-                      name="fecha_envio" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ENVIO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ENVIO]"
+                      name="FECHA_ENVIO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[transportista]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[TRANSPORTISTA]"
                       length="101"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]"
-                      name="transportista" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]"
+                      name="TRANSPORTISTA" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[costo_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[COSTO_ENVIO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[costo_envio]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[costo_envio]"
-                      name="costo_envio" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[COSTO_ENVIO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[COSTO_ENVIO]"
+                      name="COSTO_ENVIO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[seguro_asociado]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[SEGURO_ASOCIADO]"
                       length="50"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]"
-                      name="seguro_asociado" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]"
+                      name="SEGURO_ASOCIADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[aseguradora]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ASEGURADORA]"
                       length="50"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]"
-                      name="aseguradora" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]"
+                      name="ASEGURADORA" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[prima_seguro]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PRIMA_SEGURO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[prima_seguro]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[prima_seguro]"
-                      name="prima_seguro" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PRIMA_SEGURO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PRIMA_SEGURO]"
+                      name="PRIMA_SEGURO" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -5720,81 +5720,81 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       length="40"
                       name="id_orden" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ORDEN]"
                       dataType="r8"
-                      name="fecha_orden" />
+                      name="FECHA_ORDEN" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[estado_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ESTADO_ORDEN]"
                       dataType="r8"
-                      name="estado_orden" />
+                      name="ESTADO_ORDEN" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_ESTADO]"
                       codePage="1252"
                       dataType="str"
                       length="30"
-                      name="descripcion_estado" />
+                      name="DESCRIPCION_ESTADO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[condicion_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[CONDICION_PAGO]"
                       dataType="i1"
-                      name="condicion_pago" />
+                      name="CONDICION_PAGO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_CONDICION]"
                       codePage="1252"
                       dataType="str"
                       length="25"
-                      name="descripcion_condicion" />
+                      name="DESCRIPCION_CONDICION" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[porcentaje_descuento]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PORCENTAJE_DESCUENTO]"
                       dataType="i1"
-                      name="porcentaje_descuento" />
+                      name="PORCENTAJE_DESCUENTO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_PAGO]"
                       dataType="r8"
-                      name="fecha_pago" />
+                      name="FECHA_PAGO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[monto_pagado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[MONTO_PAGADO]"
                       dataType="r8"
-                      name="monto_pagado" />
+                      name="MONTO_PAGADO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[METODO_PAGO]"
                       dataType="r8"
-                      name="metodo_pago" />
+                      name="METODO_PAGO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_METODO_PAGO]"
                       codePage="1252"
                       dataType="str"
                       length="30"
-                      name="descripcion_metodo_pago" />
+                      name="DESCRIPCION_METODO_PAGO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ENVIO]"
                       dataType="r8"
-                      name="fecha_envio" />
+                      name="FECHA_ENVIO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[TRANSPORTISTA]"
                       codePage="1252"
                       dataType="str"
                       length="101"
-                      name="transportista" />
+                      name="TRANSPORTISTA" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[costo_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[COSTO_ENVIO]"
                       dataType="r8"
-                      name="costo_envio" />
+                      name="COSTO_ENVIO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[SEGURO_ASOCIADO]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      name="seguro_asociado" />
+                      name="SEGURO_ASOCIADO" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ASEGURADORA]"
                       codePage="1252"
                       dataType="str"
                       length="50"
-                      name="aseguradora" />
+                      name="ASEGURADORA" />
                     <externalMetadataColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[prima_seguro]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PRIMA_SEGURO]"
                       dataType="r8"
-                      name="prima_seguro" />
+                      name="PRIMA_SEGURO" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -5811,113 +5811,113 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[id_orden]"
                       name="id_orden" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_ORDEN]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_orden]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_orden]"
-                      name="fecha_orden" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ORDEN]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_ORDEN]"
+                      name="FECHA_ORDEN" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[estado_orden]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[ESTADO_ORDEN]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[estado_orden]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[estado_orden]"
-                      name="estado_orden" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ESTADO_ORDEN]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[ESTADO_ORDEN]"
+                      name="ESTADO_ORDEN" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_ESTADO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_estado]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_ESTADO]"
                       length="30"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_estado]"
-                      name="descripcion_estado" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_ESTADO]"
+                      name="DESCRIPCION_ESTADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[condicion_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[CONDICION_PAGO]"
                       dataType="i1"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[condicion_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[condicion_pago]"
-                      name="condicion_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[CONDICION_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[CONDICION_PAGO]"
+                      name="CONDICION_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_CONDICION]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_condicion]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_CONDICION]"
                       length="25"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_condicion]"
-                      name="descripcion_condicion" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_CONDICION]"
+                      name="DESCRIPCION_CONDICION" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[porcentaje_descuento]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]"
                       dataType="i1"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[porcentaje_descuento]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[porcentaje_descuento]"
-                      name="porcentaje_descuento" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PORCENTAJE_DESCUENTO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]"
+                      name="PORCENTAJE_DESCUENTO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_PAGO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_pago]"
-                      name="fecha_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_PAGO]"
+                      name="FECHA_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[monto_pagado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[MONTO_PAGADO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[monto_pagado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[monto_pagado]"
-                      name="monto_pagado" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[MONTO_PAGADO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[MONTO_PAGADO]"
+                      name="MONTO_PAGADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[METODO_PAGO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[metodo_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[metodo_pago]"
-                      name="metodo_pago" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[METODO_PAGO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[METODO_PAGO]"
+                      name="METODO_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[descripcion_metodo_pago]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[DESCRIPCION_METODO_PAGO]"
                       length="30"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[descripcion_metodo_pago]"
-                      name="descripcion_metodo_pago" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]"
+                      name="DESCRIPCION_METODO_PAGO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_ENVIO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[fecha_envio]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[fecha_envio]"
-                      name="fecha_envio" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[FECHA_ENVIO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[FECHA_ENVIO]"
+                      name="FECHA_ENVIO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[TRANSPORTISTA]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[transportista]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[TRANSPORTISTA]"
                       length="101"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[transportista]"
-                      name="transportista" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[TRANSPORTISTA]"
+                      name="TRANSPORTISTA" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[costo_envio]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[COSTO_ENVIO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[costo_envio]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[costo_envio]"
-                      name="costo_envio" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[COSTO_ENVIO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[COSTO_ENVIO]"
+                      name="COSTO_ENVIO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[SEGURO_ASOCIADO]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[seguro_asociado]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[SEGURO_ASOCIADO]"
                       length="50"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[seguro_asociado]"
-                      name="seguro_asociado" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[SEGURO_ASOCIADO]"
+                      name="SEGURO_ASOCIADO" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[ASEGURADORA]"
                       codePage="1252"
                       dataType="str"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[aseguradora]"
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[ASEGURADORA]"
                       length="50"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[aseguradora]"
-                      name="aseguradora" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[ASEGURADORA]"
+                      name="ASEGURADORA" />
                     <outputColumn
-                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[prima_seguro]"
+                      refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[PRIMA_SEGURO]"
                       dataType="r8"
-                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[prima_seguro]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[prima_seguro]"
-                      name="prima_seguro" />
+                      externalMetadataColumnId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].ExternalColumns[PRIMA_SEGURO]"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[PRIMA_SEGURO]"
+                      name="PRIMA_SEGURO" />
                     <outputColumn
                       refId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de error de origen de Oracle].Columns[ErrorCode]"
                       dataType="i4"
@@ -5948,55 +5948,55 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                   name="Entrada de conversión de datos">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[fecha_orden]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[FECHA_ORDEN]"
                       cachedDataType="r8"
-                      cachedName="fecha_orden"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_orden]" />
+                      cachedName="FECHA_ORDEN"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ORDEN]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[estado_orden]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[ESTADO_ORDEN]"
                       cachedDataType="r8"
-                      cachedName="estado_orden"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[estado_orden]" />
+                      cachedName="ESTADO_ORDEN"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ESTADO_ORDEN]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[condicion_pago]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[CONDICION_PAGO]"
                       cachedDataType="i1"
-                      cachedName="condicion_pago"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[condicion_pago]" />
+                      cachedName="CONDICION_PAGO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[CONDICION_PAGO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[porcentaje_descuento]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[PORCENTAJE_DESCUENTO]"
                       cachedDataType="i1"
-                      cachedName="porcentaje_descuento"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[porcentaje_descuento]" />
+                      cachedName="PORCENTAJE_DESCUENTO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[fecha_pago]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[FECHA_PAGO]"
                       cachedDataType="r8"
-                      cachedName="fecha_pago"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_pago]" />
+                      cachedName="FECHA_PAGO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_PAGO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[monto_pagado]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[MONTO_PAGADO]"
                       cachedDataType="r8"
-                      cachedName="monto_pagado"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[monto_pagado]" />
+                      cachedName="MONTO_PAGADO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[MONTO_PAGADO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[METODO_PAGO]"
                       cachedDataType="r8"
-                      cachedName="metodo_pago"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[metodo_pago]" />
+                      cachedName="METODO_PAGO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[METODO_PAGO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[fecha_envio]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[FECHA_ENVIO]"
                       cachedDataType="r8"
-                      cachedName="fecha_envio"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_envio]" />
+                      cachedName="FECHA_ENVIO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ENVIO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[costo_envio]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[COSTO_ENVIO]"
                       cachedDataType="r8"
-                      cachedName="costo_envio"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[costo_envio]" />
+                      cachedName="COSTO_ENVIO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[COSTO_ENVIO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[prima_seguro]"
+                      refId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Inputs[Entrada de conversión de datos].Columns[PRIMA_SEGURO]"
                       cachedDataType="r8"
-                      cachedName="prima_seguro"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[prima_seguro]" />
+                      cachedName="PRIMA_SEGURO"
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PRIMA_SEGURO]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -6021,7 +6021,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_orden]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ORDEN]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6041,7 +6041,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[estado_orden]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ESTADO_ORDEN]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6061,7 +6061,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[condicion_pago]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[CONDICION_PAGO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6081,7 +6081,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[porcentaje_descuento]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PORCENTAJE_DESCUENTO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6101,7 +6101,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_pago]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_PAGO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6121,7 +6121,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[monto_pagado]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[MONTO_PAGADO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6141,7 +6141,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[metodo_pago]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[METODO_PAGO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6161,7 +6161,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[fecha_envio]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[FECHA_ENVIO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6181,7 +6181,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[costo_envio]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[COSTO_ENVIO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6201,7 +6201,7 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                           containsID="true"
                           dataType="System.Int32"
                           description="Especifica la columna de entrada usada como origen de datos para la conversión."
-                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[prima_seguro]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[PRIMA_SEGURO]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indica si la columna usa las rutinas de análisis más rápidas independientes de la configuración regional."
@@ -6296,13 +6296,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                   name="Entrada de dimensión de variación lenta">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[ASEGURADORA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="aseguradora"
+                      cachedName="ASEGURADORA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[aseguradora]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6337,13 +6337,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[DESCRIPCION_CONDICION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="25"
-                      cachedName="descripcion_condicion"
+                      cachedName="DESCRIPCION_CONDICION"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[descripcion_condicion]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6352,13 +6352,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[DESCRIPCION_ESTADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_estado"
+                      cachedName="DESCRIPCION_ESTADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[descripcion_estado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6367,13 +6367,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[DESCRIPCION_METODO_PAGO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_metodo_pago"
+                      cachedName="DESCRIPCION_METODO_PAGO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[descripcion_metodo_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6501,13 +6501,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[SEGURO_ASOCIADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="seguro_asociado"
+                      cachedName="SEGURO_ASOCIADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[seguro_asociado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6516,13 +6516,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].Columns[TRANSPORTISTA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="101"
-                      cachedName="transportista"
+                      cachedName="TRANSPORTISTA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Dimensión de variación lenta.Inputs[Entrada de dimensión de variación lenta].ExternalColumns[transportista]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]">
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -6762,13 +6762,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[estado_orden]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_estado_orden]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[descripcion_estado]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[DESCRIPCION_ESTADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_estado"
+                      cachedName="DESCRIPCION_ESTADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[descripcion_estado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_estado]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_ESTADO]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[x_condicion_pago]"
                       cachedDataType="ui1"
@@ -6776,13 +6776,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[condicion_pago]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_condicion_pago]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[descripcion_condicion]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[DESCRIPCION_CONDICION]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="25"
-                      cachedName="descripcion_condicion"
+                      cachedName="DESCRIPCION_CONDICION"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[descripcion_condicion]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_condicion]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_CONDICION]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[x_porcentaje_descuento]"
                       cachedDataType="i4"
@@ -6808,13 +6808,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[metodo_pago]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_metodo_pago]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[descripcion_metodo_pago]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[DESCRIPCION_METODO_PAGO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="30"
-                      cachedName="descripcion_metodo_pago"
+                      cachedName="DESCRIPCION_METODO_PAGO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[descripcion_metodo_pago]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[descripcion_metodo_pago]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[DESCRIPCION_METODO_PAGO]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[x_fecha_envio]"
                       cachedDataType="i8"
@@ -6822,13 +6822,13 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[fecha_envio]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_fecha_envio]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[transportista]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[TRANSPORTISTA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="101"
-                      cachedName="transportista"
+                      cachedName="TRANSPORTISTA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[transportista]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[transportista]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[TRANSPORTISTA]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[x_costo_envio]"
                       cachedDataType="i4"
@@ -6836,21 +6836,21 @@ where [refTable].[id_orden] = ? and [refTable].[descripcion_estado] = ? and [ref
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[costo_envio]"
                       lineageId="Package\Traspasar ordenes de compra\Conversión de datos numéricos.Outputs[Salida de conversión de datos].Columns[x_costo_envio]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[seguro_asociado]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[SEGURO_ASOCIADO]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="seguro_asociado"
+                      cachedName="SEGURO_ASOCIADO"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[seguro_asociado]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[seguro_asociado]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[SEGURO_ASOCIADO]" />
                     <inputColumn
-                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[aseguradora]"
+                      refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[ASEGURADORA]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
-                      cachedName="aseguradora"
+                      cachedName="ASEGURADORA"
                       externalMetadataColumnId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].ExternalColumns[aseguradora]"
-                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[aseguradora]" />
+                      lineageId="Package\Traspasar ordenes de compra\Cargar ordenes de compra - Origen de Oracle.Outputs[Salida de origen de Oracle].Columns[ASEGURADORA]" />
                     <inputColumn
                       refId="Package\Traspasar ordenes de compra\Insertar orden de compra.Inputs[Entrada de destino de OLE DB].Columns[x_prima_seguro]"
                       cachedDataType="i8"
